@@ -1,0 +1,25 @@
+name = "fang"
+version = "0.1.0"
+defaultTargets = ["Fang", "fang-check", "fang-tstp-export"]
+
+[[lean_lib]]
+name = "Fang"
+
+[[lean_exe]]
+name = "fang-check"
+root = "Main"
+
+[[lean_exe]]
+name = "fang-check-batch"
+root = "BatchMain"
+
+[[lean_exe]]
+name = "fang-io-tests"
+root = "BoundedInputTests"
+
+[[lean_lib]]
+name = "TstpExport"
+
+[[lean_exe]]
+name = "fang-tstp-export"
+root = "TstpMain"

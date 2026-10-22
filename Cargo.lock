@@ -1,0 +1,11 @@
+# Generated for the isolated path-only experiment.
+version = 4
+
+[[package]]
+name = "fang"
+version = "0.1.0"
+dependencies = ["fang-predicate-index-core"]
+
+[[package]]
+name = "fang-predicate-index-core"
+version = "0.0.0"

@@ -1,0 +1,16 @@
+[package]
+name = "fang"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.90"
+description = "An incomplete Rust theorem prover with independently checked refutation certificates"
+publish = false
+
+[dependencies]
+fang-predicate-index-core = { path = "crates/fang-predicate-index" }
+
+[profile.release]
+overflow-checks = true
+
+[lints.rust]
+unsafe_code = "forbid"

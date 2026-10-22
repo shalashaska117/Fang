@@ -1,0 +1,27 @@
+Upstream repository: https://github.com/vprover/vampire
+Reference commit: b75190a4b7946c325263b079ac8a67d2ea1c3e01
+
+Vampire.txt preserves the complete original licence, copyright and disclaimer.
+Vampire.AUTHORS and Vampire.THANKS preserve the original author list and
+acknowledgements. Fang contributors are listed separately in CONTRIBUTORS.md.
+
+Source files consulted (Fang paths on the left, upstream paths after the colon):
+
+- src/syntax.rs: Kernel/Term.hpp and Kernel/Clause.hpp. Fang uses owned finite
+  term trees and numeric identifiers, without the upstream allocation model.
+- src/unify.rs: Kernel/RobSubstitution.cpp:237-356 and Kernel/RobSubstitution.hpp.
+  Reference for worklist unification, occurs checking and rollback. Fang uses
+  recursive expansion and occurs checks, owned bindings and transactional copies.
+- src/search.rs: Inferences/BinaryResolution.cpp:250-264,
+  Inferences/Factoring.cpp:45-104, Saturation/SaturationAlgorithm.cpp:1262-1345
+  and Kernel/InferenceStore.cpp:883-953. Reference for resolution, factoring
+  and search. Fang uses a bounded FIFO loop and its own certificate serializer.
+
+The parser, predicate index, independent Lean checker and TSTP exporter are
+new implementations. Kernel/InferenceStore.cpp:661-740 was read as context
+for proof output; its printer implementation was not copied.
+
+Fang is independent and is not endorsed by the Vampire authors. New Fang
+contributions use the root LICENSE. Source and binary distributions must
+retain the applicable copyright, licence conditions and disclaimers, with
+separate notices for any bundled third-party components.

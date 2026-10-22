@@ -1,0 +1,233 @@
+{
+  "schema": "fang-tstp-proof-sources-v1",
+  "modules": [
+    {
+      "module": "TstpExport",
+      "path": "lean/TstpExport.lean",
+      "sha256": "8818d46db13b96c1e99a3c9278e6efe991d61fbc3a8c916ee63fd32e171b0ed9"
+    },
+    {
+      "module": "Acceptance",
+      "path": "proofs/tstp/Acceptance.lean",
+      "sha256": "6530f3d55bb7cfa3398658d9e41fc8704ea51f2a9d6c282c5073ea5c9fec26cf"
+    },
+    {
+      "module": "Rows",
+      "path": "proofs/tstp/Rows.lean",
+      "sha256": "2b78c554223f8092b17780c5ce9f4eb7749932089b04977331cc16e5d7345b14"
+    },
+    {
+      "module": "SourceLink",
+      "path": "proofs/tstp/SourceLink.lean",
+      "sha256": "928d5fd0a4849ed5a6140e219e168bc12b99c302fd43f94888b17bf66a2496fd"
+    },
+    {
+      "module": "Trace",
+      "path": "proofs/tstp/Trace.lean",
+      "sha256": "03b385aca1ba6329e158d3ec1bf98bb16f65e1ef2631ee466e4aee57a2bedd54"
+    },
+    {
+      "module": "BuilderLoop",
+      "path": "proofs/tstp/BuilderLoop.lean",
+      "sha256": "3b263c60d36a63152fb8a491ee02d44c58d12eedf980a2f6cc2072fa1e7fed4c"
+    },
+    {
+      "module": "Witness",
+      "path": "proofs/tstp/Witness.lean",
+      "sha256": "767c399ecb162221386ea46008b045c94258ee4b5502d337f453209e71d61a20"
+    },
+    {
+      "module": "Process",
+      "path": "proofs/tstp/Process.lean",
+      "sha256": "6b4fcfeb865df1cc5fa622e28d4cb3b9f52e097fd05c03f0d2464b10dfcb450a"
+    },
+    {
+      "module": "Invariant",
+      "path": "proofs/tstp/Invariant.lean",
+      "sha256": "06da27ae4c9eb20a3a58da9ae3504c25316bcdad057d094147d5523d7a287753"
+    },
+    {
+      "module": "Names",
+      "path": "proofs/tstp/Names.lean",
+      "sha256": "ddb8b8ddf6921b29da149e907d032ecac1717f8abe1a1f3a924ce89f957bd6c8"
+    },
+    {
+      "module": "Freshness",
+      "path": "proofs/tstp/Freshness.lean",
+      "sha256": "f9f5af3d49a71d315544cfe6eda686c6e23d7aead2f619b0bbbca87bbc658632"
+    },
+    {
+      "module": "DerivedState",
+      "path": "proofs/tstp/DerivedState.lean",
+      "sha256": "bec5d2a49dbd1d98b92d894d62f05e5b2b0eb2bb6dffb2f603c75c2f6a9ee274"
+    },
+    {
+      "module": "DerivedProcess",
+      "path": "proofs/tstp/DerivedProcess.lean",
+      "sha256": "490ad286ad84158f0869ca152e533a9adddef2d36f2142e61338c366e6ae4bc9"
+    },
+    {
+      "module": "Derivation",
+      "path": "proofs/tstp/Derivation.lean",
+      "sha256": "61754f21a4678de4ab3a456aef80432853c2fffc371ad986ce1682f62ca893e1"
+    },
+    {
+      "module": "Origins",
+      "path": "proofs/tstp/Origins.lean",
+      "sha256": "0d0d8d4804d4934b27d2c392c19360e2dad4102f67b970edb447e95cd9565799"
+    },
+    {
+      "module": "Pruning",
+      "path": "proofs/tstp/Pruning.lean",
+      "sha256": "d7c26ff3a0149714eaac89cab29e2c6771797feb9e14462a40ce9abadcfe4d70"
+    },
+    {
+      "module": "Leaves",
+      "path": "proofs/tstp/Leaves.lean",
+      "sha256": "734b8e9e443fb207b23465a323f57dbf7e1d447f0f490a715a1f5bf179792c34"
+    },
+    {
+      "module": "ExportProvenance",
+      "path": "proofs/tstp/ExportProvenance.lean",
+      "sha256": "16abfcde29c88c7442c78d3443000dad30434cdad20929123764742d2f2c1ff6"
+    },
+    {
+      "module": "QuotedAtom",
+      "path": "proofs/tstp/QuotedAtom.lean",
+      "sha256": "6397f3eb194c64af9ea7c749a2c2531f96095d7ac6c01c9a988b2cbec0e7bd9c"
+    },
+    {
+      "module": "TermRendering",
+      "path": "proofs/tstp/TermRendering.lean",
+      "sha256": "0bbb9d06f59b90a2aefeaa012c305374e0bca46f339d082d641bc7774847f7a5"
+    },
+    {
+      "module": "VariableNames",
+      "path": "proofs/tstp/VariableNames.lean",
+      "sha256": "ac15272e5a6e94c35565a04d9dd5a861d8bed881b4c8228693223e05118f389d"
+    },
+    {
+      "module": "TermParsing",
+      "path": "proofs/tstp/TermParsing.lean",
+      "sha256": "67dbed3db78002ad180ed2007d81911e78e00ab1af5e27d9d2a2f04431758c82"
+    },
+    {
+      "module": "LiteralParsing",
+      "path": "proofs/tstp/LiteralParsing.lean",
+      "sha256": "20701f9c5775e7bf8d308c7d902b638193bb44658e73bdbb0db44e489e56ba3d"
+    },
+    {
+      "module": "ClauseParsing",
+      "path": "proofs/tstp/ClauseParsing.lean",
+      "sha256": "11083016ccdad248ca739d5c2ea6f2ff7debb80bff652a8589ed90f310a18a79"
+    },
+    {
+      "module": "AnnotationGrammar",
+      "path": "proofs/tstp/AnnotationGrammar.lean",
+      "sha256": "f3fcb82ea4cc2283b6b2a7df4d6d58cb12aba6c313b9f6f7d29d797e0a228fdd"
+    },
+    {
+      "module": "WitnessMetadata",
+      "path": "proofs/tstp/WitnessMetadata.lean",
+      "sha256": "6bd2c4e32e5b95b9098c0d594d0b040e5e4d651432e98424def796f1ada4953b"
+    },
+    {
+      "module": "SourceMetadata",
+      "path": "proofs/tstp/SourceMetadata.lean",
+      "sha256": "d7f4dac8d44536b521a8702e1156dcfc7c24b259f2335f9ed77c28620a1ff40b"
+    },
+    {
+      "module": "AnnotatedRows",
+      "path": "proofs/tstp/AnnotatedRows.lean",
+      "sha256": "624e29b257151347e691a25edc8dcf1484ffb62174f12257bea9dcbed3769950"
+    },
+    {
+      "module": "NamedSemantics",
+      "path": "proofs/tstp/NamedSemantics.lean",
+      "sha256": "aa04836eec7fc8c7ba7d743a66c64dd04534f601ec79f6cceae7f60d8b75f132"
+    },
+    {
+      "module": "ActualComposition",
+      "path": "proofs/tstp/ActualComposition.lean",
+      "sha256": "d4aa6567b0cb04d0d359fa3c318b01f112d9c067239476258af4a30652abd779"
+    },
+    {
+      "module": "ProvenanceComposition",
+      "path": "proofs/tstp/ProvenanceComposition.lean",
+      "sha256": "2aaee38d22c2d03d7e05b5482391353bc96ba680bd47d82f9a04bb0911b04b33"
+    },
+    {
+      "module": "Controls",
+      "path": "proofs/tstp/Controls.lean",
+      "sha256": "2058dcacf6c62bfaf0b54603fe622a5a3b719a1744bf3314ab7c1ea5219f5cc7"
+    },
+    {
+      "module": "Audit",
+      "path": "proofs/tstp/Audit.lean",
+      "sha256": "b56367d8dbea8fbbd5c06cbcfb58e74816e299ec5150f814177e6e364566c42f"
+    },
+    {
+      "module": "LeafText",
+      "path": "proofs/tstp/LeafText.lean",
+      "sha256": "f437ee2005933555715b7103666c6962155bee68c31c01c1c2cceea2a407e33f"
+    },
+    {
+      "module": "AnnotationLexer",
+      "path": "proofs/tstp/AnnotationLexer.lean",
+      "sha256": "b7e794f223134a2d6638189cfd29b35eb9f06215deffb7f870dcad088c1be3a8"
+    },
+    {
+      "module": "AnnotationParser",
+      "path": "proofs/tstp/AnnotationParser.lean",
+      "sha256": "208a15dd7b30a9ba1b91222ca55f75b4553559bd8d40681e6a70821241cd4bf8"
+    },
+    {
+      "module": "AnnotationMembership",
+      "path": "proofs/tstp/AnnotationMembership.lean",
+      "sha256": "d677340d3cc42ae3ed09036b0f60d3976266de457b239e1f5f50b41b0d8afc0a"
+    },
+    {
+      "module": "BodyPrefix",
+      "path": "proofs/tstp/BodyPrefix.lean",
+      "sha256": "13cb4f40ddf5b5371e36eecf3bcca695d605695f12c0837c600a4c8cc951f8ea"
+    },
+    {
+      "module": "SourceLexerBridge",
+      "path": "proofs/tstp/SourceLexerBridge.lean",
+      "sha256": "ab0f72b9887e6cb2dd331bdb7f5d3ba17380547fdb7768f8e998fac18fa0de81"
+    },
+    {
+      "module": "BodyBridge",
+      "path": "proofs/tstp/BodyBridge.lean",
+      "sha256": "2c88021b10a71a81671d481677b0bdbc6c9c747b4072b963a48c3403452f1a1d"
+    },
+    {
+      "module": "RowUniqueness",
+      "path": "proofs/tstp/RowUniqueness.lean",
+      "sha256": "1ae743f7de43b06759da47206d638314dd4744fc51d3468ba55f69f28f3ae650"
+    },
+    {
+      "module": "SequenceUniqueness",
+      "path": "proofs/tstp/SequenceUniqueness.lean",
+      "sha256": "0db531a1a6c5387e2d76416e4fe49e98c69dbd592450c3ed6ad13169688a08bd"
+    },
+    {
+      "module": "BridgeAudit",
+      "path": "proofs/tstp/BridgeAudit.lean",
+      "sha256": "eed79068de132fcca5951e0ccc993d4f30312bcf7712af2d9aea480c96a2cf6d"
+    },
+    {
+      "module": "FinalComposition",
+      "path": "proofs/tstp/FinalComposition.lean",
+      "sha256": "64b8d82721fbbd85d8abc6a0e3a5f9221704a32e68685604fbf526e4ed45ce56"
+    },
+    {
+      "module": "FinalAudit",
+      "path": "proofs/tstp/FinalAudit.lean",
+      "sha256": "eecdb0db7efc60217902f073e771014a659bd0ca116f8331cea32fc978dcec13"
+    }
+  ],
+  "general_theorems": 54,
+  "kernel_controls": 8,
+  "fixed_audits": 62
+}

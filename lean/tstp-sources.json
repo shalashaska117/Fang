@@ -1,0 +1,8 @@
+{
+  "schema": "fang-tstp-source-link-v2",
+  "scope": "Reviewed production exporter source hashes. The build checks these bytes before compilation. This record alone does not prove native execution or a problem-specific result.",
+  "sources": {
+    "lean/TstpExport.lean": "8818d46db13b96c1e99a3c9278e6efe991d61fbc3a8c916ee63fd32e171b0ed9",
+    "lean/TstpMain.lean": "c3459a3957c37ff312658896800f2d1cd126174d532d44a408831be59b961c7b"
+  }
+}
