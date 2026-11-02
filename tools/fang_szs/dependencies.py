@@ -53,7 +53,7 @@ def check_lock(path, packages, check):
         raise ValueError(f"Unreviewed Cargo lockfile graph: {path}")
 
 
-def dependency_files(root, check=lambda: None):
+def _root_dependency_files(root, check=lambda: None, allowed_crates=frozenset({'fang-predicate-index'})):
     """Return all declared dependency inputs, or reject an unreviewed graph.
 
     This validates inventory membership, not file contents against a prior pin.
@@ -64,6 +64,12 @@ def dependency_files(root, check=lambda: None):
     """
     root = Path(root)
     manifest = read_toml(root / "Cargo.toml", check)
+    workspace = "workspace" in manifest
+    if workspace:
+        # The only accepted workspace is the reviewed version-8 one; its lockfile is pinned there.
+        from .v8_dependencies import RUST_MAP, RUST_SCHEMA, check_workspace, load_map
+        check_workspace(root, manifest, load_map(root, RUST_MAP, RUST_SCHEMA, check), check)
+        manifest = {key: value for key, value in manifest.items() if key != "workspace"}
     reject_other_dependencies(manifest)
     if os.path.lexists(root / "build.rs"):
         raise ValueError("Implicit root build scripts require review")
@@ -80,14 +86,15 @@ def dependency_files(root, check=lambda: None):
     if dependencies != {"fang-predicate-index-core": {"path": CORE}}:
         raise ValueError("Unreviewed local Rust dependency graph")
     root_package["dependencies"] = ["fang-predicate-index-core"]
-    check_lock(root / "Cargo.lock", [root_package, CORE_PACKAGE], check)
+    if not workspace:
+        check_lock(root / "Cargo.lock", [root_package, CORE_PACKAGE], check)
     real_directory(root / "crates", check)
     crate = root / CORE
     real_directory(crate, check)
     with os.scandir(root / "crates") as entries:
         for entry in entries:
             check()
-            if entry.name != "fang-predicate-index":
+            if entry.name not in allowed_crates:
                 raise ValueError("Unexpected local crate")
 
     found = set()
@@ -124,3 +131,15 @@ def dependency_files(root, check=lambda: None):
         raise ValueError("Unexpected core package identity")
     check_lock(crate / "Cargo.lock", [CORE_PACKAGE], check)
     return [crate / relative for relative in sorted(CORE_FILES)]
+
+
+def dependency_files(root, check=lambda: None):
+    if read_toml(Path(root) / "Cargo.toml", check).get("dependencies", {}) == {}:
+        return _root_dependency_files(root, check)
+    from .fof_dependencies import leaf_files
+    extra, allowed = leaf_files(root, check)
+    files = _root_dependency_files(root, check, allowed) + extra
+    if "workspace" in read_toml(Path(root) / "Cargo.toml", check):
+        from .v8_dependencies import rust_files
+        files += rust_files(root, check)
+    return files

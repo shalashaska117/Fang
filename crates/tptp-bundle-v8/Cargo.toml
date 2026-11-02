@@ -1,0 +1,22 @@
+[package]
+name = "fang-tptp-bundle-v8"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang-tptp-coverage-candidate = { path = "../tptp-coverage" }
+fang-tptp-expanded-integration = { path = "../fang-tptp-expanded" }
+fang-tptp-expanded-v8 = { path = "../fang-v8" }
+
+[[bin]]
+name = "fang-bundle-candidate"
+path = "src/bin/bundle-candidate.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

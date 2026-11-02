@@ -1,0 +1,26 @@
+[package]
+name = "fang-tptp-expanded-integration"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-tptp-full-frontend-candidate = { path = "../tptp-cnf-boolean" }
+fang-quantified-fof-frontend = { path = "../quantified-fof-frontend" }
+fang-quantified-pipeline-observer = { path = "../pipeline-observer" }
+fang-fof-equality-bridge = { path = "../fof-equality-bridge" }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+fang-equality-search = { path = "../equality-search" }
+fang-skolem-core = { path = "../skolem-core" }
+
+[dev-dependencies]
+fang-quantified-equality-pipeline = { path = "../quantified-equality-pipeline" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

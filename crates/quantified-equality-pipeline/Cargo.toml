@@ -1,0 +1,23 @@
+[package]
+name = "fang-quantified-equality-pipeline"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-quantified-equality-frontend = { path = "../quantified-equality-frontend" }
+fang-quantified-fof-frontend = { path = "../quantified-fof-frontend" }
+fang-quantified-pipeline-observer = { path = "../pipeline-observer" }
+fang-fof-equality-bridge = { path = "../fof-equality-bridge" }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+fang-equality-search = { path = "../equality-search" }
+fang-skolem-core = { path = "../skolem-core" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

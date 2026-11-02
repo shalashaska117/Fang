@@ -71,6 +71,12 @@ def lean_code(text: str) -> str:
                 r"'(?:\\(?:x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|.)|[^'\\\r\n])'", text[cursor:])):
             output.append(" ")
             cursor += len(literal.group(0))
+        elif character == "«":
+            end = text.find("»", cursor + 1)
+            if end < 0:
+                raise ValueError("Unterminated Lean escaped identifier")
+            output.append(" " + "\n" * text[cursor:end + 1].count("\n"))
+            cursor = end + 1
         elif character == '"':
             string = True
             output.append(" ")
@@ -78,7 +84,11 @@ def lean_code(text: str) -> str:
         else:
             output.append(character)
             cursor += 1
-    return "".join(output)
+    code = "".join(output)
+    # Lean permits `axiom` as an inductive constructor or qualified member.
+    # A declaration keyword outside those positions remains visible.
+    return re.sub(r"(?P<head>[.|]\s*)\baxiom\b",
+                  lambda match: match["head"] + " " * 5, code)
 
 
 def main() -> int:
@@ -86,6 +96,8 @@ def main() -> int:
     arguments.add_argument("root", type=Path)
     arguments.add_argument("lean", type=Path)
     arguments.add_argument("--out", type=Path, help="Fresh directory for local proof artifacts")
+    arguments.add_argument("--with-tstp", action="store_true",
+                           help="Also check the shared CNF and ground-FOF text proofs")
     arguments.add_argument("--timeout-seconds", type=int, default=120)
     arguments.add_argument("--memory-mib", type=int, default=2048)
     options = arguments.parse_args()
@@ -124,6 +136,17 @@ def main() -> int:
             destination = source / path.relative_to(root / "lean")
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(path, destination)
+        if options.with_tstp:
+            for folder, prefix in (("tstp", Path()), ("fof-tstp", Path("Fang/FOF/TSTP"))):
+                members = sorted((root / "proofs" / folder).glob("*.lean"))
+                if not members:
+                    raise RuntimeError("Missing text proof source directory: " + folder)
+                for path in members:
+                    destination = source / prefix / path.name
+                    if destination.exists():
+                        raise RuntimeError("Duplicate proof module: " + str(destination))
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(path, destination)
         for name in ("lean-toolchain", "lakefile.toml", "check-local.sh"):
             shutil.copyfile(root / "lean" / name, source / name)
         shutil.copyfile(Path(__file__), run / "check-suite.py")

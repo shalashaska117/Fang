@@ -1,0 +1,21 @@
+[package]
+name = "fang-tptp-expanded-v8"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang-tptp-expanded-integration = { path = "../fang-tptp-expanded" }
+fang-equality-search = { path = "../equality-search" }
+
+[[bin]]
+name = "fang-expanded-candidate"
+path = "src/bin/candidate.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

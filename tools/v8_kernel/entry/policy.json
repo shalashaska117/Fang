@@ -1,0 +1,61 @@
+{
+  "batch_sha256": "c0f18bbe3457610f7972c49cd2b6ede5270727fa844c3d2b174bd748b94dac0c",
+  "entry_directory": "tools/v8_kernel/entry",
+  "entry_review": {
+    "entry_sources_sha256": {
+      "check.py": "0bd5eb42ff27b766e7db2e6e9ef05f13833bac70a9c23ee9b3c2e45837e62000",
+      "invoke.py": "c012427b8542c961f0ebc6560782393db2b68dc04cecea11301c015062c10b7c",
+      "main.py": "6ff82deb719439ef4c13df5499180213e34ff09d0dee43256d62bc678e69aea0",
+      "origin.json": "95d79b5eb7791910c63767a5dc414879ba4c3d8bd4d49cd61ebbe2e94b0c75a8",
+      "policy.json": "9842406ec9fb69469589c54847bdd1350ef282a61a8fd72eaed0623765a84b45",
+      "provision-policy.py": "a934c220e65f7b0854c86d822bc9109db528610d113aee7696301b6bf5f3de39",
+      "trees.py": "222b4d2684b51f07459efadc64099bdf0cba3fb5a4ceccff88cc1aed5e224a83"
+    },
+    "provenance": "evidence/verification/fof-equality-kernel-v8-entry-v6-independent-review-v1-20261026/manifest.json",
+    "sha256": "78d481ef8fc5965ce923e711e09bb64b1d3cbbaab0711e291d232c2b1411c8ab",
+    "status": "passed"
+  },
+  "files": {
+    "tools/fang_szs/__init__.py": "f8378d1c5b063821517c5f8335144ae4d4f5e381e540c11b215a3439229e531e",
+    "tools/fang_szs/supervisor.py": "b96e6333c99c6e8a66abdad3ef233d1fe6c295ac7c2a0bf0a6f70928501acfbe",
+    "tools/replay/axiom_audit.py": "926ac9208c935bb7f5c24af29e58175178ad20afa43278f6b7d4804927b03061",
+    "tools/v8_kernel/entry/check.py": "0bd5eb42ff27b766e7db2e6e9ef05f13833bac70a9c23ee9b3c2e45837e62000",
+    "tools/v8_kernel/entry/invoke.py": "c012427b8542c961f0ebc6560782393db2b68dc04cecea11301c015062c10b7c",
+    "tools/v8_kernel/entry/main.py": "6ff82deb719439ef4c13df5499180213e34ff09d0dee43256d62bc678e69aea0",
+    "tools/v8_kernel/entry/origin.json": "95d79b5eb7791910c63767a5dc414879ba4c3d8bd4d49cd61ebbe2e94b0c75a8",
+    "tools/v8_kernel/entry/provision-policy.py": "a934c220e65f7b0854c86d822bc9109db528610d113aee7696301b6bf5f3de39",
+    "tools/v8_kernel/entry/trees.py": "222b4d2684b51f07459efadc64099bdf0cba3fb5a4ceccff88cc1aed5e224a83",
+    "tools/v8_kernel/generator/generate-v8.py": "4d133fbf6310720f323accb0c411b4be7bc4e5dc7a26888490114334f6f6cfc9",
+    "tools/v8_kernel/recipe/equality/generate-certificate.py": "2f79c2b7846dbc9664cd4acd41be959038ed6a11688d5ab2f6251066141df534",
+    "tools/v8_kernel/recipe/equality/generate-cnf.py": "be7ff73dd9669bd9b5eb60798cb53a65ec8aa49ff11a2f96376076c1e26539ba",
+    "tools/v8_kernel/recipe/equality/generate-quantified.py": "d58d8bcd8aabf9d01b12545cc0d8cc93c5a25d6450f2699c55e443816a7cae2c",
+    "tools/v8_kernel/recipe/mixed/generate-clausifier.py": "18a5e6abd83fb579a8d38b720d7fbd26e513a2c443ecb42f7ff3d13db92d4b0a",
+    "tools/v8_kernel/recipe/mixed/generate-rectify.py": "5b115aea2c1ac2ba2edb257d470eb394312c61e259e2d73d1a9ea5df75e9fc43",
+    "tools/v8_kernel/recipe/mixed/generate-removal.py": "90463543d09d190ee8ed88390bd627a8be32bfb6a11261ccd5c40578bde63428",
+    "tools/v8_kernel/recipe/mixed/generate-replay.py": "f712466c9a97d5b93bde518c2f0961c3916966e0213ad5ab8287ab9db30014c6",
+    "tools/v8_kernel/recipe/mixed/generate-skolem.py": "379bdf358c4eaa725be0a935db2036abf324a7db97b880ba607d657e138bab7b",
+    "tools/v8_kernel/recipe/mixed/generate-split-declarations.py": "082d3fd309446cb90b27840882d3f56dcb3ec749fe5b993ed433058807e89352",
+    "tools/v8_kernel/recipe/mixed/generate-split-transform.py": "130fe9ef766c2f489d18fecf12080709060d18d6157e826695a8dbd87c246f58",
+    "tools/v8_kernel/recipe/mixed/generate-transform.py": "cb8a0cb57db40a3420ffc01a22d663b123eca7eea02c98f9128df4d6d783a5d4",
+    "tools/v8_kernel/recipe/mixed/generate.py": "d75cc04bb0281be4f2e57d21376b29bc4525493f041de3dacf8006a4574306ba",
+    "tools/v8_kernel/recipe/mixed/sources.json": "2edc2f9756923e3ca4542c7aa0ceae2e7a5bf41636432a863e43654625695947"
+  },
+  "generator_directory": "tools/v8_kernel/generator",
+  "independent_review": {
+    "bindings": {
+      "pins.link_v2": "c0f18bbe3457610f7972c49cd2b6ede5270727fa844c3d2b174bd748b94dac0c",
+      "pins.proof": "e8dbfe675733e2b708870349e4eed81d2ef5dea2f02f3c97b2a3a2214d75a5ea"
+    },
+    "provenance": "evidence/verification/tptp-expanded-certificate-independent-review-v2-20261024/manifest.json",
+    "sha256": "9454d117e63f255ad0ce3a461f3aa920c23e30cf185b0fd2dbb664540f2db438"
+  },
+  "inventory": {
+    "runner": "tools/v8_kernel/entry/trees.py"
+  },
+  "provenance": {
+    "gate_manifest_sha256": "e8dbfe675733e2b708870349e4eed81d2ef5dea2f02f3c97b2a3a2214d75a5ea",
+    "link_sha256": "c0f18bbe3457610f7972c49cd2b6ede5270727fa844c3d2b174bd748b94dac0c",
+    "note": "Receipts named here are provenance; the installation reads none of them."
+  },
+  "schema": "fang-v8-equality-kernel-entry-policy-v2"
+}

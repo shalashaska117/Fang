@@ -1,9 +1,7 @@
 """Local ATP command with explicit checking and bounded TSTP output."""
 # Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
-import argparse
 from dataclasses import asdict
 import fcntl
-import math
 import os
 from pathlib import Path
 import resource
@@ -11,46 +9,15 @@ import select
 import sys
 import time
 from . import kernel
+from . import cli
 from .installation import digest_file, verify_installation, verify_running_adapter
 from .protocol import checker_acceptance, engine_outcome
 from .tstp import export_solution, read_solution, solution_output
 from .supervisor import EXIT, Failure, Limits, Snapshot, Supervisor, read_regular, strict_json, write_json
 
 
-class Parser(argparse.ArgumentParser):
-    def error(self, message):
-        raise Failure("Error", "Invalid adapter arguments: " + message)
-
-
-def arguments(argv):
-    parser = Parser(description="Local Linux/WSL Fang CNF prover. Kernel replay is the default; no SAT result.")
-    parser.add_argument("input", type=Path)
-    parser.add_argument("--installation", required=True, type=Path)
-    parser.add_argument("--artifacts", required=True, type=Path)
-    parser.add_argument("--check", choices=("kernel", "compiled"), default="kernel")
-    parser.add_argument("--output", choices=("status", "tstp"), default="status")
-    parser.add_argument("--max-solution-bytes", type=int, default=16 << 20)
-    parser.add_argument("--wall-seconds", type=float, default=60)
-    parser.add_argument("--memory-mib", type=int, default=2048)
-    parser.add_argument("--max-steps", type=int, default=100_000)
-    parser.add_argument("--max-clauses", type=int, default=1_000)
-    parser.add_argument("--max-operations", type=int, default=5_000_000)
-    parser.add_argument("--max-input-bytes", type=int, default=1 << 20)
-    parser.add_argument("--max-certificate-bytes", type=int, default=64 << 20)
-    parser.add_argument("--max-log-bytes", type=int, default=4 << 20)
-    parser.add_argument("--max-artifact-bytes", type=int, default=256 << 20)
-    args = parser.parse_args(argv)
-    if not math.isfinite(args.wall_seconds) or not 0.25 <= args.wall_seconds <= 86400:
-        parser.error("wall-seconds must be finite and between 0.25 and 86400")
-    if not 16 <= args.memory_mib <= 1 << 20:
-        parser.error("memory-mib must be between 16 and 1048576")
-    for name in ("max_steps", "max_clauses", "max_operations", "max_input_bytes", "max_certificate_bytes", "max_log_bytes", "max_artifact_bytes"):
-        value = getattr(args, name)
-        if not 0 <= value <= (1 << 63) - 1:
-            parser.error(name + " is outside the supported nonnegative range")
-    if not 0 <= args.max_solution_bytes <= 16 << 20:
-        parser.error("max-solution-bytes must be between 0 and 16777216")
-    return args
+def arguments(argv, *, public=False):
+    return cli.arguments(argv, public=public)
 
 
 def run_pipeline(args, supervisor, manifest, run_root):
@@ -167,7 +134,7 @@ def output_bytes(manifest, status, solution):
     return data
 
 
-def main(argv=None):
+def main(argv=None, *, public=False):
     started = time.monotonic()
     cpu_started = resource.getrusage(resource.RUSAGE_SELF)
     supervisor, run_root, args = None, None, None
@@ -176,7 +143,7 @@ def main(argv=None):
         "profile": "kernel", "output": "status",
         "scope": "Strict equality-free CNF; no SAT, calculus-completeness or whole-Rust proof claim"}
     try:
-        args = arguments(argv)
+        args = arguments(argv, public=public)
         manifest["profile"] = args.check
         manifest["output"] = args.output
         manifest["max_solution_bytes"] = args.max_solution_bytes
@@ -195,6 +162,7 @@ def main(argv=None):
             for path in sorted(Path(__file__).parent.glob("*.py"))}
         manifest["state"] = "running"
         write_json(run_root / "manifest.json", manifest)
+        cli.announce_artifacts(args, run_root, supervisor, emit_status)
         status, reason = run_pipeline(args, supervisor, manifest, run_root)
         if status == "Unsatisfiable" and args.output == "tstp":
             solution = read_solution(run_root, manifest["solution"], supervisor.check)

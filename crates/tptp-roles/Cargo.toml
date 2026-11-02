@@ -1,0 +1,27 @@
+[package]
+name = "fang-tptp-roles"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[lib]
+name = "fang_tptp_full_frontend_candidate"
+
+[dependencies]
+fang = { path = "../.." }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+fang-fof-equality-bridge = { path = "../fof-equality-bridge" }
+fang-quantified-fof-core = { path = "../quantified-fof-core" }
+
+[dev-dependencies]
+fang-skolem-core = { path = "../skolem-core" }
+quantified-reference = { package = "fang-quantified-fof-frontend", path = "../quantified-fof-frontend" }
+equality-reference = { package = "fang-equality-frontend", path = "../equality-frontend" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

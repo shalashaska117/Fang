@@ -1,73 +1,51 @@
 # Design and verification
 
-Fang separates searching for a proof from deciding whether that proof is valid.
-The current logic is classical first-order logic over one nonempty domain,
-without built-in equality or interpreted theories. Terms are finite trees;
-functions and predicates are uninterpreted.
+Fang separates searching for a proof from deciding whether the proof is valid. The Rust search writes a candidate certificate; an independent Lean checker decides. The logic is classical first-order logic with equality over one nonempty domain. Terms are finite trees and function and predicate symbols are uninterpreted.
 
 ## Execution
 
-1. Capture the original input bytes in a private run directory.
-2. Parse the restricted CNF language and remove identical duplicate literals.
-3. Search in Rust using binary resolution, factoring and a bounded FIFO
-   given-clause queue. A predicate/polarity index selects candidate pairs.
-4. Check the resulting internal certificate with the independent Lean checker.
-5. Optionally render a TSTP derivation with original leaves, preprocessing,
-   variable renaming, substitutions and inference witnesses.
+1. Capture the input file, and every file it includes, in a private run directory.
+2. Choose the checking path from the captured input: single file, bundle (includes, distinct objects or annotations), or signed bundle (a conjecture or another non-axiom role).
+3. Run the Rust producer. It parses the input, normalizes formulas, removes binders, Skolemizes and clausifies, then searches with binary resolution, factoring, paramodulation and equality resolution in a bounded given-clause loop. With conjectures there is one task per selected conjecture: the premises together with that conjecture negated.
+4. Run the Lean checker on the captured bytes and the candidate. It parses the input again, redoes the preprocessing and checks every step of the certificate.
+5. On request, run the TSTP exporter on the accepted input and certificate.
 
-The engine uses owned terms, numeric identifiers, simultaneous substitutions
-and first-order unification with an occurs check. Resource limits can stop
-search or checking. Fang does not interpret an exhausted queue as SAT.
+Resource limits can stop the search or the checker. An exhausted search is `GaveUp`, never a satisfiability claim.
 
 ## What is proved
 
-General Lean theorems connect acceptance by the independent checker to
-unsatisfiability of the original input bytes under the declared grammar. They
-cover source decoding, name interpretation, duplicate-literal preprocessing,
-substitution, renaming, resolution, factoring and certificate trace soundness.
+Lean theorems connect acceptance by each checker to the original input bytes. Acceptance by the single-file checker proves that the input has no model. Acceptance by the bundle checker proves the same for the bundle, with includes and selections resolved and distinct objects pairwise unequal. For the signed checker, an accepted certificate for a conjecture proves that the premises entail it, and the `Theorem` endpoint needs at least one selected conjecture and an accepted certificate for each. The proofs cover parsing, name tables, normalization, binder removal, Skolemization, clausification, equality conversion and every inference rule of the certificate, and they hold for every value of the configurable checker limits.
 
-The TSTP proof covers the actual Lean export function. Successful export yields
-the original source leaves, a justified derivation, exact inference metadata,
-relevant ancestry, uniquely parsed ordered rows and a final empty clause.
-This covers the emitted subset, not all TPTP syntax or arbitrary external proofs.
+The TSTP proofs cover the actual Lean export functions. An exported document starts with the original statements as leaves, follows them with justified preprocessing and inference rows, and ends with the empty clause. This covers the documents Fang prints, not arbitrary TSTP proofs.
 
-The default command profile checks a theorem for the exact captured problem
-and internal certificate through Lean's kernel. The compiled profile executes
-the independent checker instead. Both profiles execute the TSTP exporter as
-compiled code; neither separately kernel-checks each printed byte stream.
+The checkers' preprocessing is Lean code extracted from Fang's Rust with Charon and Aeneas. The proofs are about the extracted Lean definitions, and the checkers run those definitions, so the soundness of a result does not depend on the extraction.
 
-The proofs use Lean's standard `propext`, `Classical.choice` and `Quot.sound`
-axioms. They do not use application-specific axioms or admitted obligations.
+The default mode runs the checker as compiled code. The kernel mode instead checks a theorem for the exact input and certificate in Lean's kernel. The TSTP exporters always run as compiled code.
+
+The proofs use only Lean's standard axioms `propext`, `Classical.choice` and `Quot.sound`. The build reruns the axiom audits and fails on anything else, including `sorry`.
 
 ## Trust and limits
 
-The source grammar and semantics must describe the intended problem. Lean's
-foundations, kernel implementation, input capture and artifact identity remain
-trusted. Compiled checking and rendering also trust compilation, runtime, I/O,
-the operating system and hardware. Hashes detect artifact changes; they do not
-prove correct execution.
+The TPTP grammar and semantics in the Lean sources must describe the intended problem. Lean's foundations and kernel, input capture and artifact identity are trusted. Compiled checking and rendering also trust the Lean compiler and runtime, I/O, the operating system and hardware. Hashes detect replaced files; they do not prove correct execution.
 
-The independent checker does not verify the entire Rust engine. Memory safety,
-functional correctness, logical soundness, calculus completeness, search
-fairness and performance are separate claims. Fang forbids its own unsafe Rust,
-but native allocation and stack limits still apply. No whole-search completeness
-or SAT/model correctness is claimed. Performance remains an engineering target.
+The checker does not verify the Rust search. Memory safety, completeness, fairness and performance of the search are separate claims, and none of them is made. Fang forbids unsafe code in its own Rust, but native allocation and stack limits still apply. No satisfiability or model result is claimed.
 
-The development pipeline for direct Rust verification is
-Rust -> Charon -> Aeneas -> Lean 4. Extraction and library-model correspondence
-are additional trust boundaries. That work is separate from the reproducible
-checker/exporter proofs shipped here; experimental extraction runs are local.
+## Status rules for conjectures
+
+The signed checker's own `--goals` listing decides the status. Theorem needs at least one selected conjecture and an accepted certificate for every listed index, and each acceptance prints its listed item. Unsatisfiable needs no selected conjecture and an accepted certificate for the task of the inputs. Otherwise the status is GaveUp, ResourceOut, Inappropriate or an input error, as the rejection and the budget decide. A checker rejection of a producer candidate is an Error and never a result. A partial set of proved conjectures is never reported, and one budget covers every task of an input.
+
+The roles `axiom`, `hypothesis`, `definition`, `lemma`, `theorem` and `corollary` are premises, `conjecture` is a goal and `negated_conjecture` is an input that is already negated. The roles `assumption`, `plain`, `type`, `interpretation` and `logic` are Inappropriate, and so is input that selects both a conjecture and a negated conjecture. Fang never reports Satisfiable or CounterSatisfiable: a search that ends without a refutation is GaveUp or ResourceOut.
 
 ## Source layout
 
-| Directory | Purpose |
+| Directory | Contents |
 | --- | --- |
-| `src/`, `crates/` | Rust engine and predicate index |
-| `lean/` | Independent checker, semantics and TSTP exporter |
-| `proofs/tstp/` | Export correspondence proofs and replay command |
-| `tools/` | Build, checked command, kernel replay and tests |
-| `tests/`, `examples/` | Rust regressions and small authored problems |
-| `LICENSES/` | Third-party notices and source references |
+| `crates/` | Rust parsers, preprocessing, equality search, producers and the kernel witness |
+| `src/` | The core Rust engine: terms, unification, resolution and factoring |
+| `lean-v8/` | Lean checkers, TSTP exporters and their proofs |
+| `lean/`, `proofs/` | The first release's CNF and ground-FOF checker and proofs, used by the older profiles |
+| `tools/` | Fetch and build scripts, the `fang` command and the kernel mode |
+| `tests/`, `examples/` | Rust regressions and small example problems |
+| `LICENSES/` | Third-party notices |
 
-Experiment code, benchmark runs, evidence archives and development diaries are
-kept locally and are not distributed with Fang.
+Experiments, benchmark runs and evidence archives stay local and are not distributed with Fang.

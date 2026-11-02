@@ -1,0 +1,21 @@
+[package]
+name = "fang-quantified-fof-frontend"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-quantified-fof-core = { path = "../quantified-fof-core" }
+
+[dev-dependencies]
+universal-reference = { package = "fang-fof-frontend", path = "../fof-universal-frontend" }
+universal-core-reference = { package = "fang-fof-core", path = "../fof-universal-core" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

@@ -1,6 +1,6 @@
 name = "fang"
 version = "0.1.0"
-defaultTargets = ["Fang", "fang-check", "fang-tstp-export"]
+defaultTargets = ["Fang", "fang-check", "fang-tstp-export", "FofProofs", "fang-fof-check"]
 
 [[lean_lib]]
 name = "Fang"
@@ -23,3 +23,14 @@ name = "TstpExport"
 [[lean_exe]]
 name = "fang-tstp-export"
 root = "TstpMain"
+
+[[lean_lib]]
+name = "FofProofs"
+
+[[lean_exe]]
+name = "fang-fof-check"
+root = "FofMain"
+
+[[lean_exe]]
+name = "fang-fof-tstp-export"
+root = "FofTstpMain"

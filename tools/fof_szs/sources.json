@@ -1,0 +1,302 @@
+{
+  "crates": {
+    "ground-fof-core": {
+      "files": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/lib.rs"
+      ],
+      "lock": {
+        "package": [
+          {
+            "dependencies": [
+              "fang-predicate-index-core"
+            ],
+            "name": "fang",
+            "version": "0.1.0"
+          },
+          {
+            "dependencies": [
+              "fang"
+            ],
+            "name": "fang-ground-fof-core",
+            "version": "0.0.0"
+          },
+          {
+            "name": "fang-predicate-index-core",
+            "version": "0.0.0"
+          }
+        ],
+        "version": 4
+      },
+      "manifest": {
+        "dependencies": {
+          "fang": {
+            "path": "../.."
+          }
+        },
+        "lints": {
+          "rust": {
+            "unsafe_code": "forbid"
+          }
+        },
+        "package": {
+          "edition": "2024",
+          "license": "BSD-3-Clause",
+          "name": "fang-ground-fof-core",
+          "publish": false,
+          "rust-version": "1.90",
+          "version": "0.0.0"
+        },
+        "profile": {
+          "release": {
+            "overflow-checks": true
+          }
+        }
+      }
+    },
+    "ground-fof-frontend": {
+      "files": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/lib.rs"
+      ],
+      "lock": {
+        "package": [
+          {
+            "dependencies": [
+              "fang-predicate-index-core"
+            ],
+            "name": "fang",
+            "version": "0.1.0"
+          },
+          {
+            "dependencies": [
+              "fang"
+            ],
+            "name": "fang-ground-fof-core",
+            "version": "0.0.0"
+          },
+          {
+            "dependencies": [
+              "fang",
+              "fang-ground-fof-core"
+            ],
+            "name": "fang-ground-fof-frontend",
+            "version": "0.0.0"
+          },
+          {
+            "name": "fang-predicate-index-core",
+            "version": "0.0.0"
+          }
+        ],
+        "version": 4
+      },
+      "manifest": {
+        "dependencies": {
+          "fang": {
+            "path": "../.."
+          },
+          "fang-ground-fof-core": {
+            "path": "../ground-fof-core"
+          }
+        },
+        "lints": {
+          "rust": {
+            "unsafe_code": "forbid"
+          }
+        },
+        "package": {
+          "edition": "2024",
+          "license": "BSD-3-Clause",
+          "name": "fang-ground-fof-frontend",
+          "publish": false,
+          "rust-version": "1.90",
+          "version": "0.0.0"
+        },
+        "profile": {
+          "release": {
+            "overflow-checks": true
+          }
+        }
+      }
+    },
+    "ground-fof-search": {
+      "files": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/lib.rs"
+      ],
+      "lock": {
+        "package": [
+          {
+            "dependencies": [
+              "fang-predicate-index-core"
+            ],
+            "name": "fang",
+            "version": "0.1.0"
+          },
+          {
+            "dependencies": [
+              "fang"
+            ],
+            "name": "fang-ground-fof-core",
+            "version": "0.0.0"
+          },
+          {
+            "dependencies": [
+              "fang",
+              "fang-ground-fof-core"
+            ],
+            "name": "fang-ground-fof-frontend",
+            "version": "0.0.0"
+          },
+          {
+            "dependencies": [
+              "fang",
+              "fang-ground-fof-core",
+              "fang-ground-fof-frontend"
+            ],
+            "name": "fang-ground-fof-search",
+            "version": "0.0.0"
+          },
+          {
+            "name": "fang-predicate-index-core",
+            "version": "0.0.0"
+          }
+        ],
+        "version": 4
+      },
+      "manifest": {
+        "dependencies": {
+          "fang": {
+            "path": "../.."
+          },
+          "fang-ground-fof-core": {
+            "path": "../ground-fof-core"
+          },
+          "fang-ground-fof-frontend": {
+            "path": "../ground-fof-frontend"
+          }
+        },
+        "lints": {
+          "rust": {
+            "unsafe_code": "forbid"
+          }
+        },
+        "package": {
+          "edition": "2024",
+          "license": "BSD-3-Clause",
+          "name": "fang-ground-fof-search",
+          "publish": false,
+          "version": "0.0.0"
+        },
+        "profile": {
+          "release": {
+            "overflow-checks": true
+          }
+        }
+      }
+    },
+    "ground-fof-versioned": {
+      "files": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/bin/driver.rs",
+        "src/lib.rs",
+        "tests/driver_cli.rs"
+      ],
+      "lock": {
+        "package": [
+          {
+            "dependencies": [
+              "fang-predicate-index-core"
+            ],
+            "name": "fang",
+            "version": "0.1.0"
+          },
+          {
+            "dependencies": [
+              "fang"
+            ],
+            "name": "fang-ground-fof-core",
+            "version": "0.0.0"
+          },
+          {
+            "dependencies": [
+              "fang",
+              "fang-ground-fof-core"
+            ],
+            "name": "fang-ground-fof-frontend",
+            "version": "0.0.0"
+          },
+          {
+            "dependencies": [
+              "fang",
+              "fang-ground-fof-core",
+              "fang-ground-fof-frontend"
+            ],
+            "name": "fang-ground-fof-search",
+            "version": "0.0.0"
+          },
+          {
+            "dependencies": [
+              "fang",
+              "fang-ground-fof-core",
+              "fang-ground-fof-frontend",
+              "fang-ground-fof-search"
+            ],
+            "name": "fang-ground-fof-versioned",
+            "version": "0.0.0"
+          },
+          {
+            "name": "fang-predicate-index-core",
+            "version": "0.0.0"
+          }
+        ],
+        "version": 4
+      },
+      "manifest": {
+        "bin": [
+          {
+            "name": "fang-ground-fof-driver",
+            "path": "src/bin/driver.rs"
+          }
+        ],
+        "dependencies": {
+          "fang": {
+            "path": "../.."
+          },
+          "fang-ground-fof-core": {
+            "path": "../ground-fof-core"
+          },
+          "fang-ground-fof-frontend": {
+            "path": "../ground-fof-frontend"
+          },
+          "fang-ground-fof-search": {
+            "path": "../ground-fof-search"
+          }
+        },
+        "lints": {
+          "rust": {
+            "unsafe_code": "forbid"
+          }
+        },
+        "package": {
+          "autobins": false,
+          "edition": "2024",
+          "license": "BSD-3-Clause",
+          "name": "fang-ground-fof-versioned",
+          "publish": false,
+          "version": "0.0.0"
+        },
+        "profile": {
+          "release": {
+            "overflow-checks": true
+          }
+        }
+      }
+    }
+  },
+  "schema": "fang-fof-source-graph-v1"
+}

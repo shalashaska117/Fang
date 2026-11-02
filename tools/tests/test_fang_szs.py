@@ -24,6 +24,9 @@ from fang_szs.protocol import HEADER, FOOTER, REQUIRED_AUDITS, engine_outcome, e
 from fang_szs.supervisor import Failure, Limits, Snapshot, Supervisor, strict_json
 from fang_szs.storage import KernelWorkspace
 
+INDEXED_LOCK = ('version = 4\n\n[[package]]\nname = "fang"\nversion = "0.1.0"\n'
+                'dependencies = ["fang-predicate-index-core"]\n\n'
+                '[[package]]\nname = "fang-predicate-index-core"\nversion = "0.0.0"\n')
 INPUT = b"cnf(a,axiom,(p)).cnf(b,axiom,(~p)).\n"
 PROOF = b"(fang-proof 1 (input 0 0) (input 1 1) (resolve 2 0 0 1 0 (subst) (clause)) (final 2))\n"
 FAKE = '''#!/usr/bin/env python3
@@ -118,8 +121,10 @@ class InstallationTests(unittest.TestCase):
 
     def indexed_source(self):
         canonical = TOOLS.parent
-        for name in ("Cargo.toml", "Cargo.lock"):
-            shutil.copyfile(canonical / name, self.source / name)
+        # The CNF-only graph: the root manifest without the version-8 workspace table, and its lock.
+        manifest = (canonical / "Cargo.toml").read_text()
+        (self.source / "Cargo.toml").write_text(manifest.split("\n# Version-8 crates")[0])
+        (self.source / "Cargo.lock").write_text(INDEXED_LOCK)
         for name in CORE_FILES:
             destination = self.source / CORE / name
             destination.parent.mkdir(parents=True, exist_ok=True)

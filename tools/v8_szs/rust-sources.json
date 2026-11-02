@@ -1,0 +1,3038 @@
+{
+  "crates": {
+    "crates/binder-removal-core": {
+      "license_file": "crates/binder-removal-core/LICENSE",
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/remover",
+      "package": "fang-binder-removal-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/equality-frontend": {
+      "license_file": "crates/equality-frontend/LICENSE",
+      "original": "experiments/equality-input/core",
+      "package": "fang-equality-frontend",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/equality-inference-core": {
+      "license_file": "crates/equality-inference-core/LICENSE",
+      "original": "experiments/equality-inference-core",
+      "package": "fang-equality-inference-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/equality-occurrence-core": {
+      "license_file": "crates/equality-occurrence-core/LICENSE",
+      "original": "experiments/equality-occurrence-core",
+      "package": "fang-equality-occurrence-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/equality-paramodulation-core": {
+      "license_file": "crates/equality-paramodulation-core/LICENSE",
+      "original": "experiments/equality-paramodulation-core",
+      "package": "fang-equality-paramodulation-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/equality-search": {
+      "license_file": "crates/equality-search/LICENSE",
+      "original": "experiments/equality-input/search",
+      "package": "fang-equality-search",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/fang-tptp-expanded": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/integration",
+      "package": "fang-tptp-expanded-integration",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/fang-v8": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/integration/v8",
+      "package": "fang-tptp-expanded-v8",
+      "receipt": "tptp-expanded-v8-producer-limits-v5-20261025",
+      "workspace": "member"
+    },
+    "crates/fof-core": {
+      "license_file": "crates/fof-core/LICENSE",
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core",
+      "package": "fang-fof-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/fof-equality-bridge": {
+      "license_file": "crates/fof-equality-bridge/LICENSE",
+      "original": "experiments/fof-equality-bridge/core",
+      "package": "fang-fof-equality-bridge",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/fof-universal-core": {
+      "license_file": "crates/fof-universal-core/LICENSE",
+      "original": "experiments/fof-universal/core",
+      "package": "fang-fof-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "test-reference"
+    },
+    "crates/fof-universal-frontend": {
+      "license_file": "crates/fof-universal-frontend/LICENSE",
+      "original": "experiments/fof-universal/frontend",
+      "package": "fang-fof-frontend",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "test-reference"
+    },
+    "crates/pipeline-observer": {
+      "license_file": null,
+      "original": "experiments/fof-quantified/tstp/observer",
+      "package": "fang-quantified-pipeline-observer",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/quantified-equality-frontend": {
+      "license_file": "crates/quantified-equality-frontend/LICENSE",
+      "original": "experiments/fof-equality-bridge/frontend",
+      "package": "fang-quantified-equality-frontend",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/quantified-equality-pipeline": {
+      "license_file": null,
+      "original": "experiments/fof-quantified/equality-pipeline",
+      "package": "fang-quantified-equality-pipeline",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/quantified-fof-core": {
+      "license_file": "crates/quantified-fof-core/LICENSE",
+      "original": "experiments/fof-quantified/core",
+      "package": "fang-quantified-fof-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "excluded"
+    },
+    "crates/quantified-fof-frontend": {
+      "license_file": "crates/quantified-fof-frontend/LICENSE",
+      "original": "experiments/fof-quantified/frontend",
+      "package": "fang-quantified-fof-frontend",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "excluded"
+    },
+    "crates/quantified-pipeline": {
+      "license_file": null,
+      "original": "experiments/fof-quantified/pipeline",
+      "package": "fang-quantified-pipeline",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/skolem-core": {
+      "license_file": null,
+      "original": "experiments/fof-quantified/skolem/core",
+      "package": "fang-skolem-core",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/tptp-bundle-v8": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/bundle-v8/producer",
+      "package": "fang-tptp-bundle-v8",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "workspace": "member"
+    },
+    "crates/tptp-cnf-boolean": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/cnf-boolean",
+      "package": "fang-tptp-full-frontend-candidate",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "workspace": "member"
+    },
+    "crates/tptp-coverage": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/coverage",
+      "package": "fang-tptp-coverage-candidate",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "workspace": "member"
+    },
+    "crates/tptp-roles": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/roles",
+      "package": "fang-tptp-roles",
+      "package_rename": {
+        "from": "fang-tptp-full-frontend-candidate",
+        "library": "fang_tptp_full_frontend_candidate",
+        "reason": "one workspace lockfile cannot hold two packages of one name; crates/tptp-cnf-boolean keeps the name",
+        "to": "fang-tptp-roles"
+      },
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "workspace": "member"
+    },
+    "crates/tptp-signed-bundle": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/roles/bundle",
+      "package": "fang-tptp-signed-bundle",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "workspace": "member"
+    },
+    "crates/tptp-signed-roles": {
+      "license_file": null,
+      "original": "experiments/tptp-full-frontend/roles/signed",
+      "package": "fang-tptp-signed-roles",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "workspace": "member"
+    },
+    "crates/v8-kernel-witness": {
+      "original": "experiments/fof-quantified/equality-versioned/kernel-v8/witness-v2",
+      "package": "fang-v8-kernel-witness",
+      "receipt": "fof-equality-kernel-v8-witness-crate-v4-20261026",
+      "workspace": "member"
+    }
+  },
+  "data_files": {},
+  "files": {
+    "crates/binder-removal-core/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/remover/Cargo.lock",
+      "original_sha256": "3b4893b77ae6c712cf5e9f19aecb0680fcad9f5a87312eea7eca466371e496ce",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3b4893b77ae6c712cf5e9f19aecb0680fcad9f5a87312eea7eca466371e496ce"
+    },
+    "crates/binder-removal-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/remover/Cargo.toml",
+      "original_sha256": "6eccd212631824339998e6b6ca0ce00bc98f8f21e38c6db77b657d2447f7b3c4",
+      "path_rewrites": [
+        {
+          "from": "../../../core",
+          "line": 10,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../core",
+          "line": 11,
+          "target": "crates/fof-core",
+          "to": "../fof-core"
+        },
+        {
+          "from": "../../../../..",
+          "line": 14,
+          "target": ".",
+          "to": "../.."
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3906f2de0114d23908af6badd999710aa767c1ad30280dde08e8e252b4af6e81"
+    },
+    "crates/binder-removal-core/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/remover/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/binder-removal-core/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/remover/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/binder-removal-core/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "9262e6e425683268afe5643c63eaeff75e8bd49b599b6b6514aee9a00183aeb6",
+        "edits": [
+          {
+            "from_sha256": "db8713c0e5b5ecdbe974a6ba415ded6a38ca222a680ec94a2ac7577f1207bae4",
+            "line": 2,
+            "to": "// Syntactic erasure only. Semantic use requires premises that this crate does not check."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/remover/src/lib.rs",
+      "original_sha256": "35b839dd4aad14b1ba428862f20b374cd064ca98058da74480a2564acdd6315c",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "af5053a9bce1f35bf72a4578209155b14f11173ac9ec41d30ebc4038e20f66e0"
+    },
+    "crates/binder-removal-core/tests/removal.rs": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/remover/tests/removal.rs",
+      "original_sha256": "3b0c0e177144b259c0b59924cc1b21a8206554e6f0fbfcb83671cda8f42a167a",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3b0c0e177144b259c0b59924cc1b21a8206554e6f0fbfcb83671cda8f42a167a"
+    },
+    "crates/equality-frontend/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/equality-input/core/Cargo.lock",
+      "original_sha256": "73a8343547dc7a4321e133b8b8e5fb3fed48a1f33460c1a5b5752ae0d60af4da",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "73a8343547dc7a4321e133b8b8e5fb3fed48a1f33460c1a5b5752ae0d60af4da"
+    },
+    "crates/equality-frontend/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/equality-input/core/Cargo.toml",
+      "original_sha256": "59da61e9c45f150af21c24ffebe37f1c8bf8dce038c6b1fe6887c600c51debf4",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 11,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "369f28987f50f05ecc2d4a3223b0be02e55097b770e485ad68f07d8da0986a0e"
+    },
+    "crates/equality-frontend/LICENSE": {
+      "notice": [],
+      "original": "experiments/equality-input/core/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/equality-frontend/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/equality-input/core/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/equality-frontend/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino."
+      ],
+      "original": "experiments/equality-input/core/src/lib.rs",
+      "original_sha256": "3bfe8c351ef865b1a4f5cff929c8b18390176b93e96e4fd5f326041322f50faa",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3bfe8c351ef865b1a4f5cff929c8b18390176b93e96e4fd5f326041322f50faa"
+    },
+    "crates/equality-frontend/tests/parsing.rs": {
+      "notice": [],
+      "original": "experiments/equality-input/core/tests/parsing.rs",
+      "original_sha256": "bb57c6fd2e446db85bcd4501bff5aebd7e6400087d1996871dccb480997d25ab",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "bb57c6fd2e446db85bcd4501bff5aebd7e6400087d1996871dccb480997d25ab"
+    },
+    "crates/equality-inference-core/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/equality-inference-core/Cargo.lock",
+      "original_sha256": "ae8a935fa01477c6566053e2a9f25508f6b890bd9a9fe383db4e3542696091e5",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "ae8a935fa01477c6566053e2a9f25508f6b890bd9a9fe383db4e3542696091e5"
+    },
+    "crates/equality-inference-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/equality-inference-core/Cargo.toml",
+      "original_sha256": "98984935936893c817f48e4ff1f19f7eab14f9482663aad846bb43d16f41c1b3",
+      "path_rewrites": [
+        {
+          "from": "../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "98984935936893c817f48e4ff1f19f7eab14f9482663aad846bb43d16f41c1b3"
+    },
+    "crates/equality-inference-core/LICENSE": {
+      "notice": [],
+      "original": "experiments/equality-inference-core/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/equality-inference-core/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/equality-inference-core/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/equality-inference-core/src/checked.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/equality-inference-core/src/checked.rs",
+      "original_sha256": "b9fb1b5157736996ec95807eae66a43fb1818fc9e7a08ff0ee0d12a54ff9e0ea",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "b9fb1b5157736996ec95807eae66a43fb1818fc9e7a08ff0ee0d12a54ff9e0ea"
+    },
+    "crates/equality-inference-core/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// New equality reconstruction code; Fang terms retain their existing notices."
+      ],
+      "original": "experiments/equality-inference-core/src/lib.rs",
+      "original_sha256": "e339206c8389f0182f61da0e8bdb319af165a9a739ea49d00a85d3a3d869c655",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "e339206c8389f0182f61da0e8bdb319af165a9a739ea49d00a85d3a3d869c655"
+    },
+    "crates/equality-inference-core/tests/checked.rs": {
+      "notice": [],
+      "original": "experiments/equality-inference-core/tests/checked.rs",
+      "original_sha256": "001f65fa1255c9a279cd5cca8145bfc3a9c4c6cffcf3fd4e7ce7245b43a8a8ed",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "001f65fa1255c9a279cd5cca8145bfc3a9c4c6cffcf3fd4e7ce7245b43a8a8ed"
+    },
+    "crates/equality-inference-core/tests/reconstruction.rs": {
+      "notice": [],
+      "original": "experiments/equality-inference-core/tests/reconstruction.rs",
+      "original_sha256": "4fb4899cea3da79207cc1770309ecd515e3b85acadb81b622945ac6685d357d0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "4fb4899cea3da79207cc1770309ecd515e3b85acadb81b622945ac6685d357d0"
+    },
+    "crates/equality-occurrence-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/equality-occurrence-core/Cargo.toml",
+      "original_sha256": "13f6d56986402b1119f590ceffb87c4d1a0592f3ece94fd9f050bf2e4f5f2d44",
+      "path_rewrites": [
+        {
+          "from": "../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "13f6d56986402b1119f590ceffb87c4d1a0592f3ece94fd9f050bf2e4f5f2d44"
+    },
+    "crates/equality-occurrence-core/LICENSE": {
+      "notice": [],
+      "original": "experiments/equality-occurrence-core/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/equality-occurrence-core/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Original single-occurrence kernel. Reused Fang terms retain LICENSES notices."
+      ],
+      "original": "experiments/equality-occurrence-core/src/lib.rs",
+      "original_sha256": "3606301b34e228bc412ddce2f7d66403aaf1ef75afb7629ad946f51e1e5e3506",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3606301b34e228bc412ddce2f7d66403aaf1ef75afb7629ad946f51e1e5e3506"
+    },
+    "crates/equality-paramodulation-core/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/equality-paramodulation-core/Cargo.lock",
+      "original_sha256": "5d26785dd2544831a2b6842b3f6b63eea5a25d06936a3da303c4fcb250c7b068",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "5d26785dd2544831a2b6842b3f6b63eea5a25d06936a3da303c4fcb250c7b068"
+    },
+    "crates/equality-paramodulation-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/equality-paramodulation-core/Cargo.toml",
+      "original_sha256": "3c1420d43bb4077bf7eb62e6291bf56999184c846a45bae13dd942ab68a6c1c4",
+      "path_rewrites": [
+        {
+          "from": "../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../equality-inference-core",
+          "line": 11,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../equality-occurrence-core",
+          "line": 12,
+          "target": "crates/equality-occurrence-core",
+          "to": "../equality-occurrence-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3c1420d43bb4077bf7eb62e6291bf56999184c846a45bae13dd942ab68a6c1c4"
+    },
+    "crates/equality-paramodulation-core/LICENSE": {
+      "notice": [],
+      "original": "experiments/equality-paramodulation-core/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/equality-paramodulation-core/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/equality-paramodulation-core/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/equality-paramodulation-core/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "2603d0d6c2c915372d1ba1fd1774ad69a319500ccf34b947c048947e5946e222",
+        "edits": [
+          {
+            "from_sha256": "1bea5a5769bf508577171845b8703b361ab8fda5193a18e612f926fbcb6c7a6e",
+            "line": 2,
+            "to": "// New single-occurrence paramodulation reconstruction."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// New single-occurrence paramodulation reconstruction."
+      ],
+      "original": "experiments/equality-paramodulation-core/src/lib.rs",
+      "original_sha256": "3c14f5d4cac523db656a60264c5962f3873bfa85c3e0f7f8839da2c14a7b35ac",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "d87729b0ca82c14e50c45c9e1b773cb1ee3b9ec8bbfc34fa9e31f2c19518e92c"
+    },
+    "crates/equality-paramodulation-core/tests/reconstruction.rs": {
+      "notice": [],
+      "original": "experiments/equality-paramodulation-core/tests/reconstruction.rs",
+      "original_sha256": "4bec5c2d6ff0b662657319d674529552c75aa18a44c1b76fdda7866ea898ab3e",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "4bec5c2d6ff0b662657319d674529552c75aa18a44c1b76fdda7866ea898ab3e"
+    },
+    "crates/equality-search/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/equality-input/search/Cargo.lock",
+      "original_sha256": "fd84706243885e887612dfcc91db924585ed603fceff67c0cedc6da5d1e0069c",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "fd84706243885e887612dfcc91db924585ed603fceff67c0cedc6da5d1e0069c"
+    },
+    "crates/equality-search/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/equality-input/search/Cargo.toml",
+      "original_sha256": "7a8b1f1bf77f3e2f30b0328e2849bcacc2d81d5f3f66a829eaa06974de66e90a",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../core",
+          "line": 11,
+          "target": "crates/equality-frontend",
+          "to": "../equality-frontend"
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 12,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../../equality-paramodulation-core",
+          "line": 13,
+          "target": "crates/equality-paramodulation-core",
+          "to": "../equality-paramodulation-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3321c77a03c4461052288941669d7e4be15ebb23013e55bb6b89102a51e3476f"
+    },
+    "crates/equality-search/LICENSE": {
+      "notice": [],
+      "original": "experiments/equality-input/search/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/equality-search/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/equality-input/search/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/equality-search/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/equality-input/search/src/lib.rs",
+      "original_sha256": "320c9d934a2ed0a8e51c70d80d1455cb7580bb65288553d4e998f41463669330",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "320c9d934a2ed0a8e51c70d80d1455cb7580bb65288553d4e998f41463669330"
+    },
+    "crates/equality-search/src/ordered.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/equality-input/search/src/ordered.rs",
+      "original_sha256": "37ed2478dc5853effcc033480598b3b3a9d2b3eab2329d5e479402cc00503dba",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "37ed2478dc5853effcc033480598b3b3a9d2b3eab2329d5e479402cc00503dba"
+    },
+    "crates/equality-search/src/prepared.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/equality-input/search/src/prepared.rs",
+      "original_sha256": "feee4432aab666c090a1756edd9067c48b67997e602bb681036150756eaf44db",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "feee4432aab666c090a1756edd9067c48b67997e602bb681036150756eaf44db"
+    },
+    "crates/equality-search/src/serialization_tests.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/equality-input/search/src/serialization_tests.rs",
+      "original_sha256": "017ff607d89c36cfc36b429d388fa02fbd3656626c6f2882715e1dc7576e50a4",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "017ff607d89c36cfc36b429d388fa02fbd3656626c6f2882715e1dc7576e50a4"
+    },
+    "crates/equality-search/tests/ordered.rs": {
+      "notice": [],
+      "original": "experiments/equality-input/search/tests/ordered.rs",
+      "original_sha256": "47a88373f1e522ac29dd68bafe8ca4990e525813c80062732a79f4f3f3d8b593",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "47a88373f1e522ac29dd68bafe8ca4990e525813c80062732a79f4f3f3d8b593"
+    },
+    "crates/equality-search/tests/prepared.rs": {
+      "notice": [],
+      "original": "experiments/equality-input/search/tests/prepared.rs",
+      "original_sha256": "971a7dcd41c125015c36ae28558ea81f24ac600f0bf0d303137caca4bd8a92c1",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "971a7dcd41c125015c36ae28558ea81f24ac600f0bf0d303137caca4bd8a92c1"
+    },
+    "crates/equality-search/tests/search.rs": {
+      "notice": [],
+      "original": "experiments/equality-input/search/tests/search.rs",
+      "original_sha256": "00dde9b725336fff528df39197dfaeaa703c7170df43b290ce605e1a1265513e",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "00dde9b725336fff528df39197dfaeaa703c7170df43b290ce605e1a1265513e"
+    },
+    "crates/fang-tptp-expanded/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/integration/Cargo.toml",
+      "original_sha256": "fdacd17088af3ed6e73f31ee917e59c3387491f9f3c4299f74814303bc438104",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../cnf-boolean",
+          "line": 11,
+          "target": "crates/tptp-cnf-boolean",
+          "to": "../tptp-cnf-boolean"
+        },
+        {
+          "from": "../../fof-quantified/frontend",
+          "line": 12,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../../fof-quantified/tstp/observer",
+          "line": 13,
+          "target": "crates/pipeline-observer",
+          "to": "../pipeline-observer"
+        },
+        {
+          "from": "../../fof-equality-bridge/core",
+          "line": 14,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 15,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../../equality-input/search",
+          "line": 16,
+          "target": "crates/equality-search",
+          "to": "../equality-search"
+        },
+        {
+          "from": "../../fof-quantified/skolem/core",
+          "line": 17,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../../fof-quantified/equality-pipeline",
+          "line": 20,
+          "target": "crates/quantified-equality-pipeline",
+          "to": "../quantified-equality-pipeline"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "13d89018e421a26930baf6855a852f3efa4a79cd3f80b84ec6a853958ec2e59c"
+    },
+    "crates/fang-tptp-expanded/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Shared Fang components retain LICENSES/Vampire.txt and Vampire.ORIGIN."
+      ],
+      "original": "experiments/tptp-full-frontend/integration/src/lib.rs",
+      "original_sha256": "84316ef711a11b04ee398d8a056adb7ceb6b39007b0d189e08a0ba4cbac65da3",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "84316ef711a11b04ee398d8a056adb7ceb6b39007b0d189e08a0ba4cbac65da3"
+    },
+    "crates/fang-tptp-expanded/tests/integration.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/integration/tests/integration.rs",
+      "original_sha256": "0bfc8f0481092d4ce7745ad038f0da46bbde164dc6045a07d4b0c8252449d4a8",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0bfc8f0481092d4ce7745ad038f0da46bbde164dc6045a07d4b0c8252449d4a8"
+    },
+    "crates/fang-v8/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/integration/v8/Cargo.toml",
+      "original_sha256": "8c558d183ffa1d7037d512c71abe09e845792bd8e49c8b7ca5622bcb0dab586f",
+      "path_rewrites": [
+        {
+          "from": "..",
+          "line": 10,
+          "target": "crates/fang-tptp-expanded",
+          "to": "../fang-tptp-expanded"
+        },
+        {
+          "from": "../../../equality-input/search",
+          "line": 11,
+          "target": "crates/equality-search",
+          "to": "../equality-search"
+        }
+      ],
+      "receipt": "tptp-expanded-v8-producer-limits-v5-20261025",
+      "sha256": "13fce4604101211136420ce09a4f7cfaa96674e3c47d594b1db4c1466122cbae"
+    },
+    "crates/fang-v8/src/bin/candidate.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/integration/v8/src/bin/candidate.rs",
+      "original_sha256": "01cebe66d2f073151c1fc75427604218ef984bacc9a1b90201d21f63274a244c",
+      "receipt": "tptp-expanded-v8-producer-limits-v5-20261025",
+      "sha256": "01cebe66d2f073151c1fc75427604218ef984bacc9a1b90201d21f63274a244c"
+    },
+    "crates/fang-v8/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "f3d1f989fc50b368e6377641132a10bb38665fff3a3c88cd4872df8e1503371b",
+        "edits": [
+          {
+            "from_sha256": "0ee067d3d22fb666ad97720feb65c80ec58ad09081f1cdd903d7c508d2901cd9",
+            "line": 17,
+            "to": "/// The limits record of every native main (`NativeLimits.lean`)."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Envelope adaptation only. Shared Fang components retain their existing notices."
+      ],
+      "original": "experiments/tptp-full-frontend/integration/v8/src/lib.rs",
+      "original_sha256": "4248de050d4c7fdbd6a518f0de7907aa582093b43d67aa773b14edc69b90f523",
+      "receipt": "tptp-expanded-v8-producer-limits-v5-20261025",
+      "sha256": "c9a2ff6d7a9af9c7ff4280c3bc209cfa9ebc930230828e81dd6dcbffcc7af962"
+    },
+    "crates/fang-v8/tests/native_limits.rs": {
+      "include_rewrites": [
+        {
+          "from": "../../NativeLimits.lean",
+          "line": 6,
+          "target": "lean-v8/NativeLimits.lean",
+          "to": "../../../lean-v8/NativeLimits.lean"
+        }
+      ],
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/integration/v8/tests/native_limits.rs",
+      "original_sha256": "3a47f54fa04e72f8f27291fa6da9e7bb4dd4caf47adfdf66090ca2007ccaf480",
+      "receipt": "tptp-expanded-v8-producer-limits-v5-20261025",
+      "sha256": "8419bc8269f2684292554d10dcadce35f6a9dd9e7c4c029a9022276fbf4da7b1"
+    },
+    "crates/fang-v8/tests/v8.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/integration/v8/tests/v8.rs",
+      "original_sha256": "560259243ccd64888165129df162318f303b91c45a5761d0e9a37383647dfd74",
+      "receipt": "tptp-expanded-v8-producer-limits-v5-20261025",
+      "sha256": "560259243ccd64888165129df162318f303b91c45a5761d0e9a37383647dfd74"
+    },
+    "crates/fof-core/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/Cargo.lock",
+      "original_sha256": "6864e4cee5bcd9911a66a7c4f56491b375c9ad12131eff5af43d1fde41f676bb",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "6864e4cee5bcd9911a66a7c4f56491b375c9ad12131eff5af43d1fde41f676bb"
+    },
+    "crates/fof-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/Cargo.toml",
+      "original_sha256": "b083884033b8b411e2185e0b7b3bfac4cc3c4848ace0f477832ee39920ef0d7b",
+      "path_rewrites": [
+        {
+          "from": "../../../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../../../ground-fof-core",
+          "line": 13,
+          "target": "crates/ground-fof-core",
+          "to": "../ground-fof-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "86e69a83aceedb417ec42e931ea569e173823bc286ed9ab1ec20053716fdadde"
+    },
+    "crates/fof-core/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/LICENSE",
+      "original_sha256": "0b3daf8d431d5911a9000210531743b6d1102dcd38747997138bbe00dd95f73e",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0b3daf8d431d5911a9000210531743b6d1102dcd38747997138bbe00dd95f73e"
+    },
+    "crates/fof-core/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/fof-core/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "270f6bc37658241e143907e64af2017cab7f2c223b4dae872a21e0bdc0771a68",
+        "edits": [
+          {
+            "from_sha256": "ffcfa6e09ef13b7b5e46b4fc4861cbaab5808c8853378981a908ec094aeb06c2",
+            "line": 2,
+            "to": "// Candidate replacement of the accepted ground core."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang term/literal types retain their upstream notices."
+      ],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/src/lib.rs",
+      "original_sha256": "f24387f168eb86645194234e630de3f0d1778f1630c55479aea6055ca2b27c3f",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "209bf8411c25cb58e0ba17be11c2d7f072e8a922842b723ec2636621f234ecd8"
+    },
+    "crates/fof-core/src/nnf_entry.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/src/nnf_entry.rs",
+      "original_sha256": "7a5f6acad3678bd64c13b82152845989749a102055d2dc647f4ac29afbf45ca1",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7a5f6acad3678bd64c13b82152845989749a102055d2dc647f4ac29afbf45ca1"
+    },
+    "crates/fof-core/tests/ground.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/tests/ground.rs",
+      "original_sha256": "e8230ca28075afbdca02120354cad074cc4c39a1f3f04f7b757eb0d8c0d57a8b",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "e8230ca28075afbdca02120354cad074cc4c39a1f3f04f7b757eb0d8c0d57a8b"
+    },
+    "crates/fof-core/tests/nnf_entry.rs": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/tests/nnf_entry.rs",
+      "original_sha256": "34bf5bfd856aea5f8acd3275753d95651e3fcd6645386b586bf362bfb67bf92b",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "34bf5bfd856aea5f8acd3275753d95651e3fcd6645386b586bf362bfb67bf92b"
+    },
+    "crates/fof-core/tests/universal.rs": {
+      "notice": [],
+      "original": "experiments/fof-quantified/binder-removal/clausifier-adapter/core/tests/universal.rs",
+      "original_sha256": "6bf9fcf2ef39ea286aeb96f5eee95b6e0f2316131ed2b70f18ee99e47b134f9d",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "6bf9fcf2ef39ea286aeb96f5eee95b6e0f2316131ed2b70f18ee99e47b134f9d"
+    },
+    "crates/fof-equality-bridge/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-equality-bridge/core/Cargo.lock",
+      "original_sha256": "f5f9216a2822afc7e4b50f896083614f1049a17e318128647aa7b3c6ad29837a",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "f5f9216a2822afc7e4b50f896083614f1049a17e318128647aa7b3c6ad29837a"
+    },
+    "crates/fof-equality-bridge/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-equality-bridge/core/Cargo.toml",
+      "original_sha256": "d36ec45b181960bbe17b62f7ebd80e8637040d69d103d896840c74f73331f2c9",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 11,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "298538db0375f3c34a7f10f5c7c6ebfe643ba6d7439b1576ae6367b6e6f22c0f"
+    },
+    "crates/fof-equality-bridge/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-equality-bridge/core/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/fof-equality-bridge/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-equality-bridge/core/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/fof-equality-bridge/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-equality-bridge/core/src/lib.rs",
+      "original_sha256": "dc0e75ffe3b1c59229982e93f792bbf03971b282aeea725f5d41e0ddd58a28ff",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "dc0e75ffe3b1c59229982e93f792bbf03971b282aeea725f5d41e0ddd58a28ff"
+    },
+    "crates/fof-equality-bridge/tests/conversion.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-equality-bridge/core/tests/conversion.rs",
+      "original_sha256": "40fe85278dab2658bb24a474efdd69ecefd9a36e1797cc12d84b0d19b8501021",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "40fe85278dab2658bb24a474efdd69ecefd9a36e1797cc12d84b0d19b8501021"
+    },
+    "crates/fof-universal-core/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-universal/core/Cargo.lock",
+      "original_sha256": "6864e4cee5bcd9911a66a7c4f56491b375c9ad12131eff5af43d1fde41f676bb",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "6864e4cee5bcd9911a66a7c4f56491b375c9ad12131eff5af43d1fde41f676bb"
+    },
+    "crates/fof-universal-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-universal/core/Cargo.toml",
+      "original_sha256": "1b53a7f75848fd45e6063f5ce94c5210b0bdfc3b321fac1c5c0a92007f2e3168",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../ground-fof-core",
+          "line": 13,
+          "target": "crates/ground-fof-core",
+          "to": "../ground-fof-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "86e69a83aceedb417ec42e931ea569e173823bc286ed9ab1ec20053716fdadde"
+    },
+    "crates/fof-universal-core/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-universal/core/LICENSE",
+      "original_sha256": "0b3daf8d431d5911a9000210531743b6d1102dcd38747997138bbe00dd95f73e",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0b3daf8d431d5911a9000210531743b6d1102dcd38747997138bbe00dd95f73e"
+    },
+    "crates/fof-universal-core/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-universal/core/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/fof-universal-core/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "bce5059cdb5195ef3d709b949ae26e38d033b2559e7809d8e2557d0e72a8d903",
+        "edits": [
+          {
+            "from_sha256": "ffcfa6e09ef13b7b5e46b4fc4861cbaab5808c8853378981a908ec094aeb06c2",
+            "line": 2,
+            "to": "// Candidate replacement of the accepted ground core."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang term/literal types retain their upstream notices."
+      ],
+      "original": "experiments/fof-universal/core/src/lib.rs",
+      "original_sha256": "4c6b41ec0452f7565cd9c43297abb9dce9fd531e567ae313585da8f74d670d83",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "cfa0be526b80fecfdf22b165e94077da4e5fb03288941e8c90e86fc1aa69a5c4"
+    },
+    "crates/fof-universal-core/tests/ground.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-universal/core/tests/ground.rs",
+      "original_sha256": "e8230ca28075afbdca02120354cad074cc4c39a1f3f04f7b757eb0d8c0d57a8b",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "e8230ca28075afbdca02120354cad074cc4c39a1f3f04f7b757eb0d8c0d57a8b"
+    },
+    "crates/fof-universal-core/tests/universal.rs": {
+      "notice": [],
+      "original": "experiments/fof-universal/core/tests/universal.rs",
+      "original_sha256": "6bf9fcf2ef39ea286aeb96f5eee95b6e0f2316131ed2b70f18ee99e47b134f9d",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "6bf9fcf2ef39ea286aeb96f5eee95b6e0f2316131ed2b70f18ee99e47b134f9d"
+    },
+    "crates/fof-universal-frontend/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-universal/frontend/Cargo.lock",
+      "original_sha256": "6e644f5604bc99ba1524f94bf9085e2775d8a6b2470e0d8eb57998f03c4fe63b",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "6e644f5604bc99ba1524f94bf9085e2775d8a6b2470e0d8eb57998f03c4fe63b"
+    },
+    "crates/fof-universal-frontend/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-universal/frontend/Cargo.toml",
+      "original_sha256": "527c36042aff0be5253bd8b5f0f9d55824d97a8b506c49cf42eac8b533f8dfbb",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../core",
+          "line": 11,
+          "target": "crates/fof-universal-core",
+          "to": "../fof-universal-core"
+        },
+        {
+          "from": "../../ground-fof-frontend",
+          "line": 14,
+          "target": "crates/ground-fof-frontend",
+          "to": "../ground-fof-frontend"
+        },
+        {
+          "from": "../../ground-fof-core",
+          "line": 15,
+          "target": "crates/ground-fof-core",
+          "to": "../ground-fof-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "a70d8166022c04d25208e93fb5a12a377b16d687653fc58f1a17814b85ff6d13"
+    },
+    "crates/fof-universal-frontend/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-universal/frontend/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/fof-universal-frontend/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-universal/frontend/rust-toolchain.toml",
+      "original_sha256": "b542e162da076f0e9417ed5cdfd33c0328bbd8a60a5d21cf3d2a626fc271daa6",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "b542e162da076f0e9417ed5cdfd33c0328bbd8a60a5d21cf3d2a626fc271daa6"
+    },
+    "crates/fof-universal-frontend/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "510c104e397e39a0d9662096d554c896921fce6ea83da1d97161034703c763a1",
+        "edits": [
+          {
+            "from_sha256": "e039610c821f3235c95a338c17ae73d75a44e84d400290fe88cf15a641c9872d",
+            "line": 2,
+            "to": "// Adapted from the accepted ground FOF frontend."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Adapted from the accepted ground FOF frontend.",
+        "// Reused Fang terms/literals retain the notices in LICENSES/Vampire.txt."
+      ],
+      "original": "experiments/fof-universal/frontend/src/lib.rs",
+      "original_sha256": "ff1f3f16259400bd7fd0416f23b0b86644b25c5cebd2ab2fe9cb45f682333214",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "24700ab8612c4afe4de7cfd38fa77e46fd635690af36006d027802b1d4481861"
+    },
+    "crates/fof-universal-frontend/tests/ground.rs": {
+      "notice": [],
+      "original": "experiments/fof-universal/frontend/tests/ground.rs",
+      "original_sha256": "158fcb51b99c642e7d86a0b55dd0bc8837e18a5cc60273ca39a52a14314c5ed0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "158fcb51b99c642e7d86a0b55dd0bc8837e18a5cc60273ca39a52a14314c5ed0"
+    },
+    "crates/fof-universal-frontend/tests/universal.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-universal/frontend/tests/universal.rs",
+      "original_sha256": "a408d2abe6cc8ac4536323dc3d431722600a8c5385b15e56f75a7336f3559c86",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "a408d2abe6cc8ac4536323dc3d431722600a8c5385b15e56f75a7336f3559c86"
+    },
+    "crates/pipeline-observer/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-quantified/tstp/observer/Cargo.lock",
+      "original_sha256": "af7c96b2ba0cb1f5a038abaec756c9f741e39417738123ab6de721815f317560",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "af7c96b2ba0cb1f5a038abaec756c9f741e39417738123ab6de721815f317560"
+    },
+    "crates/pipeline-observer/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/tstp/observer/Cargo.toml",
+      "original_sha256": "07c9d3535aec4471f205f5b195ff86fa236b54dcf79e53011a021f1937f3c64c",
+      "path_rewrites": [
+        {
+          "from": "../../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../core",
+          "line": 11,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../../frontend",
+          "line": 12,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../../skolem/core",
+          "line": 13,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../../binder-removal/clausifier-adapter/core",
+          "line": 14,
+          "target": "crates/fof-core",
+          "to": "../fof-core"
+        },
+        {
+          "from": "../../binder-removal/clausifier-adapter/remover",
+          "line": 15,
+          "target": "crates/binder-removal-core",
+          "to": "../binder-removal-core"
+        },
+        {
+          "from": "../../pipeline",
+          "line": 18,
+          "target": "crates/quantified-pipeline",
+          "to": "../quantified-pipeline"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "a2715bdd8129f98ee3f710c5e3faaad7616b55cd0ee534350bd3c98054bb15df"
+    },
+    "crates/pipeline-observer/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "e0fb61285fb02f0258a4050b5ced8a409aa70c8b07e00e088c100ae3e8d08060",
+        "edits": [
+          {
+            "from_sha256": "a1980f782f1b10ca719a8ed6a5914dd5157af994192dd30383b183b859a6a383",
+            "line": 2,
+            "to": "// Adapted from Fang's universal/versioned wrapper."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang terms and search retain LICENSES/Vampire.txt and Vampire.ORIGIN."
+      ],
+      "original": "experiments/fof-quantified/tstp/observer/src/lib.rs",
+      "original_sha256": "ddbf9f3a6f41419749b4152a8dfe1c08df3cbd7a991f195a61d17b1935605a82",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "926dee66f284d1fa75207dc21a17a4d759e24a2146689548351a512c1f5320f0"
+    },
+    "crates/pipeline-observer/src/observer.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/tstp/observer/src/observer.rs",
+      "original_sha256": "72a3c3905dcb207ed577ca465b62578483b7c91f8205795618a5a490f96a3c6d",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "72a3c3905dcb207ed577ca465b62578483b7c91f8205795618a5a490f96a3c6d"
+    },
+    "crates/pipeline-observer/tests/seams.rs": {
+      "notice": [],
+      "original": "experiments/fof-quantified/tstp/observer/tests/seams.rs",
+      "original_sha256": "ef03ad4412bd25be0cea21a27b876eb54823951dfd301b2fbcc4955eb6fe6c66",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "ef03ad4412bd25be0cea21a27b876eb54823951dfd301b2fbcc4955eb6fe6c66"
+    },
+    "crates/quantified-equality-frontend/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-equality-bridge/frontend/Cargo.lock",
+      "original_sha256": "1822823cb077f06bd350dcf5fa46e4f334248842f8962e21c1e166643d59edfa",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "1822823cb077f06bd350dcf5fa46e4f334248842f8962e21c1e166643d59edfa"
+    },
+    "crates/quantified-equality-frontend/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-equality-bridge/frontend/Cargo.toml",
+      "original_sha256": "10bf0ef91282b4064fe293503abd8e74992e61660502b5d1ec838ec8a9bab6af",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 11,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../core",
+          "line": 12,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../fof-quantified/core",
+          "line": 13,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../../fof-quantified/frontend",
+          "line": 16,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../../equality-input/core",
+          "line": 17,
+          "target": "crates/equality-frontend",
+          "to": "../equality-frontend"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "c0ba62210eccda33ca232356ff401835d3a4a4261237ad582a41041585288218"
+    },
+    "crates/quantified-equality-frontend/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-equality-bridge/frontend/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/quantified-equality-frontend/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-equality-bridge/frontend/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/quantified-equality-frontend/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "e285b0bd210eded07e1fadd0b0ef5d44d9cc9531115c1191f6ffac73e4dab1eb",
+        "edits": [
+          {
+            "from_sha256": "2b6db4a09af850f331e6f96f5c950115918c099997cf4d84f2f4c3dfa1d47a73",
+            "line": 2,
+            "to": "// Adapted from the accepted quantified frontend and CNF equality parser."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang terms/literals retain the notices in LICENSES/Vampire.txt."
+      ],
+      "original": "experiments/fof-equality-bridge/frontend/src/lib.rs",
+      "original_sha256": "102620e7885bde07aff0d91d8f621ccb1c9b1ca7d7b0c7595b293067244df1fd",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7e7201ee08d356e51eb31bda8f0c0870b7e848559aa5646f440ecc068b68724b"
+    },
+    "crates/quantified-equality-frontend/tests/equality.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-equality-bridge/frontend/tests/equality.rs",
+      "original_sha256": "25b75adfc74654ea9e7fb49fc9889b245efc123b2607d9b619e2fd224fd0192b",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "25b75adfc74654ea9e7fb49fc9889b245efc123b2607d9b619e2fd224fd0192b"
+    },
+    "crates/quantified-equality-pipeline/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/equality-pipeline/Cargo.toml",
+      "original_sha256": "f84e3ab8d12503a2e9d87b61f4cbf8b448f076af7fadfab33d82baa68adc543a",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../fof-equality-bridge/frontend",
+          "line": 11,
+          "target": "crates/quantified-equality-frontend",
+          "to": "../quantified-equality-frontend"
+        },
+        {
+          "from": "../frontend",
+          "line": 12,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../tstp/observer",
+          "line": 13,
+          "target": "crates/pipeline-observer",
+          "to": "../pipeline-observer"
+        },
+        {
+          "from": "../../fof-equality-bridge/core",
+          "line": 14,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 15,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../../equality-input/search",
+          "line": 16,
+          "target": "crates/equality-search",
+          "to": "../equality-search"
+        },
+        {
+          "from": "../skolem/core",
+          "line": 17,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "ccb1fd7f91c5fd1c42cc52257b2becaba5aed1f0110a7f5125bd7d5ff40e5667"
+    },
+    "crates/quantified-equality-pipeline/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Shared Fang components retain LICENSES/Vampire.txt and Vampire.ORIGIN."
+      ],
+      "original": "experiments/fof-quantified/equality-pipeline/src/lib.rs",
+      "original_sha256": "0c3a20210a4b679a85390f09a3bc5e370c51b10b077256fcf49e91700fc0f9e1",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0c3a20210a4b679a85390f09a3bc5e370c51b10b077256fcf49e91700fc0f9e1"
+    },
+    "crates/quantified-equality-pipeline/tests/pipeline.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/equality-pipeline/tests/pipeline.rs",
+      "original_sha256": "a4ba65b78592e15e26ea97b7129d455b66c6ba857f7052da2b8b41a0fabd6258",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "a4ba65b78592e15e26ea97b7129d455b66c6ba857f7052da2b8b41a0fabd6258"
+    },
+    "crates/quantified-fof-core/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-quantified/core/Cargo.lock",
+      "original_sha256": "86deeb973f802b8ea42dded732a3ae9a3af66d325c1fb72a963ae326ff483c44",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "86deeb973f802b8ea42dded732a3ae9a3af66d325c1fb72a963ae326ff483c44"
+    },
+    "crates/quantified-fof-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/core/Cargo.toml",
+      "original_sha256": "5cb975112bb8b755722c37390f1478f843e02c7063a1ad83592ea457eb7d9541",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../fof-universal/core",
+          "line": 13,
+          "target": "crates/fof-universal-core",
+          "to": "../fof-universal-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0e2a7434523a279993205cdaa7ffb4dfd9b862d65b39317c527ed464e3a7523d"
+    },
+    "crates/quantified-fof-core/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-quantified/core/LICENSE",
+      "original_sha256": "0b3daf8d431d5911a9000210531743b6d1102dcd38747997138bbe00dd95f73e",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0b3daf8d431d5911a9000210531743b6d1102dcd38747997138bbe00dd95f73e"
+    },
+    "crates/quantified-fof-core/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-quantified/core/rust-toolchain.toml",
+      "original_sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "04f953fd5721e312e7533b26bc7e4826eb0e5938e3099298c37836089d31bab0"
+    },
+    "crates/quantified-fof-core/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "df64f28a19c0db01ea8276dc34384f35bbfd6743e3fb0c375515223954ed4bf1",
+        "edits": [
+          {
+            "from_sha256": "101291c35d9cc99fb26d4898081ac86679d05f2e0c38d168cc27d42babd93b28",
+            "line": 2,
+            "to": "// Candidate replacement of the accepted scoped core."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang term/literal types retain their upstream notices."
+      ],
+      "original": "experiments/fof-quantified/core/src/lib.rs",
+      "original_sha256": "aa341b51b7053b4a8a8824629f8e6ac9ac100440b4f8a042a492d0ac5ed37f2e",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "51dc5f04a5852866fccc0152fef0b88f052b5504ca9c2a1f1b0def39f5929ce7"
+    },
+    "crates/quantified-fof-core/tests/quantified.rs": {
+      "notice": [],
+      "original": "experiments/fof-quantified/core/tests/quantified.rs",
+      "original_sha256": "5873ba10456636b5d6d30315ab5be9601ee58e76ee03bd440380fad40b3eace7",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "5873ba10456636b5d6d30315ab5be9601ee58e76ee03bd440380fad40b3eace7"
+    },
+    "crates/quantified-fof-frontend/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-quantified/frontend/Cargo.lock",
+      "original_sha256": "9d257da02b1836c5da1e57034d35af8dc5e180c1cd925bba9b037c8b28489f07",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "9d257da02b1836c5da1e57034d35af8dc5e180c1cd925bba9b037c8b28489f07"
+    },
+    "crates/quantified-fof-frontend/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/frontend/Cargo.toml",
+      "original_sha256": "b6231c6feffcc30f47851e04bbc7b41a46a69ac84386c02b08bbb75fe11d1891",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../core",
+          "line": 11,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../../fof-universal/frontend",
+          "line": 14,
+          "target": "crates/fof-universal-frontend",
+          "to": "../fof-universal-frontend"
+        },
+        {
+          "from": "../../fof-universal/core",
+          "line": 15,
+          "target": "crates/fof-universal-core",
+          "to": "../fof-universal-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "793767978c1e27aadff2ce0964b6cf42d9edc120b276175086ec2f44447e46c8"
+    },
+    "crates/quantified-fof-frontend/LICENSE": {
+      "notice": [],
+      "original": "experiments/fof-quantified/frontend/LICENSE",
+      "original_sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/quantified-fof-frontend/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-quantified/frontend/rust-toolchain.toml",
+      "original_sha256": "b542e162da076f0e9417ed5cdfd33c0328bbd8a60a5d21cf3d2a626fc271daa6",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "b542e162da076f0e9417ed5cdfd33c0328bbd8a60a5d21cf3d2a626fc271daa6"
+    },
+    "crates/quantified-fof-frontend/src/bin/inspect.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/frontend/src/bin/inspect.rs",
+      "original_sha256": "647e368eaba9eed89b3dc0bbda57efaac175754bb9f04261163aa4b062825d50",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "647e368eaba9eed89b3dc0bbda57efaac175754bb9f04261163aa4b062825d50"
+    },
+    "crates/quantified-fof-frontend/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "5070debe48299e855f56361f805ac664059f82c1c5f43331579c0dbbee3ab569",
+        "edits": [
+          {
+            "from_sha256": "7c184ea14ef998661e0e8e6cee80249212155a8c2019d19430571a84643d81d4",
+            "line": 2,
+            "to": "// Adapted from the accepted universal FOF frontend."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang terms/literals retain the notices in LICENSES/Vampire.txt."
+      ],
+      "original": "experiments/fof-quantified/frontend/src/lib.rs",
+      "original_sha256": "447cf0f78b40868e7b3e615ea5cafb9cf2b44fcbd122234bfbfe93a4e7b4e688",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0c163a3e8baca3c9d7520f8eeff37b5f4d4f5334bc9ebd0194bcfdcda0c8748b"
+    },
+    "crates/quantified-fof-frontend/tests/quantified.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/frontend/tests/quantified.rs",
+      "original_sha256": "23871b83ac3caea0cfab9a2a5b0ef3ff9caa6466d2191fb0d63d79c08b2c3ebb",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "23871b83ac3caea0cfab9a2a5b0ef3ff9caa6466d2191fb0d63d79c08b2c3ebb"
+    },
+    "crates/quantified-fof-frontend/tests/semantics.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/frontend/tests/semantics.rs",
+      "original_sha256": "8a4809d58988144436a8c105c8fa3d124a9222b0318bdbf96334ee69be8481bc",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "8a4809d58988144436a8c105c8fa3d124a9222b0318bdbf96334ee69be8481bc"
+    },
+    "crates/quantified-pipeline/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-quantified/pipeline/Cargo.lock",
+      "original_sha256": "b8cef0f85cc6e0cf989f516362aa8ac14df0b4bd8f7e660e8c17e06e4ba9f527",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "b8cef0f85cc6e0cf989f516362aa8ac14df0b4bd8f7e660e8c17e06e4ba9f527"
+    },
+    "crates/quantified-pipeline/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/pipeline/Cargo.toml",
+      "original_sha256": "a6078ef81d3a0c62574f4b4056b0bc67942c1f189f6307d4632cab419b9e6014",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../core",
+          "line": 11,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../frontend",
+          "line": 12,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../skolem/core",
+          "line": 13,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../binder-removal/clausifier-adapter/core",
+          "line": 14,
+          "target": "crates/fof-core",
+          "to": "../fof-core"
+        },
+        {
+          "from": "../binder-removal/clausifier-adapter/remover",
+          "line": 15,
+          "target": "crates/binder-removal-core",
+          "to": "../binder-removal-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "5de74491edaeb5496e8dba3d08496d4c770d88d5d3fc4cb07b4e4c7385982fd8"
+    },
+    "crates/quantified-pipeline/src/bin/probe.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/pipeline/src/bin/probe.rs",
+      "original_sha256": "7c96c6b8bfa945fb5381b2e2889fd842a415915b7874eacf2d3400cbe164bcb9",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7c96c6b8bfa945fb5381b2e2889fd842a415915b7874eacf2d3400cbe164bcb9"
+    },
+    "crates/quantified-pipeline/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "78d01e98d5d6cc6635d43095f1ebbdddbe0ed2dfbb1e0751068dc26e4d73e180",
+        "edits": [
+          {
+            "from_sha256": "a1980f782f1b10ca719a8ed6a5914dd5157af994192dd30383b183b859a6a383",
+            "line": 2,
+            "to": "// Adapted from Fang's universal/versioned wrapper."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang terms and search retain LICENSES/Vampire.txt and Vampire.ORIGIN."
+      ],
+      "original": "experiments/fof-quantified/pipeline/src/lib.rs",
+      "original_sha256": "3a7883cfa3abb7c3e12b25c92bcb769124633a9ba61cf47d7530f48105cd859c",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "28e3f52f0512a2cef7483ce1e15080bf97dd95793db67e1de8c73b39e2a3525b"
+    },
+    "crates/quantified-pipeline/tests/pipeline.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/pipeline/tests/pipeline.rs",
+      "original_sha256": "6de60112bd187ee1ebb7740ed1b27c95aa64e2990bca1f6136af89ad804c90d5",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "6de60112bd187ee1ebb7740ed1b27c95aa64e2990bca1f6136af89ad804c90d5"
+    },
+    "crates/skolem-core/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/fof-quantified/skolem/core/Cargo.lock",
+      "original_sha256": "78dcdf2c25c22c1531b602ea9363b11a863ca12f2ed3858beadea9fda9017eb4",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "78dcdf2c25c22c1531b602ea9363b11a863ca12f2ed3858beadea9fda9017eb4"
+    },
+    "crates/skolem-core/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/skolem/core/Cargo.toml",
+      "original_sha256": "efd5a10265615298c1f258c111cdfee42bbf7b891ee9be65969970cc8b7c4289",
+      "path_rewrites": [
+        {
+          "from": "../../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../core",
+          "line": 11,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "93fc667267a02e0189725b0098e6f31680278ae20a1945df210dbf045476b988"
+    },
+    "crates/skolem-core/rust-toolchain.toml": {
+      "notice": [],
+      "original": "experiments/fof-quantified/skolem/core/rust-toolchain.toml",
+      "original_sha256": "a7aa447d445819fe24bf64e0b78382120f88895c8e60aaf10da4cef803da9732",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "a7aa447d445819fe24bf64e0b78382120f88895c8e60aaf10da4cef803da9732"
+    },
+    "crates/skolem-core/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "f75ee3875fc7882128b0d63bf630386c9849e2ef7cb4565dda90b5c5d12e53fc",
+        "edits": [
+          {
+            "from_sha256": "c7938102219d1eddd96fd927800b3604d23445613eea7f9e92d234787b04d067",
+            "line": 2,
+            "to": "// Isolated Skolem candidate."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/skolem/core/src/lib.rs",
+      "original_sha256": "cd610dd7ccbe293c5dff94a9a2ba0222f89c8f7ed3dec84bcc98d01b478ca9b7",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "f54322fa760e42a210a1a29abed5d829620c4e7b0f8e8d2da0411769d1db4157"
+    },
+    "crates/skolem-core/tests/skolem.rs": {
+      "notice": [],
+      "original": "experiments/fof-quantified/skolem/core/tests/skolem.rs",
+      "original_sha256": "cde1b3c48be393dcda87be86ed9000e012f1ecafa16fcefe61ddec61cde11138",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "cde1b3c48be393dcda87be86ed9000e012f1ecafa16fcefe61ddec61cde11138"
+    },
+    "crates/tptp-bundle-v8/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/tptp-full-frontend/bundle-v8/producer/Cargo.lock",
+      "original_sha256": "a0af03693fbed6add9dcd0d301b71de09cebe2290b96b5503c5361c8f14ac01e",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "a0af03693fbed6add9dcd0d301b71de09cebe2290b96b5503c5361c8f14ac01e"
+    },
+    "crates/tptp-bundle-v8/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/bundle-v8/producer/Cargo.toml",
+      "original_sha256": "5d11a4f6527ab563c3cc023ad2acc415e46f86f39463d84e04adc74a25327213",
+      "path_rewrites": [
+        {
+          "from": "../../coverage",
+          "line": 10,
+          "target": "crates/tptp-coverage",
+          "to": "../tptp-coverage"
+        },
+        {
+          "from": "../../integration",
+          "line": 11,
+          "target": "crates/fang-tptp-expanded",
+          "to": "../fang-tptp-expanded"
+        },
+        {
+          "from": "../../integration/v8",
+          "line": 12,
+          "target": "crates/fang-v8",
+          "to": "../fang-v8"
+        }
+      ],
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "ed526d5b1066fa62e6a72f10f3221e1d555f2c33f8e77e4cda4bde63dc5d8b68"
+    },
+    "crates/tptp-bundle-v8/src/bin/bundle-candidate.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "d1c3e23aca5ff2976c59dd2fb945c1a1fdec2eb2183d6bc897252f55a63c1d89",
+        "edits": [
+          {
+            "from_sha256": "c6ad801502e851b7960d81ec36116ce439c80b85a7124bd054bc8c3da6c52a23",
+            "line": 62,
+            "to": "    // The values of the checker's limits record, `NativeLimits.lean`."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/bundle-v8/producer/src/bin/bundle-candidate.rs",
+      "original_sha256": "cc2756231dc38f5f6391492142a0463a929344b2245ab7ca9833b393297afa7c",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "f6aba411e2e3de64757d71056d13254186ce569ac546a6d87e6364a728f873c4"
+    },
+    "crates/tptp-bundle-v8/src/lib.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/bundle-v8/producer/src/lib.rs",
+      "original_sha256": "1cf7a54553ad46a0f533b91ad747c59001e6f524f698a18f308bd1f29ea86318",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "1cf7a54553ad46a0f533b91ad747c59001e6f524f698a18f308bd1f29ea86318"
+    },
+    "crates/tptp-bundle-v8/tests/bundle.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/bundle-v8/producer/tests/bundle.rs",
+      "original_sha256": "d0918ee2d33e89baa4fd820870d2d63589eac32b95367a71c02d7b57d2722ea3",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "d0918ee2d33e89baa4fd820870d2d63589eac32b95367a71c02d7b57d2722ea3"
+    },
+    "crates/tptp-cnf-boolean/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/Cargo.lock",
+      "original_sha256": "fae1a843f07e9a1aaa7bdf6ebb14e3858e5eae19519a88ab90e7f68d600f27c1",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "fae1a843f07e9a1aaa7bdf6ebb14e3858e5eae19519a88ab90e7f68d600f27c1"
+    },
+    "crates/tptp-cnf-boolean/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/Cargo.toml",
+      "original_sha256": "fe45b2c932c996fbe39cb588edece774bd641153c5261507b0b80a8b707e8c7c",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 11,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../../fof-equality-bridge/core",
+          "line": 12,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../fof-quantified/core",
+          "line": 13,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../../fof-quantified/skolem/core",
+          "line": 16,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../../fof-quantified/frontend",
+          "line": 17,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../../equality-input/core",
+          "line": 18,
+          "target": "crates/equality-frontend",
+          "to": "../equality-frontend"
+        }
+      ],
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "5140fdf72cf3035baa3c64c42b1131f177579ca45568c35b134e5b7c990281e7"
+    },
+    "crates/tptp-cnf-boolean/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "a4c5edb105e51c28c41cf75db7241f4f748b0ada0f702c96bfcfbdece3cb4d82",
+        "edits": [
+          {
+            "from_sha256": "2b6db4a09af850f331e6f96f5c950115918c099997cf4d84f2f4c3dfa1d47a73",
+            "line": 2,
+            "to": "// Adapted from the accepted quantified frontend and CNF equality parser."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang terms/literals retain the notices in LICENSES/Vampire.txt."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/src/lib.rs",
+      "original_sha256": "f1fe2ba54db41aaf4b9a579c958d0f1ab4524f121b12f20db231dbc906568ca4",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "9eb7334315c0cc33c0730f498464a67a76205e3807c88a9df61f358509c2ca6b"
+    },
+    "crates/tptp-cnf-boolean/tests/arities.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/arities.rs",
+      "original_sha256": "30e5d61b7ac0ad94d7b31c189c713276aa95d99dba98802856a2a3f6ed434743",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "30e5d61b7ac0ad94d7b31c189c713276aa95d99dba98802856a2a3f6ed434743"
+    },
+    "crates/tptp-cnf-boolean/tests/boolean.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/boolean.rs",
+      "original_sha256": "711074b338b02fcc4bd1b528621232bd5c218823af3faef4d7c2cbc46fb6b591",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "711074b338b02fcc4bd1b528621232bd5c218823af3faef4d7c2cbc46fb6b591"
+    },
+    "crates/tptp-cnf-boolean/tests/cnf_shape.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/cnf_shape.rs",
+      "original_sha256": "e32acdf01ccf084215114423c05de2158ef34db1e3b0d5703a4770c906c5676c",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "e32acdf01ccf084215114423c05de2158ef34db1e3b0d5703a4770c906c5676c"
+    },
+    "crates/tptp-cnf-boolean/tests/connectives.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/connectives.rs",
+      "original_sha256": "f8b03c8c0e9e47e8b2962567bfdc42fd53d74d9d5b7fe2ac6797a0d686aa16c3",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "f8b03c8c0e9e47e8b2962567bfdc42fd53d74d9d5b7fe2ac6797a0d686aa16c3"
+    },
+    "crates/tptp-cnf-boolean/tests/equality.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/equality.rs",
+      "original_sha256": "617f18e141e2fcb3f34ade7b9ca13e69c623deb94cbafff6777d15899d65f380",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "617f18e141e2fcb3f34ade7b9ca13e69c623deb94cbafff6777d15899d65f380"
+    },
+    "crates/tptp-cnf-boolean/tests/equivalence.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/equivalence.rs",
+      "original_sha256": "da0ea40e875c60d7074a8cfcee2fcba24c3b278cfad164d8a229da449b71b8e2",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "da0ea40e875c60d7074a8cfcee2fcba24c3b278cfad164d8a229da449b71b8e2"
+    },
+    "crates/tptp-cnf-boolean/tests/lexical.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/lexical.rs",
+      "original_sha256": "f898dbea6953f20d01b7080114f6827d520fbb3049bebf489435a6402576b120",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "f898dbea6953f20d01b7080114f6827d520fbb3049bebf489435a6402576b120"
+    },
+    "crates/tptp-cnf-boolean/tests/names.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/cnf-boolean/tests/names.rs",
+      "original_sha256": "d192159c23027fa20d9ced035521ebaca46e60902e6e34c74e0cacc76c17bc54",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "d192159c23027fa20d9ced035521ebaca46e60902e6e34c74e0cacc76c17bc54"
+    },
+    "crates/tptp-coverage/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/tptp-full-frontend/coverage/Cargo.lock",
+      "original_sha256": "60537930292c3a4772ce9d38f6b6890d6bcb2b5aa0b9336636bfe3efa3991dbd",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "60537930292c3a4772ce9d38f6b6890d6bcb2b5aa0b9336636bfe3efa3991dbd"
+    },
+    "crates/tptp-coverage/Cargo.toml": {
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/Cargo.toml",
+      "original_sha256": "08d19b3a14d401228f1ef17b76edec3907151c0cadc3cdb9a5cdf5ab00fa9580",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 11,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../../fof-equality-bridge/core",
+          "line": 12,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../fof-quantified/core",
+          "line": 13,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../cnf-boolean",
+          "line": 16,
+          "target": "crates/tptp-cnf-boolean",
+          "to": "../tptp-cnf-boolean"
+        },
+        {
+          "from": "../../fof-quantified/skolem/core",
+          "line": 17,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../../fof-quantified/frontend",
+          "line": 18,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../../equality-input/core",
+          "line": 19,
+          "target": "crates/equality-frontend",
+          "to": "../equality-frontend"
+        }
+      ],
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "80fd3f12061968004dd1cc457c6762adc35e5257c8e97372d5a3de0639ff6d8a"
+    },
+    "crates/tptp-coverage/src/annotation.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/src/annotation.rs",
+      "original_sha256": "6abfd76e863969181b6f57bb5af386d6eeeb50ca3adf2e8ca4571cf2f29403be",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "6abfd76e863969181b6f57bb5af386d6eeeb50ca3adf2e8ca4571cf2f29403be"
+    },
+    "crates/tptp-coverage/src/bundle.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/src/bundle.rs",
+      "original_sha256": "5f26548af8a6311e151c3cc1246c5c2d8c38f61f476e80bee1c8625874976fef",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "5f26548af8a6311e151c3cc1246c5c2d8c38f61f476e80bee1c8625874976fef"
+    },
+    "crates/tptp-coverage/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "46f10ed9f155cd06ee9be752e824e926a5462200663a55ebc2c3c8edd82e8659",
+        "edits": [
+          {
+            "from_sha256": "2b6db4a09af850f331e6f96f5c950115918c099997cf4d84f2f4c3dfa1d47a73",
+            "line": 2,
+            "to": "// Adapted from the accepted quantified frontend and CNF equality parser."
+          },
+          {
+            "from_sha256": "6caf040ac1dd4601f1b6edeb72880fc87e0b93be5a73b62c2a84931027629118",
+            "line": 124,
+            "to": "/// The defaults follow the checker's limits record `NativeLimits.lean` and the"
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang terms/literals retain the notices in LICENSES/Vampire.txt."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/src/lib.rs",
+      "original_sha256": "4157d10fe36eee95092e16eb9c10591a40b8e7ae61737d96eb0836bfa96f249d",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "71df8a908226d9ce05f6ddf6e0a05c3f2fd03428f8642128f3b246e007a7ffdc"
+    },
+    "crates/tptp-coverage/src/sha256.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/src/sha256.rs",
+      "original_sha256": "ebf5fb64115aba31d55eb0eb62353b49f6b3cc0af998e5dd36d51e1ee056aee2",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "ebf5fb64115aba31d55eb0eb62353b49f6b3cc0af998e5dd36d51e1ee056aee2"
+    },
+    "crates/tptp-coverage/tests/accepted_equivalence.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/accepted_equivalence.rs",
+      "original_sha256": "b4d8c4c343936ef2991fe680148b68c88339a917194291d2f7a34ddb9c6939dc",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "b4d8c4c343936ef2991fe680148b68c88339a917194291d2f7a34ddb9c6939dc"
+    },
+    "crates/tptp-coverage/tests/annotations.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "//! Annotations are parsed and retained and never change formula meaning."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/annotations.rs",
+      "original_sha256": "ae596813abc0662e317d5fff3f194f0dd4ac359345d87c294ed3010062ff514d",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "ae596813abc0662e317d5fff3f194f0dd4ac359345d87c294ed3010062ff514d"
+    },
+    "crates/tptp-coverage/tests/distinct.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/distinct.rs",
+      "original_sha256": "7647fedcd1e5626e7b12fbcac5a9eed75840804ef28a6a33e67735785fc60013",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "7647fedcd1e5626e7b12fbcac5a9eed75840804ef28a6a33e67735785fc60013"
+    },
+    "crates/tptp-coverage/tests/generative.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/generative.rs",
+      "original_sha256": "a19bc6bce42dd3e9540de29e7c625b603227544e555e474cfb0edd6c220930b4",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "a19bc6bce42dd3e9540de29e7c625b603227544e555e474cfb0edd6c220930b4"
+    },
+    "crates/tptp-coverage/tests/includes.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/includes.rs",
+      "original_sha256": "84d85c608386f5c9474a75e2142e2fa1bb86c2bd2440860d6aad58745c585598",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "84d85c608386f5c9474a75e2142e2fa1bb86c2bd2440860d6aad58745c585598"
+    },
+    "crates/tptp-coverage/tests/inherited_arities.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_arities.rs",
+      "original_sha256": "fa307e794b3da1c5395275e0349b283240a20b29eb4e68d8c64dd7b1c76b7b0b",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "fa307e794b3da1c5395275e0349b283240a20b29eb4e68d8c64dd7b1c76b7b0b"
+    },
+    "crates/tptp-coverage/tests/inherited_boolean.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_boolean.rs",
+      "original_sha256": "13abae5d4e22f578ffd497d1b4a67ce7c8b597938c86299242d302fa395318b1",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "13abae5d4e22f578ffd497d1b4a67ce7c8b597938c86299242d302fa395318b1"
+    },
+    "crates/tptp-coverage/tests/inherited_cnf_shape.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_cnf_shape.rs",
+      "original_sha256": "e7542bd464b360105bc7eb6da53b5e8baa56d418259b11da7dd00db3d8f59098",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "e7542bd464b360105bc7eb6da53b5e8baa56d418259b11da7dd00db3d8f59098"
+    },
+    "crates/tptp-coverage/tests/inherited_connectives.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_connectives.rs",
+      "original_sha256": "80b201939821d266c8552d0dbfc55a2cc323de32953f7937777244c571f086fc",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "80b201939821d266c8552d0dbfc55a2cc323de32953f7937777244c571f086fc"
+    },
+    "crates/tptp-coverage/tests/inherited_equality.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_equality.rs",
+      "original_sha256": "ca5893ae91e78228ae13b4e6f7b08635c412b0f325ad94da6adbc1a97c5f4d6e",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "ca5893ae91e78228ae13b4e6f7b08635c412b0f325ad94da6adbc1a97c5f4d6e"
+    },
+    "crates/tptp-coverage/tests/inherited_equivalence.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_equivalence.rs",
+      "original_sha256": "ca7327e5abb91cb7d392ef82fd23ac821f4ac2387d6a4ac082d194f9d6ca24c1",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "ca7327e5abb91cb7d392ef82fd23ac821f4ac2387d6a4ac082d194f9d6ca24c1"
+    },
+    "crates/tptp-coverage/tests/inherited_lexical.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_lexical.rs",
+      "original_sha256": "d7fbd33ebe0411649188c222bc4f6d54e3a97b93d159ed11589fb81141b402a0",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "d7fbd33ebe0411649188c222bc4f6d54e3a97b93d159ed11589fb81141b402a0"
+    },
+    "crates/tptp-coverage/tests/inherited_names.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/inherited_names.rs",
+      "original_sha256": "4c02cee63c94e7c6580482084e37e20571217910cfd5177095f2f8296283d2b2",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "4c02cee63c94e7c6580482084e37e20571217910cfd5177095f2f8296283d2b2"
+    },
+    "crates/tptp-coverage/tests/native_limits.rs": {
+      "include_rewrites": [
+        {
+          "from": "../../integration/NativeLimits.lean",
+          "line": 8,
+          "target": "lean-v8/NativeLimits.lean",
+          "to": "../../../lean-v8/NativeLimits.lean"
+        },
+        {
+          "from": "../../bundle-v8/lean/BundleLimitNativeMain.lean",
+          "line": 9,
+          "target": "lean-v8/BundleLimitNativeMain.lean",
+          "to": "../../../lean-v8/BundleLimitNativeMain.lean"
+        },
+        {
+          "from": "../../bundle-v8/lean/BundleNumeric.lean",
+          "line": 10,
+          "target": "lean-v8/BundleNumeric.lean",
+          "to": "../../../lean-v8/BundleNumeric.lean"
+        }
+      ],
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/native_limits.rs",
+      "original_sha256": "9e483402acd03ca103457995bfbb59c4df9ab9088ac1191167140f32b48a1708",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "ac85d6395aea12cfdfa20892ace237ee68fd58146c49878d810f8323f79bf61f"
+    },
+    "crates/tptp-coverage/tests/profile.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/coverage/tests/profile.rs",
+      "original_sha256": "d98d07b31f160f6085a30b2613cad0ba9363ccfab09d4729fde8728be8225536",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "d98d07b31f160f6085a30b2613cad0ba9363ccfab09d4729fde8728be8225536"
+    },
+    "crates/tptp-roles/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/tptp-full-frontend/roles/Cargo.lock",
+      "original_sha256": "fae1a843f07e9a1aaa7bdf6ebb14e3858e5eae19519a88ab90e7f68d600f27c1",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "fae1a843f07e9a1aaa7bdf6ebb14e3858e5eae19519a88ab90e7f68d600f27c1"
+    },
+    "crates/tptp-roles/Cargo.toml": {
+      "line_edits": [
+        {
+          "from": "name = \"fang-tptp-full-frontend-candidate\"",
+          "line": 2,
+          "to": "name = \"fang-tptp-roles\""
+        },
+        {
+          "from": "[dependencies]",
+          "line": 9,
+          "to": "[lib]\nname = \"fang_tptp_full_frontend_candidate\"\n\n[dependencies]"
+        }
+      ],
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/roles/Cargo.toml",
+      "original_sha256": "fe45b2c932c996fbe39cb588edece774bd641153c5261507b0b80a8b707e8c7c",
+      "path_rewrites": [
+        {
+          "from": "../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../equality-inference-core",
+          "line": 11,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../../fof-equality-bridge/core",
+          "line": 12,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../fof-quantified/core",
+          "line": 13,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../../fof-quantified/skolem/core",
+          "line": 16,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../../fof-quantified/frontend",
+          "line": 17,
+          "target": "crates/quantified-fof-frontend",
+          "to": "../quantified-fof-frontend"
+        },
+        {
+          "from": "../../equality-input/core",
+          "line": 18,
+          "target": "crates/equality-frontend",
+          "to": "../equality-frontend"
+        }
+      ],
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "b0f635e107e17aecb6cae7af5e81f2b1bb9ede154c3b2751b58e5041f8718de6"
+    },
+    "crates/tptp-roles/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "f5792c9e538b4a5674c6f823068fc5d2ac35a37e4f2216fb68c746610da0a2e9",
+        "edits": [
+          {
+            "from_sha256": "2b6db4a09af850f331e6f96f5c950115918c099997cf4d84f2f4c3dfa1d47a73",
+            "line": 2,
+            "to": "// Adapted from the accepted quantified frontend and CNF equality parser."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Reused Fang terms/literals retain the notices in LICENSES/Vampire.txt."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/src/lib.rs",
+      "original_sha256": "c6e12495aa32f6329b95efe2ffff772b9877994ebb96421df91433ac699e31c4",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "2f025db5a4c392371af9e2e62f2d7728910e132cc48359fe3de69db4e5420cbc"
+    },
+    "crates/tptp-roles/src/roles.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "87a3945b8087e1ae23554927a3fc465152208562c2ffe8e7473c1fe7ad24e29b",
+        "edits": [
+          {
+            "from_sha256": "2d798790bde4c6036b40838dc1da4fad536271f1a7ff7d5c6a417fa82388fce0",
+            "line": 2,
+            "to": "// Role policy is independent of Vampire's implementation; docs/DESIGN.md lists the role rules."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Role policy is independent of Vampire's implementation; docs/DESIGN.md lists the role rules."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/src/roles.rs",
+      "original_sha256": "6161da92c395bf77ece542b5384993cc8704001ba0a9dec0c2d87d51c533fd9e",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "cc20e955b321f472736df7970af73c77f730b3ae0ddc45493375f6ed7ca8cdcc"
+    },
+    "crates/tptp-roles/tests/arities.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/arities.rs",
+      "original_sha256": "30e5d61b7ac0ad94d7b31c189c713276aa95d99dba98802856a2a3f6ed434743",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "30e5d61b7ac0ad94d7b31c189c713276aa95d99dba98802856a2a3f6ed434743"
+    },
+    "crates/tptp-roles/tests/boolean.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/boolean.rs",
+      "original_sha256": "711074b338b02fcc4bd1b528621232bd5c218823af3faef4d7c2cbc46fb6b591",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "711074b338b02fcc4bd1b528621232bd5c218823af3faef4d7c2cbc46fb6b591"
+    },
+    "crates/tptp-roles/tests/cnf_shape.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/cnf_shape.rs",
+      "original_sha256": "e32acdf01ccf084215114423c05de2158ef34db1e3b0d5703a4770c906c5676c",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "e32acdf01ccf084215114423c05de2158ef34db1e3b0d5703a4770c906c5676c"
+    },
+    "crates/tptp-roles/tests/connectives.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/connectives.rs",
+      "original_sha256": "cfdd0d0e33aaf3ae3b2e84fae9dbf5f062267556a8d5982f79cf741f424e793a",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "cfdd0d0e33aaf3ae3b2e84fae9dbf5f062267556a8d5982f79cf741f424e793a"
+    },
+    "crates/tptp-roles/tests/equality.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/equality.rs",
+      "original_sha256": "65350a1c8242717f8043936a0970aa766a5a523eff59ebb891722c4abcc4daee",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "65350a1c8242717f8043936a0970aa766a5a523eff59ebb891722c4abcc4daee"
+    },
+    "crates/tptp-roles/tests/equivalence.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/equivalence.rs",
+      "original_sha256": "da0ea40e875c60d7074a8cfcee2fcba24c3b278cfad164d8a229da449b71b8e2",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "da0ea40e875c60d7074a8cfcee2fcba24c3b278cfad164d8a229da449b71b8e2"
+    },
+    "crates/tptp-roles/tests/lexical.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/lexical.rs",
+      "original_sha256": "f898dbea6953f20d01b7080114f6827d520fbb3049bebf489435a6402576b120",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "f898dbea6953f20d01b7080114f6827d520fbb3049bebf489435a6402576b120"
+    },
+    "crates/tptp-roles/tests/names.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/names.rs",
+      "original_sha256": "d192159c23027fa20d9ced035521ebaca46e60902e6e34c74e0cacc76c17bc54",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "d192159c23027fa20d9ced035521ebaca46e60902e6e34c74e0cacc76c17bc54"
+    },
+    "crates/tptp-roles/tests/roles.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/tests/roles.rs",
+      "original_sha256": "64bf4e4941cf49a64eceb178ca88dd2a9ab71be69fa514ca48dd4cef4bfa46e5",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "64bf4e4941cf49a64eceb178ca88dd2a9ab71be69fa514ca48dd4cef4bfa46e5"
+    },
+    "crates/tptp-signed-bundle/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/tptp-full-frontend/roles/bundle/Cargo.lock",
+      "original_sha256": "7d79e5be953cd9051fad0135fbced25ea2cba0f9ddfdc293642c7ea9141cb04e",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "7d79e5be953cd9051fad0135fbced25ea2cba0f9ddfdc293642c7ea9141cb04e"
+    },
+    "crates/tptp-signed-bundle/Cargo.toml": {
+      "line_edits": [
+        {
+          "from": "fang-tptp-full-frontend-candidate = { path = \"..\" }",
+          "line": 11,
+          "to": "fang-tptp-full-frontend-candidate = { package = \"fang-tptp-roles\", path = \"..\" }"
+        }
+      ],
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/roles/bundle/Cargo.toml",
+      "original_sha256": "c3b4e4054306775e1256f8475e2f006fd7944de083e1b4ff6f9fd21dfd084e05",
+      "path_rewrites": [
+        {
+          "from": "../../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "..",
+          "line": 11,
+          "target": "crates/tptp-roles",
+          "to": "../tptp-roles"
+        },
+        {
+          "from": "../../coverage",
+          "line": 12,
+          "target": "crates/tptp-coverage",
+          "to": "../tptp-coverage"
+        },
+        {
+          "from": "../signed",
+          "line": 13,
+          "target": "crates/tptp-signed-roles",
+          "to": "../tptp-signed-roles"
+        },
+        {
+          "from": "../../../fof-equality-bridge/core",
+          "line": 14,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../../equality-input/search",
+          "line": 18,
+          "target": "crates/equality-search",
+          "to": "../equality-search"
+        }
+      ],
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "4c9a135d1adf015206652aedec033bb04b787d33e7cbb4d492905d29cb098c62"
+    },
+    "crates/tptp-signed-bundle/src/bin/signed-bundle-produce.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/bundle/src/bin/signed-bundle-produce.rs",
+      "original_sha256": "3831389af7af3c75af5b8d1af9e76f46c36d83ae66d5436a6a837892e05836d9",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "3831389af7af3c75af5b8d1af9e76f46c36d83ae66d5436a6a837892e05836d9"
+    },
+    "crates/tptp-signed-bundle/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "96d21a8c666d249dac6834a6f1116d695155530c790660d3f8faeb2565250c3a",
+        "edits": [
+          {
+            "from_sha256": "d6ff1c168f31b7430e4680f8eb70fa06c8ef9e1c8f17effe24a4cb817702dffb",
+            "line": 5,
+            "to": "//! Signed role tasks over a sealed include bundle. The coverage candidate frames and expands the bundle with every record role read as `axiom`; the original roles are restored by statement position. The expansion is written as one flat TPTP text, and the accepted signed producer of crates/tptp-signed-roles runs on it unchanged."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Shared Fang components retain LICENSES/Vampire.txt and Vampire.ORIGIN."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/bundle/src/lib.rs",
+      "original_sha256": "33d9dd43321974669773c7e9fe8e41b64eb2cc529777e7cabbed0196fef4f1f3",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "175bbe443a6030233ab4cc564d95dccd3fb96ecfd52df46847e1cbc992a262cd"
+    },
+    "crates/tptp-signed-bundle/tests/bundle.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/bundle/tests/bundle.rs",
+      "original_sha256": "6f6beb68b275c7cf5092bcc11b4cd65f1357c0d5f8ad71fa3e62d7c3a3d19c74",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "6f6beb68b275c7cf5092bcc11b4cd65f1357c0d5f8ad71fa3e62d7c3a3d19c74"
+    },
+    "crates/tptp-signed-roles/Cargo.lock": {
+      "notice": [],
+      "original": "experiments/tptp-full-frontend/roles/signed/Cargo.lock",
+      "original_sha256": "46c5d568c61a216939bc5fc53e47e8a10d9f65ce171a2646ff860381bc2b11d0",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "46c5d568c61a216939bc5fc53e47e8a10d9f65ce171a2646ff860381bc2b11d0"
+    },
+    "crates/tptp-signed-roles/Cargo.toml": {
+      "comment_rewrite": {
+        "code_view_sha256": "27b611482d76be1b8860c1e65d608a2ae02c6f952013ffbe92321f8fbb94d9e4",
+        "edits": [
+          {
+            "from_sha256": "a2e87eee53839fcbcacd6ac03c0b2c1a884e18a8d70b1a073e309a862cacc619",
+            "line": 18,
+            "to": "# The prepared ordered search is staged from the accepted adapter receipt, as in crates/fang-v8."
+          }
+        ]
+      },
+      "line_edits": [
+        {
+          "from": "fang-tptp-full-frontend-candidate = { path = \"..\" }",
+          "line": 11,
+          "to": "fang-tptp-full-frontend-candidate = { package = \"fang-tptp-roles\", path = \"..\" }"
+        }
+      ],
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/tptp-full-frontend/roles/signed/Cargo.toml",
+      "original_sha256": "1b367f9d73039e60e6107ba1ba5af51f15929709f0c628991f1c34ad70218513",
+      "path_rewrites": [
+        {
+          "from": "../../../..",
+          "line": 10,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "..",
+          "line": 11,
+          "target": "crates/tptp-roles",
+          "to": "../tptp-roles"
+        },
+        {
+          "from": "../../../fof-quantified/core",
+          "line": 12,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../../../fof-quantified/skolem/core",
+          "line": 13,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../../../fof-quantified/binder-removal/clausifier-adapter/core",
+          "line": 14,
+          "target": "crates/fof-core",
+          "to": "../fof-core"
+        },
+        {
+          "from": "../../../fof-quantified/binder-removal/clausifier-adapter/remover",
+          "line": 15,
+          "target": "crates/binder-removal-core",
+          "to": "../binder-removal-core"
+        },
+        {
+          "from": "../../../fof-equality-bridge/core",
+          "line": 16,
+          "target": "crates/fof-equality-bridge",
+          "to": "../fof-equality-bridge"
+        },
+        {
+          "from": "../../../equality-inference-core",
+          "line": 17,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        },
+        {
+          "from": "../../../equality-input/search",
+          "line": 19,
+          "target": "crates/equality-search",
+          "to": "../equality-search"
+        }
+      ],
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "cffeee2efc610e02d61dd2b2ed8bfc7047605c9f7cd469928003c6d5dd9aea22"
+    },
+    "crates/tptp-signed-roles/src/bin/signed-produce.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/signed/src/bin/signed-produce.rs",
+      "original_sha256": "4460f4fed555b4dc5bb5b55a914c83056718770ac45426b7549f4db90e82296e",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "4460f4fed555b4dc5bb5b55a914c83056718770ac45426b7549f4db90e82296e"
+    },
+    "crates/tptp-signed-roles/src/bin/signed-render.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/signed/src/bin/signed-render.rs",
+      "original_sha256": "5f1204685a2937c1c9ebd92b147bc69698ee6d10ab5b163ced5379ee705171f0",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "5f1204685a2937c1c9ebd92b147bc69698ee6d10ab5b163ced5379ee705171f0"
+    },
+    "crates/tptp-signed-roles/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "d10bbe035d6919a55ec8a392952e6e34d42bf4d3856e0e56e00965739c790d4d",
+        "edits": [
+          {
+            "from_sha256": "dbd833bb50508c865e2404039f9b2863507bbac514e4552c8ce4f8ed9242d4bc",
+            "line": 7,
+            "to": "//! The stages and per-stage limits follow the Lean `replayTask` in SignedReplay.lean. `produce_task` runs the same prepared ordered search and bounded serializer as the version-8 producer in crates/fang-v8. Its output is a candidate certificate or Unknown, never a checked result or SZS status."
+          },
+          {
+            "from_sha256": "474126a2f918a41e08070a40e51164a9bfd47f29a20cde7805fd742e1a43bd21",
+            "line": 30,
+            "to": "    /// The limits record of every native main, `NativeLimits.lean`. The predicate table, the literals per clause and every Skolem, removal and clausification limit take the record's values, as do the parser's input bytes (`byteLimit`) and declarations (`declarationLimit`)."
+          },
+          {
+            "from_sha256": "59d307b3bd5af12dddfa38dc0ce4cbc6049ff44b366f344f63011b5627c13fb8",
+            "line": 260,
+            "to": "/// The version-8 certificate header; the checker selects the task separately."
+          },
+          {
+            "from_sha256": "e11ca170e2a9025b4d746868671d47c5828ac21c62dbf65058e9cffc4d4c5602",
+            "line": 281,
+            "to": "/// Reserve the envelope overhead, call the authoritative bounded ordered serializer, and replace only its version-5 header, exactly as crates/fang-v8 does. Node bytes and the final reference are kept."
+          }
+        ]
+      },
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.",
+        "// Shared Fang components retain LICENSES/Vampire.txt and Vampire.ORIGIN."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/signed/src/lib.rs",
+      "original_sha256": "1cd7dab2c8df8cd438d79a58335998df0e14d38b661471fb0aae0dcd81a86503",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "2a7577ee7854fdb53d2695cb0d4a4fcdf33984e6bdddca4607fde7bed11760ea"
+    },
+    "crates/tptp-signed-roles/tests/native_limits.rs": {
+      "include_rewrites": [
+        {
+          "from": "../../../integration/NativeLimits.lean",
+          "line": 6,
+          "target": "lean-v8/NativeLimits.lean",
+          "to": "../../../lean-v8/NativeLimits.lean"
+        }
+      ],
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/signed/tests/native_limits.rs",
+      "original_sha256": "5bb31fdd73c1ccb54c580fe8b1826414228039defe93709074f94170a5d289e7",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "b3d59cf23fed471f5317107a02ebf55cc1eb69c41fb7935970b15a46d450b6f8"
+    },
+    "crates/tptp-signed-roles/tests/signed.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/tptp-full-frontend/roles/signed/tests/signed.rs",
+      "original_sha256": "4e6efa3675ac19756d81d2f238b3665629cc0c9bdecd8d68b278fba7b58f5587",
+      "receipt": "tptp-role-bundle-native-v5-20261028",
+      "sha256": "4e6efa3675ac19756d81d2f238b3665629cc0c9bdecd8d68b278fba7b58f5587"
+    },
+    "crates/v8-kernel-witness/Cargo.toml": {
+      "line_edits": [
+        {
+          "from": "[workspace]",
+          "line": 22,
+          "to": ""
+        }
+      ],
+      "notice": [
+        "license = \"BSD-3-Clause\""
+      ],
+      "original": "experiments/fof-quantified/equality-versioned/kernel-v8/witness-v2/Cargo.toml",
+      "original_sha256": "7195671bfb7c0f5e62d789b13ee319131c8f5af77a929d4a4b1fa03e9de21509",
+      "path_rewrites": [
+        {
+          "from": "../../../../..",
+          "line": 14,
+          "target": ".",
+          "to": "../.."
+        },
+        {
+          "from": "../../../../tptp-full-frontend/cnf-boolean",
+          "line": 15,
+          "target": "crates/tptp-cnf-boolean",
+          "to": "../tptp-cnf-boolean"
+        },
+        {
+          "from": "../../../core",
+          "line": 16,
+          "target": "crates/quantified-fof-core",
+          "to": "../quantified-fof-core"
+        },
+        {
+          "from": "../../../skolem/core",
+          "line": 17,
+          "target": "crates/skolem-core",
+          "to": "../skolem-core"
+        },
+        {
+          "from": "../../../binder-removal/clausifier-adapter/remover",
+          "line": 18,
+          "target": "crates/binder-removal-core",
+          "to": "../binder-removal-core"
+        },
+        {
+          "from": "../../../binder-removal/clausifier-adapter/core",
+          "line": 19,
+          "target": "crates/fof-core",
+          "to": "../fof-core"
+        },
+        {
+          "from": "../../../../equality-inference-core",
+          "line": 20,
+          "target": "crates/equality-inference-core",
+          "to": "../equality-inference-core"
+        }
+      ],
+      "receipt": "fof-equality-kernel-v8-witness-crate-v4-20261026",
+      "sha256": "a84ab6e5cc98764af3a61d2eb147bb0820302f6fc76323dd647f38b0a769c801"
+    },
+    "crates/v8-kernel-witness/src/main.rs": {
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ],
+      "original": "experiments/fof-quantified/equality-versioned/kernel-v8/witness-v2/src/main.rs",
+      "original_sha256": "dddfe70c6556367be8f184facf18896d9291100680303eaeb806c30cb24a5c5c",
+      "receipt": "fof-equality-kernel-v8-witness-crate-v4-20261026",
+      "sha256": "dddfe70c6556367be8f184facf18896d9291100680303eaeb806c30cb24a5c5c"
+    }
+  },
+  "installed_binaries": {
+    "fang-bundle-producer": {
+      "binary": "fang-bundle-candidate",
+      "package": "fang-tptp-bundle-v8"
+    },
+    "fang-signed-producer": {
+      "binary": "signed-bundle-produce",
+      "package": "fang-tptp-signed-bundle"
+    },
+    "fang-v8-engine": {
+      "binary": "fang-expanded-candidate",
+      "package": "fang-tptp-expanded-v8"
+    },
+    "fang-v8-witness": {
+      "binary": "fang-v8-witness",
+      "package": "fang-v8-kernel-witness"
+    }
+  },
+  "not_moved": {
+    "experiments/equality-inference-core/README.md": {
+      "reason": "research notes",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "e6b97d965dc5ced70fdd334fe878f389cc02e2b7581d40a38ed2a7a45d0ed03e"
+    },
+    "experiments/equality-occurrence-core/README.md": {
+      "reason": "research notes",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "b44980a6ea3b791176f2cf246edc8d014b3afaba9229db86aca0d6249accb94a"
+    },
+    "experiments/equality-paramodulation-core/README.md": {
+      "reason": "research notes",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "202eb54b052dfd41d2aebc2920d103073ccf5febda3f10974a9922b1713628bb"
+    },
+    "experiments/equality-paramodulation-core/run.py": {
+      "reason": "gate runner for the research layout",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "adf1610f723ac0007d0dc3a4421261c07438e9e5cc781ddb6d0345375e631101"
+    },
+    "experiments/fof-quantified/equality-pipeline/README.md": {
+      "reason": "research notes",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "543dd39d9c019ef1dd06d10d1ae082dfc7b424b9bafe9bca278d55abf827802c"
+    },
+    "experiments/fof-quantified/equality-pipeline/check.py": {
+      "reason": "gate runner for the research layout",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "337d053694a847a09abf6fa70d2877e2ff2b7bf880aff02d275ade4feec6c18e"
+    },
+    "experiments/tptp-full-frontend/coverage/numeric-audit/Cargo.lock": {
+      "reason": "audit crate for the limits record that depends on the coverage crate; not part of the product",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "8be19c11b5cdbcc4bae7f16da10276e36a2451159738a8e2c1148ca7a1d2dfde"
+    },
+    "experiments/tptp-full-frontend/coverage/numeric-audit/Cargo.toml": {
+      "reason": "audit crate for the limits record that depends on the coverage crate; not part of the product",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "ccb1aab80f107567fa01e948068c73289d4499fb0f80d14cb9db642f0ee44ef8"
+    },
+    "experiments/tptp-full-frontend/coverage/numeric-audit/src/lib.rs": {
+      "reason": "audit crate for the limits record that depends on the coverage crate; not part of the product",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "67044a086e8580414065b2bec2a7d96dc138a74cc77f6c4ea9036dc615963b42"
+    },
+    "experiments/tptp-full-frontend/coverage/numeric-audit/tests/audit.rs": {
+      "reason": "audit crate for the limits record that depends on the coverage crate; not part of the product",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "9c64eb6f2b9d0a15acbad759f91c8fd02c8ca59ee0a6955f427d7bbfc5d411ba"
+    },
+    "experiments/tptp-full-frontend/coverage/numeric-audit/tests/audit_v2.rs": {
+      "reason": "audit crate for the limits record that depends on the coverage crate; not part of the product",
+      "receipt": "tptp-bundle-v8-producer-v2-v1-20261026",
+      "sha256": "5bb2c64dd8cf05052cfcba07f628f5e47193cd43b9f7ae5aa818c29d6f9a5fce"
+    },
+    "experiments/tptp-full-frontend/integration/README.md": {
+      "reason": "research notes",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "b721324b2694e8c27eed15e182099a5917b080b53a255c8f6184d5eaa3cae159"
+    },
+    "experiments/tptp-full-frontend/integration/check.py": {
+      "reason": "gate runner for the research layout",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "f5be9799e07877220960becd99ded71f70c09ce029e73f9d13c603fc7f46911d"
+    },
+    "experiments/tptp-full-frontend/integration/v8/check.py": {
+      "reason": "gate runner for the research layout",
+      "receipt": "tptp-expanded-v8-producer-v1-20261024",
+      "sha256": "408cac6815ac97f89b832800999193a43ece1495b404626ff2b59c14e10ef4ca"
+    }
+  },
+  "notices": {
+    "repository": [
+      "LICENSE",
+      "LICENSES/Vampire.txt",
+      "LICENSES/Vampire.ORIGIN",
+      "LICENSES/Vampire.AUTHORS",
+      "LICENSES/Vampire.THANKS"
+    ],
+    "rule": "Each moved file keeps its own header notice unchanged; per-file notice lines are recorded here, and the crate LICENSE file applies to every file of its crate."
+  },
+  "path_targets": {
+    "LICENSE": {
+      "original": "LICENSE",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7791b05fcdddcd602f65353ead3888845f2f6b3f35fdb7e8837362f05f41a730"
+    },
+    "crates/fang-predicate-index/Cargo.lock": {
+      "original": "crates/fang-predicate-index/Cargo.lock",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "a68a684f1cd9123df5daa2884ac79cd16cddf26b6e7a7606db72400ed6661de8"
+    },
+    "crates/fang-predicate-index/Cargo.toml": {
+      "original": "crates/fang-predicate-index/Cargo.toml",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3cc7a6836794f6718d18ae43ee9b27ed1bd9e15ea0642d742fe682e508b4d5c1"
+    },
+    "crates/fang-predicate-index/LICENSE": {
+      "original": "crates/fang-predicate-index/LICENSE",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "0b3daf8d431d5911a9000210531743b6d1102dcd38747997138bbe00dd95f73e"
+    },
+    "crates/fang-predicate-index/rust-toolchain.toml": {
+      "original": "crates/fang-predicate-index/rust-toolchain.toml",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "5597a94fc41b6f56313d195195fbeb63df9eb694cfe9fa5d0a8011c999e335ed"
+    },
+    "crates/fang-predicate-index/src/lib.rs": {
+      "original": "crates/fang-predicate-index/src/lib.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "90328f288b1e8e0a1a7cc6557f8d1ee051948a452fbc5ee4f27617c6ba0b6cc5"
+    },
+    "crates/fang-predicate-index/tests/index.rs": {
+      "original": "crates/fang-predicate-index/tests/index.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "a2b5cb103b489f73b126f4f0abfaf22e216467a494cd98de83704a6d8c20ae80"
+    },
+    "crates/ground-fof-core/Cargo.lock": {
+      "original": "experiments/ground-fof-core/Cargo.lock",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "78d42890633e4376ac4aa0b943768b6fc44a44209a8fd0aeee64ad8fa173c92f"
+    },
+    "crates/ground-fof-core/Cargo.toml": {
+      "original": "experiments/ground-fof-core/Cargo.toml",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "549745a3985ca6f45c9128112a519b201726b82b1397c79ed20c25456ed72459"
+    },
+    "crates/ground-fof-core/src/lib.rs": {
+      "original": "experiments/ground-fof-core/src/lib.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "ac761b18b6360cad07339260ddb7f6fd34d61787e01988d69b5d4ab66ea6b2a3"
+    },
+    "crates/ground-fof-frontend/Cargo.lock": {
+      "original": "experiments/ground-fof-frontend/Cargo.lock",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "7545846e7fe179e64bb0c78005dc2806b68d25072a2c0626781a9becf08b050a"
+    },
+    "crates/ground-fof-frontend/Cargo.toml": {
+      "original": "experiments/ground-fof-frontend/Cargo.toml",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "be91c0a0a12d83746dfbf71af3e5285964a58ba8b85fd9bfda6c03824918a001"
+    },
+    "crates/ground-fof-frontend/src/lib.rs": {
+      "comment_rewrite": {
+        "code_view_sha256": "a90ffeef8067584fc1b9914bb20863635dca4186186e3e028bea18bfb7d60d6b",
+        "edits": [
+          {
+            "from_sha256": "81f5db6e9e54437c383ef9a9109c4ad275e454631eed34dab5596ffd82aa1714",
+            "line": 2,
+            "to": "// Adapted from Fang src/parser.rs."
+          }
+        ]
+      },
+      "original": "experiments/ground-fof-frontend/src/lib.rs",
+      "original_sha256": "76e5957cd743179205695cc1265fab2534dfdf8fe1879af6c7e28b1bff20adf2",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "3180d012df8d5ca36382249a78e8b1771505b1074902d95188b93057924e593f"
+    },
+    "rust-toolchain.toml": {
+      "original": "rust-toolchain.toml",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "5597a94fc41b6f56313d195195fbeb63df9eb694cfe9fa5d0a8011c999e335ed"
+    },
+    "src/lib.rs": {
+      "original": "src/lib.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "8693bdc4d2a7f96ddeeb177ec4559d358977b41917452cbcf24bb7c2c150a1b0"
+    },
+    "src/main.rs": {
+      "original": "src/main.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "173ec4813c0884f2995ae96b41fb9d19317c2216767d509514279810cad4c037"
+    },
+    "src/parser.rs": {
+      "original": "src/parser.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "b4286714de23302bf05cc99960b51d9dcb42bd419a526ef0d52e8cea4beffcfc"
+    },
+    "src/predicate_index.rs": {
+      "original": "src/predicate_index.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "d386b3e4df56f0125a53848fee6709924b05ef519c64d613bd1f0bafd953f582"
+    },
+    "src/search.rs": {
+      "original": "src/search.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "6127b78323c513e6a7bc7f24aa7311f8cf8c75664ccd6827a3b6fcb704ddc067"
+    },
+    "src/syntax.rs": {
+      "original": "src/syntax.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "ae73826b31e23e0024376ea141a6e0c49fa86aaf1aa34da1171c58494c07dd39"
+    },
+    "src/unify.rs": {
+      "original": "src/unify.rs",
+      "receipt": "tptp-expanded-integration-v2-20261023",
+      "sha256": "460da1cd8085db5cfd7542fa85e8c62d3af1d588ae833743b6c4cc2dbdaade1f"
+    }
+  },
+  "receipts": {
+    "fof-equality-kernel-v8-witness-crate-v4-20261026": {
+      "manifest": "evidence/verification/fof-equality-kernel-v8-witness-crate-v4-20261026/manifest.json",
+      "sha256": "18165df6bc8dd9c4c2b91e91d76b6509cdfa8f1987845f0d7d8ed8f786b7b11b"
+    },
+    "tptp-bundle-v8-producer-v2-v1-20261026": {
+      "archive": "run/source",
+      "manifest": "evidence/diagnostics/tptp-bundle-v8-producer-v2-v1-20261026/manifest.json",
+      "sha256": "bb1a10d8038b20cf1507bc834e656f0ba88083fdd34ac3fb74581ad2cdbb3160",
+      "source_table": "staged_source_sha256"
+    },
+    "tptp-expanded-integration-v2-20261023": {
+      "manifest": "evidence/diagnostics/tptp-expanded-integration-v2-20261023/manifest.json",
+      "sha256": "7dca68d1f59fa0e0aa8357c4224a96238265d56219db0a3c63fb53e96044295b"
+    },
+    "tptp-expanded-v8-producer-limits-v5-20261025": {
+      "manifest": "evidence/diagnostics/tptp-expanded-v8-producer-limits-v5-20261025/manifest.json",
+      "sha256": "a1769003649392782d338e5502ca8ad6f0b7c98128ca15c5d8542b8c596ed535"
+    },
+    "tptp-expanded-v8-producer-v1-20261024": {
+      "manifest": "evidence/diagnostics/tptp-expanded-v8-producer-v1-20261024/manifest.json",
+      "sha256": "ba28b97aeaa9a2c932dede7973dc2596855a81e0add252f761ccfb2b628094a4"
+    },
+    "tptp-role-bundle-native-v5-20261028": {
+      "archive": "source",
+      "manifest": "evidence/diagnostics/tptp-role-bundle-native-v5-20261028/manifest.json",
+      "sha256": "b000858ae615de4a2ffa195176107d117f29afe65f775197f991293633025d40",
+      "source_table": "source_sha256"
+    }
+  },
+  "schema": "fang-v8-rust-source-map-v1",
+  "scope": "Every file under the listed crate directories, staged byte for byte from the pinned receipt archives. Cargo.toml files differ from the receipt only in the recorded path strings and the recorded line edits of the one package rename. Comment-only edits that remove references to local records are recorded per file as comment_edits. The coverage crate and the bundle producer are the bundle producer v2 bytes; the coverage limits test reads the lean-v8 files through rewritten include paths. The signed producer crates are tptp-role-bundle-native-v3 (role-v5); the coverage crate stays at revision 2. The signed producer is native v5 (role-v5 with the coverage crate at revision 2). The fang-v8 limits test reads lean-v8/NativeLimits.lean through an include rewrite; crates/ holds only crate directories.",
+  "workspace": {
+    "exclude": [
+      "crates/ground-fof-core",
+      "crates/ground-fof-frontend",
+      "crates/ground-fof-search",
+      "crates/ground-fof-versioned",
+      "crates/quantified-fof-core",
+      "crates/quantified-fof-frontend",
+      "crates/fof-universal-core",
+      "crates/fof-universal-frontend",
+      ".local",
+      "evidence",
+      "experiments",
+      "verification"
+    ],
+    "lock_sha256": "00a1e7c2c0fddd1724bee74f7b2cd9533119c9c57d92d6468b56667b99537e29",
+    "members": [
+      "crates/fang-predicate-index",
+      "crates/fang-v8",
+      "crates/fang-tptp-expanded",
+      "crates/tptp-cnf-boolean",
+      "crates/equality-inference-core",
+      "crates/equality-occurrence-core",
+      "crates/equality-paramodulation-core",
+      "crates/equality-frontend",
+      "crates/equality-search",
+      "crates/fof-equality-bridge",
+      "crates/quantified-equality-frontend",
+      "crates/skolem-core",
+      "crates/fof-core",
+      "crates/binder-removal-core",
+      "crates/pipeline-observer",
+      "crates/quantified-pipeline",
+      "crates/quantified-equality-pipeline",
+      "crates/tptp-coverage",
+      "crates/tptp-bundle-v8",
+      "crates/tptp-roles",
+      "crates/tptp-signed-roles",
+      "crates/tptp-signed-bundle",
+      "crates/v8-kernel-witness"
+    ]
+  }
+}

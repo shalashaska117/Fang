@@ -14,3 +14,48 @@ overflow-checks = true
 
 [lints.rust]
 unsafe_code = "forbid"
+
+# Version-8 crates are staged from their receipts; tools/v8_szs/rust-sources.json
+# records the origin of every file. Excluded crates build on their own lockfiles.
+# The root package is a member without being listed.
+[workspace]
+members = [
+    "crates/fang-predicate-index",
+    "crates/fang-v8",
+    "crates/fang-tptp-expanded",
+    "crates/tptp-cnf-boolean",
+    "crates/equality-inference-core",
+    "crates/equality-occurrence-core",
+    "crates/equality-paramodulation-core",
+    "crates/equality-frontend",
+    "crates/equality-search",
+    "crates/fof-equality-bridge",
+    "crates/quantified-equality-frontend",
+    "crates/skolem-core",
+    "crates/fof-core",
+    "crates/binder-removal-core",
+    "crates/pipeline-observer",
+    "crates/quantified-pipeline",
+    "crates/quantified-equality-pipeline",
+    "crates/tptp-coverage",
+    "crates/tptp-bundle-v8",
+    "crates/tptp-roles",
+    "crates/tptp-signed-roles",
+    "crates/tptp-signed-bundle",
+    "crates/v8-kernel-witness",
+]
+exclude = [
+    "crates/ground-fof-core",
+    "crates/ground-fof-frontend",
+    "crates/ground-fof-search",
+    "crates/ground-fof-versioned",
+    "crates/quantified-fof-core",
+    "crates/quantified-fof-frontend",
+    "crates/fof-universal-core",
+    "crates/fof-universal-frontend",
+    # Crates in research trees and installation snapshots keep building on their own.
+    ".local",
+    "evidence",
+    "experiments",
+    "verification",
+]

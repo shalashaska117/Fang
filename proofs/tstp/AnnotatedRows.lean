@@ -84,17 +84,17 @@ theorem render_correspondence (fileLabel : String) (exported : TstpExport.Export
       Source.RelatedLists (RowCorrespondence exported.signature fileLabel) exported.rows lines ∧
       text.utf8ByteSize ≤ 16 * 1024 * 1024 := by
   cases hl : TstpExport.quote fileLabel with
-  | error e => simp [TstpExport.render, hl, discard, Functor.mapConst, Functor.map, Except.map,
+  | error e => simp [TstpExport.render, hl, discard, Functor.mapConst, Except.map,
       bind, Except.bind] at accepted
   | ok label =>
     cases hr : exported.rows.mapM (TstpExport.renderRow exported.signature fileLabel) with
-    | error e => simp [TstpExport.render, hl, hr, discard, Functor.mapConst, Functor.map, Except.map,
-        bind, Except.bind, pure, Except.pure] at accepted
+    | error e => simp [TstpExport.render, hl, hr, discard, Functor.mapConst, Except.map,
+        bind, Except.bind] at accepted
     | ok lines =>
       by_cases large : (String.join lines).utf8ByteSize > 16 * 1024 * 1024
-      · simp [TstpExport.render, hl, hr, large, discard, Functor.mapConst, Functor.map, Except.map,
+      · simp [TstpExport.render, hl, hr, large, discard, Functor.mapConst, Except.map,
           throw, throwThe, bind, Except.bind, pure, Except.pure] at accepted
-      · simp [TstpExport.render, hl, hr, large, discard, Functor.mapConst, Functor.map, Except.map,
+      · simp [TstpExport.render, hl, hr, large, discard, Functor.mapConst, Except.map,
           bind, Except.bind, pure, Except.pure] at accepted
         subst text
         exact ⟨lines, rfl, row_list_correspondence fileLabel exported.rows hr, by omega⟩

@@ -1,0 +1,18 @@
+{
+  "emitters": {
+    "generate-clausifier.py": "18a5e6abd83fb579a8d38b720d7fbd26e513a2c443ecb42f7ff3d13db92d4b0a",
+    "generate-rectify.py": "5b115aea2c1ac2ba2edb257d470eb394312c61e259e2d73d1a9ea5df75e9fc43",
+    "generate-removal.py": "90463543d09d190ee8ed88390bd627a8be32bfb6a11261ccd5c40578bde63428",
+    "generate-replay.py": "f712466c9a97d5b93bde518c2f0961c3916966e0213ad5ab8287ab9db30014c6",
+    "generate-skolem.py": "379bdf358c4eaa725be0a935db2036abf324a7db97b880ba607d657e138bab7b",
+    "generate-split-declarations.py": "082d3fd309446cb90b27840882d3f56dcb3ec749fe5b993ed433058807e89352",
+    "generate-split-transform.py": "130fe9ef766c2f489d18fecf12080709060d18d6157e826695a8dbd87c246f58",
+    "generate-transform.py": "cb8a0cb57db40a3420ffc01a22d663b123eca7eea02c98f9128df4d6d783a5d4",
+    "generate.py": "d75cc04bb0281be4f2e57d21376b29bc4525493f041de3dacf8006a4574306ba"
+  },
+  "lean": {
+    "BooleanClausifierCall.lean": "86412faa3101c5be65182fea56f1c75a9f3b9df5551667fe07d1cdb26f19cd96",
+    "BooleanClausifierPrimitives.lean": "b4e4c22b26bb6041dc90ecc36ec2079cc497a742d2ec8ac0799a6ab87bed15f1",
+    "BooleanTransformComposition.lean": "a832113d31d4a769490c81ccb7166bf69cb9eb6ac63256133a270823f3004e14"
+  }
+}

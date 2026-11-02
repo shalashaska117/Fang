@@ -1,0 +1,17 @@
+[package]
+name = "fang-ground-fof-search"
+version = "0.0.0"
+edition = "2024"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-ground-fof-core = { path = "../ground-fof-core" }
+fang-ground-fof-frontend = { path = "../ground-fof-frontend" }
+
+[profile.release]
+overflow-checks = true
+
+[lints.rust]
+unsafe_code = "forbid"

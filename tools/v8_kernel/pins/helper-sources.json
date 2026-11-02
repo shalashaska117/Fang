@@ -1,0 +1,593 @@
+{
+  "axiom_audits": {
+    "BooleanClausifierCall": {},
+    "BooleanClausifierPrimitives": {
+      "FangKernelGenerator.usize_checked_add_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangKernelGenerator.usize_checked_mul_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "BooleanTransformComposition": {
+      "FangKernelGenerator.transform_and_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangKernelGenerator.transform_or_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "ClausifierCall": {},
+    "ClausifierPrimitives": {},
+    "ClosedCall": {},
+    "CoreArithmeticKernel": {
+      "FangQuantifiedKernel.core_bounded_add": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.u32_usize": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "CoreCompositionKernel": {
+      "FangQuantifiedKernel.rectify_closed_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.validation_body_of_success": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "CoreCopyKernel": {
+      "FangQuantifiedKernel.CoreCopy.variable_arguments": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "CoreRectifyCopyKernel": {
+      "FangQuantifiedKernel.checked_add_zero": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.lookup_zero": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.renamed_variable_arguments": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "DeclarationsTransformKernel": {
+      "FangQuantifiedKernel.transform_declarations_exact": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.transform_second_declaration": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "DeclarationsValidationKernel": {
+      "FangQuantifiedKernel.declarations_validated": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "EqualityBridgeKernel": {
+      "FangEqualityKernelGenerator.conversion_clause_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangEqualityKernelGenerator.decode_clause_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangEqualityKernelGenerator.eq_of_exact_spec": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangEqualityKernelGenerator.extended_arities_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangEqualityKernelGenerator.reservation_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangEqualityKernelGenerator.reserved_id_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "EqualityOriginalCertificate": {},
+    "EqualityOriginalCertificateInput": {},
+    "EqualityReplayKernel": {
+      "FangEqualityKernelGenerator.accepts_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangEqualityKernelGenerator.prepare_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangEqualityKernelGenerator.replay_blocks_cons": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "ExistentialIntroKernel": {
+      "FangQuantifiedKernel.cast_zero": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.function_cap": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.introduce_constant": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "ExistentialTransformKernel": {
+      "FangQuantifiedKernel.second_literal_transform": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.second_transform": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.substitute_constant": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "KernelPrimitives": {},
+    "MutableVectorKernel": {
+      "FangKernelGenerator.index_mut_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangKernelGenerator.usize_u32": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "NormalizationKernel": {
+      "FangQuantifiedKernel.deref_arguments": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.normalize_first": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.normalize_second": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "PublicNormalizationKernel": {
+      "FangQuantifiedKernel.normalization_first": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.normalization_second": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.rectify_first": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.rectify_second": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "QuantifiedClausifierKernel": {
+      "FangQuantifiedKernel.Clausifier.bounded_add_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.Clausifier.copy_constant": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.Clausifier.copy_variable": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.Clausifier.literal_clausification": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "QuantifiedKernelPrimitives": {
+      "FangQuantifiedKernel.index_singleton": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.index_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.push_empty_slice": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.push_values": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.u32_add_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "QuantifiedKernelValues": {},
+    "QuantifiedRemovalKernel": {
+      "FangQuantifiedKernel.remove_forall_literal_exact": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.remove_literal_exact": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RectificationKernel": {
+      "FangQuantifiedKernel.rectify_first_body": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.rectify_second_body": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RectifyPrimitives": {
+      "FangKernelGenerator.checked_add_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "RemovalCall": {},
+    "RemovalPrimitives": {},
+    "SkolemCall": {},
+    "SkolemCopyKernel": {
+      "FangQuantifiedKernel.SkolemCopy.arities_empty": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.SkolemCopy.arities_singleton": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.SkolemCopy.constant_term": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.SkolemCopy.literal_one": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.SkolemCopy.variable_term": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "SkolemKernel": {
+      "FangOriginalKernelProbe.add_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangOriginalKernelProbe.core_statistics_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangOriginalKernelProbe.default_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangOriginalKernelProbe.eq_of_exact_spec": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangOriginalKernelProbe.push_empty": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangOriginalKernelProbe.skolem_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangOriginalKernelProbe.sub_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangOriginalKernelProbe.zero_bits_val": []
+    },
+    "SkolemLoopKernel": {
+      "FangQuantifiedKernel.declaration_step": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.declarations_finished": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "SkolemPrimitives": {
+      "FangKernelGenerator.skolem_bounded_add": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "SkolemProblemKernel": {
+      "FangQuantifiedKernel.skolem_problem_exact": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "SkolemWorkKernel": {
+      "FangQuantifiedKernel.SkolemWork.bounded_add_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.SkolemWork.remaining_value": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TransformComposition": {
+      "FangKernelGenerator.transform_exists_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangKernelGenerator.transform_forall_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "TransformPrimitives": {},
+    "UniversalTransformKernel": {
+      "FangQuantifiedKernel.first_transform": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "V8ReplayKernel": {
+      "FangV8KernelGenerator.accepts_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangV8KernelGenerator.assembly_of_legacy": [
+        "Quot.sound",
+        "propext"
+      ],
+      "FangV8KernelGenerator.prepare_of_parts": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangV8KernelGenerator.transport_of_legacy": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "ValidationKernel": {
+      "FangQuantifiedKernel.validate_first": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangQuantifiedKernel.validate_second": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "VectorKernel": {
+      "FangKernelGenerator.index_from": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "FangKernelGenerator.push_from": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    }
+  },
+  "module_order": [
+    "BooleanClausifierCall",
+    "ClausifierCall",
+    "EqualityBridgeKernel",
+    "EqualityOriginalCertificateInput",
+    "RemovalCall",
+    "SkolemKernel",
+    "V8ReplayKernel",
+    "EqualityOriginalCertificate",
+    "QuantifiedKernelPrimitives",
+    "CoreArithmeticKernel",
+    "CoreCopyKernel",
+    "EqualityReplayKernel",
+    "QuantifiedKernelValues",
+    "VectorKernel",
+    "ClosedCall",
+    "MutableVectorKernel",
+    "NormalizationKernel",
+    "QuantifiedRemovalKernel",
+    "SkolemCall",
+    "ValidationKernel",
+    "CoreCompositionKernel",
+    "CoreRectifyCopyKernel",
+    "KernelPrimitives",
+    "QuantifiedClausifierKernel",
+    "ClausifierPrimitives",
+    "RectificationKernel",
+    "RectifyPrimitives",
+    "RemovalPrimitives",
+    "BooleanClausifierPrimitives",
+    "PublicNormalizationKernel",
+    "SkolemPrimitives",
+    "SkolemWorkKernel",
+    "TransformPrimitives",
+    "DeclarationsValidationKernel",
+    "SkolemCopyKernel",
+    "TransformComposition",
+    "BooleanTransformComposition",
+    "UniversalTransformKernel",
+    "ExistentialIntroKernel",
+    "ExistentialTransformKernel",
+    "SkolemLoopKernel",
+    "DeclarationsTransformKernel",
+    "SkolemProblemKernel"
+  ],
+  "provenance": {
+    "helper_gate": {
+      "path": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/manifest.json",
+      "sha256": "ea90b2a39f30cab541b0923b37728f3a5a65a4b09705adaf88b5234c91a86dcd"
+    },
+    "independent_review": {
+      "path": "evidence/verification/fof-equality-kernel-v8-independent-review-v1-20261024/manifest.json",
+      "sha256": "7489a31de2a6755237e87f411057d7e5557af68b72d5f6325c74d801a857e080"
+    }
+  },
+  "provided_by_lean_v8": [
+    "EqualityOriginalCertificate",
+    "EqualityOriginalCertificateInput"
+  ],
+  "schema": "fang-v8-kernel-helper-pins-v2",
+  "sources_directory": "tools/v8_kernel/lean",
+  "sources_sha256": {
+    "BooleanClausifierCall": "86412faa3101c5be65182fea56f1c75a9f3b9df5551667fe07d1cdb26f19cd96",
+    "BooleanClausifierPrimitives": "b4e4c22b26bb6041dc90ecc36ec2079cc497a742d2ec8ac0799a6ab87bed15f1",
+    "BooleanTransformComposition": "a832113d31d4a769490c81ccb7166bf69cb9eb6ac63256133a270823f3004e14",
+    "ClausifierCall": "40046a705333509e84e29fda4d112ea8a5a5595ba13229e0ce143de4f20e4c22",
+    "ClausifierPrimitives": "35035bf15109380dbd0681d0c661d101145e0385b5d2891257b17b4bda947e11",
+    "ClosedCall": "81800baccaf6f0d6cc5292df82e8f5831c84623ce3c7e3c04828b18187a5c342",
+    "CoreArithmeticKernel": "96bca628e3aaf020f5ddb3d5522b730bc89e70bcef3374d01011aca8342f1a5f",
+    "CoreCompositionKernel": "0ab3b81b26ee2846065390eb3d5bc35ad98f9089a662660e7f72f037c18af7cb",
+    "CoreCopyKernel": "55f2ee14793c5d2e34559893ab8ab1bd59c8a1549be6db730261ebc9958d504e",
+    "CoreRectifyCopyKernel": "04c726ad6437312967f05c04f4f80ccadd647bca6e299c5b08b23042db8681c9",
+    "DeclarationsTransformKernel": "ad5d4e37f1f9b5de2a965fd07e3b52cd2daacb99bcb976ce22479303b988032f",
+    "DeclarationsValidationKernel": "aa2e1f8e075f89f873ee9a0bb78ace6201946861bf8a105a89812949281295f8",
+    "EqualityBridgeKernel": "00a30147b127946dfaa00cf01a6a0a019cf04eb9fdca7f9a350579f59e0fe5ac",
+    "EqualityOriginalCertificate": "b0eabeee8175752911d82acf6adacc5dc7bd75173ca6996106a69a855eab26cf",
+    "EqualityOriginalCertificateInput": "1cc26143dc59636e4183cf50662f5130aa2992e85a000245d233c572c347c0b8",
+    "EqualityReplayKernel": "98a0b42f20ead08f3de361aca39a37885c70eae83d1a84ea6dcac26a2e6e6864",
+    "ExistentialIntroKernel": "b01ed1a377a0be1cbd7bee156267b651377c47f954482ce1f6108d4db69bf524",
+    "ExistentialTransformKernel": "a35f06c1fe182ac29ff85a5a66c01862e0916be2a4295b812e85ff6fac5a5da5",
+    "KernelPrimitives": "5865c581ab2b546c7858e7310e6228321559abd1cc22a87602265a4449ee9c7b",
+    "MutableVectorKernel": "d38e0b435ac042714cb325a2d04d9cee0df62895ac54dd93d5e4db7ce92dafb8",
+    "NormalizationKernel": "43205865a41aa8eefe5ba7bff59948c5dff3c587541374be31e733697b29ea85",
+    "PublicNormalizationKernel": "7db3c291f111488716ab694a247814687ad83a51c2a10ae58cb054f55a61a295",
+    "QuantifiedClausifierKernel": "730283f7485548efcc20d365c364ffded0bccea5c690b37e792f484698b9330c",
+    "QuantifiedKernelPrimitives": "2da4c021ecec193c612de6632de21ed18b4a1061432d2206562102e2dce618e0",
+    "QuantifiedKernelValues": "77815c3ec3e58136ae92a9152b4c1f2ea2c5a9e5626318a84303e12d21cbc050",
+    "QuantifiedRemovalKernel": "9782c4f793f3f076c5303d5ce390cf8561f0aeb8ca1bde3f9875167fad97c862",
+    "RectificationKernel": "c44da2e11fee11608d0832e5a2e5eac78a681a30e714e7e91d52a27db20f5624",
+    "RectifyPrimitives": "9fe88bf01339b97ba41a93e03ebe7e21024a28fab5466751b7f66303fc2d4a5b",
+    "RemovalCall": "3e2e416f3d7496b198c60a2f2103d86d2166e4dfc6c118cb8e567659425c1f0e",
+    "RemovalPrimitives": "5004921a265b3b0119a9c934198a0e1241f2203962858d32befd7e20143d3783",
+    "SkolemCall": "4a3ec24a2571ff25fb26631093565be1d3934dbf0d9502d7106340df66f94a4e",
+    "SkolemCopyKernel": "efc7a2ab346f3039e468b0038a3dab4a7e492d99ce920c72e90fd9d46e8d6116",
+    "SkolemKernel": "daf5207494c67122aa85b1a077bd8212ccc8ae9c6d833248e34c73b8c12d83cc",
+    "SkolemLoopKernel": "8c62031d9e1318a2d62e4cb1204901a65cea46252818fdf1d19866d68de31cf7",
+    "SkolemPrimitives": "ce930bf4ac3f988eedece1812a6264b10cfa2e534c5993f88ba784e85db0f68e",
+    "SkolemProblemKernel": "9d5aa958f4bf68b6376357635317ffb20200a17df0ddd2a36f9287d6d0da2d91",
+    "SkolemWorkKernel": "40b78cc671f1b04873b58dd3d2158f929f3bd0b4e5b38034b14dcdaff462bf1c",
+    "TransformComposition": "26d1ac4820f59b503b3e25a31cb9195cd60bae595ca97ad8a45d27766296801c",
+    "TransformPrimitives": "445a889667922fb1fe1e904c9b64e767eb16f868cc66ddc75dd6e579e1df4742",
+    "UniversalTransformKernel": "92780594ab9670b6311986c2b85da228e4b53d000728d628ff0fd053894d71d7",
+    "V8ReplayKernel": "6a8d7967d535d1642e4c0837f39b70bc1b6be677de91f6f584ddf8ef69c54a0c",
+    "ValidationKernel": "c517ac724e85db23f756b5acd4da02e4a52efbcd13f88695129b40e51c2666f2",
+    "VectorKernel": "74a27158113bb3577e231fa6553dd84c334922e0f4d9233369424876a0299902"
+  }
+}

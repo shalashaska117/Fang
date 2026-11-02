@@ -4,6 +4,7 @@
 import argparse
 from datetime import datetime, timezone
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -28,7 +29,7 @@ def digest(path):
 def source_files(root, check=lambda: None):
     files = [root / name for name in ("Cargo.toml", "Cargo.lock", "rust-toolchain.toml",
              "LICENSE", "CONTRIBUTORS.md")]
-    for folder in ("src", "tests", "examples", "LICENSES", "tools"):
+    for folder in ("src", "tests", "examples", "LICENSES", "tools", "proofs"):
         files.extend(path for path in (root / folder).rglob("*")
                      if path.is_file() and not {"__pycache__", ".local", "evidence", "runs", "logs"}.intersection(path.relative_to(root).parts)
                      and path.suffix != ".pyc" and path.relative_to(root).as_posix() != "tools/tests/native_integration.py")
@@ -57,7 +58,7 @@ def snapshot(root, target, supervisor):
     return hashes
 
 
-def main():
+def main(*, fof=False):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True, help="Fresh local installation directory")
     parser.add_argument("--lean-tools", type=Path, required=True, help="Pinned Lean bin directory containing lean and lake")
@@ -67,11 +68,12 @@ def main():
         parser.error("Local setup currently requires Linux or WSL")
     output = args.out.resolve()
     output.mkdir(parents=True, exist_ok=False, mode=0o700)
-    supervisor = Supervisor(Limits(wall_seconds=1800, memory_mib=4096,
+    setup_seconds = 2400 if fof else 1800
+    supervisor = Supervisor(Limits(wall_seconds=setup_seconds, memory_mib=4096,
                             log_bytes=16 << 20, artifact_bytes=4 << 30))
     manifest = {"status": "building", "started_utc": datetime.now(timezone.utc).isoformat(),
                 "scope": "Local executable build and general independent Lean proof suite; no per-instance UNSAT claim",
-                "limits": {"wall_seconds": 1800, "sampled_tree_rss_mib": 4096}, "stages": supervisor.records}
+                "limits": {"wall_seconds": setup_seconds, "sampled_tree_rss_mib": 4096}, "stages": supervisor.records}
     (output / "stages").mkdir()
     frozen = output / "source"
     allowed_environment = ("PATH", "HOME", "USER", "RUSTUP_HOME", "CARGO_HOME", "TMPDIR", "TMP", "TEMP",
@@ -90,13 +92,15 @@ def main():
     def run(stage, command):
         record, stdout, stderr = supervisor.run(stage, command, output / "stages" / stage,
                                                 output, environment=environment)
-        if record["exit_code"] != 0:
+        if record["exit_code"] != 0 or (fof and record["classification"] != "completed"):
             raise RuntimeError(f"{stage} failed; see {output / 'stages' / stage}")
         return stdout.decode("utf-8", errors="strict").strip()
 
     try:
         if cargo is None or not lean.is_file() or not lake.is_file():
             raise ValueError("Install the pinned Rust and Lean toolchains before setup")
+        manifest["python"] = {"path": str(Path(sys.executable).resolve()),
+                              "sha256": digest(Path(sys.executable).resolve())}
         manifest["source_sha256"] = snapshot(ROOT, frozen, supervisor)
         exporter_link = json.loads((frozen / "lean/tstp-sources.json").read_text())
         if exporter_link.get("schema") != "fang-tstp-source-link-v2":
@@ -118,18 +122,26 @@ def main():
         if "version " + lean_version + "," not in manifest["lean_version"]:
             raise ValueError("Lean version differs from the pinned toolchain")
         manifest["lean_sha256"] = digest(lean)
+        if fof:
+            import fof_setup
+            fof_context = fof_setup.prepare(output, tools, lambda: supervisor.check("fof-toolchain-capture"))
         cargo_args = ["--manifest-path", str(frozen / "Cargo.toml"), "--locked", "--offline",
                       "--target-dir", str(output / "rust-target")]
         run("rust-tests", cargo_prefix + ["test"] + cargo_args)
         run("rust-build", cargo_prefix + ["build", "--release"] + cargo_args)
         run("lean-checker-build", [str(lake), "-d", str(frozen / "lean"), "build", "fang-check", "fang-tstp-export"])
+        if fof:
+            fof_setup.build(frozen, output, cargo_prefix, lake, run)
         proof_path = output / "proof-suite" / "manifest.json"
         run("lean-proof-suite", [sys.executable, str(frozen / "tools/replay/check-suite.py"),
-                                 str(frozen), str(lean), "--out", str(proof_path.parent)])
+                                 str(frozen), str(lean), "--out", str(proof_path.parent)]
+                                 + (["--with-tstp"] if fof else []))
         proof = json.loads(proof_path.read_text())
         if (proof["status"] != "passed" or "Fang.FrontendSoundness" not in proof["completed_modules"]
                 or "Fang.FrontendComplete" not in proof["completed_modules"]):
             raise ValueError("The required independent proof suite did not pass")
+        if fof:
+            fof_audits = fof_setup.check_proofs(frozen, proof)
         library = output / "proof-library"
         for relative, expected in proof["build_output_sha256"].items():
             source = Path(proof["native_project"]) / relative
@@ -142,10 +154,13 @@ def main():
                 raise ValueError("Copied checked library differs")
         binaries = output / "bin"
         binaries.mkdir()
-        for source, name in ((output / "rust-target/release/fang", "fang"),
+        for source, name in ((output / "rust-target/release/fang", "fang-engine"),
                              (frozen / "lean/.lake/build/bin/fang-check", "fang-check"),
                              (frozen / "lean/.lake/build/bin/fang-tstp-export", "fang-tstp-export")):
             shutil.copy2(source, binaries / name)
+        if fof:
+            manifest["fof"] = fof_setup.finish(frozen, output, fof_context, fof_audits,
+                lambda: supervisor.check("fof-build-finalization"))
         shutil.copytree(frozen / "LICENSES", output / "LICENSES")
         shutil.copy2(frozen / "LICENSE", output / "LICENSE")
         for checked_root in (ROOT, frozen):
@@ -156,9 +171,11 @@ def main():
         for relative, expected in manifest["source_sha256"].items():
             if digest(frozen / relative) != expected or digest(ROOT / relative) != expected:
                 raise ValueError(f"Source changed while setup ran: {relative}")
+        if digest(Path(manifest["python"]["path"])) != manifest["python"]["sha256"]:
+            raise ValueError("Build Python executable changed")
         manifest.update(status="built-and-checked", proof_suite=str(proof_path),
                         proof_suite_sha256=digest(proof_path), library_sha256=proof["build_output_sha256"],
-                        binaries_sha256={name: digest(binaries / name) for name in ("fang", "fang-check", "fang-tstp-export")},
+                        binaries_sha256={name: digest(binaries / name) for name in ("fang-engine", "fang-check", "fang-tstp-export")},
                         completed_utc=datetime.now(timezone.utc).isoformat(),
                         sampled_peak_rss_kib=supervisor.peak_kib)
         provenance = output / "build-manifest.json"
@@ -167,7 +184,7 @@ def main():
         # The finalized build manifest is pinned by the installer. Its own receipt
         # is separate so installation cannot change those provenance bytes.
         run("install", [sys.executable, str(frozen / "tools/fang-install.py"),
-                        "--engine", str(binaries / "fang"), "--checker", str(binaries / "fang-check"),
+                        "--engine", str(binaries / "fang-engine"), "--checker", str(binaries / "fang-check"),
                         "--exporter", str(binaries / "fang-tstp-export"),
                         "--lean", str(lean), "--proof-library", str(library), "--source-root", str(frozen),
                         "--provenance", str(provenance), "--out", str(config)])
@@ -180,10 +197,20 @@ def main():
                    "configuration_sha256": digest(config), "build_manifest_sha256": digest(provenance),
                    "launcher": str(launcher), "launcher_sha256": digest(launcher),
                    "install_stage": supervisor.records[-1]})
+        if fof:
+            fof_setup.provision(output, json.loads(provenance.read_text()),
+                lambda: supervisor.check("fof-provisioning"))
+        cli_path = frozen / "tools/cli_setup.py"
+        if digest(cli_path) != manifest["source_sha256"]["tools/cli_setup.py"]:
+            raise ValueError("Public launcher setup source changed")
+        spec = importlib.util.spec_from_file_location("fang_captured_cli_setup", cli_path)
+        cli_setup = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cli_setup)
+        launcher = cli_setup.provision(output, fof=fof)
         print(json.dumps({"status": "installed", "configuration": str(config),
+                          "add_to_path": 'export PATH=' + shlex.quote(str(binaries)) + ':"$PATH"',
                           "example_command": shlex.join([str(launcher),
-                              str(frozen / "examples/problems/mortality.p"), "--artifacts",
-                              str(output / "runs/mortality-kernel")])}))
+                              str(frozen / "examples/problems/mortality.p"), "--output", "tstp"])}))
         return 0
     except (Failure, OSError, ValueError, RuntimeError) as error:
         write_json(output / "setup-failure.json", {"status": "failed", "reason": str(error),

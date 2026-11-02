@@ -1,0 +1,7991 @@
+{
+ "schema": "fang-v8-audits-v2",
+ "allowed_axioms": [
+  "Classical.choice",
+  "Quot.sound",
+  "propext"
+ ],
+ "roots": {
+  "tptp-expanded-lexer-v1-20261024": [
+   "ExpandedLexer",
+   "ExpandedFastCertificate",
+   "ExpandedCertificateControls",
+   "ExpandedEnvelopeChecks",
+   "ExpandedCertificatePositive"
+  ],
+  "tptp-expanded-decoder-v1-20261024": [
+   "ExpandedDecoder",
+   "ExpandedLinearCertificate",
+   "ExpandedDecoderControls"
+  ],
+  "fof-tstp-document-v3-20261024": [
+   "ExpandedDocument",
+   "ExpandedDocumentControls"
+  ],
+  "tptp-expanded-limits-v3-20261025": [
+   "NativeLimits",
+   "ExpandedLimitDecoder",
+   "ExpandedLimitDecoderControls"
+  ],
+  "tptp-bundle-v8-limit-v1-20261026": [
+   "BundleAudit",
+   "BundleDocumentFileRows",
+   "BundleDocumentNameRows",
+   "BundleDocumentObjectRows",
+   "BundleFramerControls",
+   "BundleFramerHashedControls",
+   "BundleFramerLimitControls",
+   "BundleLimitAudit",
+   "BundleNumericAuditArithmetic",
+   "BundleNumericAuditBasic",
+   "BundleNumericAuditNumbers",
+   "BundleNumericAuditOther",
+   "BundleNumericAuditTyped",
+   "BundleReplayControls",
+   "BundleSingleReductions",
+   "BundleTstpAudit",
+   "ExpandedDocumentControls",
+   "Fang.BoundedInput"
+  ],
+  "tptp-role-v5-v1-20261026": [
+   "RoleDecoderLimit",
+   "RoleFramerLimit",
+   "RoleMeaningLimit",
+   "RoleReplayLimit",
+   "RoleLimitControls"
+  ],
+  "tptp-goal-document-v6-20261026": [
+   "GoalDocument",
+   "GoalRowsControls"
+  ]
+ },
+ "names": {
+  "Fang.Frontend.ClassifiedTokens.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.RawTokenSpelling.is_lower": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.RawTokenSpelling.is_variable": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.RawTokenSpelling.text": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.Frontend.RawTokenSpelling.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.StatementTailRun.clause_names": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.SymbolExtension.withVariables": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.TableClauseEncoding.toSource": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.TableLiteralEncoding.extend": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.TableLiteralEncoding.toSource": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.TableTermEncoding.extend": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.TableTermEncoding.freeze_variables": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.TableTermEncoding.toSource": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_accepts_consistent": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_initializes": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_preserves_ids": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_preserves_known": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_preserves_tokens": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_preserves_unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_rejects_mismatch": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_success": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.checkArity_tableExtension": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.clause_update_success_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.consume_success": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.consume_tableExtension": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.expect_classified": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.expect_punctuation": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.expect_success": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.expect_tableExtension": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.function_arguments_grammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.function_arguments_result": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.function_encoding_of_found": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.grammar_parses_iff_tokenized": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.grammar_parses_tokenize_success": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.grammar_tokenization_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.grammar_tokenization_iff_classified": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.lexAux_complete": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.lexAux_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.literal_encoding_of_found": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.literal_grammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.literal_run": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.literals_grammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.literals_preserve_clause_names": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.lowerName_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.namedIndex_none_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.namedIndex_some_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.polarity_grammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.reserveSymbol_preserves_entry": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.reserveSymbol_preserves_tokens": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.reserveSymbol_preserves_unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.reserveSymbol_spec": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.reserveSymbol_tableExtension": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.restores_literal": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.restores_statement": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.restores_term_terms": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statement_closing_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statement_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statement_name_history": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statement_preserves_unique_clause_names": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statement_success_decomposition": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statement_tail_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statements_classifies_input": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statements_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statements_preserve_unique_clause_names": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.statements_success_consumes_all": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.symbolExtension_reset": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.Frontend.symbolIndex_none_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.symbolIndex_some_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.term_constant_encoding": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.term_function_result": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.term_function_run": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.term_grammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.term_result": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.term_variable_encoding": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.term_variable_run": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.terms_grammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.terms_result": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.terms_run": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.tokenize_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.tokenize_offsets": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.tokenize_toGrammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.tokenize_token_ascii": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.variableId_encoding": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.variableId_preserves_tokens": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.variableId_preserves_unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.variableId_spec": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.variableId_tableExtension": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Frontend.variableName_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.append_holdsAt": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.clauseProduct_holdsAt": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.clause_append_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.clauses_holdsAt": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.clausify_holdsAt": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.clausify_models": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.models_iff_holdsAt": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.GroundFOF.nnf_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.NativeLimits.skolem_declarations": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Body.NamedClause.valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Body.NamedLiteral.holds": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Body.clause_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Body.literal_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Body.literals_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Body.rendered_row_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.Checked.parents": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.Checked.row": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.Checked.suffix": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.build_final_row": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.build_input_clause": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.build_parent_before": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.build_row_checked": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.build_row_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.build_rows": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.checkSteps_rows": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Derivation.zip_projections": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Audit.expected_export_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Audit.expected_fast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Audit.expected_fast_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Audit.expected_group_sap": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Controls.names_keep_spelling": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Controls.objects_print_quoted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Controls.objects_renamed": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Controls.rows_name_their_files": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.Controls.same_path_fails": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.attachBundle_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bind_success": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bodyEq_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_accepts": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_check": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_row_checked": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_rows": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_sources": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_witness": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleDocumentOf_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleDocument_group_sap": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleDocument_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleDocument_rows_sap": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleDocument_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleSourceRow_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleSourceRows_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundle_group_sap": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.exportBundleDocument_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.exportBundleDocument_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.formulaEq_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.formulasEq_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.mapM_paired": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.prepareBundle_models": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.replayFrom_models": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.rows_read_bodies": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.sourceItem_declaration": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.sourceItems_declarations": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.source_of_bodies": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.termEq_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.Bundle.termsEq_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_accepts": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_check": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_row_checked": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_rows": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_sources": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.buildBundle_witness": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.bundleDocumentOf_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.bundleDocumentOf_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.bundleDocument_group_sap": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.bundleDocument_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.bundleDocument_rows_sap": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.bundleDocument_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.bundle_group_sap": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.exportBundleDocument_hashed_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.exportBundleDocument_hashed_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.exportBundleDocument_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.exportBundleDocument_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.exportBundleDocument_spec": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.prepareBundle_models": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.capText_rejects": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.escaped_parent": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.first_prefix_free": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.group_collision_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.integer_and_quoted_distinct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.integer_parent": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.leading_zero_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.quoted_parent": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.row_collision_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.sap_parents": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.signed_integer_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.small_text_kept": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.DocumentControls.taken_prefixes_skipped": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.attach_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.buildFast_eq": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.buildLinear_eq": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.build_accepts": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.build_check": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.build_group_sap": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.build_original_unsat": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.build_row_checked": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.build_rows": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.build_witness": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.capText_ok": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.clause_agree": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.derivation_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.document_group": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.document_group_sap": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.document_original_unsat": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.document_rows_sap": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.document_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.exportDocument_document": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.exportDocument_group_sap": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.exportDocument_original_unsat": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.exportDocument_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.final_row_empty": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.groupRow_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.group_annotation": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.group_sap": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.keyIndex_exact": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.namedModel_models": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.originals_decoded": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.parentText_data": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.parents_data": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.prepare_models": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.quoted_parents": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.readInput_originals": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.rowBodies_original": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.row_local": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.sap_annotation": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.table_entry": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.term_agree": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Expanded.terms_agree": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.ParsesFormula.unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.altered_operator_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.argument_tokens_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.atom_tokens_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.checkedText_exact": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.checkedText_formula": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.closure_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.disequality_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.equality_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.extra_token_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.formula_tokens_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.formula_tokens_unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.nonascii_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.nullary_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.render_formula": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.render_unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.FormulaText.term_tokens_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.addFresh_mem": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.clauseBinders_mem": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.clauseFormula_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.closeOver_names": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.closeOver_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.closeOver_within": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.conjunction_holds": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.conjunction_names": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.conjunction_within": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.disjunction_holds": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.disjunction_names": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.disjunction_within": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.foldl_addFresh_mem": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.groupFormula_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.groupText_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.group_empty_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.indexValuation_at": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.indexValuation_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.literalFormula_holds": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.literalFormula_names": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.literalFormula_within": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.literal_variables_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.namedClause_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.namedClause_valid_iff": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.namedLiteral_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.namedTerm_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.namedTerms_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.term_variables_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.term_within": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.terms_variables_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.terms_within": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Group.update_self": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Local.row_local": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Local.step_local": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.attach_witness": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.buildNamed_original_decode": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.buildNamed_original_unsat": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.buildNamed_predicates": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.buildNamed_witness": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.check_ok": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.check_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.drop_prefix": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Naming.fresh_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.inferenceRow_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.leafRow_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.leaf_annotation": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.mapM_related": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.parentLabels_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.position_text": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.related_member": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": []
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.renderRow_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.render_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.render_leaf_exact": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.render_parents_earlier": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.render_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.Rows.stepInfo_correspondence": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.build_accepted": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.build_clauses_valid": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.build_endpoint": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.build_original_unsat": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.build_witness": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.retain_erases": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedEqualityTstp.retain_witness": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.ParsesFormula.unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.altered_quantifier_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.checkedText_exact": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.checkedText_formula": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.extra_token_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.nonascii_rejected": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.nullary_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.render_formula": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.render_unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.scope_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.shadow_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Bytes.truth_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.reifyFormula_closed": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.reifyFormula_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.reifyTerm_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.reifyTerms_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.renderClosed_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.render_closed": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.render_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.render_holds": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.symbol_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Naming.variableAt_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tables.append_symbolExtension": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tables.checkedState_extension": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tables.checkedState_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tables.original_encoding": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tables.prefix_append": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tables.renderClosed_correct": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tables.sameSymbol_eq": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.argument_tokens_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.binary_scope_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.empty_predicate_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.formula_tokens_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.formula_tokens_unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.nested_term_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.shadowed_binder_control": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.QuantifiedTstp.Tokens.term_tokens_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.ClauseEncoding.extend_symbols": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.Lexeme.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.MaximalPrefix.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.Source.Grammar.Parses.ascii": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.Parses.string_ascii": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.Parses.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.ProblemTokens.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.Source.Grammar.TermTokens.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.Source.Grammar.Tokenization.ascii": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.Tokenization.string_ascii": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.WordSpelling.unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.asciiDigit_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.asciiLower_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.asciiSpace_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.asciiUpper_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.ascii_string_of_bytes": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.original_bytes_unsat_of_witness": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.spelling_ascii": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.spelling_ascii_iff": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.spelling_ofList_ascii": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.Grammar.wordChar_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.LiteralEncoding.extend_symbols": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.ProblemEncoding.extend_symbols": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.ProblemEncoding.satisfiable_iff": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.ProblemEncoding.unsat_of_check": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.Source.TermEncoding.extend_symbols": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.blocks_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.blocks_length": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.formula_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.ignored_clause_retains_occurrences": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.normalize_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.normalize_some": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.normalized_formula_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.ordered_duplicates": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.BooleanCnf.signed_constants": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.Audit.expected_export_hashed_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.Audit.expected_export_hashed_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.Audit.expected_hashed_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.Audit.expected_hashed_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.Audit.expected_limited_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.Audit.expected_meaning_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.acceptsBundleHashed_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.acceptsBundleLimited_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.acceptsBundle_hashed_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.acceptsBundle_no_model": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.acceptsBundle_original_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.acceptsBundle_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.acceptsBundle_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.bundleNumeric_below": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.bundleNumeric_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.bundleNumeric_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.bundleNumeric_witness": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.bundleRefuted_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.limitedSpecification_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.limited_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleLimit.prepareBundle_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Audit.expected_bundle_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Audit.expected_bundle_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Audit.expected_single_file": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.framing_error": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.missing_file": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.no_objects_no_row": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.objects_add_one_row": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.selection_missing": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.self_include_is_cycle": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.three_objects_three_clauses": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Controls.unreached_file_is_shape": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.ReplayControls.duplicate_keys_rejected": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.ReplayControls.malformed_key_rejected": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.ReplayControls.misordered_files_rejected": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.ReplayControls.rejected_before_certificate": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.ReplayControls.unreached_file_rejected": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.commentsEquality_premises": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.commentsEquality_reduces": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.outside_reduction": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.plainCnf_premises": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.plainCnf_reduces": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.plainFof_premises": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.plainFof_reduces": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.quotedNames_premises": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.quotedNames_reduces": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.single_of_premises": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.Single.top_wellFormed": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.acceptsBundleFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.acceptsBundleFast_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.acceptsBundle_no_model": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.acceptsBundle_original_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.acceptsBundle_refuted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.acceptsBundle_single": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.bundleNumericFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.bundleNumeric_below": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.bundleNumeric_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.bundleNumeric_witness": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.prepareBundleFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.prepareBundle_single": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.prepare_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.reachWalk_formulas": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.reach_single": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.replayFrom_check_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.replayFrom_witness": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.single_shaped": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.withGenerated_declarations": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.BundleV8.withGenerated_tables": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.byte_bundle_generated_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.byte_bundle_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.byte_bundle_unsat_of_check": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.byte_bundle_without_objects": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.formulaRecord_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.frameBundle_keys": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.frameBundle_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.frameFile_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.framed_closed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.framed_declarations_grammar": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.framed_declarations_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.framed_objects_covered": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.objectName_isObject": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.objects_distinct_satisfiable": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.separated_iff": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.Framer.statements_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.Controls.at_limit_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.Controls.duplicate_refused": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.Controls.include_after_limit_refused": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.Controls.limit_per_file": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.Controls.over_limit_refused": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.Controls.same_name_other_file_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.HashedControls.declarationLimit_value": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.HashedControls.hashed_at_limit_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.HashedControls.hashed_duplicate_refused": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.HashedControls.hashed_include_after_limit_refused": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.HashedControls.hashed_limit_per_file": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.HashedControls.hashed_over_limit_refused": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.HashedControls.hashed_same_name_other_file_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.byteBundleSatisfiable_revision_two": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.byte_bundle_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.byte_bundle_unsat_of_refutation": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.contains_insert_cons": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.declarations_closed": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.declarations_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.formulaRecordHashed_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.frameBundleHashed_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.frameBundleHashed_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.frameBundleHashed_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.frameBundle_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.frameBundle_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.frameFileHashed_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.object_ids_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.objects_covered": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.revision_two_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.statementsHashed_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.statements_accepted": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerLimit.statements_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.annotation_does_not_change_meaning": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.annotation_objects_not_in_inventory": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.duplicate_name_in_one_file_invalid": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.escaping_paths_resolve_nowhere": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.include_empty_selection_invalid": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.include_namespace_unsupported": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.include_with_names": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.include_with_star": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.malformed_annotations_invalid": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.object_spellings_are_distinct_from_atoms": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.objects_are_constants_only": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.objects_inventory": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.profile_rejections": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.profile_rejections_typed": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.shape_accepts_reached_files": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.shape_rejects_duplicate_keys": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.shape_rejects_misordered_files": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.shape_rejects_unreached_file": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.Controls.truncated_annotation_invalid": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.byte_bundle_generated_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.byte_bundle_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.byte_bundle_unsat_of_check": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.byte_bundle_unsat_of_refutation": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.byte_bundle_without_objects": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.eraseDups_loop_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.eraseDups_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.fastFrameLexLoop_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.formulaRecord_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.frameBundleFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.frameBundle_keys": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.frameBundle_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.frameFileFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.frameFile_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.framed_closed": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.framed_declarations_grammar": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.framed_declarations_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.framed_object_ids_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.framed_objects_covered": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.objectName_isObject": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.objectNames_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.objects_distinct_satisfiable": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.separated_iff": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.splitStatementFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.statementsFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.statements_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.FramerV2.tokenizeFast_eq": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.NumericAudit.audit_arithmetic": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.NumericAudit.audit_basic": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.NumericAudit.audit_numbers": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.NumericAudit.audit_other": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.NumericAudit.audit_typed": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.addNew_mem": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.addNew_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.bundle_input_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.bundle_single_bytes": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.bundle_single_satisfiable": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.checkNames_exact": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.closure_formulas": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.closure_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.declarationsOf_positions": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.declarationsOf_single": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.disequality_models": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.distinctAxioms_length": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.distinct_satisfiable_iff": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.distinct_trivial": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.distinct_unsat": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.expand_single": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.input_satisfiable": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.mem_positions": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.pairs_complete": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.pairs_length": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.pairs_mem": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.select_exact": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.select_sound": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.select_subset": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.step_mem": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.step_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.walk_formulas": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.walk_nodup": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Coverage.walk_plain": {
+   "gate": "tptp-bundle-v8-limit-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.conjecture_entry_row": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.integer_and_atom_names_differ": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.negated_input_row": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.negated_integer_goal": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.negated_label_rejected": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.negated_quoted_goal": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.negated_row_text": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.premise_policy": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.repeated_name_rejected": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Controls.role_words": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.NegatedReads.unique": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.NegatedRowTokens.unique": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.Paired.imp": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.entryRow_reads": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.kinds_length": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.mapM_paired": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.negatedRow_reads": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.negatedRow_unique": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.GoalRows.recordName_unique": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Grammar.arguments_unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Grammar.atom_unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Grammar.binders_unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Grammar.term_unique": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.DecoderControls.cnf_and_fof_offsets": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.DecoderControls.conjecture_role_rejected": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.DecoderControls.false_clause_offsets": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.DecoderControls.missing_parenthesis_rejected": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.DecoderControls.repeated_name_rejected": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.LimitControls.hashed_limit_not_reached": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.LimitControls.hashed_limit_reached": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.LimitControls.limit_not_reached": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.LimitControls.limit_reached": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.LimitControls.repeated_name_rejected": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Checks.nonempty_endpoint_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Checks.ordered_derivation_accepts": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Checks.producer_layout_accepts": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Checks.signature_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.final_out_of_range_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.minimal_decodes": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.missing_close_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.missing_marker_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.trailing_token_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.truncated_header_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.v7_marker_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.version5_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.version7_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Controls.version9_rejects": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Positive.false_clause_reads": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.V8Positive.omitted_rows_read": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.acceptsFast_eq": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.acceptsFast_original_unsat": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.acceptsLimited_accepted": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.acceptsLimited_original_unsat": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.acceptsLinear_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.acceptsLinear_original_unsat": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.accepts_original_unsat": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.accepts_replay_error": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.accepts_replay_success": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.atomC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.atomicC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.bind_annotate": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.Integration.bind_congr_ok": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.Integration.bindersC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.checkProblem_certificate_error": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.checkProblem_success": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.checkedC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.classify_ordinary": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.clauseC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.cnf_functions": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.cnf_member_covered": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.cnf_predicates": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.cnf_variables": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.declarationC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.declarationSeenC_eq": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.declarationsC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.declarationsHashed_eq": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.declarationsUpTo_accepted": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.declarationsUpTo_closed": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.declarationsUpTo_sound": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeBytesFast_eq": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeBytesLimited_eq": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeBytesLinear_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeBytesUpTo_accepted": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeNumericFast_eq": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeNumericLimited_witness": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeNumericLinear_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeNumeric_witness": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeUpTo_bytes_satisfiable": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeUpTo_closed": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeUpTo_grammar": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeUpTo_has_tokens": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decodeUpTo_readInput_unsat": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decode_readInput_models": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decode_readInput_satisfiable": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.decode_readInput_unsat": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.disjunctionC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.encoded_formula_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.encoded_formula_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.encoded_term_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.encoded_term_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.expect_rest": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.fastLexLoop_eq": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.fastTokenizeBytes_eq": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.legacy_declaration_numeric": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.legacy_models": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.legacy_rows_numeric": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.literalC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.lowered_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.lowered_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.map_bind": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.Integration.numeric_clause_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.prepareFast_eq": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.prepareLimited_check_original_unsat": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.prepareLimited_witness": {
+   "gate": "tptp-expanded-limits-v3-20261025",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.prepareLinear_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.prepare_check_original_unsat": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.prepare_witness": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readBody_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readBody_models": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readClause_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readClause_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readInput_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readInput_models": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readInput_satisfiable": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readInput_tables": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readLiteral_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readLiteral_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readRaw_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readRaw_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readRaws_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readRaws_holds": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readRows_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readRows_models": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.readRows_originals": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.reserve_interpretation": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.retained_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.termC_argumentsC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.transport_models": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.transport_original": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.transport_retained_below": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.transport_tables": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.truth_does_not_skip_nonliteral": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.unitC_formulaC_chainC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.wrappedAtomC_eq": {
+   "gate": "tptp-expanded-decoder-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.Integration.zero_and_empty": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.RowReads.unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.RowTokens.unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.arguments_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.body_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.checked_tokens": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.disjunction_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.formula_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.label_reads": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.literal_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.row_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.sourceRowAs_reads": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.sourceRowAs_unique": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.sourceRow_formula": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.sourceRow_reads": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.sourceRowsAs_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.sourceRows_spec": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.term_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.SourceRow.unit_grammar": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.arguments_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.arguments_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.atom_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.atom_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.binders_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.chain_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.checked_exact": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.close_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.cnfLiteral_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.cnfLiterals_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.declaration_closed": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.declaration_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.declarations_closed": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.declarations_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.decode_closed": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.decode_grammar": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.decode_has_tokens": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.decode_names_nodup": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.decode_retained_names": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.expect_exact": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.formula_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.formula_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.formula_within_congr": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.isChar_exact": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.source_declaration_order": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.FullFof.term_arguments_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.term_arguments_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.term_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.term_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.term_within_congr": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.unit_formula_chain_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.unit_formula_chain_within": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.FullFof.unit_sound": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.buildGoalLinear_eq": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.buildGoal_accepts": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.buildGoal_check": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.buildGoal_entails": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.buildGoal_witness": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.exportGoalDocument_spec": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goalCountermodel_negated": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goalDocument_group": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goalDocument_spec": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goalDocument_theorem": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goal_closed": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goal_entry": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goal_final_row_empty": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goal_group_sap": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goal_row_checked": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goal_row_local": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.goal_rows": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.premiseEntries_names": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.prepareGoal_models": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.GoalDocument.replayTask_models": {
+   "gate": "tptp-goal-document-v6-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.RoleByte.declaration_goal_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.RoleByte.declaration_original": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.RoleByte.declaration_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.RoleByte.grammar_keyword": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsGoalFast_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsGoalFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsGoal_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsGoalsFast_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsGoals_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsInputsFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsInputsFast_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.acceptsInputs_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.byteTheorem_of_entailed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.distinctItems_models": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.distinct_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.expanded_unique": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.fast_eq_gated": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.formulaRecordFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.formulaRecord_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.frameBundleFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.frameBundle_congr": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.frameBundle_fast": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.frameBundle_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.frameFileFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.frameFile_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.framed_closed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.framed_entries_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.framed_goals_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.framed_objects_covered": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.goalItems_entry": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.goal_entailed_of_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.goal_item_entailed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.objectIds_nodup": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.objectsOf_nodup": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.prepareGoalFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.prepareGoal_check_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.prepareGoal_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.prepareInputsFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.prepareInputs_check_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.readBundleFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.readBundle_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.statementsFast_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.statements_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.task_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V2.unsatisfiable_of_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.LimitControls.at_limit_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.LimitControls.duplicate_refused": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.LimitControls.include_after_limit_refused": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.LimitControls.limit_per_file": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.LimitControls.over_limit_refused": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.LimitControls.same_name_other_file_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsGoalLimited_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsGoal_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsGoal_hashed_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsGoal_revision_two": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsGoalsLimited_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsGoals_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsInputsLimited_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsInputs_hashed_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsInputs_revision_two": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.acceptsInputs_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.byteTheorem_of_entailed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.contains_insert_cons": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.distinctItems_models": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.distinct_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.entries_closed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.entries_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.expanded_revision_two": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.expanded_unique": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.formulaRecordHashed_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.frameBundleHashed_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.frameBundleHashed_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.frameBundleHashed_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.frameBundle_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.frameBundle_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.frameFileHashed_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.goal_entailed_of_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.goal_item_entailed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.limitedSpecification_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.limited_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.objectIds_nodup": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.objects_covered": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.prepareGoal_check_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.prepareGoal_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.prepareInputs_check_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.readBundle_revision_two": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.readBundle_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.statementsHashed_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.statements_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.statements_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.task_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.V3.unsatisfiable_of_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.acceptsBundleGoal_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.acceptsBundleGoals_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.acceptsBundleInputs_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.bundle_theorem_of_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.distinctItems_models": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.distinct_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.entriesOf_original": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.eraseDups_loop_nodup": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.expanded_unique": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.forget_statementAt": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.formulaRecord_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.frameBundle_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.frameFile_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.framed_closed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.framed_entries_decoded": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.framed_entries_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.framed_goals_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.framed_objects_covered": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.goalItems_entries": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.goalItems_entry": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.goalItems_member": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.goal_entailed_of_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.goal_item_entailed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.goal_refuted_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.goal_rows_items": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.inputs_refuted_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.inputs_unsat_of_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.objectIds_nodup": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.objectsOf_nodup": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.prepareBundleGoal_check_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.prepareBundleGoal_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.prepareBundleInputs_check_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.readBundle_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.read_tables": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.replayTask_check_unsat_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.retainedClauses_append": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.splits_items": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.statements_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.task_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bundle.unsatisfiable_not_satisfiable": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationC_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationSeenC_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationsC_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationsHashed_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationsUpTo_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationsUpTo_closed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationsUpTo_goals_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.declarationsUpTo_sound": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.decodeBytesLimited_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.decodeBytesLinear_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.decodeBytesUpTo_accepted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.decodeUpTo_closed": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.decodeUpTo_goals_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.decodeUpTo_grammar": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.decodeUpTo_has_tokens": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.header_patched_length": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.parsed_entails_all": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.parsed_entails_in": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Bytes.parsed_inputs_satisfiable": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.allHold_select": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.closed_failure_iff": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.closed_holds_independent": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.conjecture_not_premise": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": []
+  },
+  "Fang.TptpCandidate.Roles.Numeric.encodeSigned_related": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.entails_tasks_refuted": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_contains_premises": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_entry": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_fromRows": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_models": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_negative_items": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_other_items": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_refuted_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_satisfiable_iff": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_shape": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goalTask_skolem_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.goal_row": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.holds_agree": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.inputsTask_fromRows": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.inputsTask_models": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.inputsTask_satisfiable_iff": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.inputs_skolem_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.mem_retainedClauses": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.mem_signedFormulas": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.mem_splits": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.named_failure_iff": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.positive_holds": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.positive_not_negative": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.prepareTask_function_count": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.prepareTask_runs": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.prepareTask_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.prepareTask_view": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.readBody_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.readRoleRows_exact": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.readRoleRows_member": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.readSigned_exact": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.readSigned_row": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.related_view": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.retained_below": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.row_models": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.selectBlock_contains": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.selectBlock_fromRows": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.selectBlock_member": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.selectBlock_models": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.selectBlock_no_negative": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.selectBlock_signs_positive": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.signedFormulas_append": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.signed_hold": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.taskModels_append": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.taskModels_cons": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.taskModels_parts": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.tasks_refuted_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.tasks_skolem_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.term_eval_agree": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Numeric.update_agree": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoalLimited_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoalLimited_replay": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoalLinear_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoalLinear_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoal_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoal_replay": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoalsLimited_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoalsLinear_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsGoals_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsInputsLimited_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsInputsLinear_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsInputsLinear_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.acceptsInputs_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.bytesTheorem_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.declaration_goal_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.declarations_goals_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.decodeSignedLimited_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.decodeSignedLinear_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.decodeSigned_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.decode_goals_fof": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.goalSplits_member": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.goalTask_exists": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.grammar_keyword": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareGoalLimited_check_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareGoalLimited_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareGoalLinear_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareGoal_check_entails": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareGoal_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareGoals_check_entails_all": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareGoals_check_theorem": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareInputsLimited_check_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareInputsLinear_eq": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.prepareInputs_check_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.readSigned_member": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.replayTask_check_unsat": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.replayTask_witness": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.TptpCandidate.Roles.Signed.retained_taskDeclarations": {
+   "gate": "tptp-role-v5-v1-20261026",
+   "axioms": [
+    "propext"
+   ]
+  },
+  "Fang.decodeProblemWithSignature_success": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.decodeProblem_success": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.decode_satisfiable_iff": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.decode_sound": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "Fang.decoded_refutation_unsat": {
+   "gate": "fof-tstp-document-v3-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "FangScopedFof.add_spec": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "FangScopedFof.allocate_spec": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "FangScopedFof.bounded_add_spec": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "FangScopedFof.multiply_spec": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  },
+  "FangScopedFof.tick_spec": {
+   "gate": "tptp-expanded-lexer-v1-20261024",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ]
+  }
+ }
+}

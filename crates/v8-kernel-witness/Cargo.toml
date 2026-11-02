@@ -1,0 +1,28 @@
+[package]
+name = "fang-v8-kernel-witness"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[[bin]]
+name = "fang-v8-witness"
+path = "src/main.rs"
+
+[dependencies]
+fang = { path = "../.." }
+fang-tptp-full-frontend-candidate = { path = "../tptp-cnf-boolean" }
+fang-quantified-fof-core = { path = "../quantified-fof-core" }
+fang-skolem-core = { path = "../skolem-core" }
+fang-binder-removal-core = { path = "../binder-removal-core" }
+fang-fof-core = { path = "../fof-core" }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+
+
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

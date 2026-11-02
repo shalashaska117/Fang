@@ -1,0 +1,20 @@
+[package]
+name = "fang-binder-removal-core"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang-quantified-fof-core = { path = "../quantified-fof-core" }
+fang-fof-core = { path = "../fof-core" }
+
+[dev-dependencies]
+fang = { path = "../.." }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

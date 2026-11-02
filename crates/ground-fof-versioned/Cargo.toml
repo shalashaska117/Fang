@@ -1,0 +1,23 @@
+[package]
+name = "fang-ground-fof-versioned"
+version = "0.0.0"
+edition = "2024"
+publish = false
+autobins = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-ground-fof-core = { path = "../ground-fof-core" }
+fang-ground-fof-frontend = { path = "../ground-fof-frontend" }
+fang-ground-fof-search = { path = "../ground-fof-search" }
+
+[profile.release]
+overflow-checks = true
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[[bin]]
+name = "fang-ground-fof-driver"
+path = "src/bin/driver.rs"

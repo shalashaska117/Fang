@@ -28,8 +28,8 @@ __pycache__/
 !/docs/USAGE.md
 !/docs/DESIGN.md
 !/docs/ROADMAP.md
+!/docs/CAPABILITIES.md
 /crates/**/*.md
 /lean/README.md
 /proofs/tstp/README.md
-/examples/problems/README.md
 /LICENSES/README.md

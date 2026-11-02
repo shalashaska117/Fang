@@ -1,0 +1,23 @@
+[package]
+name = "fang-quantified-equality-frontend"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+fang-fof-equality-bridge = { path = "../fof-equality-bridge" }
+fang-quantified-fof-core = { path = "../quantified-fof-core" }
+
+[dev-dependencies]
+quantified-reference = { package = "fang-quantified-fof-frontend", path = "../quantified-fof-frontend" }
+equality-reference = { package = "fang-equality-frontend", path = "../equality-frontend" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

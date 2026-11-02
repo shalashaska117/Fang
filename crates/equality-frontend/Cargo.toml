@@ -1,0 +1,17 @@
+[package]
+name = "fang-equality-frontend"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+
+[profile.release]
+overflow-checks = true
+
+[lints.rust]
+unsafe_code = "forbid"

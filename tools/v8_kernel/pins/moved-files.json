@@ -1,0 +1,372 @@
+{
+  "files": {
+    "tools/v8_kernel/entry/check.py": {
+      "from": "experiments/fof-quantified/equality-versioned/kernel-v8/v6/entry/check.py",
+      "from_sha256": "e92cd60fe24cc36700cfc8fb0ecd053508bb07c14164263bb72feead18894afb",
+      "identical": false,
+      "sha256": "0bd5eb42ff27b766e7db2e6e9ef05f13833bac70a9c23ee9b3c2e45837e62000"
+    },
+    "tools/v8_kernel/entry/invoke.py": {
+      "from": "experiments/fof-quantified/equality-versioned/kernel-v8/v6/entry/invoke.py",
+      "from_sha256": "c012427b8542c961f0ebc6560782393db2b68dc04cecea11301c015062c10b7c",
+      "identical": true,
+      "sha256": "c012427b8542c961f0ebc6560782393db2b68dc04cecea11301c015062c10b7c"
+    },
+    "tools/v8_kernel/entry/main.py": {
+      "from": "experiments/fof-quantified/equality-versioned/kernel-v8/v6/entry/main.py",
+      "from_sha256": "6ff82deb719439ef4c13df5499180213e34ff09d0dee43256d62bc678e69aea0",
+      "identical": true,
+      "sha256": "6ff82deb719439ef4c13df5499180213e34ff09d0dee43256d62bc678e69aea0"
+    },
+    "tools/v8_kernel/entry/provision-policy.py": {
+      "from": "experiments/fof-quantified/equality-versioned/kernel-v8/v6/entry/provision-policy.py",
+      "from_sha256": "bb5badd9c6649cca2cc879b63b3cacbc52b9e120edd399229d92cecbae6c2bdb",
+      "identical": false,
+      "sha256": "a934c220e65f7b0854c86d822bc9109db528610d113aee7696301b6bf5f3de39"
+    },
+    "tools/v8_kernel/entry/trees.py": {
+      "from": "experiments/fof-quantified/equality-versioned/kernel-v8/v6/entry/trees.py",
+      "from_sha256": "222b4d2684b51f07459efadc64099bdf0cba3fb5a4ceccff88cc1aed5e224a83",
+      "identical": true,
+      "sha256": "222b4d2684b51f07459efadc64099bdf0cba3fb5a4ceccff88cc1aed5e224a83"
+    },
+    "tools/v8_kernel/generator/generate-v8.py": {
+      "from": "experiments/fof-quantified/equality-versioned/kernel-v8/v4/generate-v8.py",
+      "from_sha256": "4d133fbf6310720f323accb0c411b4be7bc4e5dc7a26888490114334f6f6cfc9",
+      "identical": true,
+      "sha256": "4d133fbf6310720f323accb0c411b4be7bc4e5dc7a26888490114334f6f6cfc9"
+    },
+    "tools/v8_kernel/lean/BooleanClausifierCall.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/BooleanClausifierCall.lean",
+      "from_sha256": "86412faa3101c5be65182fea56f1c75a9f3b9df5551667fe07d1cdb26f19cd96",
+      "identical": true,
+      "sha256": "86412faa3101c5be65182fea56f1c75a9f3b9df5551667fe07d1cdb26f19cd96"
+    },
+    "tools/v8_kernel/lean/BooleanClausifierPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/BooleanClausifierPrimitives.lean",
+      "from_sha256": "b4e4c22b26bb6041dc90ecc36ec2079cc497a742d2ec8ac0799a6ab87bed15f1",
+      "identical": true,
+      "sha256": "b4e4c22b26bb6041dc90ecc36ec2079cc497a742d2ec8ac0799a6ab87bed15f1"
+    },
+    "tools/v8_kernel/lean/BooleanTransformComposition.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/BooleanTransformComposition.lean",
+      "from_sha256": "a832113d31d4a769490c81ccb7166bf69cb9eb6ac63256133a270823f3004e14",
+      "identical": true,
+      "sha256": "a832113d31d4a769490c81ccb7166bf69cb9eb6ac63256133a270823f3004e14"
+    },
+    "tools/v8_kernel/lean/ClausifierCall.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/ClausifierCall.lean",
+      "from_sha256": "40046a705333509e84e29fda4d112ea8a5a5595ba13229e0ce143de4f20e4c22",
+      "identical": true,
+      "sha256": "40046a705333509e84e29fda4d112ea8a5a5595ba13229e0ce143de4f20e4c22"
+    },
+    "tools/v8_kernel/lean/ClausifierPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/ClausifierPrimitives.lean",
+      "from_sha256": "35035bf15109380dbd0681d0c661d101145e0385b5d2891257b17b4bda947e11",
+      "identical": true,
+      "sha256": "35035bf15109380dbd0681d0c661d101145e0385b5d2891257b17b4bda947e11"
+    },
+    "tools/v8_kernel/lean/ClosedCall.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/ClosedCall.lean",
+      "from_sha256": "81800baccaf6f0d6cc5292df82e8f5831c84623ce3c7e3c04828b18187a5c342",
+      "identical": true,
+      "sha256": "81800baccaf6f0d6cc5292df82e8f5831c84623ce3c7e3c04828b18187a5c342"
+    },
+    "tools/v8_kernel/lean/CoreArithmeticKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/CoreArithmeticKernel.lean",
+      "from_sha256": "96bca628e3aaf020f5ddb3d5522b730bc89e70bcef3374d01011aca8342f1a5f",
+      "identical": true,
+      "sha256": "96bca628e3aaf020f5ddb3d5522b730bc89e70bcef3374d01011aca8342f1a5f"
+    },
+    "tools/v8_kernel/lean/CoreCompositionKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/CoreCompositionKernel.lean",
+      "from_sha256": "0ab3b81b26ee2846065390eb3d5bc35ad98f9089a662660e7f72f037c18af7cb",
+      "identical": true,
+      "sha256": "0ab3b81b26ee2846065390eb3d5bc35ad98f9089a662660e7f72f037c18af7cb"
+    },
+    "tools/v8_kernel/lean/CoreCopyKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/CoreCopyKernel.lean",
+      "from_sha256": "55f2ee14793c5d2e34559893ab8ab1bd59c8a1549be6db730261ebc9958d504e",
+      "identical": true,
+      "sha256": "55f2ee14793c5d2e34559893ab8ab1bd59c8a1549be6db730261ebc9958d504e"
+    },
+    "tools/v8_kernel/lean/CoreRectifyCopyKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/CoreRectifyCopyKernel.lean",
+      "from_sha256": "04c726ad6437312967f05c04f4f80ccadd647bca6e299c5b08b23042db8681c9",
+      "identical": true,
+      "sha256": "04c726ad6437312967f05c04f4f80ccadd647bca6e299c5b08b23042db8681c9"
+    },
+    "tools/v8_kernel/lean/DeclarationsTransformKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/DeclarationsTransformKernel.lean",
+      "from_sha256": "ad5d4e37f1f9b5de2a965fd07e3b52cd2daacb99bcb976ce22479303b988032f",
+      "identical": true,
+      "sha256": "ad5d4e37f1f9b5de2a965fd07e3b52cd2daacb99bcb976ce22479303b988032f"
+    },
+    "tools/v8_kernel/lean/DeclarationsValidationKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/DeclarationsValidationKernel.lean",
+      "from_sha256": "aa2e1f8e075f89f873ee9a0bb78ace6201946861bf8a105a89812949281295f8",
+      "identical": true,
+      "sha256": "aa2e1f8e075f89f873ee9a0bb78ace6201946861bf8a105a89812949281295f8"
+    },
+    "tools/v8_kernel/lean/EqualityBridgeKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/EqualityBridgeKernel.lean",
+      "from_sha256": "00a30147b127946dfaa00cf01a6a0a019cf04eb9fdca7f9a350579f59e0fe5ac",
+      "identical": true,
+      "sha256": "00a30147b127946dfaa00cf01a6a0a019cf04eb9fdca7f9a350579f59e0fe5ac"
+    },
+    "tools/v8_kernel/lean/EqualityReplayKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/EqualityReplayKernel.lean",
+      "from_sha256": "98a0b42f20ead08f3de361aca39a37885c70eae83d1a84ea6dcac26a2e6e6864",
+      "identical": true,
+      "sha256": "98a0b42f20ead08f3de361aca39a37885c70eae83d1a84ea6dcac26a2e6e6864"
+    },
+    "tools/v8_kernel/lean/ExistentialIntroKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/ExistentialIntroKernel.lean",
+      "from_sha256": "b01ed1a377a0be1cbd7bee156267b651377c47f954482ce1f6108d4db69bf524",
+      "identical": true,
+      "sha256": "b01ed1a377a0be1cbd7bee156267b651377c47f954482ce1f6108d4db69bf524"
+    },
+    "tools/v8_kernel/lean/ExistentialTransformKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/ExistentialTransformKernel.lean",
+      "from_sha256": "a35f06c1fe182ac29ff85a5a66c01862e0916be2a4295b812e85ff6fac5a5da5",
+      "identical": true,
+      "sha256": "a35f06c1fe182ac29ff85a5a66c01862e0916be2a4295b812e85ff6fac5a5da5"
+    },
+    "tools/v8_kernel/lean/KernelPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/KernelPrimitives.lean",
+      "from_sha256": "5865c581ab2b546c7858e7310e6228321559abd1cc22a87602265a4449ee9c7b",
+      "identical": true,
+      "sha256": "5865c581ab2b546c7858e7310e6228321559abd1cc22a87602265a4449ee9c7b"
+    },
+    "tools/v8_kernel/lean/MutableVectorKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/MutableVectorKernel.lean",
+      "from_sha256": "d38e0b435ac042714cb325a2d04d9cee0df62895ac54dd93d5e4db7ce92dafb8",
+      "identical": true,
+      "sha256": "d38e0b435ac042714cb325a2d04d9cee0df62895ac54dd93d5e4db7ce92dafb8"
+    },
+    "tools/v8_kernel/lean/NormalizationKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/NormalizationKernel.lean",
+      "from_sha256": "43205865a41aa8eefe5ba7bff59948c5dff3c587541374be31e733697b29ea85",
+      "identical": true,
+      "sha256": "43205865a41aa8eefe5ba7bff59948c5dff3c587541374be31e733697b29ea85"
+    },
+    "tools/v8_kernel/lean/PublicNormalizationKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/PublicNormalizationKernel.lean",
+      "from_sha256": "7db3c291f111488716ab694a247814687ad83a51c2a10ae58cb054f55a61a295",
+      "identical": true,
+      "sha256": "7db3c291f111488716ab694a247814687ad83a51c2a10ae58cb054f55a61a295"
+    },
+    "tools/v8_kernel/lean/QuantifiedClausifierKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/QuantifiedClausifierKernel.lean",
+      "from_sha256": "730283f7485548efcc20d365c364ffded0bccea5c690b37e792f484698b9330c",
+      "identical": true,
+      "sha256": "730283f7485548efcc20d365c364ffded0bccea5c690b37e792f484698b9330c"
+    },
+    "tools/v8_kernel/lean/QuantifiedKernelPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/QuantifiedKernelPrimitives.lean",
+      "from_sha256": "2da4c021ecec193c612de6632de21ed18b4a1061432d2206562102e2dce618e0",
+      "identical": true,
+      "sha256": "2da4c021ecec193c612de6632de21ed18b4a1061432d2206562102e2dce618e0"
+    },
+    "tools/v8_kernel/lean/QuantifiedKernelValues.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/QuantifiedKernelValues.lean",
+      "from_sha256": "77815c3ec3e58136ae92a9152b4c1f2ea2c5a9e5626318a84303e12d21cbc050",
+      "identical": true,
+      "sha256": "77815c3ec3e58136ae92a9152b4c1f2ea2c5a9e5626318a84303e12d21cbc050"
+    },
+    "tools/v8_kernel/lean/QuantifiedRemovalKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/QuantifiedRemovalKernel.lean",
+      "from_sha256": "9782c4f793f3f076c5303d5ce390cf8561f0aeb8ca1bde3f9875167fad97c862",
+      "identical": true,
+      "sha256": "9782c4f793f3f076c5303d5ce390cf8561f0aeb8ca1bde3f9875167fad97c862"
+    },
+    "tools/v8_kernel/lean/RectificationKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/RectificationKernel.lean",
+      "from_sha256": "c44da2e11fee11608d0832e5a2e5eac78a681a30e714e7e91d52a27db20f5624",
+      "identical": true,
+      "sha256": "c44da2e11fee11608d0832e5a2e5eac78a681a30e714e7e91d52a27db20f5624"
+    },
+    "tools/v8_kernel/lean/RectifyPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/RectifyPrimitives.lean",
+      "from_sha256": "9fe88bf01339b97ba41a93e03ebe7e21024a28fab5466751b7f66303fc2d4a5b",
+      "identical": true,
+      "sha256": "9fe88bf01339b97ba41a93e03ebe7e21024a28fab5466751b7f66303fc2d4a5b"
+    },
+    "tools/v8_kernel/lean/RemovalCall.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/RemovalCall.lean",
+      "from_sha256": "3e2e416f3d7496b198c60a2f2103d86d2166e4dfc6c118cb8e567659425c1f0e",
+      "identical": true,
+      "sha256": "3e2e416f3d7496b198c60a2f2103d86d2166e4dfc6c118cb8e567659425c1f0e"
+    },
+    "tools/v8_kernel/lean/RemovalPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/RemovalPrimitives.lean",
+      "from_sha256": "5004921a265b3b0119a9c934198a0e1241f2203962858d32befd7e20143d3783",
+      "identical": true,
+      "sha256": "5004921a265b3b0119a9c934198a0e1241f2203962858d32befd7e20143d3783"
+    },
+    "tools/v8_kernel/lean/SkolemCall.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/SkolemCall.lean",
+      "from_sha256": "4a3ec24a2571ff25fb26631093565be1d3934dbf0d9502d7106340df66f94a4e",
+      "identical": true,
+      "sha256": "4a3ec24a2571ff25fb26631093565be1d3934dbf0d9502d7106340df66f94a4e"
+    },
+    "tools/v8_kernel/lean/SkolemCopyKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/SkolemCopyKernel.lean",
+      "from_sha256": "efc7a2ab346f3039e468b0038a3dab4a7e492d99ce920c72e90fd9d46e8d6116",
+      "identical": true,
+      "sha256": "efc7a2ab346f3039e468b0038a3dab4a7e492d99ce920c72e90fd9d46e8d6116"
+    },
+    "tools/v8_kernel/lean/SkolemKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/SkolemKernel.lean",
+      "from_sha256": "daf5207494c67122aa85b1a077bd8212ccc8ae9c6d833248e34c73b8c12d83cc",
+      "identical": true,
+      "sha256": "daf5207494c67122aa85b1a077bd8212ccc8ae9c6d833248e34c73b8c12d83cc"
+    },
+    "tools/v8_kernel/lean/SkolemLoopKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/SkolemLoopKernel.lean",
+      "from_sha256": "8c62031d9e1318a2d62e4cb1204901a65cea46252818fdf1d19866d68de31cf7",
+      "identical": true,
+      "sha256": "8c62031d9e1318a2d62e4cb1204901a65cea46252818fdf1d19866d68de31cf7"
+    },
+    "tools/v8_kernel/lean/SkolemPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/SkolemPrimitives.lean",
+      "from_sha256": "ce930bf4ac3f988eedece1812a6264b10cfa2e534c5993f88ba784e85db0f68e",
+      "identical": true,
+      "sha256": "ce930bf4ac3f988eedece1812a6264b10cfa2e534c5993f88ba784e85db0f68e"
+    },
+    "tools/v8_kernel/lean/SkolemProblemKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/SkolemProblemKernel.lean",
+      "from_sha256": "9d5aa958f4bf68b6376357635317ffb20200a17df0ddd2a36f9287d6d0da2d91",
+      "identical": true,
+      "sha256": "9d5aa958f4bf68b6376357635317ffb20200a17df0ddd2a36f9287d6d0da2d91"
+    },
+    "tools/v8_kernel/lean/SkolemWorkKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/SkolemWorkKernel.lean",
+      "from_sha256": "40b78cc671f1b04873b58dd3d2158f929f3bd0b4e5b38034b14dcdaff462bf1c",
+      "identical": true,
+      "sha256": "40b78cc671f1b04873b58dd3d2158f929f3bd0b4e5b38034b14dcdaff462bf1c"
+    },
+    "tools/v8_kernel/lean/TransformComposition.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/TransformComposition.lean",
+      "from_sha256": "26d1ac4820f59b503b3e25a31cb9195cd60bae595ca97ad8a45d27766296801c",
+      "identical": true,
+      "sha256": "26d1ac4820f59b503b3e25a31cb9195cd60bae595ca97ad8a45d27766296801c"
+    },
+    "tools/v8_kernel/lean/TransformPrimitives.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/TransformPrimitives.lean",
+      "from_sha256": "445a889667922fb1fe1e904c9b64e767eb16f868cc66ddc75dd6e579e1df4742",
+      "identical": true,
+      "sha256": "445a889667922fb1fe1e904c9b64e767eb16f868cc66ddc75dd6e579e1df4742"
+    },
+    "tools/v8_kernel/lean/UniversalTransformKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/UniversalTransformKernel.lean",
+      "from_sha256": "92780594ab9670b6311986c2b85da228e4b53d000728d628ff0fd053894d71d7",
+      "identical": true,
+      "sha256": "92780594ab9670b6311986c2b85da228e4b53d000728d628ff0fd053894d71d7"
+    },
+    "tools/v8_kernel/lean/V8ReplayKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/V8ReplayKernel.lean",
+      "from_sha256": "6a8d7967d535d1642e4c0837f39b70bc1b6be677de91f6f584ddf8ef69c54a0c",
+      "identical": true,
+      "sha256": "6a8d7967d535d1642e4c0837f39b70bc1b6be677de91f6f584ddf8ef69c54a0c"
+    },
+    "tools/v8_kernel/lean/ValidationKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/ValidationKernel.lean",
+      "from_sha256": "c517ac724e85db23f756b5acd4da02e4a52efbcd13f88695129b40e51c2666f2",
+      "identical": true,
+      "sha256": "c517ac724e85db23f756b5acd4da02e4a52efbcd13f88695129b40e51c2666f2"
+    },
+    "tools/v8_kernel/lean/VectorKernel.lean": {
+      "from": "evidence/verification/fof-equality-kernel-v8-helpers-v3-20261024/run/source/VectorKernel.lean",
+      "from_sha256": "74a27158113bb3577e231fa6553dd84c334922e0f4d9233369424876a0299902",
+      "identical": true,
+      "sha256": "74a27158113bb3577e231fa6553dd84c334922e0f4d9233369424876a0299902"
+    },
+    "tools/v8_kernel/pins/helper-sources.json": {
+      "from": "experiments/fof-quantified/equality-versioned/kernel-v8/v6/pins/helper-sources.json",
+      "identical": false,
+      "note": "schema v2: adds sources_directory and provided_by_lean_v8",
+      "sha256": "53925f83937786531c0cb10c1fcbe3f6d7b54a58b4c2b98a3530e4072b8c1fd4"
+    },
+    "tools/v8_kernel/recipe/equality/generate-certificate.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/equality/generate-certificate.py",
+      "from_sha256": "2f79c2b7846dbc9664cd4acd41be959038ed6a11688d5ab2f6251066141df534",
+      "identical": true,
+      "sha256": "2f79c2b7846dbc9664cd4acd41be959038ed6a11688d5ab2f6251066141df534"
+    },
+    "tools/v8_kernel/recipe/equality/generate-cnf.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/equality/generate-cnf.py",
+      "from_sha256": "be7ff73dd9669bd9b5eb60798cb53a65ec8aa49ff11a2f96376076c1e26539ba",
+      "identical": true,
+      "sha256": "be7ff73dd9669bd9b5eb60798cb53a65ec8aa49ff11a2f96376076c1e26539ba"
+    },
+    "tools/v8_kernel/recipe/equality/generate-quantified.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/equality/generate-quantified.py",
+      "from_sha256": "d58d8bcd8aabf9d01b12545cc0d8cc93c5a25d6450f2699c55e443816a7cae2c",
+      "identical": true,
+      "sha256": "d58d8bcd8aabf9d01b12545cc0d8cc93c5a25d6450f2699c55e443816a7cae2c"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-clausifier.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-clausifier.py",
+      "from_sha256": "18a5e6abd83fb579a8d38b720d7fbd26e513a2c443ecb42f7ff3d13db92d4b0a",
+      "identical": true,
+      "sha256": "18a5e6abd83fb579a8d38b720d7fbd26e513a2c443ecb42f7ff3d13db92d4b0a"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-rectify.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-rectify.py",
+      "from_sha256": "5b115aea2c1ac2ba2edb257d470eb394312c61e259e2d73d1a9ea5df75e9fc43",
+      "identical": true,
+      "sha256": "5b115aea2c1ac2ba2edb257d470eb394312c61e259e2d73d1a9ea5df75e9fc43"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-removal.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-removal.py",
+      "from_sha256": "90463543d09d190ee8ed88390bd627a8be32bfb6a11261ccd5c40578bde63428",
+      "identical": true,
+      "sha256": "90463543d09d190ee8ed88390bd627a8be32bfb6a11261ccd5c40578bde63428"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-replay.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-replay.py",
+      "from_sha256": "f712466c9a97d5b93bde518c2f0961c3916966e0213ad5ab8287ab9db30014c6",
+      "identical": true,
+      "sha256": "f712466c9a97d5b93bde518c2f0961c3916966e0213ad5ab8287ab9db30014c6"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-skolem.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-skolem.py",
+      "from_sha256": "379bdf358c4eaa725be0a935db2036abf324a7db97b880ba607d657e138bab7b",
+      "identical": true,
+      "sha256": "379bdf358c4eaa725be0a935db2036abf324a7db97b880ba607d657e138bab7b"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-split-declarations.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-split-declarations.py",
+      "from_sha256": "082d3fd309446cb90b27840882d3f56dcb3ec749fe5b993ed433058807e89352",
+      "identical": true,
+      "sha256": "082d3fd309446cb90b27840882d3f56dcb3ec749fe5b993ed433058807e89352"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-split-transform.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-split-transform.py",
+      "from_sha256": "130fe9ef766c2f489d18fecf12080709060d18d6157e826695a8dbd87c246f58",
+      "identical": true,
+      "sha256": "130fe9ef766c2f489d18fecf12080709060d18d6157e826695a8dbd87c246f58"
+    },
+    "tools/v8_kernel/recipe/mixed/generate-transform.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate-transform.py",
+      "from_sha256": "cb8a0cb57db40a3420ffc01a22d663b123eca7eea02c98f9128df4d6d783a5d4",
+      "identical": true,
+      "sha256": "cb8a0cb57db40a3420ffc01a22d663b123eca7eea02c98f9128df4d6d783a5d4"
+    },
+    "tools/v8_kernel/recipe/mixed/generate.py": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/generate.py",
+      "from_sha256": "d75cc04bb0281be4f2e57d21376b29bc4525493f041de3dacf8006a4574306ba",
+      "identical": true,
+      "sha256": "d75cc04bb0281be4f2e57d21376b29bc4525493f041de3dacf8006a4574306ba"
+    },
+    "tools/v8_kernel/recipe/mixed/sources.json": {
+      "from": "experiments/fof-quantified/pipeline/kernel-generator/mixed/sources.json",
+      "from_sha256": "2edc2f9756923e3ca4542c7aa0ceae2e7a5bf41636432a863e43654625695947",
+      "identical": true,
+      "sha256": "2edc2f9756923e3ca4542c7aa0ceae2e7a5bf41636432a863e43654625695947"
+    }
+  },
+  "note": "Each shipping file and the development or receipt file it came from. identical means byte-identical.",
+  "schema": "fang-v8-kernel-moved-files-v1"
+}

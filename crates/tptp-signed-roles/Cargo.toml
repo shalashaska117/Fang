@@ -1,0 +1,25 @@
+[package]
+name = "fang-tptp-signed-roles"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang = { path = "../.." }
+fang-tptp-full-frontend-candidate = { package = "fang-tptp-roles", path = "../tptp-roles" }
+fang-quantified-fof-core = { path = "../quantified-fof-core" }
+fang-skolem-core = { path = "../skolem-core" }
+fang-fof-core = { path = "../fof-core" }
+fang-binder-removal-core = { path = "../binder-removal-core" }
+fang-fof-equality-bridge = { path = "../fof-equality-bridge" }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+# The prepared ordered search is staged from the accepted adapter receipt, as in crates/fang-v8.
+fang-equality-search = { path = "../equality-search" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true
