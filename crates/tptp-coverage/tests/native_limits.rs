@@ -3,7 +3,10 @@
 //! checker main field by field, and a bundle over the earlier default counts is now captured.
 
 use fang::ErrorKind;
-use fang_tptp_coverage_candidate::{Bundle, BundleFile, Key, Limits, Root, capture, expand};
+use fang_tptp_coverage_candidate::{
+    Bundle, BundleFile, FORMULA_DEPTH_CEILING, Key, Limits, OPERATIONS_PER_BYTE, Root, capture,
+    expand,
+};
 
 const RECORD: &str = include_str!("../../../lean-v8/NativeLimits.lean");
 const MAIN: &str = include_str!("../../../lean-v8/BundleLimitNativeMain.lean");
@@ -53,7 +56,11 @@ fn default_limits_match_the_checker() {
     );
     // The per-formula limits of the Skolem core, which the checker applies to each formula.
     let core = block("core := {");
-    assert_eq!(limits.max_formula_depth, literal(core, "max_formula_depth"));
+    // The decoders of round one read formulas to height 64 on every path, so the parser stops
+    // there too; the record's formula height applies when the decoder takes it (round two), and
+    // it must stay within the parser's stack-checked ceiling.
+    assert_eq!(limits.max_formula_depth, 64);
+    assert!(literal(core, "max_formula_depth") <= FORMULA_DEPTH_CEILING);
     assert_eq!(limits.max_formula_nodes, literal(core, "max_formula_nodes"));
     assert_eq!(limits.max_binders, literal(core, "max_binders"));
     assert_eq!(input.max_term_depth, literal(core, "max_term_depth"));
@@ -70,13 +77,16 @@ fn default_limits_match_the_checker() {
         limits.max_include_depth + 1,
         literal(NUMERIC, "def bundleFuel : Nat")
     );
-    // No counterpart in the checker: these counts keep their earlier values, except the parser
-    // operations, raised so that 4 MiB of FOF records fit (`four_mib_of_fof_records_is_expanded`).
+    // No counterpart in the checker: these counts keep their earlier values. The parser has no
+    // fixed operation cap; its budget grows with the input and each declaration, so that 4 MiB of
+    // FOF records fit (`four_mib_of_fof_records_is_expanded`) and no copy within the node bound is
+    // refused (`tests/parse_limits.rs`).
     assert_eq!(limits.max_include_directives, 1_024);
     assert_eq!(limits.max_selection_names, 4_096);
     assert_eq!(limits.max_annotation_nodes, 100_000);
     assert_eq!(limits.max_distinct_objects, 64);
-    assert_eq!(input.max_operations, 10_000_000);
+    assert_eq!(input.max_operations, usize::MAX);
+    assert_eq!(OPERATIONS_PER_BYTE, 8);
 }
 
 /// One formula with 6 binders, 9 formula nodes and 67 term nodes.

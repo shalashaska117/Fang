@@ -1,31 +1,42 @@
 /- Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license; see LICENSE. -/
-import Product.TstpExport
-import Fang.FrontendTokenView
+import Product.NameSpelling
 
 namespace Fang.TstpText
 
-/-- Declarative symbol lookup: the printed name is the source table entry at
-the exact numeric ID, with the declared arity and the independent lower-word
-byte grammar. No uniqueness assumption about an arbitrary table is hidden. -/
+/-- Declarative symbol lookup: the name is the source table entry at the exact
+numeric ID, with the declared arity, and it is nonempty printable ASCII, so an
+atomic word can spell it. No uniqueness assumption about an arbitrary table is
+hidden. -/
 structure SymbolText (symbols : List Frontend.Symbol) (index arity : Nat)
     (name : String) : Prop where
   entry : ∃ value, symbols[index]? = some value ∧ value.name = name ∧ value.arity = some arity
-  grammar : Source.Grammar.LowerName name
+  printable : PrintableName name
 
-theorem symbol_correspondence {symbols : List Frontend.Symbol} {index arity : Nat}
-    {name : String} (accepted : TstpExport.symbol symbols index arity = .ok name) :
+theorem symbolName_correspondence {symbols : List Frontend.Symbol} {index arity : Nat}
+    {name : String} (accepted : TstpExport.symbolName symbols index arity = .ok name) :
     SymbolText symbols index arity name := by
   cases found : symbols[index]? with
-  | none => simp [TstpExport.symbol, found, throw] at accepted
+  | none => simp [TstpExport.symbolName, found, throw] at accepted
   | some value =>
-    by_cases lower : Frontend.lowerName value.name = true
+    by_cases printable : TstpExport.printableName value.name = true
     · by_cases arityOk : value.arity = some arity
-      · simp [TstpExport.symbol, found, lower, arityOk, pure, Except.pure] at accepted
+      · simp [TstpExport.symbolName, found, printable, arityOk, pure, Except.pure] at accepted
         subst name
-        exact ⟨⟨value, found, rfl, arityOk⟩,
-          (Frontend.lowerName_iff value.name (Frontend.lowerName_ascii lower)).mp lower⟩
-      · simp [TstpExport.symbol, found, lower, arityOk, throw, bind, Except.bind] at accepted
-    · simp [TstpExport.symbol, found, lower, throw, bind, Except.bind] at accepted
+        exact ⟨⟨value, found, rfl, arityOk⟩, printableName_spec printable⟩
+      · simp [TstpExport.symbolName, found, printable, arityOk, throw, bind, Except.bind] at accepted
+    · simp [TstpExport.symbolName, found, printable, throw, bind, Except.bind] at accepted
+
+/-- The printed symbol is an atomic word that denotes the table name. -/
+theorem symbol_correspondence {symbols : List Frontend.Symbol} {index arity : Nat}
+    {text : String} (accepted : TstpExport.symbol symbols index arity = .ok text) :
+    ∃ name, SymbolText symbols index arity name ∧ AtomicText text name := by
+  cases run : TstpExport.symbolName symbols index arity with
+  | error e => simp [TstpExport.symbol, run, Functor.map, Except.map] at accepted
+  | ok name =>
+    simp [TstpExport.symbol, run, Functor.map, Except.map] at accepted
+    subst text
+    have symbol := symbolName_correspondence run
+    exact ⟨name, symbol, symbolText_atomic symbol.printable⟩
 
 /- This relation fixes recursive tree shape, table IDs, child order and exact
 punctuation. The variable spelling uses Lean's Nat formatter. A separate proof
@@ -34,14 +45,16 @@ as is a complete byte-parser round trip for compound terms. -/
 mutual
 inductive TermText (symbols : List Frontend.Symbol) : Term → String → Prop where
   | variable (index : Nat) : TermText symbols (.var index) s!"X{index}"
-  | constant {index name} (symbol : SymbolText symbols index 0 name) :
-      TermText symbols (.app index []) name
-  | application {index arguments rendered name}
+  | constant {index name text} (symbol : SymbolText symbols index 0 name)
+      (word : AtomicText text name) :
+      TermText symbols (.app index []) text
+  | application {index arguments rendered name text}
       (nonempty : arguments ≠ [])
       (symbol : SymbolText symbols index arguments.length name)
+      (word : AtomicText text name)
       (children : TermsText symbols arguments rendered) :
       TermText symbols (.app index arguments)
-        (name ++ "(" ++ String.intercalate "," rendered ++ ")")
+        (text ++ "(" ++ String.intercalate "," rendered ++ ")")
 inductive TermsText (symbols : List Frontend.Symbol) : List Term → List String → Prop where
   | nil : TermsText symbols [] []
   | cons {term text rest texts} (head : TermText symbols term text)
@@ -67,17 +80,17 @@ theorem term_correspondence {symbols : List Frontend.Symbol} (value : Term) {tex
   | app index arguments =>
     cases hs : TstpExport.symbol symbols index arguments.length with
     | error e => simp [TstpExport.term, hs, bind, Except.bind] at accepted
-    | ok name =>
+    | ok spelled =>
       cases ht : TstpExport.terms symbols arguments with
       | error e => simp [TstpExport.term, hs, ht, bind, Except.bind] at accepted
       | ok rendered =>
-        have symbol := symbol_correspondence hs
+        obtain ⟨name, symbol, word⟩ := symbol_correspondence hs
         have children := terms_correspondence arguments ht
         simp [TstpExport.term, hs, ht, bind, Except.bind, pure, Except.pure] at accepted
         subst text
         cases arguments with
-        | nil => simpa using TermText.constant symbol
-        | cons first rest => simpa using TermText.application (by simp) symbol children
+        | nil => simpa using TermText.constant symbol word
+        | cons first rest => simpa using TermText.application (by simp) symbol word children
 termination_by sizeOf value
 
 theorem terms_correspondence {symbols : List Frontend.Symbol} (values : List Term)
@@ -102,14 +115,16 @@ termination_by sizeOf values
 end
 
 inductive AtomText (problem : TstpExport.NamedProblem) : Atom → String → Prop where
-  | nullary {predicate name} (symbol : SymbolText problem.predicates predicate 0 name) :
-      AtomText problem ⟨predicate, []⟩ name
-  | application {predicate arguments rendered name}
+  | nullary {predicate name text} (symbol : SymbolText problem.predicates predicate 0 name)
+      (word : AtomicText text name) :
+      AtomText problem ⟨predicate, []⟩ text
+  | application {predicate arguments rendered name text}
       (nonempty : arguments ≠ [])
       (symbol : SymbolText problem.predicates predicate arguments.length name)
+      (word : AtomicText text name)
       (children : TermsText problem.functions arguments rendered) :
       AtomText problem ⟨predicate, arguments⟩
-        (name ++ "(" ++ String.intercalate "," rendered ++ ")")
+        (text ++ "(" ++ String.intercalate "," rendered ++ ")")
 
 inductive LiteralText (problem : TstpExport.NamedProblem) : Literal → String → Prop where
   | positive {atom text} (body : AtomText problem atom text) :
@@ -126,27 +141,27 @@ theorem literal_correspondence {problem : TstpExport.NamedProblem} (value : Lite
     | mk predicate arguments =>
       cases hs : TstpExport.symbol problem.predicates predicate arguments.length with
       | error e => simp [TstpExport.literal, hs, bind, Except.bind] at accepted
-      | ok name =>
+      | ok spelled =>
         cases ht : TstpExport.terms problem.functions arguments with
         | error e => simp [TstpExport.literal, hs, ht, bind, Except.bind] at accepted
         | ok rendered =>
-          have symbol := symbol_correspondence hs
+          obtain ⟨name, symbol, word⟩ := symbol_correspondence hs
           have children := terms_correspondence arguments ht
           have body : AtomText problem ⟨predicate, arguments⟩
-              (if rendered.isEmpty then name else
-                name ++ "(" ++ String.intercalate "," rendered ++ ")") := by
+              (if rendered.isEmpty then spelled else
+                spelled ++ "(" ++ String.intercalate "," rendered ++ ")") := by
             cases arguments with
             | nil =>
               have length := children.length
               have empty : rendered = [] := by cases rendered <;> simp_all
               simp [empty]
-              exact .nullary symbol
+              exact .nullary symbol word
             | cons first rest =>
               have nonempty : rendered ≠ [] := by
                 intro empty
                 have length := children.length
                 simp [empty] at length
-              simpa [nonempty] using AtomText.application (by simp) symbol children
+              simpa [nonempty] using AtomText.application (by simp) symbol word children
           simp [TstpExport.literal, hs, ht, bind, Except.bind, pure, Except.pure] at accepted
           subst text
           cases positive

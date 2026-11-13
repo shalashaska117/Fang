@@ -250,9 +250,20 @@ fn complete_source_and_output_caps_are_not_bypassed_by_omission() {
     limits = Limits::default();
     limits.max_bridge_literals = 1;
     assert!(matches!(
-        prepare(b"cnf(a,axiom,$true|p).", &limits),
+        prepare(b"cnf(a,axiom,p|q).", &limits),
         Err(Error::Encoding(_))
     ));
+    // The bound counts the literals left after normalization, as the checker does: a clause with
+    // `$true` is dropped before encoding, so it does not reach the bound.
+    let result = prepare(b"cnf(a,axiom,$true|p).cnf(b,axiom,q).", &limits).unwrap();
+    assert_eq!(
+        result
+            .sources
+            .iter()
+            .map(|s| s.clauses.clone())
+            .collect::<Vec<_>>(),
+        [0..0, 0..1]
+    );
 }
 
 #[test]

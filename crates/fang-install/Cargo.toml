@@ -1,0 +1,44 @@
+# Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
+[package]
+name = "fang-install"
+description = "Build and install steps of Fang: the version-8 installation, the lean-v8 build, the older profiles' build and proof suite, and the backend fetch."
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "fang-build-v8-local"
+path = "src/bin/fang-build-v8-local.rs"
+
+[[bin]]
+name = "fang-build-v8-lean"
+path = "src/bin/fang-build-v8-lean.rs"
+
+[[bin]]
+name = "fang-build-local"
+path = "src/bin/fang-build-local.rs"
+
+[[bin]]
+name = "fang-check-suite"
+path = "src/bin/fang-check-suite.rs"
+
+[[bin]]
+name = "fang-fetch-v8-backend"
+path = "src/bin/fang-fetch-v8-backend.rs"
+
+[dependencies]
+fang-hash = { path = "../fang-hash" }
+fang-json = { path = "../fang-json" }
+fang-toml = { path = "../fang-toml" }
+fang-supervisor = { path = "../fang-supervisor" }
+fang-axiom-audit = { path = "../fang-axiom-audit" }
+fang-source-checks = { path = "../fang-source-checks" }
+fang-launcher = { path = "../fang-launcher" }
+
+[lints.rust]
+unsafe_code = "forbid"

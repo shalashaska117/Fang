@@ -486,7 +486,7 @@ fn formula_term_and_zero_output_caps_are_separate() {
 }
 
 #[test]
-fn fixed_recursion_caps_cannot_be_disabled_by_large_configuration() {
+fn formula_depth_follows_configuration_and_term_depth_cap_is_fixed() {
     let mut formula = atom(0);
     for _ in 0..64 {
         formula = Formula::Not(Box::new(formula));
@@ -496,8 +496,9 @@ fn fixed_recursion_caps_cannot_be_disabled_by_large_configuration() {
         max_term_depth: usize::MAX,
         ..Limits::default()
     };
+    assert!(preprocess(&formula, &signature(), &limits).is_ok());
     assert_eq!(
-        preprocess(&formula, &signature(), &limits),
+        preprocess(&formula, &signature(), &Limits::default()),
         Err(Error::Resource(Resource::FormulaDepth))
     );
     let mut term = Term::Fun(0, vec![]);

@@ -1,9 +1,8 @@
 # Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
-# Version-8 checker project. Every module is pinned by tools/v8_szs/lean-sources.json;
-# tools/build-v8-lean.py checks the sources, the import closure and the axiom audits.
+# Final v3 checker project; sources and audits are pinned by lean-sources.json.
 name = "fang_v8"
 version = "0.1.0"
-defaultTargets = ["fang-v8-check"]
+defaultTargets = ["fang-expanded-native-named"]
 
 [[require]]
 name = "aeneas"
@@ -14,6 +13,10 @@ subDir = "backends/lean"
 [[lean_lib]]
 name = "FangV8"
 roots = [
+    "ExpandedLimitedNativeMain",
+    "SignedBundleNativeMainLimit",
+    "BundleSourceRow",
+    "FangFastVec",
     "ExpandedLexer",
     "ExpandedFastCertificate",
     "ExpandedCertificateControls",
@@ -49,8 +52,76 @@ roots = [
     "RoleMeaningLimit",
     "RoleReplayLimit",
     "RoleLimitControls",
-    "GoalDocument",
     "GoalRowsControls",
+    "GoalDocumentV8",
+    "NamingModel",
+    "NamingResult",
+    "NamingCollect",
+    "NamingRename",
+    "NamingEntry",
+    "NamingControls",
+    "NamingAudit",
+    "NamedReplay",
+    "NamedReplayAudit",
+    "NamedReplayControls",
+    "NamedCore",
+    "NamedSigned",
+    "NamedBundle",
+    "NamedRoleBundle",
+    "NamedEntriesAudit",
+    "NamedEntriesControls",
+    "DepthControls",
+    "CnfBooleanDeclarationDepth",
+    "CnfBooleanInputDepth",
+    "ExpandedDecoderDepth",
+    "FofInputDepth",
+    "FofInputDepthSound",
+    "NamedCited",
+    "NamedCitedControls",
+    "NamedCitedDepth",
+    "NamedDocument",
+    "NamedExportControls",
+    "NamedModels",
+    "NamedNames",
+    "NamedRoleDepth",
+    "NamedSap",
+    "NamedTrace",
+    "NamedV6Audit",
+    "RoleCitedRead",
+    "RoleCitedReadDepth",
+    "RoleDeclarationDepth",
+    "RoleDecoderDepth",
+    "RoleDepthControls",
+    "RoleFramerDepth",
+    "RoleMeaningDepth",
+    "RoleReplayDepth",
+    "NamedBundleDocument",
+    "NamedDocumentAudit",
+    "NamedDocumentControls",
+    "NamedGoalDocument",
+    "NamedSignedModels",
+    "PremiseLine",
+    "RoleNativeV6Controls",
+    "SignedBundleNativeV6Core",
+    "NamedSignedDepth",
+    "NamedSignedModelsDepth",
+    "NamedGoalDocumentDepth",
+    "NamedGoalDepthControls",
+    "NamedGoalDepthAudit",
+    "ExpandedLimitDecoderDepth",
+    "NamedDepthEntry",
+    "NamedDepthControls",
+    "NamedDepthAudit",
+    "NamedDocumentDepth",
+    "NamedDocumentDepthControls",
+    "NamedDocumentDepthAudit",
+    "Product.NameSpelling",
+    "Product.TextLexing",
+    "EqualityFormulaLexing",
+    "EqualityFormulaGrammar",
+    "NamedInputsDocument",
+    "SymbolControls",
+    "ModelAudit",
 ]
 globs = [
     "Absorb",
@@ -109,10 +180,12 @@ globs = [
     "ClauseUpdate",
     "CnfBoolean",
     "CnfBooleanByteSemantics",
+    "CnfBooleanDeclarationDepth",
     "CnfBooleanDeclarationInput",
     "CnfBooleanDeclarationSound",
     "CnfBooleanGrammar",
     "CnfBooleanInput",
+    "CnfBooleanInputDepth",
     "CnfBooleanNormalize",
     "CnfBooleanProblemInput",
     "CnfBooleanProblemSound",
@@ -133,6 +206,7 @@ globs = [
     "DeclarationsTrace",
     "Decoding",
     "DependencyCopy",
+    "DepthControls",
     "EmbeddedArgumentsCopy",
     "EmbeddedArithmetic",
     "EmbeddedFormulaScope",
@@ -163,6 +237,8 @@ globs = [
     "EqualityClauseTransport",
     "EqualityDerivation",
     "EqualityEncodingProof",
+    "EqualityFormulaGrammar",
+    "EqualityFormulaLexing",
     "EqualityFormulaText",
     "EqualityGrammarUniqueness",
     "EqualityGroup",
@@ -203,6 +279,7 @@ globs = [
     "ExpandedCertificatePositive",
     "ExpandedDecoder",
     "ExpandedDecoderControls",
+    "ExpandedDecoderDepth",
     "ExpandedDerivation",
     "ExpandedDocument",
     "ExpandedDocumentControls",
@@ -213,6 +290,8 @@ globs = [
     "ExpandedLexer",
     "ExpandedLimitDecoder",
     "ExpandedLimitDecoderControls",
+    "ExpandedLimitDecoderDepth",
+    "ExpandedLimitedNativeMain",
     "ExpandedLinearCertificate",
     "ExpandedLiteral",
     "ExpandedReplay",
@@ -222,21 +301,6 @@ globs = [
     "ExpandedTrace",
     "ExpandedTransport",
     "ExtendedTables",
-    "FOFCNFEncoding",
-    "FOFCNFGrammar",
-    "FOFCNFUniqueness",
-    "FOFDeclarationEncoding",
-    "FOFEncodingBase",
-    "FOFEncodingRun",
-    "FOFFormulaGrammar",
-    "FOFFormulaUniqueness",
-    "FOFGrammar",
-    "FOFGroundDeclarationGrammar",
-    "FOFInput",
-    "FOFLexing",
-    "FOFNameState",
-    "FOFProblemGrammar",
-    "FOFTermGrammar",
     "Factoring",
     "Fang.BoundedInput",
     "Fang.CertificateInput",
@@ -272,22 +336,41 @@ globs = [
     "Fang.SourceLexing",
     "Fang.SourceSemantics",
     "FangDiscriminant",
+    "FangFastVec",
     "Fof",
+    "FOFCNFEncoding",
+    "FOFCNFGrammar",
+    "FOFCNFUniqueness",
+    "FOFDeclarationEncoding",
     "FofDeclarationGrammar",
     "FofDeclarationSound",
     "FofEncoding",
+    "FOFEncodingBase",
+    "FOFEncodingRun",
     "FofEqualityBridge",
+    "FOFFormulaGrammar",
     "FofFormulaSound",
     "FofFormulaUnique",
+    "FOFFormulaUniqueness",
+    "FOFGrammar",
     "FofGrammarTypes",
+    "FOFGroundDeclarationGrammar",
+    "FOFInput",
+    "FofInputDepth",
+    "FofInputDepthSound",
     "FofLexer",
+    "FOFLexing",
+    "FOFNameState",
+    "FOFProblemGrammar",
     "FofProblemSound",
     "FofProblemUnique",
     "FofScope",
     "FofSyntax",
+    "FOFTermGrammar",
     "FofTermSound",
     "FofTermUnique",
     "GoalDocument",
+    "GoalDocumentV8",
     "GoalRows",
     "GoalRowsControls",
     "GroundFormula",
@@ -301,8 +384,74 @@ globs = [
     "Meaning",
     "MixedLayout",
     "MixedPreprocess",
+    "ModelAudit",
+    "ModelCertificate",
+    "ModelControls",
+    "ModelDocument",
+    "ModelEntries",
+    "ModelExclusive",
+    "ModelExport",
+    "ModelExportComplete",
+    "ModelExportControlData",
+    "ModelExportControls",
+    "ModelExportGoalControls",
+    "ModelExportInputsControls",
+    "ModelExportNamesControls",
+    "ModelExportObjectsControls",
+    "ModelExportPredicateTableControls",
+    "ModelExportSingleControls",
+    "ModelExportTableControls",
+    "ModelMeanings",
+    "ModelRewrite",
+    "ModelRewriteControls",
+    "ModelSemantics",
+    "ModelSteps",
     "NamedBinding",
+    "NamedBundle",
+    "NamedBundleDocument",
+    "NamedCited",
+    "NamedCitedControls",
+    "NamedCitedDepth",
+    "NamedCore",
+    "NamedDepthAudit",
+    "NamedDepthControls",
+    "NamedDepthEntry",
+    "NamedDocument",
+    "NamedDocumentAudit",
+    "NamedDocumentControls",
+    "NamedDocumentDepth",
+    "NamedDocumentDepthAudit",
+    "NamedDocumentDepthControls",
+    "NamedEntriesAudit",
+    "NamedEntriesControls",
+    "NamedExportControls",
+    "NamedGoalDepthAudit",
+    "NamedGoalDepthControls",
+    "NamedGoalDocument",
+    "NamedGoalDocumentDepth",
+    "NamedInputsDocument",
+    "NamedModels",
+    "NamedNames",
+    "NamedReplay",
+    "NamedReplayAudit",
+    "NamedReplayControls",
+    "NamedRoleBundle",
+    "NamedRoleDepth",
+    "NamedSap",
+    "NamedSigned",
+    "NamedSignedDepth",
+    "NamedSignedModels",
+    "NamedSignedModelsDepth",
     "NamedSource",
+    "NamedTrace",
+    "NamedV6Audit",
+    "NamingAudit",
+    "NamingCollect",
+    "NamingControls",
+    "NamingEntry",
+    "NamingModel",
+    "NamingRename",
+    "NamingResult",
     "NativeLimits",
     "NnfEntry",
     "NormalizedArities",
@@ -315,6 +464,7 @@ globs = [
     "OriginalReplay",
     "OutputIntervals",
     "PipelineComposition",
+    "PremiseLine",
     "ProblemComposition",
     "ProblemExtension",
     "Product.Acceptance",
@@ -323,12 +473,14 @@ globs = [
     "Product.ClauseParsing",
     "Product.LiteralParsing",
     "Product.NamedSemantics",
+    "Product.NameSpelling",
     "Product.QuotedAtom",
     "Product.Rows",
     "Product.SourceLink",
     "Product.SourceMetadata",
     "Product.TermParsing",
     "Product.TermRendering",
+    "Product.TextLexing",
     "Product.TstpExport",
     "Product.VariableNames",
     "Product.WitnessMetadata",
@@ -345,8 +497,8 @@ globs = [
     "QuantifiedGrammar",
     "QuantifiedInput",
     "QuantifiedLexing",
-    "QuantifiedNameFrame",
     "QuantifiedNamed",
+    "QuantifiedNameFrame",
     "QuantifiedProblem",
     "QuantifiedProblemGrammar",
     "QuantifiedScope",
@@ -370,18 +522,27 @@ globs = [
     "ReservedInput",
     "ReservedModels",
     "RetainedBounds",
+    "RoleCitedRead",
+    "RoleCitedReadDepth",
+    "RoleDeclarationDepth",
+    "RoleDecoderDepth",
     "RoleDecoderLimit",
+    "RoleDepthControls",
+    "RoleFramerDepth",
     "RoleFramerFast",
     "RoleFramerLimit",
     "RoleFramerV2",
     "RoleGrammar",
     "RoleInput",
     "RoleLimitControls",
+    "RoleMeaningDepth",
     "RoleMeaningLimit",
     "RoleMeaningV2",
     "RoleModels",
+    "RoleNativeV6Controls",
     "RoleProblem",
     "RoleReadV2",
+    "RoleReplayDepth",
     "RoleReplayLimit",
     "RoleReplayV2",
     "RoleSemantics",
@@ -400,6 +561,8 @@ globs = [
     "ScopedRepresentation",
     "SemanticModel",
     "SignatureInventory",
+    "SignedBundleNativeMainLimit",
+    "SignedBundleNativeV6Core",
     "SignedBundleReplay",
     "SignedEntry",
     "SignedEnvelope",
@@ -418,6 +581,7 @@ globs = [
     "SubstituteTerm",
     "Substitution",
     "SymbolBounds",
+    "SymbolControls",
     "TptpLexical",
     "Trace",
     "Transform",
@@ -438,25 +602,41 @@ globs = [
 ]
 
 [[lean_exe]]
-name = "fang-v8-check"
-root = "ExpandedLimitedNativeMain"
-
-[[lean_exe]]
-name = "fang-v8-tstp"
-root = "DocumentNativeMain"
-
-[[lean_exe]]
 name = "fang-bundle-native-fast"
 root = "BundleLimitNativeMain"
-
-[[lean_exe]]
-name = "fang-signed-bundle-native-limit"
-root = "SignedBundleNativeMainLimit"
 
 [[lean_exe]]
 name = "fang-bundle-tstp"
 root = "BundleTstpLimitNativeMain"
 
 [[lean_exe]]
+name = "fang-expanded-native-named"
+root = "ExpandedNamedNativeMain"
+
+[[lean_exe]]
 name = "fang-goal-tstp"
-root = "GoalDocumentNativeMain"
+root = "GoalDocumentV8NativeMain"
+
+[[lean_exe]]
+name = "fang-goal-tstp-named"
+root = "GoalDocumentNamedNativeMain"
+
+[[lean_exe]]
+name = "fang-model-check"
+root = "ModelNativeMain"
+
+[[lean_exe]]
+name = "fang-model-tstp"
+root = "ModelExportNativeMain"
+
+[[lean_exe]]
+name = "fang-signed-bundle-native-v6"
+root = "SignedBundleNativeV6Main"
+
+[[lean_exe]]
+name = "fang-v8-tstp"
+root = "DocumentNativeMain"
+
+[[lean_exe]]
+name = "fang-v8-tstp-named"
+root = "DocumentNamedNativeMain"

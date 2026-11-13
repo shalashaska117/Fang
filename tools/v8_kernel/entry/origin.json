@@ -1,22 +1,24 @@
 {
   "changes": [
-    "main.py: installation.json next to the entry supplies the installation root, output root, HOME and Python pin; the policy is schema v2; the gate review and the entry review are pin data in the policy, so no receipt is read at run time; the E3 rule compares the entry review data with this entry's six source pins and the policy without the review slot; the inventory children check tree manifests instead of the dependency baseline",
-    "check.py: the installation record (path and pin) replaces the gate and helper receipts; the compiler reads the installed lean-v8 objects and the helper objects through the recorded `lake env` search path instead of copies in the run; search-path containment and the sysroot check use the installed project and toolchain; HOME, the toolchain and the output root come from the record; the per-phase guards, generation, audits, endpoint and archive are unchanged",
-    "invoke.py: the inventory mode runs trees.py verify; the check mode no longer sets gate or baseline paths",
-    "trees.py (new): records at install and verifies before and after each run the SHA-256 of every file in the toolchain, every directory on the recorded LEAN_PATH and the helper objects",
-    "provision-policy.py: pins sources relative to the installation root; machine-specific values go to installation.json",
-    "Shipping layout (2026-10-26): the entry, generator, recipe and helper sources moved to tools/v8_kernel/; pins/moved-files.json maps every file to its development or receipt copy. Byte-identical except check.py (the two recipe directory constants) and provision-policy.py (the layout constants and the repository root)."
+    "check.py: a generated module name that exists on the recorded LEAN_PATH or among the helper objects stops the run, not only one in the run's source directory (finding EV6-3)",
+    "trees.py: an entry recorded as absent must stay absent, and a recorded directory must still exist; schema v2 (finding EV6-2)",
+    "provision-policy.py: every check exits with an error instead of an assert, and the recorded review status is the receipt's (finding EV6-4); the policy (schema v4) pins the Lean release by the hashes of its lean and lake binaries and the trees.py summary of its lib/ directory, and the Python release (findings EV6-5, PV7-2)",
+    "main.py: refuses an installation whose Python release, Lean binaries or Lean lib/ summary differ from the policy (findings EV6-5, PV7-2); comment and message wording",
+    "install-kernel.py (not an entry source): refuses a toolchain whose lean or lake binary or lib/ summary differs from the policy, or another Python release, and records every LEAN_PATH and LD_LIBRARY_PATH entry, absent ones as absent (findings EV6-2, EV6-5, PV7-2)",
+    "recipe/mixed/generate-clausifier.py and lean/BooleanClausifierSinglePass.lean (new): each Clausify module evaluates the clausifier call in one simp traversal, with closed-call simprocs, before the step loop (finding CV2-2)",
+    "recipe/mixed/generate-skolem.py, generate-rectify.py: unused loaders removed; lean/EqualityBridgeKernel.lean: comment wording"
   ],
-  "development_copy": "experiments/fof-quantified/equality-versioned/kernel-v8/v6/entry (gates on installations a2 and B)",
-  "install_contract": "See ../PACKAGING.md.",
-  "source": "experiments/fof-quantified/equality-versioned/kernel-v8/v5/entry (independent review ea36255abd482d7a5cac254d4dcacd549e7a8f97d2cefb9d6c1285f97ac862f2; entry run review bd47729977c09049f70dbd561c2eee5a902779bd050330833bab59200fb830a2)",
+  "development_copy": "experiments/fof-quantified/equality-versioned/kernel-v8/v7/tree",
+  "install_contract": "tools/v8_kernel/install-kernel.py (module docstring)",
+  "source": "tools/v8_kernel/entry, revision 6 (independent review 78d481ef8fc5965ce923e711e09bb64b1d3cbbaab0711e291d232c2b1411c8ab)",
   "source_sha256": {
-    "check.py": "ccab4ec55ef8708f09b6eb77dbbf881d49f35f166461f24a95689a9a5c3f2a02",
-    "invoke.py": "b81c735fb1c8c9275c4e0f6a11a73e837af3b66594173ed3b74078cac0c6e8ed",
-    "main.py": "bf72b2dc7b2888111fd6ea7b27d97a1c8cb9ff29b8fb230f629eae6edd737772",
-    "origin.json": "01805831139063e2cd515239f6634b75b308a0870e81d04a47603c4c98234507",
-    "policy.json": "c73414ae821790118fbb4439fe4dc2606c421f9286b0a8033cb4ed24c4d5a8ad",
-    "provision-policy.py": "5c8a2e7ddf0f5543dbabdcf46ccf9921e3b7885ab08e7b5f33d21d995dcb580b"
+    "check.py": "0bd5eb42ff27b766e7db2e6e9ef05f13833bac70a9c23ee9b3c2e45837e62000",
+    "invoke.py": "c012427b8542c961f0ebc6560782393db2b68dc04cecea11301c015062c10b7c",
+    "main.py": "6ff82deb719439ef4c13df5499180213e34ff09d0dee43256d62bc678e69aea0",
+    "origin.json": "95d79b5eb7791910c63767a5dc414879ba4c3d8bd4d49cd61ebbe2e94b0c75a8",
+    "policy.json": "9842406ec9fb69469589c54847bdd1350ef282a61a8fd72eaed0623765a84b45",
+    "provision-policy.py": "a934c220e65f7b0854c86d822bc9109db528610d113aee7696301b6bf5f3de39",
+    "trees.py": "222b4d2684b51f07459efadc64099bdf0cba3fb5a4ceccff88cc1aed5e224a83"
   },
   "status": "draft; ReviewPending until its own review exists"
 }

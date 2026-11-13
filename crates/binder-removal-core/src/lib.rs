@@ -69,7 +69,7 @@ fn remove(
         limits.max_operations,
         Resource::Operations,
     )?;
-    if depth > limits.max_formula_depth.min(64) {
+    if depth > limits.max_formula_depth.min(65536) {
         return Err(Error::Resource(Resource::FormulaDepth));
     }
     match source {

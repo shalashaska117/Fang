@@ -85,7 +85,7 @@ fn false_retains_empty_declaration_and_later_validation() {
 }
 
 #[test]
-fn grouping_literal_term_and_operation_caps_still_reject() {
+fn grouping_term_and_operation_caps_still_reject() {
     let mut limits = Limits {
         max_formula_depth: 3,
         ..Limits::default()
@@ -95,11 +95,9 @@ fn grouping_literal_term_and_operation_caps_still_reject() {
         parse(b"cnf(a,axiom,(((p)))).", &limits).unwrap_err().kind,
         ErrorKind::ResourceLimit
     );
+    // The literal bound is the encoder's, as in the checker's conversion.
     limits.input.max_literals = 1;
-    assert_eq!(
-        parse(b"cnf(a,axiom,p|q).", &limits).unwrap_err().kind,
-        ErrorKind::ResourceLimit
-    );
+    assert!(parse(b"cnf(a,axiom,p|q).", &limits).is_ok());
     limits.input.max_term_nodes = 1;
     assert_eq!(
         parse(b"cnf(a,axiom,~(f(a)=b)).", &limits).unwrap_err().kind,

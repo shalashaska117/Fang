@@ -1,6 +1,8 @@
 // Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
-//! The producer's default limits equal the values of the Lean record `NativeLimits.lean`.
+//! The producer's default limits equal the values of the final Lean record
+//! `native/final-record/NativeLimits.lean`.
 
+use fang_tptp_full_frontend_candidate::FORMULA_DEPTH_CEILING;
 use fang_tptp_signed_roles::Limits;
 
 const RECORD: &str = include_str!("../../../lean-v8/NativeLimits.lean");
@@ -59,6 +61,10 @@ fn default_limits_match_the_lean_record() {
         limits.max_bridge_literals,
         literal(RECORD, "def maximumLiterals : Usize")
     );
+    assert_eq!(
+        limits.search.input.max_proof_bytes,
+        literal(RECORD, "def certificateLimit : Nat")
+    );
     let skolem = &limits.skolem;
     let core = &skolem.core;
     compare(
@@ -110,9 +116,17 @@ fn default_limits_match_the_lean_record() {
             ("max_operations", clausification.max_operations),
         ],
     );
-    // No counterpart in the record. The parser's whole-file counts of term nodes, formula nodes and binders take the input byte bound; its term depth, literals per clause and the other `fang::Limits` counts, its formula depth and every search limit keep their earlier values.
-    let bytes = limits.input.input.max_input_bytes;
-    assert_eq!(limits.input.input.max_term_nodes, bytes);
-    assert_eq!(limits.input.max_formula_nodes, bytes);
-    assert_eq!(limits.input.max_binders, bytes);
+    // The parser counts per formula, on the tree the Skolem core receives, and takes the core's
+    // per-formula bounds. Its formula height stays 64, the height the decoders of round one read,
+    // and the record's height must stay within the parser's stack-checked ceiling.
+    let input = &limits.input;
+    assert_eq!(input.max_formula_nodes, core.max_formula_nodes);
+    assert_eq!(input.max_binders, core.max_binders);
+    assert_eq!(input.input.max_term_nodes, core.max_input_term_nodes);
+    assert_eq!(input.input.max_term_depth, core.max_term_depth);
+    assert_eq!(input.max_formula_depth, 64);
+    assert!(literal(RECORD, "def formulaDepthLimit : Nat") <= FORMULA_DEPTH_CEILING);
+    // No counterpart in the record: the parser has no fixed operation cap, since its budget grows
+    // with the input and each declaration.
+    assert_eq!(input.input.max_operations, usize::MAX);
 }

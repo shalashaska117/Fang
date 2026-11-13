@@ -1,0 +1,92 @@
+usage: argparse-golden.py [-h] [--profile {v8,cnf,ground-fof}]
+                          --capability CAPABILITY --artifacts ARTIFACTS
+                          [--tptp-root TPTP_ROOT]
+                          [--check {compiled,kernel,none}]
+                          [--output {status,tstp}]
+                          [--max-solution-bytes MAX_SOLUTION_BYTES]
+                          [--self-check] [--wall-seconds WALL_SECONDS]
+                          [--memory-mib MEMORY_MIB]
+                          [--max-input-bytes MAX_INPUT_BYTES]
+                          [--max-certificate-bytes MAX_CERTIFICATE_BYTES]
+                          [--max-log-bytes MAX_LOG_BYTES]
+                          [--max-artifact-bytes MAX_ARTIFACT_BYTES]
+                          input
+
+Fang theorem prover for TPTP CNF and FOF axioms with equality (version-8
+pipeline) on Linux/WSL. A Rust search writes a candidate certificate; only
+acceptance by the independent checker gives a result. Unsupported input is
+rejected; no SAT result is reported.
+
+positional arguments:
+  input                 TPTP problem file to read and capture
+
+options:
+  -h, --help            show this help message and exit
+  --profile {v8,cnf,ground-fof}
+                        pipeline: v8, or an older profile chosen explicitly
+                        (default: v8)
+  --capability CAPABILITY
+                        override the pinned capability JSON file supplied by
+                        the installed launcher
+  --artifacts ARTIFACTS
+                        new directory for input, certificate, logs and
+                        manifest; must not exist (default: a fresh UUID
+                        directory under .local/runs in the current directory)
+  --tptp-root TPTP_ROOT
+                        directory for include files not found next to the
+                        input (default: the TPTP environment variable)
+  --check {compiled,kernel,none}
+                        verification mode: the compiled checker, per-input
+                        kernel replay, or none (default: compiled, which
+                        trusts the Lean compiler and runtime; kernel needs at
+                        least --wall-seconds 600 --memory-mib 4096 --max-
+                        artifact-bytes 1073741824; none reports the producer's
+                        result unchecked, is never the default and says so on
+                        every run)
+  --output {status,tstp}
+                        SZS status only, or status plus a TSTP refutation
+                        (default: status; single files, bundles and, when
+                        installed, proved conjectures of a single file)
+  --max-solution-bytes MAX_SOLUTION_BYTES
+                        maximum TSTP document bytes, from 0 to 16777216
+                        (default: 16777216)
+  --self-check          hash every installed file and adapter source against
+                        the installation, then exit; no input is read
+  --wall-seconds WALL_SECONDS
+                        total command deadline in seconds, from 0.25 to 86400
+                        (default: 60)
+  --memory-mib MEMORY_MIB
+                        sampled memory limit for the adapter and its
+                        processes, in MiB, from 16 to 1048576 (default: 2048)
+  --max-input-bytes MAX_INPUT_BYTES
+                        maximum captured input bytes; checker hard cap 1048576
+                        (default: 1048576)
+  --max-certificate-bytes MAX_CERTIFICATE_BYTES
+                        maximum captured certificate bytes; checker hard cap
+                        5081233, model certificates 1048576 (default: 5081233)
+  --max-log-bytes MAX_LOG_BYTES
+                        maximum bytes per child output stream (default:
+                        4194304)
+  --max-artifact-bytes MAX_ARTIFACT_BYTES
+                        maximum retained run artifact bytes (default:
+                        268435456)
+
+Profiles: v8 (default) handles every input. --profile cnf and --profile
+ground-fof run the older restricted CNF and ground-FOF commands of an earlier
+installation, with their own options (see fang --profile cnf --help); they are
+available only when that installation was linked. There is no retry or
+fallback between profiles, and the older profiles keep their own defaults. For
+v8 input the default check is compiled: only the compiled Lean checker can
+accept a result, and the Lean compiler and runtime are trusted. --check kernel
+is opt-in and needs at least --wall-seconds 600 --memory-mib 4096 --max-
+artifact-bytes 1073741824; when the installation has kernel mode, single-file
+axiom input is replayed in the Lean kernel. --check none reports the
+producer's result without any checker; it is never the default. Every run
+names its checking mode in a comment line before the status. --output tstp
+prints a CNF refutation after the checker accepted, for single files, bundles
+and, when the conjecture exporter is installed, proved conjectures of a single
+file. Inputs with annotations, include directives or distinct objects use the
+bundle checker; includes resolve relative to the including file, then the TPTP
+root. Inputs with conjectures or other non-axiom roles use the signed checker:
+Theorem needs an accepted certificate for every selected conjecture. The
+limits cover the whole command.

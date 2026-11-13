@@ -4,7 +4,7 @@
 
 //! Signed role tasks through the actual Skolem entry. Each original conjecture gets its own task: every premise with the positive sign and that goal with the negative sign, in source order. Without a conjecture there is one satisfiability task.
 //!
-//! The stages and per-stage limits follow the Lean `replayTask` in SignedReplay.lean. `produce_task` runs the same prepared ordered search and bounded serializer as the version-8 producer in crates/fang-v8. Its output is a candidate certificate or Unknown, never a checked result or SZS status.
+//! The stages and per-stage limits follow the Lean `replayTask` in SignedReplay.lean. `produce_task` runs the same prepared ordered search and bounded serializer as the version-8 producer in integration/v8. Its output is a candidate certificate or Unknown, never a checked result or SZS status.
 
 use fang::syntax::{Clause as NumericClause, deduplicate};
 use fang_equality_inference_core::Clause;
@@ -27,55 +27,58 @@ pub struct Limits {
 }
 
 impl Default for Limits {
-    /// The limits record of every native main, `NativeLimits.lean`. The predicate table, the literals per clause and every Skolem, removal and clausification limit take the record's values, as do the parser's input bytes (`byteLimit`) and declarations (`declarationLimit`).
+    /// The final limits record of every native main, `integration/native/final-record/NativeLimits.lean` (tptp-final-limits-record-v2-20261104). The predicate table, the literals per clause and every Skolem, removal and clausification limit take the record's values, as do the parser's input bytes (`byteLimit`) and declarations (`declarationLimit`), and the certificate the serializer writes is bounded by `certificateLimit`.
     ///
-    /// The parser's whole-file counts of term nodes, formula nodes and binders have no counterpart in the record, whose limits on them apply per formula; they are raised to the input byte bound, which already caps them. The parser's other counts and the search limits have no counterpart either and keep their earlier values. `tests/native_limits.rs` compares every record field.
+    /// The parser counts formula nodes, binders and term nodes per formula, on the lowered tree the Skolem core receives, so it takes the core's per-formula bounds. Its formula height stays 64, the height the decoders of round one read; the record's height applies to the cores. The parser's other counts and the other search limits have no counterpart in the record. `tests/native_limits.rs` compares every record field.
     fn default() -> Self {
+        let core = fang_quantified_fof_core::Limits {
+            max_formula_depth: 2_984,
+            max_formula_nodes: 10_000,
+            max_term_depth: 64,
+            max_input_term_nodes: 100_000,
+            max_clauses: 1_000,
+            max_literals_per_clause: 256,
+            max_literals: 100_000,
+            max_stored_nodes: 7_943_814,
+            max_operations: 16_000_000,
+            max_binders: 10_000,
+        };
         let mut input = fang_tptp_full_frontend_candidate::Limits::default();
-        let bytes = 1024 * 1024;
-        input.input.max_input_bytes = bytes;
+        input.input.max_input_bytes = 1024 * 1024;
         input.input.max_clauses = 65_536;
-        input.input.max_term_nodes = bytes;
-        input.max_formula_nodes = bytes;
-        input.max_binders = bytes;
+        input.input.max_term_depth = core.max_term_depth;
+        input.input.max_term_nodes = core.max_input_term_nodes;
+        input.max_formula_nodes = core.max_formula_nodes;
+        input.max_binders = core.max_binders;
+        let mut search = fang_equality_search::Limits::default();
+        search.input.max_proof_bytes = 5_081_233;
         Self {
             input,
-            max_predicates: 5_808,
+            max_predicates: 74_339,
             max_bridge_literals: 256,
             skolem: fang_skolem_core::Limits {
-                core: fang_quantified_fof_core::Limits {
-                    max_formula_depth: 64,
-                    max_formula_nodes: 10_000,
-                    max_term_depth: 64,
-                    max_input_term_nodes: 100_000,
-                    max_clauses: 1_000,
-                    max_literals_per_clause: 256,
-                    max_literals: 100_000,
-                    max_stored_nodes: 4_000_000,
-                    max_operations: 16_000_000,
-                    max_binders: 10_000,
-                },
+                core,
                 max_declarations: 65_536,
-                max_functions: 7_081,
-                max_skolem_symbols: 4_703,
+                max_functions: 83_412,
+                max_skolem_symbols: 30_675,
             },
             removal: fang_binder_removal_core::Limits {
-                max_formula_depth: 64,
+                max_formula_depth: 2_984,
                 max_operations: 5_000_000,
                 max_output_nodes: 1_000_000,
             },
             clausification: fang_fof_core::Limits {
-                max_formula_depth: 64,
+                max_formula_depth: 2_984,
                 max_formula_nodes: 10_000,
                 max_term_depth: 64,
                 max_input_term_nodes: 100_000,
-                max_clauses: 1_000,
+                max_clauses: 36_045,
                 max_literals_per_clause: 256,
-                max_literals: 100_000,
-                max_stored_nodes: 1_000_000,
-                max_operations: 5_000_000,
+                max_literals: 423_500,
+                max_stored_nodes: 6_657_931,
+                max_operations: 6_657_983,
             },
-            search: Default::default(),
+            search,
         }
     }
 }
@@ -118,9 +121,26 @@ pub struct Prepared {
     pub function_arities: Vec<usize>,
     /// Original predicate arities; equality is native in the clauses.
     pub predicate_arities: Vec<usize>,
+    /// One entry per declaration of the task, in the order its clauses appear in `clauses`. CNF items without a clause and FOF blocks that clausify to nothing get an empty range.
+    pub origins: Vec<Origin>,
+}
+
+/// The declaration behind a run of prepared clauses.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct Origin {
+    /// Index of the declaration in the parsed input (the flat text for bundles), as in `signs`.
+    pub source_index: usize,
+    /// The declaration's original role: lets a negated_conjecture CNF item count as a goal.
+    pub role: fang_tptp_full_frontend_candidate::Role,
+    /// The sign the task gives it: false for the selected conjecture, which enters negated.
+    pub positive: bool,
+    /// The clauses this declaration produced.
+    pub clauses: std::ops::Range<usize>,
 }
 
 enum Item {
+    /// A CNF item that encodes to no clause.
+    Empty,
     Cnf(NumericClause),
     Fof,
 }
@@ -186,23 +206,25 @@ pub fn prepare_task(
     }
     let mut fof = Vec::new();
     let mut signs = Vec::new();
+    // Each layout item with its source index, original role and sign.
     let mut layout = Vec::new();
     for (index, declaration) in encoded.declarations.into_iter().enumerate() {
         let Some(positive) = sign_of[index] else {
             continue;
         };
+        let owner = (index, declaration.role, positive);
         match declaration.body {
-            EncodedBody::Cnf(None) => {}
+            EncodedBody::Cnf(None) => layout.push((Item::Empty, owner)),
             EncodedBody::Cnf(Some(clause)) => {
                 if !positive {
                     return Err(Error::Internal("negative CNF item"));
                 }
-                layout.push(Item::Cnf(clause));
+                layout.push((Item::Cnf(clause), owner));
             }
             EncodedBody::Fof(formula) => {
                 fof.push(fang_skolem_core::Declaration { formula, positive });
                 signs.push((index, positive));
-                layout.push(Item::Fof);
+                layout.push((Item::Fof, owner));
             }
         }
     }
@@ -216,8 +238,11 @@ pub fn prepare_task(
     let function_arities = skolem.signature.functions;
     let mut formulas = skolem.formulas.into_iter();
     let mut ordinary = Vec::new();
-    for item in layout {
+    let mut origins = Vec::new();
+    for (item, (source_index, role, positive)) in layout {
+        let start = ordinary.len();
         match item {
+            Item::Empty => {}
             Item::Cnf(clause) => ordinary.push(deduplicate(&clause)),
             Item::Fof => {
                 let formula = formulas
@@ -234,6 +259,12 @@ pub fn prepare_task(
                 ordinary.extend(block.clauses.iter().map(deduplicate));
             }
         }
+        origins.push(Origin {
+            source_index,
+            role,
+            positive,
+            clauses: start..ordinary.len(),
+        });
     }
     if formulas.next().is_some() {
         return Err(Error::Internal("extra Skolem output"));
@@ -252,12 +283,13 @@ pub fn prepare_task(
         clauses,
         function_arities,
         predicate_arities: original_predicates,
+        origins,
     })
 }
 
 pub const VERSION: u32 = 8;
 pub const CAPABILITY: &str = "expanded-fof-equality-skolem-distributive-v1";
-/// The version-8 certificate header; the checker selects the task separately.
+/// The version-8 header from integration/V8.md; the checker selects the task separately.
 pub const HEADER: &str =
     "(fang-proof 8\n  (preprocessing expanded-fof-equality-skolem-distributive-v1)\n";
 const TRACE_HEADER: &str = "(fang-proof 5\n  (preprocessing identity-cnf-equality-v1)\n";
@@ -278,7 +310,7 @@ pub struct Produced {
     pub outcome: Outcome,
 }
 
-/// Reserve the envelope overhead, call the authoritative bounded ordered serializer, and replace only its version-5 header, exactly as crates/fang-v8 does. Node bytes and the final reference are kept.
+/// Reserve the envelope overhead, call the authoritative bounded ordered serializer, and replace only its version-5 header, exactly as integration/v8 does. Node bytes and the final reference are kept.
 pub fn certificate_text(
     certificate: &fang_equality_search::Certificate,
     max_bytes: usize,
@@ -407,3 +439,6 @@ pub fn render(prepared: &Prepared) -> String {
     }
     output
 }
+
+mod named_prepare;
+pub use named_prepare::prepare_task_named;

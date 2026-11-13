@@ -133,11 +133,35 @@ def quote (text : String) : Except String String := do
     acc ++ (if c == '\'' || c == '\\' then "\\" else "") ++ String.singleton c) ""
   pure ("'" ++ escaped ++ "'")
 
-def symbol (symbols : List Frontend.Symbol) (index arity : Nat) : Except String String := do
+/-- TPTP's `lower_word`: a lower-case ASCII letter, then ASCII letters, digits and underscores. -/
+def lowerWord (name : String) : Bool :=
+  match name.toList with
+  | [] => false
+  | first :: rest => Frontend.asciiLower first &&
+      rest.all (fun c => Frontend.asciiLower c || Frontend.asciiUpper c || Frontend.asciiDigit c || c == '_')
+
+/-- A name that a single-quoted atom can spell: nonempty printable ASCII. -/
+def printableName (name : String) : Bool :=
+  !name.isEmpty && name.toList.all (fun c => 32 ≤ c.toNat && c.toNat ≤ 126)
+
+/-- The single-quoted atom of a name, with quote and backslash escaped as in `quote`. -/
+def quoteText (text : String) : String :=
+  "'" ++ text.toList.foldl (fun acc c =>
+    acc ++ (if c == '\'' || c == '\\' then "\\" else "") ++ String.singleton c) "" ++ "'"
+
+/-- A lower word as it is, any other name as a single-quoted atom. -/
+def symbolText (name : String) : String :=
+  if lowerWord name then name else quoteText name
+
+/-- The table name of a symbol with the given arity, when the name prints as an atomic word. -/
+def symbolName (symbols : List Frontend.Symbol) (index arity : Nat) : Except String String := do
   let some value := symbols[index]? | throw "export-error: unknown symbol"
-  if !Frontend.lowerName value.name || value.arity != some arity then
+  if !printableName value.name || value.arity != some arity then
     throw "export-error: symbol name or arity mismatch"
   pure value.name
+
+def symbol (symbols : List Frontend.Symbol) (index arity : Nat) : Except String String :=
+  symbolText <$> symbolName symbols index arity
 
 mutual
   def term (symbols : List Frontend.Symbol) : Term → Except String String

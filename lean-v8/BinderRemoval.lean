@@ -2,6 +2,7 @@
 -- [fang_binder_removal_core]
 module
 public import Aeneas
+public import FangFastVec
 public import FangDiscriminant
 @[expose] public section
 open Aeneas Aeneas.Std Result ControlFlow Error
@@ -141,7 +142,7 @@ def remove
   match cf with
   | core.ops.control_flow.ControlFlow.Continue val =>
     let i ←
-      lift (core.cmp.impls.OrdUsize.min limits.max_formula_depth 64#usize)
+      lift (core.cmp.impls.OrdUsize.min limits.max_formula_depth 65536#usize)
     if depth > i
     then
       ok (core.result.Result.Err (Error.Resource Resource.FormulaDepth),

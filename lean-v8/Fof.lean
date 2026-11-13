@@ -2,6 +2,7 @@
 -- [fang_fof_core]
 module
 public import Aeneas
+public import FangFastVec
 public import FangDiscriminant
 @[expose] public section
 open Aeneas Aeneas.Std Result ControlFlow Error
@@ -444,9 +445,7 @@ def validate_formula
   let cf ← core.result.Result.Insts.CoreOpsTry.branch r
   match cf with
   | core.ops.control_flow.ControlFlow.Continue _ =>
-    let i ←
-      lift (core.cmp.impls.OrdUsize.min limits.max_formula_depth 64#usize)
-    if depth > i
+    if depth > limits.max_formula_depth
     then
       ok (core.result.Result.Err (Error.Resource Resource.FormulaDepth), work1)
     else
@@ -459,8 +458,8 @@ def validate_formula
         match formula with
         | Formula.Atom predicate arguments =>
           let index ← lift (UScalar.cast .Usize predicate)
-          let i1 := alloc.vec.Vec.len signature.predicates
-          if index >= i1
+          let i := alloc.vec.Vec.len signature.predicates
+          if index >= i
           then
             ok (core.result.Result.Err (Error.Invalid (Invalid.UnknownPredicate
               predicate)),
@@ -469,11 +468,11 @@ def validate_formula
                   { work1.statistics with input_formula_nodes := val }
               })
           else
-            let i2 ←
+            let i1 ←
               alloc.vec.Vec.index (core.slice.index.SliceIndexUsizeSlice
                 Std.Usize) signature.predicates index
-            let i3 := alloc.vec.Vec.len arguments
-            if i2 != i3
+            let i2 := alloc.vec.Vec.len arguments
+            if i1 != i2
             then
               ok (core.result.Result.Err (Error.Invalid (Invalid.PredicateArity
                 predicate)),
@@ -505,16 +504,16 @@ def validate_formula
                 { work1.statistics with input_formula_nodes := val }
             })
         | Formula.Not inner =>
-          let i1 ← depth + 1#usize
-          validate_formula inner i1 signature scope limits
+          let i ← depth + 1#usize
+          validate_formula inner i signature scope limits
             {
               statistics :=
                 { work1.statistics with input_formula_nodes := val }
             }
         | Formula.And left right =>
-          let i1 ← depth + 1#usize
+          let i ← depth + 1#usize
           let (r2, work2) ←
-            validate_formula left i1 signature scope limits
+            validate_formula left i signature scope limits
               {
                 statistics :=
                   { work1.statistics with input_formula_nodes := val }
@@ -522,16 +521,16 @@ def validate_formula
           let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
           match cf2 with
           | core.ops.control_flow.ControlFlow.Continue _ =>
-            validate_formula right i1 signature scope limits work2
+            validate_formula right i signature scope limits work2
           | core.ops.control_flow.ControlFlow.Break residual =>
             let r3 ←
               core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
                 Unit (core.convert.FromSame Error) residual
             ok (r3, work2)
         | Formula.Or left right =>
-          let i1 ← depth + 1#usize
+          let i ← depth + 1#usize
           let (r2, work2) ←
-            validate_formula left i1 signature scope limits
+            validate_formula left i signature scope limits
               {
                 statistics :=
                   { work1.statistics with input_formula_nodes := val }
@@ -539,16 +538,16 @@ def validate_formula
           let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
           match cf2 with
           | core.ops.control_flow.ControlFlow.Continue _ =>
-            validate_formula right i1 signature scope limits work2
+            validate_formula right i signature scope limits work2
           | core.ops.control_flow.ControlFlow.Break residual =>
             let r3 ←
               core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
                 Unit (core.convert.FromSame Error) residual
             ok (r3, work2)
         | Formula.Implies left right =>
-          let i1 ← depth + 1#usize
+          let i ← depth + 1#usize
           let (r2, work2) ←
-            validate_formula left i1 signature scope limits
+            validate_formula left i signature scope limits
               {
                 statistics :=
                   { work1.statistics with input_formula_nodes := val }
@@ -556,7 +555,7 @@ def validate_formula
           let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
           match cf2 with
           | core.ops.control_flow.ControlFlow.Continue _ =>
-            validate_formula right i1 signature scope limits work2
+            validate_formula right i signature scope limits work2
           | core.ops.control_flow.ControlFlow.Break residual =>
             let r3 ←
               core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
@@ -1603,6 +1602,702 @@ def preprocess
   := do
   preprocess_with_scope formula signature VariableScope.Ground limits
 
+/-- [fang_fof_core::naming::Definition]
+    Source: 'src/naming.rs', lines 10:0-14:1
+    Visibility: public -/
+structure naming.Definition where
+  predicate : Std.U32
+  arguments : alloc.vec.Vec Std.U32
+
+/-- [fang_fof_core::naming::Renamed]
+    Source: 'src/naming.rs', lines 17:0-25:1
+    Visibility: public -/
+structure naming.Renamed where
+  formula : Nnf
+  definitions : alloc.vec.Vec naming.Definition
+  next : Std.U32
+  statistics : Statistics
+
+/-- [fang_fof_core::naming::Named]
+    Source: 'src/naming.rs', lines 28:0-34:1
+    Visibility: public -/
+structure naming.Named where
+  clauses : alloc.vec.Vec (alloc.vec.Vec fang.syntax.Literal)
+  definitions : alloc.vec.Vec naming.Definition
+  next : Std.U32
+  statistics : Statistics
+
+/-- [fang_fof_core::naming::saturating_add]:
+    Source: 'src/naming.rs', lines 36:0-41:1 -/
+def naming.saturating_add
+  (left : Std.Usize) (right : Std.Usize) : Result Std.Usize := do
+  let o ← lift (Usize.checked_add left right)
+  match o with
+  | none => ok core.num.Usize.MAX
+  | some value => ok value
+
+/-- [fang_fof_core::naming::saturating_mul]:
+    Source: 'src/naming.rs', lines 43:0-48:1 -/
+def naming.saturating_mul
+  (left : Std.Usize) (right : Std.Usize) : Result Std.Usize := do
+  let o ← lift (Usize.checked_mul left right)
+  match o with
+  | none => ok core.num.Usize.MAX
+  | some value => ok value
+
+/-- [fang_fof_core::naming::insert_variable]: loop 0:
+    Source: 'src/naming.rs', lines 58:4-73:1 -/
+@[rust_loop]
+def naming.insert_variable_loop
+  («variables» : alloc.vec.Vec Std.U32) (id : Std.U32) (limits : Limits)
+  (work : Work) (index : Std.Usize) :
+  Result ((core.result.Result Unit Error) × (alloc.vec.Vec Std.U32) × Work)
+  := do
+  let i := alloc.vec.Vec.len «variables»
+  if index < i
+  then
+    let i1 ←
+      alloc.vec.Vec.index (core.slice.index.SliceIndexUsizeSlice Std.U32)
+        «variables» index
+    if i1 < id
+    then
+      let (r, work1) ← Work.tick work limits
+      let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+      match cf with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        let index1 ← index + 1#usize
+        naming.insert_variable_loop «variables» id limits work1 index1
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r1 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            Unit (core.convert.FromSame Error) residual
+        ok (r1, «variables», work1)
+    else
+      let i2 := alloc.vec.Vec.len «variables»
+      if index < i2
+      then
+        if i1 = id
+        then ok (core.result.Result.Ok (), «variables», work)
+        else
+          let (r, work1) ← Work.allocate work 1#usize limits
+          let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+          match cf with
+          | core.ops.control_flow.ControlFlow.Continue _ =>
+            let i3 := alloc.vec.Vec.len «variables»
+            if index < i3
+            then
+              let variables1 ← alloc.vec.Vec.insert «variables» index id
+              ok (core.result.Result.Ok (), variables1, work1)
+            else
+              let variables1 ← alloc.vec.Vec.push «variables» id
+              ok (core.result.Result.Ok (), variables1, work1)
+          | core.ops.control_flow.ControlFlow.Break residual =>
+            let r1 ←
+              core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+                Unit (core.convert.FromSame Error) residual
+            ok (r1, «variables», work1)
+      else
+        let (r, work1) ← Work.allocate work 1#usize limits
+        let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+        match cf with
+        | core.ops.control_flow.ControlFlow.Continue _ =>
+          let i3 := alloc.vec.Vec.len «variables»
+          if index < i3
+          then
+            let variables1 ← alloc.vec.Vec.insert «variables» index id
+            ok (core.result.Result.Ok (), variables1, work1)
+          else
+            let variables1 ← alloc.vec.Vec.push «variables» id
+            ok (core.result.Result.Ok (), variables1, work1)
+        | core.ops.control_flow.ControlFlow.Break residual =>
+          let r1 ←
+            core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+              Unit (core.convert.FromSame Error) residual
+          ok (r1, «variables», work1)
+  else
+    let i1 := alloc.vec.Vec.len «variables»
+    if index < i1
+    then
+      let i2 ←
+        alloc.vec.Vec.index (core.slice.index.SliceIndexUsizeSlice Std.U32)
+          «variables» index
+      if i2 = id
+      then ok (core.result.Result.Ok (), «variables», work)
+      else
+        let (r, work1) ← Work.allocate work 1#usize limits
+        let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+        match cf with
+        | core.ops.control_flow.ControlFlow.Continue _ =>
+          let i3 := alloc.vec.Vec.len «variables»
+          if index < i3
+          then
+            let variables1 ← alloc.vec.Vec.insert «variables» index id
+            ok (core.result.Result.Ok (), variables1, work1)
+          else
+            let variables1 ← alloc.vec.Vec.push «variables» id
+            ok (core.result.Result.Ok (), variables1, work1)
+        | core.ops.control_flow.ControlFlow.Break residual =>
+          let r1 ←
+            core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+              Unit (core.convert.FromSame Error) residual
+          ok (r1, «variables», work1)
+    else
+      let (r, work1) ← Work.allocate work 1#usize limits
+      let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+      match cf with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        let i2 := alloc.vec.Vec.len «variables»
+        if index < i2
+        then
+          let variables1 ← alloc.vec.Vec.insert «variables» index id
+          ok (core.result.Result.Ok (), variables1, work1)
+        else
+          let variables1 ← alloc.vec.Vec.push «variables» id
+          ok (core.result.Result.Ok (), variables1, work1)
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r1 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            Unit (core.convert.FromSame Error) residual
+        ok (r1, «variables», work1)
+partial_fixpoint
+
+/-- [fang_fof_core::naming::insert_variable]:
+    Source: 'src/naming.rs', lines 51:0-73:1 -/
+@[reducible]
+def naming.insert_variable
+  («variables» : alloc.vec.Vec Std.U32) (id : Std.U32) (limits : Limits)
+  (work : Work) :
+  Result ((core.result.Result Unit Error) × (alloc.vec.Vec Std.U32) × Work)
+  := do
+  naming.insert_variable_loop «variables» id limits work 0#usize
+
+mutual
+
+/-- [fang_fof_core::naming::collect_term]: loop 0:
+    Source: 'src/naming.rs', lines 87:12-94:1 -/
+@[rust_loop]
+def naming.collect_term_loop
+  (arguments : alloc.vec.Vec fang.syntax.Term)
+  («variables» : alloc.vec.Vec Std.U32) (limits : Limits) (work : Work)
+  (index : Std.Usize) :
+  Result ((core.result.Result Unit Error) × (alloc.vec.Vec Std.U32) × Work)
+  := do
+  let i := alloc.vec.Vec.len arguments
+  if index < i
+  then
+    let t ←
+      alloc.vec.Vec.index (core.slice.index.SliceIndexUsizeSlice
+        fang.syntax.Term) arguments index
+    let (r, variables1, work1) ←
+      naming.collect_term t «variables» limits work
+    let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+    match cf with
+    | core.ops.control_flow.ControlFlow.Continue _ =>
+      let index1 ← index + 1#usize
+      naming.collect_term_loop arguments variables1 limits work1 index1
+    | core.ops.control_flow.ControlFlow.Break residual =>
+      let r1 ←
+        core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+          Unit (core.convert.FromSame Error) residual
+      ok (r1, variables1, work1)
+  else ok (core.result.Result.Ok (), «variables», work)
+partial_fixpoint
+
+/-- [fang_fof_core::naming::collect_term]:
+    Source: 'src/naming.rs', lines 76:0-94:1 -/
+def naming.collect_term
+  (term : fang.syntax.Term) («variables» : alloc.vec.Vec Std.U32)
+  (limits : Limits) (work : Work) :
+  Result ((core.result.Result Unit Error) × (alloc.vec.Vec Std.U32) × Work)
+  := do
+  let (r, work1) ← Work.tick work limits
+  let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+  match cf with
+  | core.ops.control_flow.ControlFlow.Continue _ =>
+    match term with
+    | fang.syntax.Term.Var id =>
+      naming.insert_variable «variables» id limits work1
+    | fang.syntax.Term.Fun _ arguments =>
+      naming.collect_term_loop arguments «variables» limits work1 0#usize
+  | core.ops.control_flow.ControlFlow.Break residual =>
+    let r1 ←
+      core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+        Unit (core.convert.FromSame Error) residual
+    ok (r1, «variables», work1)
+partial_fixpoint
+
+end
+
+/-- [fang_fof_core::naming::collect_nnf]: loop 0:
+    Source: 'src/naming.rs', lines 106:12-118:1 -/
+@[rust_loop]
+def naming.collect_nnf_loop
+  («variables» : alloc.vec.Vec Std.U32) (limits : Limits) (work : Work)
+  (literal : fang.syntax.Literal) (index : Std.Usize) :
+  Result ((core.result.Result Unit Error) × (alloc.vec.Vec Std.U32) × Work)
+  := do
+  let i := alloc.vec.Vec.len literal.arguments
+  if index < i
+  then
+    let t ←
+      alloc.vec.Vec.index (core.slice.index.SliceIndexUsizeSlice
+        fang.syntax.Term) literal.arguments index
+    let (r, variables1, work1) ←
+      naming.collect_term t «variables» limits work
+    let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+    match cf with
+    | core.ops.control_flow.ControlFlow.Continue _ =>
+      let index1 ← index + 1#usize
+      naming.collect_nnf_loop variables1 limits work1 literal index1
+    | core.ops.control_flow.ControlFlow.Break residual =>
+      let r1 ←
+        core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+          Unit (core.convert.FromSame Error) residual
+      ok (r1, variables1, work1)
+  else ok (core.result.Result.Ok (), «variables», work)
+partial_fixpoint
+
+/-- [fang_fof_core::naming::collect_nnf]:
+    Source: 'src/naming.rs', lines 96:0-118:1 -/
+def naming.collect_nnf
+  (formula : Nnf) («variables» : alloc.vec.Vec Std.U32) (limits : Limits)
+  (work : Work) :
+  Result ((core.result.Result Unit Error) × (alloc.vec.Vec Std.U32) × Work)
+  := do
+  let (r, work1) ← Work.tick work limits
+  let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+  match cf with
+  | core.ops.control_flow.ControlFlow.Continue _ =>
+    match formula with
+    | Nnf.Literal literal =>
+      naming.collect_nnf_loop «variables» limits work1 literal 0#usize
+    | Nnf.True => ok (core.result.Result.Ok (), «variables», work1)
+    | Nnf.False => ok (core.result.Result.Ok (), «variables», work1)
+    | Nnf.And left right =>
+      let (r1, variables1, work2) ←
+        naming.collect_nnf left «variables» limits work1
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        naming.collect_nnf right variables1 limits work2
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            Unit (core.convert.FromSame Error) residual
+        ok (r2, variables1, work2)
+    | Nnf.Or left right =>
+      let (r1, variables1, work2) ←
+        naming.collect_nnf left «variables» limits work1
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        naming.collect_nnf right variables1 limits work2
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            Unit (core.convert.FromSame Error) residual
+        ok (r2, variables1, work2)
+  | core.ops.control_flow.ControlFlow.Break residual =>
+    let r1 ←
+      core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+        Unit (core.convert.FromSame Error) residual
+    ok (r1, «variables», work1)
+partial_fixpoint
+
+/-- [fang_fof_core::naming::variable_terms]: loop 0:
+    Source: 'src/naming.rs', lines 123:4-130:1 -/
+@[rust_loop]
+def naming.variable_terms_loop
+  («variables» : Slice Std.U32) (limits : Limits) (work : Work)
+  (terms : alloc.vec.Vec fang.syntax.Term) (index : Std.Usize) :
+  Result ((core.result.Result (alloc.vec.Vec fang.syntax.Term) Error) × Work)
+  := do
+  let i := Slice.len «variables»
+  if index < i
+  then
+    let (r, work1) ← Work.tick work limits
+    let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+    match cf with
+    | core.ops.control_flow.ControlFlow.Continue _ =>
+      let (r1, work2) ← Work.allocate work1 1#usize limits
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        let i1 ← Slice.index_usize «variables» index
+        let terms1 ← alloc.vec.Vec.push terms (fang.syntax.Term.Var i1)
+        let index1 ← index + 1#usize
+        naming.variable_terms_loop «variables» limits work2 terms1 index1
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            (alloc.vec.Vec fang.syntax.Term) (core.convert.FromSame Error)
+            residual
+        ok (r2, work2)
+    | core.ops.control_flow.ControlFlow.Break residual =>
+      let r1 ←
+        core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+          (alloc.vec.Vec fang.syntax.Term) (core.convert.FromSame Error)
+          residual
+      ok (r1, work1)
+  else ok (core.result.Result.Ok terms, work)
+partial_fixpoint
+
+/-- [fang_fof_core::naming::variable_terms]:
+    Source: 'src/naming.rs', lines 120:0-130:1 -/
+@[reducible]
+def naming.variable_terms
+  («variables» : Slice Std.U32) (limits : Limits) (work : Work) :
+  Result ((core.result.Result (alloc.vec.Vec fang.syntax.Term) Error) × Work)
+  := do
+  naming.variable_terms_loop «variables» limits work (alloc.vec.Vec.new
+    fang.syntax.Term) 0#usize
+
+/-- [fang_fof_core::naming::Renamer]
+    Source: 'src/naming.rs', lines 132:0-139:1 -/
+structure naming.Renamer where
+  threshold : Std.Usize
+  next : Std.U32
+  definitions : alloc.vec.Vec naming.Definition
+  bodies : alloc.vec.Vec Nnf
+  work : Work
+
+/-- [fang_fof_core::naming::{fang_fof_core::naming::Renamer}::name]:
+    Source: 'src/naming.rs', lines 143:4-171:5 -/
+def naming.Renamer.name
+  (self : naming.Renamer) (body : Nnf) (limits : Limits) :
+  Result ((core.result.Result Nnf Error) × naming.Renamer)
+  := do
+  let (r, w) ← Work.tick self.work limits
+  let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+  match cf with
+  | core.ops.control_flow.ControlFlow.Continue _ =>
+    let o ← lift (U32.checked_add self.next 1#u32)
+    let r1 ← core.option.Option.ok_or o (Error.Resource Resource.Arithmetic)
+    let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+    match cf1 with
+    | core.ops.control_flow.ControlFlow.Continue val =>
+      let (r2, «variables», w1) ←
+        naming.collect_nnf body (alloc.vec.Vec.new Std.U32) limits w
+      let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
+      match cf2 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        let s := alloc.vec.Vec.deref «variables»
+        let (r3, w2) ← naming.variable_terms s limits w1
+        let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r3
+        match cf3 with
+        | core.ops.control_flow.ControlFlow.Continue val1 =>
+          let s1 := alloc.vec.Vec.deref «variables»
+          let (r4, w3) ← naming.variable_terms s1 limits w2
+          let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
+          match cf4 with
+          | core.ops.control_flow.ControlFlow.Continue val2 =>
+            let (r5, w4) ← Work.allocate w3 4#usize limits
+            let cf5 ← core.result.Result.Insts.CoreOpsTry.branch r5
+            match cf5 with
+            | core.ops.control_flow.ControlFlow.Continue _ =>
+              let v ←
+                alloc.vec.Vec.push self.bodies (Nnf.Or (Nnf.Literal
+                  {
+                    positive := false,
+                    predicate := self.next,
+                    arguments := val2
+                  }) body)
+              let v1 ←
+                alloc.vec.Vec.push self.definitions
+                  ({ predicate := self.next, arguments := «variables» } :
+                  naming.Definition)
+              ok (core.result.Result.Ok (Nnf.Literal
+                { positive := true, predicate := self.next, arguments := val1 }),
+                {
+                  self
+                    with
+                    next := val, definitions := v1, bodies := v, work := w4
+                })
+            | core.ops.control_flow.ControlFlow.Break residual =>
+              let r6 ←
+                core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+                  Nnf (core.convert.FromSame Error) residual
+              ok (r6, { self with next := val, work := w4 })
+          | core.ops.control_flow.ControlFlow.Break residual =>
+            let r5 ←
+              core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+                Nnf (core.convert.FromSame Error) residual
+            ok (r5, { self with next := val, work := w3 })
+        | core.ops.control_flow.ControlFlow.Break residual =>
+          let r4 ←
+            core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+              Nnf (core.convert.FromSame Error) residual
+          ok (r4, { self with next := val, work := w2 })
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r3 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            Nnf (core.convert.FromSame Error) residual
+        ok (r3, { self with next := val, work := w1 })
+    | core.ops.control_flow.ControlFlow.Break residual =>
+      let r2 ←
+        core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+          Nnf (core.convert.FromSame Error) residual
+      ok (r2, { self with work := w })
+  | core.ops.control_flow.ControlFlow.Break residual =>
+    let r1 ←
+      core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+        Nnf (core.convert.FromSame Error) residual
+    ok (r1, { self with work := w })
+
+/-- [fang_fof_core::naming::{fang_fof_core::naming::Renamer}::rename]:
+    Source: 'src/naming.rs', lines 179:4-227:5 -/
+def naming.Renamer.rename
+  (self : naming.Renamer) (formula : Nnf) (limits : Limits) :
+  Result ((core.result.Result (Nnf × Std.Usize) Error) × naming.Renamer)
+  := do
+  let (r, w) ← Work.tick self.work limits
+  let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+  match cf with
+  | core.ops.control_flow.ControlFlow.Continue _ =>
+    match formula with
+    | Nnf.Literal literal =>
+      let (r1, w1) ← Work.allocate w 1#usize limits
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        let (r2, w2) ← copy_literal literal limits w1
+        let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
+        match cf2 with
+        | core.ops.control_flow.ControlFlow.Continue val =>
+          ok (core.result.Result.Ok (Nnf.Literal val, 1#usize),
+            { self with work := w2 })
+        | core.ops.control_flow.ControlFlow.Break residual =>
+          let r3 ←
+            core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+              (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+          ok (r3, { self with work := w2 })
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+        ok (r2, { self with work := w1 })
+    | Nnf.True =>
+      let (r1, w1) ← Work.allocate w 1#usize limits
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        ok (core.result.Result.Ok (Nnf.True, 0#usize),
+          { self with work := w1 })
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+        ok (r2, { self with work := w1 })
+    | Nnf.False =>
+      let (r1, w1) ← Work.allocate w 1#usize limits
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        ok (core.result.Result.Ok (Nnf.False, 1#usize),
+          { self with work := w1 })
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+        ok (r2, { self with work := w1 })
+    | Nnf.And left right =>
+      let (r1, w1) ← Work.allocate w 1#usize limits
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        let (r2, self1) ←
+          naming.Renamer.rename { self with work := w1 } left limits
+        let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
+        match cf2 with
+        | core.ops.control_flow.ControlFlow.Continue val =>
+          let (left1, left_count) := val
+          let (r3, self2) ← naming.Renamer.rename self1 right limits
+          let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r3
+          match cf3 with
+          | core.ops.control_flow.ControlFlow.Continue val1 =>
+            let (right1, right_count) := val1
+            let i ← naming.saturating_add left_count right_count
+            ok (core.result.Result.Ok (Nnf.And left1 right1, i), self2)
+          | core.ops.control_flow.ControlFlow.Break residual =>
+            let r4 ←
+              core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+                (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+            ok (r4, self2)
+        | core.ops.control_flow.ControlFlow.Break residual =>
+          let r3 ←
+            core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+              (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+          ok (r3, self1)
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+        ok (r2, { self with work := w1 })
+    | Nnf.Or left right =>
+      let (r1, w1) ← Work.allocate w 1#usize limits
+      let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+      match cf1 with
+      | core.ops.control_flow.ControlFlow.Continue _ =>
+        let (r2, self1) ←
+          naming.Renamer.rename { self with work := w1 } left limits
+        let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
+        match cf2 with
+        | core.ops.control_flow.ControlFlow.Continue val =>
+          let (left1, left_count) := val
+          let (r3, self2) ← naming.Renamer.rename self1 right limits
+          let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r3
+          match cf3 with
+          | core.ops.control_flow.ControlFlow.Continue val1 =>
+            let (right1, right_count) := val1
+            if left_count > 1#usize
+            then
+              if right_count > 1#usize
+              then
+                let i ← naming.saturating_mul left_count right_count
+                if i > self2.threshold
+                then
+                  if left_count >= right_count
+                  then
+                    let (r4, self3) ← naming.Renamer.name self2 left1 limits
+                    let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
+                    match cf4 with
+                    | core.ops.control_flow.ControlFlow.Continue val2 =>
+                      ok (core.result.Result.Ok (Nnf.Or val2 right1,
+                        right_count), self3)
+                    | core.ops.control_flow.ControlFlow.Break residual =>
+                      let r5 ←
+                        core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+                          (Nnf × Std.Usize) (core.convert.FromSame Error)
+                          residual
+                      ok (r5, self3)
+                  else
+                    let (r4, self3) ← naming.Renamer.name self2 right1 limits
+                    let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
+                    match cf4 with
+                    | core.ops.control_flow.ControlFlow.Continue val2 =>
+                      ok (core.result.Result.Ok (Nnf.Or left1 val2,
+                        left_count), self3)
+                    | core.ops.control_flow.ControlFlow.Break residual =>
+                      let r5 ←
+                        core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+                          (Nnf × Std.Usize) (core.convert.FromSame Error)
+                          residual
+                      ok (r5, self3)
+                else ok (core.result.Result.Ok (Nnf.Or left1 right1, i), self2)
+              else
+                let i ← naming.saturating_mul left_count right_count
+                ok (core.result.Result.Ok (Nnf.Or left1 right1, i), self2)
+            else
+              let i ← naming.saturating_mul left_count right_count
+              ok (core.result.Result.Ok (Nnf.Or left1 right1, i), self2)
+          | core.ops.control_flow.ControlFlow.Break residual =>
+            let r4 ←
+              core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+                (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+            ok (r4, self2)
+        | core.ops.control_flow.ControlFlow.Break residual =>
+          let r3 ←
+            core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+              (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+          ok (r3, self1)
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        let r2 ←
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+        ok (r2, { self with work := w1 })
+  | core.ops.control_flow.ControlFlow.Break residual =>
+    let r1 ←
+      core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+        (Nnf × Std.Usize) (core.convert.FromSame Error) residual
+    ok (r1, { self with work := w })
+partial_fixpoint
+
+/-- [fang_fof_core::naming::name_nnf]: loop 0:
+    Source: 'src/naming.rs', lines 284:4-286:5
+    Visibility: public -/
+@[rust_loop]
+def naming.name_nnf_loop
+  (iter : alloc.vec.into_iter.IntoIter Nnf) (combined : Nnf) : Result Nnf := do
+  let (o, iter1) ← alloc.vec.into_iter.IteratorIntoIter.next iter
+  match o with
+  | none => ok combined
+  | some body => naming.name_nnf_loop iter1 (Nnf.And combined body)
+partial_fixpoint
+
+/-- [fang_fof_core::naming::name_nnf]:
+    Source: 'src/naming.rs', lines 240:0-293:1
+    Visibility: public -/
+def naming.name_nnf
+  (formula : Nnf) (threshold : Std.Usize) (next : Std.U32) (limits : Limits)
+  (statistics : Statistics) :
+  Result (core.result.Result naming.Renamed Error)
+  := do
+  let r ←
+    bounded_add statistics.operations 0#usize limits.max_operations
+      Resource.Operations
+  let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+  match cf with
+  | core.ops.control_flow.ControlFlow.Continue _ =>
+    let r1 ←
+      bounded_add statistics.allocated_nodes 0#usize limits.max_stored_nodes
+        Resource.StoredNodes
+    let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+    match cf1 with
+    | core.ops.control_flow.ControlFlow.Continue _ =>
+      let (r2, renamer) ←
+        naming.Renamer.rename
+          {
+            threshold,
+            next,
+            definitions := (alloc.vec.Vec.new naming.Definition),
+            bodies := (alloc.vec.Vec.new Nnf),
+            work := { statistics }
+          } formula limits
+      let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
+      match cf2 with
+      | core.ops.control_flow.ControlFlow.Continue val =>
+        let (renamed, _) := val
+        let count := alloc.vec.Vec.len renamer.bodies
+        let r3 ←
+          bounded_add renamer.work.statistics.operations count
+            limits.max_operations Resource.Operations
+        let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r3
+        match cf3 with
+        | core.ops.control_flow.ControlFlow.Continue val1 =>
+          let (r4, work) ←
+            Work.allocate
+              {
+                statistics :=
+                  { renamer.work.statistics with operations := val1 }
+              } count limits
+          let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
+          match cf4 with
+          | core.ops.control_flow.ControlFlow.Continue _ =>
+            let iter ← alloc.vec.IntoIteratorVec.into_iter renamer.bodies
+            let combined ← naming.name_nnf_loop iter renamed
+            ok (core.result.Result.Ok
+              {
+                formula := combined,
+                definitions := renamer.definitions,
+                next := renamer.next,
+                statistics := work.statistics
+              })
+          | core.ops.control_flow.ControlFlow.Break residual =>
+            core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+              naming.Renamed (core.convert.FromSame Error) residual
+        | core.ops.control_flow.ControlFlow.Break residual =>
+          core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+            naming.Renamed (core.convert.FromSame Error) residual
+      | core.ops.control_flow.ControlFlow.Break residual =>
+        core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+          naming.Renamed (core.convert.FromSame Error) residual
+    | core.ops.control_flow.ControlFlow.Break residual =>
+      core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+        naming.Renamed (core.convert.FromSame Error) residual
+  | core.ops.control_flow.ControlFlow.Break residual =>
+    core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+      naming.Renamed (core.convert.FromSame Error) residual
+
 /-- [fang_fof_core::nnf_entry::clausify_nnf_from]:
     Source: 'src/nnf_entry.rs', lines 17:0-43:1
     Visibility: public -/
@@ -1648,5 +2343,35 @@ def nnf_entry.clausify_nnf_from
   | core.ops.control_flow.ControlFlow.Break residual =>
     core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
       Preprocessed (core.convert.FromSame Error) residual
+
+/-- [fang_fof_core::naming::name_then_clausify]:
+    Source: 'src/naming.rs', lines 299:0-314:1
+    Visibility: public -/
+def naming.name_then_clausify
+  (formula : Nnf) (threshold : Std.Usize) (next : Std.U32) (limits : Limits)
+  (statistics : Statistics) :
+  Result (core.result.Result naming.Named Error)
+  := do
+  let r ← naming.name_nnf formula threshold next limits statistics
+  let cf ← core.result.Result.Insts.CoreOpsTry.branch r
+  match cf with
+  | core.ops.control_flow.ControlFlow.Continue val =>
+    let r1 ← nnf_entry.clausify_nnf_from val.formula limits statistics
+    let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
+    match cf1 with
+    | core.ops.control_flow.ControlFlow.Continue val1 =>
+      ok (core.result.Result.Ok
+        {
+          clauses := val1.clauses,
+          definitions := val.definitions,
+          next := val.next,
+          statistics := val1.statistics
+        })
+    | core.ops.control_flow.ControlFlow.Break residual =>
+      core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+        naming.Named (core.convert.FromSame Error) residual
+  | core.ops.control_flow.ControlFlow.Break residual =>
+    core.result.Result.Insts.CoreOpsTry_traitFromResidualResult.from_residual
+      naming.Named (core.convert.FromSame Error) residual
 
 end fang_fof_core

@@ -1,0 +1,20 @@
+[package]
+name = "fang-models"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+description = "Finite model search for Fang: flattening, grounding per domain size and a CDCL solver. Candidates only; the Lean model checker decides."
+
+[dependencies]
+fang = { path = "../.." }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+fang-tptp-coverage-candidate = { path = "../tptp-coverage" }
+fang-tptp-signed-bundle = { path = "../tptp-signed-bundle" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true

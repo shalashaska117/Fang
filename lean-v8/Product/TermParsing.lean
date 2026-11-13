@@ -1,5 +1,6 @@
 /- Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license; see LICENSE. -/
 import Product.VariableNames
+import Product.TextLexing
 import Init.Data.String.Lemmas.Intercalate
 
 namespace Fang.TstpText
@@ -26,8 +27,8 @@ theorem punctuation_boundary {byte token rest} (h : Punctuation byte token) :
   exact h.not_word
 
 theorem lexeme_append {input middle : Bytes} {token : Token}
-    (h : Lexeme input token middle) (suffix : Bytes) (boundary : StartsBoundary suffix) :
-    Lexeme (input ++ suffix) token (middle ++ suffix) := by
+    (h : TextLexeme input token middle) (suffix : Bytes) (boundary : StartsBoundary suffix) :
+    TextLexeme (input ++ suffix) token (middle ++ suffix) := by
   cases h with
   | word shape maximal spelled =>
     refine .word (by simp [shape, List.append_assoc]) ⟨maximal.members, ?_⟩ spelled
@@ -38,22 +39,17 @@ theorem lexeme_append {input middle : Bytes} {token : Token}
       have same : first = byte := (List.cons.inj (by simpa [hm] using equal)).1
       subst byte
       exact maximal.boundary first rest hm
-  | punctuation spelled => simpa using Lexeme.punctuation (rest := middle ++ suffix) spelled
+  | quoted shape atom => exact .quoted (by simp [shape, List.append_assoc]) atom
+  | punctuation spelled => simpa using TextLexeme.punctuation (rest := middle ++ suffix) spelled
 
 theorem tokenization_append {left right : Bytes} {first second : List Token}
-    (h₁ : Tokenization left first) (h₂ : Tokenization right second)
+    (h₁ : TextTokenization left first) (h₂ : TextTokenization right second)
     (boundary : StartsBoundary right) :
-    Tokenization (left ++ right) (first ++ second) := by
+    TextTokenization (left ++ right) (first ++ second) := by
   induction h₁ with
   | empty => simpa using h₂
-  | whitespace space _ ih => simpa using Tokenization.whitespace space ih
+  | whitespace space _ ih => simpa using TextTokenization.whitespace space ih
   | token read _ ih => exact .token (lexeme_append read right boundary) ih
-
-theorem word_tokenization {bytes token} (word : WordSpelling bytes token) :
-    Tokenization bytes [token] := by
-  apply Tokenization.token (middle := [])
-  · exact .word (by simp) ⟨word.word_bytes.2, by intros; contradiction⟩ word
-  · exact .empty
 
 mutual
 inductive NamedTerm (symbols : List Frontend.Symbol) : Fang.Term → Source.Term → Prop where
@@ -70,7 +66,7 @@ inductive NamedTerms (symbols : List Frontend.Symbol) :
 end
 
 def TermBytesParse (bytes : Bytes) (term : Source.Term) : Prop :=
-  ∃ tokens, Tokenization bytes tokens ∧ TermTokens tokens term []
+  ∃ tokens, TextTokenization bytes tokens ∧ TermTokens tokens term []
 
 theorem TermBytesParse.unique {bytes left right}
     (hl : TermBytesParse bytes left) (hr : TermBytesParse bytes right) : left = right := by
@@ -83,28 +79,27 @@ theorem TermBytesParse.unique {bytes left right}
 mutual
 theorem term_tokens {symbols : List Frontend.Symbol} {value : Fang.Term} {text : String}
     (h : TermText symbols value text) :
-    ∃ named tokens, NamedTerm symbols value named ∧ Tokenization (spelling text) tokens ∧
+    ∃ named tokens, NamedTerm symbols value named ∧ TextTokenization (spelling text) tokens ∧
       ∀ suffix, suffix.head? ≠ some Token.lparen →
         TermTokens (tokens ++ suffix) named suffix := by
   cases h with
   | «variable» index =>
     refine ⟨.var s!"X{index}", [.variable s!"X{index}"], .variable index,
-      word_tokenization (.variableWord _ rfl (variable_name_grammar index)), ?_⟩
+      text_word_tokenization (.variableWord _ rfl (variable_name_grammar index)), ?_⟩
     intro suffix _
     exact .variableTerm _ suffix
-  | constant symbol =>
-    refine ⟨.app _ [], [.lower _], .application symbol .nil,
-      word_tokenization (.lower _ rfl symbol.grammar), ?_⟩
+  | constant symbol word =>
+    refine ⟨.app _ [], [.lower _], .application symbol .nil, atomic_tokenization word, ?_⟩
     intro suffix boundary
     exact .constant _ suffix boundary
-  | @application index arguments rendered name nonempty symbol children =>
+  | @application index arguments rendered name text nonempty symbol word children =>
     obtain ⟨names, tokens, named, lexical, parsed⟩ := terms_tokens children
-    have close : Tokenization ((spelling (String.intercalate "," rendered)) ++ [41])
+    have close : TextTokenization ((spelling (String.intercalate "," rendered)) ++ [41])
         (tokens ++ [.rparen]) :=
       tokenization_append lexical (.token (.punctuation .rparen) .empty)
         (punctuation_boundary Punctuation.rparen)
-    have openClose := Tokenization.token (Lexeme.punctuation Punctuation.lparen) close
-    have whole := tokenization_append (word_tokenization (.lower name rfl symbol.grammar))
+    have openClose := TextTokenization.token (TextLexeme.punctuation Punctuation.lparen) close
+    have whole := tokenization_append (atomic_tokenization word)
       openClose (punctuation_boundary Punctuation.lparen)
     refine ⟨.app name names, .lower name :: .lparen :: (tokens ++ [.rparen]),
       .application symbol named, ?_, ?_⟩
@@ -117,13 +112,13 @@ termination_by sizeOf value
 theorem terms_tokens {symbols : List Frontend.Symbol} {values : List Fang.Term} {texts : List String}
     (h : TermsText symbols values texts) :
     ∃ names tokens, NamedTerms symbols values names ∧
-      Tokenization (spelling (String.intercalate "," texts)) tokens ∧
+      TextTokenization (spelling (String.intercalate "," texts)) tokens ∧
       ∀ suffix, values ≠ [] →
         ArgumentsTokens (tokens ++ .rparen :: suffix) names suffix := by
   cases h with
   | nil =>
     refine ⟨[], [], .nil, ?_, ?_⟩
-    · simpa using Tokenization.empty
+    · simpa using TextTokenization.empty
     · intros; contradiction
   | @cons first text rest texts head tail =>
     obtain ⟨name, firstTokens, namedHead, lexicalHead, parsedHead⟩ := term_tokens head
@@ -143,7 +138,7 @@ theorem terms_tokens {symbols : List Frontend.Symbol} {values : List Fang.Term} 
         intro empty
         have len := tail.length
         simp [empty] at len
-      have commaTail := Tokenization.token (Lexeme.punctuation Punctuation.comma) lexicalTail
+      have commaTail := TextTokenization.token (TextLexeme.punctuation Punctuation.comma) lexicalTail
       have whole := tokenization_append lexicalHead commaTail
         (punctuation_boundary Punctuation.comma)
       refine ⟨name :: names, firstTokens ++ .comma :: tailTokens,

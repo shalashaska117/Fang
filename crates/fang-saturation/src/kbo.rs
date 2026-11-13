@@ -1,0 +1,218 @@
+// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
+//! Knuth-Bendix ordering with every symbol and variable of weight 1, and the literal ordering built on it.
+//! Nothing here affects soundness: the ordering only decides which inferences are tried.
+
+use crate::clause::{Atom, Lit};
+use crate::term::{Bank, Head, TermId};
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Cmp {
+    Greater,
+    Less,
+    Equal,
+    Incomparable,
+}
+
+impl Cmp {
+    pub fn reverse(self) -> Self {
+        match self {
+            Cmp::Greater => Cmp::Less,
+            Cmp::Less => Cmp::Greater,
+            other => other,
+        }
+    }
+}
+
+pub struct Order {
+    /// Rank of each bank symbol; a higher rank is a greater symbol.
+    rank: Vec<u32>,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Precedence {
+    /// Greater arity is greater, then more frequent is greater, then the larger number.
+    Arity,
+    /// Less frequent is greater, then greater arity, then the larger number.
+    InverseFrequency,
+}
+
+/// Variable balance: whether every variable occurs in `s` at least as often as in `t`, and the converse.
+fn balance(bank: &Bank, s: TermId, t: TermId) -> (bool, bool) {
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+    bank.collect_vars(s, &mut left);
+    bank.collect_vars(t, &mut right);
+    left.sort_unstable();
+    right.sort_unstable();
+    let (mut s_covers, mut t_covers) = (true, true);
+    let (mut i, mut j) = (0, 0);
+    while i < left.len() || j < right.len() {
+        let x = if i < left.len() { left[i] } else { u32::MAX };
+        let y = if j < right.len() { right[j] } else { u32::MAX };
+        let variable = x.min(y);
+        let mut in_s = 0;
+        while i < left.len() && left[i] == variable {
+            in_s += 1;
+            i += 1;
+        }
+        let mut in_t = 0;
+        while j < right.len() && right[j] == variable {
+            in_t += 1;
+            j += 1;
+        }
+        if in_s < in_t {
+            s_covers = false;
+        }
+        if in_t < in_s {
+            t_covers = false;
+        }
+    }
+    (s_covers, t_covers)
+}
+
+impl Order {
+    /// `arities` and `counts` are indexed by bank symbol (functions, then predicates); predicates rank above every
+    /// function symbol.
+    pub fn new(
+        arities: &[usize],
+        counts: &[u64],
+        functions: usize,
+        precedence: Precedence,
+    ) -> Self {
+        let mut symbols: Vec<usize> = (0..arities.len()).collect();
+        symbols.sort_by_key(|&symbol| {
+            let predicate = (symbol >= functions) as u64;
+            let arity = arities[symbol] as u64;
+            let count = counts[symbol];
+            match precedence {
+                Precedence::Arity => (predicate, arity, count, symbol as u64),
+                Precedence::InverseFrequency => (predicate, u64::MAX - count, arity, symbol as u64),
+            }
+        });
+        let mut rank = vec![0; arities.len()];
+        for (position, symbol) in symbols.into_iter().enumerate() {
+            rank[symbol] = position as u32;
+        }
+        Self { rank }
+    }
+
+    pub fn compare(&self, bank: &Bank, s: TermId, t: TermId) -> Cmp {
+        if s == t {
+            return Cmp::Equal;
+        }
+        match (bank.head(s), bank.head(t)) {
+            (Head::Var(_), Head::Var(_)) => Cmp::Incomparable,
+            (Head::Var(x), _) => {
+                if bank.contains_var(t, x) {
+                    Cmp::Less
+                } else {
+                    Cmp::Incomparable
+                }
+            }
+            (_, Head::Var(y)) => {
+                if bank.contains_var(s, y) {
+                    Cmp::Greater
+                } else {
+                    Cmp::Incomparable
+                }
+            }
+            (Head::Sym(f), Head::Sym(g)) => {
+                let (s_covers, t_covers) = balance(bank, s, t);
+                let greater = if s_covers {
+                    Cmp::Greater
+                } else {
+                    Cmp::Incomparable
+                };
+                let less = if t_covers {
+                    Cmp::Less
+                } else {
+                    Cmp::Incomparable
+                };
+                let (ws, wt) = (bank.weight(s), bank.weight(t));
+                if ws > wt {
+                    return greater;
+                }
+                if ws < wt {
+                    return less;
+                }
+                let (rf, rg) = (self.rank[f as usize], self.rank[g as usize]);
+                if rf > rg {
+                    return greater;
+                }
+                if rf < rg {
+                    return less;
+                }
+                let (xs, ys) = (bank.args(s), bank.args(t));
+                for index in 0..xs.len().min(ys.len()) {
+                    if xs[index] == ys[index] {
+                        continue;
+                    }
+                    return match self.compare(bank, xs[index], ys[index]) {
+                        Cmp::Greater => greater,
+                        Cmp::Less => less,
+                        _ => Cmp::Incomparable,
+                    };
+                }
+                Cmp::Incomparable
+            }
+        }
+    }
+
+    fn element(&self, bank: &Bank, a: Option<TermId>, b: Option<TermId>) -> Cmp {
+        match (a, b) {
+            (None, None) => Cmp::Equal,
+            (None, Some(_)) => Cmp::Less,
+            (Some(_), None) => Cmp::Greater,
+            (Some(x), Some(y)) => self.compare(bank, x, y),
+        }
+    }
+
+    /// Literal ordering: the multiset extension over {s, t} for s = t, {s, s, t, t} for s != t, and P(u) read as
+    /// P(u) = T with T below every term.
+    pub fn compare_literals(&self, bank: &Bank, a: Lit, b: Lit) -> Cmp {
+        if a == b {
+            return Cmp::Equal;
+        }
+        let mut left = elements(a);
+        let mut right = elements(b);
+        // Remove the common elements, then each remaining element of the smaller side needs a greater one.
+        let mut index = 0;
+        while index < left.len() {
+            if let Some(position) = right.iter().position(|&other| other == left[index]) {
+                right.swap_remove(position);
+                left.swap_remove(index);
+            } else {
+                index += 1;
+            }
+        }
+        if left.is_empty() && right.is_empty() {
+            return Cmp::Equal;
+        }
+        let dominates = |big: &[Option<TermId>], small: &[Option<TermId>]| {
+            !big.is_empty()
+                && small.iter().all(|&y| {
+                    big.iter()
+                        .any(|&x| self.element(bank, x, y) == Cmp::Greater)
+                })
+        };
+        if dominates(&left, &right) {
+            Cmp::Greater
+        } else if dominates(&right, &left) {
+            Cmp::Less
+        } else {
+            Cmp::Incomparable
+        }
+    }
+}
+
+fn elements(literal: Lit) -> Vec<Option<TermId>> {
+    let (s, t) = match literal.atom {
+        Atom::Eq(s, t) => (Some(s), Some(t)),
+        Atom::Pred(atom) => (Some(atom), None),
+    };
+    if literal.positive {
+        vec![s, t]
+    } else {
+        vec![s, s, t, t]
+    }
+}

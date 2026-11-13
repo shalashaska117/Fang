@@ -1,5 +1,5 @@
 /- Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
-   Isolated compiled checker for signed role tasks over a sealed include bundle, with the role-aware framer over framer revision 2 and the counted declaration limit of the limits record: at most `Fang.NativeLimits.declarationLimit` formulas per file, with duplicate names found through a hash set. The framer runs the linear framer lexer, the reversed statement splitter and the counted record decoder, and `V3.limited_eq` proves it equal to the list framer the meanings are stated over. The caller seals and hashes every file; each is read once. The orchestrating command selects the task: `--goal N` for the selected conjecture with index N in expansion order, or `--inputs` for a bundle without a selected conjecture. `--goals` lists the selected conjectures with their items and reads no certificate. Bundle files come as ROOT PATH FILE triples, top-level file first, as in bundle-v8/native. The replay limits, the predicate and literal caps and the per-file byte limit are those of NativeLimits.lean; the message functions are those of the earlier signed checker main SignedBundleNativeMainFast. -/
+   Isolated compiled checker for signed role tasks over a sealed include bundle, with the role-aware framer over framer revision 2 and the counted declaration limit of the limits record: at most `Fang.NativeLimits.declarationLimit` formulas per file, with duplicate names found through a hash set. The framer runs the linear framer lexer, the reversed statement splitter and the counted record decoder, and `V3.limited_eq` proves it equal to the list framer the meanings are stated over. The caller seals and hashes every file; each is read once. The orchestrating command selects the task: `--goal N` for the selected conjecture with index N in expansion order, or `--inputs` for a bundle without a selected conjecture. `--goals` lists the selected conjectures with their items and reads no certificate. Bundle files come as ROOT PATH FILE triples, top-level file first, as in bundle-v8/native. The replay limits, the predicate and literal caps and the per-file byte limit are those of NativeLimits.lean; the message functions are those of the earlier signed checker main SignedBundleNativeMainFast. The certificate is read under `Fang.NativeLimits.certificateLimit`. -/
 import RoleReplayLimit
 import Fang.BoundedInput
 
@@ -16,6 +16,8 @@ def maximumPredicates : Usize := Fang.NativeLimits.maximumPredicates
 def maximumLiterals : Usize := Fang.NativeLimits.maximumLiterals
 def byteLimit : Nat := Fang.NativeLimits.byteLimit
 
+def certificateLimit : Nat := Fang.NativeLimits.certificateLimit
+
 /-- Total bytes over all bundle files. -/
 def bundleLimit : Nat := 4 * byteLimit
 
@@ -26,14 +28,14 @@ inductive ReadError where
   | nonAscii : Nat → ReadError
   | roundtrip
 
-def readBytes (path : String) : IO (Except ReadError ByteArray) := do
+def readBytes (path : String) (limit : Nat := byteLimit) : IO (Except ReadError ByteArray) := do
   let bytes ← IO.FS.withFile path .read fun handle =>
-    Fang.Runtime.readAtMost handle (byteLimit + 1)
-  if bytes.size > byteLimit then return .error .limit
+    Fang.Runtime.readAtMost handle (limit + 1)
+  if bytes.size > limit then return .error .limit
   return .ok bytes
 
-def readText (path : String) : IO (Except ReadError String) := do
-  match ← readBytes path with
+def readText (path : String) (limit : Nat := certificateLimit) : IO (Except ReadError String) := do
+  match ← readBytes path limit with
   | .error error => return .error error
   | .ok bytes =>
     let some text := String.fromUTF8? bytes | return .error .invalidUtf8

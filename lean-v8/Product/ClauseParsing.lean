@@ -45,13 +45,13 @@ theorem literals_correspondence {problem : TstpExport.NamedProblem} (values : Fa
 theorem literals_tokens {problem : TstpExport.NamedProblem} {values : Fang.Clause} {texts : List String}
     (h : LiteralsText problem values texts) :
     ∃ names tokens, NamedClause problem values names ∧
-      Tokenization (spelling (String.intercalate " | " texts)) tokens ∧
+      TextTokenization (spelling (String.intercalate " | " texts)) tokens ∧
       ∀ suffix, values ≠ [] →
         DisjunctionTokens (tokens ++ .rparen :: suffix) names suffix := by
   induction h with
   | nil =>
     refine ⟨[], [], .nil, ?_, ?_⟩
-    · simpa using Tokenization.empty
+    · simpa using TextTokenization.empty
     · intros; contradiction
   | @cons first text rest texts head tail ih =>
     obtain ⟨name, firstTokens, namedHead, lexicalHead, parsedHead⟩ := literal_tokens head
@@ -71,7 +71,7 @@ theorem literals_tokens {problem : TstpExport.NamedProblem} {values : Fang.Claus
         intro empty
         have len := tail.length
         simp [empty] at len
-      have separator : Tokenization (32 :: 124 :: 32 :: spelling (String.intercalate " | " texts))
+      have separator : TextTokenization (32 :: 124 :: 32 :: spelling (String.intercalate " | " texts))
           (.disjoin :: tailTokens) :=
         .whitespace (by simp [IsSpace])
           (.token (.punctuation .disjoin) (.whitespace (by simp [IsSpace]) lexicalTail))
@@ -93,7 +93,7 @@ theorem literals_tokens {problem : TstpExport.NamedProblem} {values : Fang.Claus
 /-- A clause body is parsed in its actual row context: the following closing
 parenthesis belongs to the BodyTokens grammar and is consumed by it. -/
 def ClauseBytesParse (bytes : Bytes) (literals : List Source.Literal) : Prop :=
-  ∃ tokens, Tokenization (bytes ++ [41]) tokens ∧ BodyTokens tokens literals []
+  ∃ tokens, TextTokenization (bytes ++ [41]) tokens ∧ BodyTokens tokens literals []
 
 theorem ClauseBytesParse.unique {bytes left right}
     (hl : ClauseBytesParse bytes left) (hr : ClauseBytesParse bytes right) : left = right := by
@@ -111,7 +111,7 @@ theorem clause_byte_correspondence {problem : TstpExport.NamedProblem} (value : 
     simp [TstpExport.clause, pure, Except.pure] at accepted
     subst text
     refine ⟨[], .nil, [.falseLiteral, .rparen], ?_, .falsity []⟩
-    exact tokenization_append (word_tokenization (.falsity rfl))
+    exact tokenization_append (text_word_tokenization (.falsity rfl))
       (.token (.punctuation .rparen) .empty) (punctuation_boundary Punctuation.rparen)
   | cons first rest =>
     cases hm : (first :: rest).mapM (TstpExport.literal problem) with

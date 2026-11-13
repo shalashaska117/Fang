@@ -20,7 +20,19 @@ unsafe_code = "forbid"
 # The root package is a member without being listed.
 [workspace]
 members = [
+    "crates/fang-hash",
+    "crates/fang-json",
+    "crates/fang-toml",
+    "crates/fang-supervisor",
+    "crates/fang-axiom-audit",
+    "crates/fang-source-checks",
+    "crates/fang-kernel-workspace",
+    "crates/fang-launcher",
+    "crates/fang-install",
+    "crates/v8-kernel",
     "crates/fang-predicate-index",
+    "crates/fang-models",
+    "crates/fang-saturation",
     "crates/fang-v8",
     "crates/fang-tptp-expanded",
     "crates/tptp-cnf-boolean",

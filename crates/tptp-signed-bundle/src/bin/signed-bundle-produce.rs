@@ -2,17 +2,18 @@
 // Diagnostic candidate transport. Exit 0 never means an independently checked result.
 #![forbid(unsafe_code)]
 
-//! Candidate producer for signed role tasks over a sealed bundle. Bundle files come as ROOT PATH FILE triples, top-level file first, as the bundle checker reads them. `--goals` lists the selected conjectures with their bundle items; `--goal N` and `--inputs` select a task as the checker does. With `--render` the prepared task is printed instead of searched; `--skolem-symbols` sets the Skolem symbol budget for agreement controls. Exit 0 means a list, a render or a candidate certificate, 2 Unknown, 1 a typed error; none of these is a checked result.
+//! Candidate producer for signed role tasks over a sealed bundle. Bundle files come as ROOT PATH FILE triples, top-level file first, as the bundle checker reads them. `--goals` lists the selected conjectures with their bundle items; `--goal N` and `--inputs` select a task as the checker does. With `--render` the prepared task is printed instead of searched; `--skolem-symbols` sets the Skolem symbol budget for agreement controls. With `--cite F:S,...` the task keeps only the cited bundle items and the selected goal, and a candidate is printed after its premise line `(premises (item F S) ...)`; an empty list after `--cite` cites nothing. Exit 0 means a list, a render or a candidate certificate, 2 Unknown, 1 a typed error; none of these is a checked result.
 
 use fang_tptp_coverage_candidate::Root;
 use fang_tptp_signed_bundle::{
-    error_kind, flatten, prepare_bundle_task, produce_bundle_task, sealed,
+    error_kind, flatten, premise_line, prepare_bundle_task, prepare_cited_task,
+    produce_bundle_task, produce_cited_task, sealed,
 };
 use fang_tptp_signed_roles::{Limits, Outcome, Selection, render};
 use std::io::{Read, Write};
 use std::process::ExitCode;
 
-const USAGE: &str = "usage: signed-bundle-produce [--render] [--skolem-symbols N] (--goal N | --inputs | --goals) ROOT PATH FILE [ROOT PATH FILE]...";
+const USAGE: &str = "usage: signed-bundle-produce [--render] [--skolem-symbols N] [--cite F:S,...] (--goal N | --inputs | --goals) ROOT PATH FILE [ROOT PATH FILE]...";
 const FILE_BYTES: u64 = 1024 * 1024;
 
 enum Mode {
@@ -52,6 +53,19 @@ fn read_files(arguments: &[String]) -> Result<Vec<(Root, String, Vec<u8>)>, Exit
     Ok(files)
 }
 
+/// Bundle items written `F:S`, separated by commas; the empty string is the empty list.
+fn parse_items(text: &str) -> Option<Vec<(usize, usize)>> {
+    if text.is_empty() {
+        return Some(Vec::new());
+    }
+    text.split(',')
+        .map(|item| {
+            let (file, statement) = item.split_once(':')?;
+            Some((file.parse().ok()?, statement.parse().ok()?))
+        })
+        .collect()
+}
+
 fn main() -> ExitCode {
     let mut arguments: Vec<String> = std::env::args().skip(1).collect();
     let render_only = arguments.first().is_some_and(|flag| flag == "--render");
@@ -65,6 +79,14 @@ fn main() -> ExitCode {
     {
         match arguments.get(1).map(|value| value.parse()) {
             Some(Ok(count)) => limits.skolem.max_skolem_symbols = count,
+            _ => return usage(),
+        }
+        arguments.drain(..2);
+    }
+    let mut cited = None;
+    if arguments.first().is_some_and(|flag| flag == "--cite") {
+        match arguments.get(1).map(|value| parse_items(value)) {
+            Some(Some(items)) => cited = Some(items),
             _ => return usage(),
         }
         arguments.drain(..2);
@@ -85,6 +107,7 @@ fn main() -> ExitCode {
     let bundle = sealed(files);
     let mut stdout = std::io::stdout().lock();
     let written = match mode {
+        Mode::Goals if cited.is_some() => return usage(),
         Mode::Goals => match flatten(&bundle, &limits) {
             Ok(flat) => {
                 let mut text = format!("goals {}\n", flat.goals.len());
@@ -99,33 +122,54 @@ fn main() -> ExitCode {
             }
         },
         Mode::Task(selection) if render_only => {
-            match prepare_bundle_task(&bundle, selection, &limits) {
-                Ok((_, prepared)) => stdout.write_all(render(&prepared).as_bytes()),
+            let prepared = match &cited {
+                Some(items) => prepare_cited_task(&bundle, selection, items, &limits)
+                    .map(|(_, _, prepared)| prepared),
+                None => {
+                    prepare_bundle_task(&bundle, selection, &limits).map(|(_, prepared)| prepared)
+                }
+            };
+            match prepared {
+                Ok(prepared) => stdout.write_all(render(&prepared).as_bytes()),
                 Err(error) => {
                     eprintln!("error: {} {error:?}", error_kind(&error));
                     return ExitCode::from(1);
                 }
             }
         }
-        Mode::Task(selection) => match produce_bundle_task(&bundle, selection, &limits) {
-            Ok((_, produced)) => match produced.outcome {
-                Outcome::CandidateRefutation { text, .. } => {
-                    eprintln!("candidate-certificate: unchecked signed bundle task");
-                    stdout.write_all(text.as_bytes())
+        Mode::Task(selection) => {
+            let produced = match &cited {
+                Some(items) => produce_cited_task(&bundle, selection, items, &limits)
+                    .map(|(citations, _, produced)| (Some(premise_line(&citations)), produced)),
+                None => produce_bundle_task(&bundle, selection, &limits)
+                    .map(|(_, produced)| (None, produced)),
+            };
+            match produced {
+                Ok((line, produced)) => match produced.outcome {
+                    Outcome::CandidateRefutation { text, .. } => {
+                        eprintln!("candidate-certificate: unchecked signed bundle task");
+                        match line {
+                            Some(line) => stdout
+                                .write_all(line.as_bytes())
+                                .and_then(|()| stdout.write_all(b"\n"))
+                                .and_then(|()| stdout.write_all(text.as_bytes())),
+                            None => stdout.write_all(text.as_bytes()),
+                        }
+                    }
+                    Outcome::Unknown(statistics) => {
+                        eprintln!(
+                            "unknown: processed={} attempted={}",
+                            statistics.processed_clauses, statistics.attempted_inferences
+                        );
+                        return ExitCode::from(2);
+                    }
+                },
+                Err(error) => {
+                    eprintln!("error: {} {error:?}", error_kind(&error));
+                    return ExitCode::from(1);
                 }
-                Outcome::Unknown(statistics) => {
-                    eprintln!(
-                        "unknown: processed={} attempted={}",
-                        statistics.processed_clauses, statistics.attempted_inferences
-                    );
-                    return ExitCode::from(2);
-                }
-            },
-            Err(error) => {
-                eprintln!("error: {} {error:?}", error_kind(&error));
-                return ExitCode::from(1);
             }
-        },
+        }
     };
     if written.is_err() {
         eprintln!("io: output failed");

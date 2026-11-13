@@ -1,5 +1,5 @@
 /- Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
-   Draft exact-call adapters over the unchanged equality bridge specifications. -/
+   Exact-call adapters over the unchanged equality bridge specifications. -/
 import EqualityClauseReplay
 import ArityTable
 

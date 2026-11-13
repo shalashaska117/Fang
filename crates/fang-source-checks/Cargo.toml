@@ -1,0 +1,20 @@
+[package]
+name = "fang-source-checks"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[[bin]]
+name = "fang-check-sources"
+path = "src/main.rs"
+
+[dependencies]
+fang-hash = { path = "../fang-hash" }
+fang-json = { path = "../fang-json" }
+fang-toml = { path = "../fang-toml" }
+fang-supervisor = { path = "../fang-supervisor" }
+
+[lints.rust]
+unsafe_code = "forbid"

@@ -33,17 +33,17 @@ theorem witness_term_correspondence {symbols : List Frontend.Symbol} (value : Fa
   | app index arguments =>
     cases hs : TstpExport.symbol symbols index arguments.length with
     | error e => simp [TstpExport.witnessTerm, hs, bind, Except.bind] at accepted
-    | ok name =>
+    | ok spelled =>
       cases ht : TstpExport.witnessTerms symbols arguments with
       | error e => simp [TstpExport.witnessTerm, hs, ht, bind, Except.bind] at accepted
       | ok rendered =>
-        have symbol := symbol_correspondence hs
+        obtain ⟨name, symbol, word⟩ := symbol_correspondence hs
         obtain ⟨names, meaning, grammar⟩ := witness_terms_correspondence arguments ht
         simp [TstpExport.witnessTerm, hs, ht, bind, Except.bind, pure, Except.pure] at accepted
         subst text
         refine ⟨.function "fun" [.atom name, .list names], .application symbol meaning, ?_⟩
         exact (function_two "fun" (by decide)
-          (.atom (.lower symbol.grammar)) (.list grammar)).spelling_eq (by string_shape)
+          (.atom word) (.list grammar)).spelling_eq (by string_shape)
 termination_by sizeOf value
 
 theorem witness_terms_correspondence {symbols : List Frontend.Symbol} (values : List Fang.Term)

@@ -1,0 +1,137 @@
+[
+ {
+  "argv": [],
+  "error": "Invalid command arguments: the following arguments are required: input"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--check",
+   "x"
+  ],
+  "error": "Invalid command arguments: argument --check: invalid choice: 'x' (choose from compiled, kernel, none)"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--wall-seconds",
+   "abc"
+  ],
+  "error": "Invalid command arguments: argument --wall-seconds: invalid float value: 'abc'"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--memory-mib",
+   "1.5"
+  ],
+  "error": "Invalid command arguments: argument --memory-mib: invalid int value: '1.5'"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--check"
+  ],
+  "error": "Invalid command arguments: argument --check: expected one argument"
+ },
+ {
+  "argv": [
+   "p.p",
+   "q.p"
+  ],
+  "error": "Invalid command arguments: unrecognized arguments: q.p"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--bogus"
+  ],
+  "error": "Invalid command arguments: unrecognized arguments: --bogus"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--self-check=1"
+  ],
+  "error": "Invalid command arguments: argument --self-check: ignored explicit argument '1'"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--max"
+  ],
+  "error": "Invalid command arguments: ambiguous option: --max could match --max-solution-bytes, --max-input-bytes, --max-certificate-bytes, --max-log-bytes, --max-artifact-bytes"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--output",
+   "html"
+  ],
+  "error": "Invalid command arguments: argument --output: invalid choice: 'html' (choose from status, tstp)"
+ },
+ {
+  "argv": [
+   "--wall-seconds",
+   "-5",
+   "p.p"
+  ],
+  "error": "Invalid command arguments: --capability must be supplied by the installed launcher or explicitly"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--wall-seconds",
+   "0.1"
+  ],
+  "error": "Invalid command arguments: --capability must be supplied by the installed launcher or explicitly"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--memory-mib",
+   "8"
+  ],
+  "error": "Invalid command arguments: --capability must be supplied by the installed launcher or explicitly"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--max-solution-bytes",
+   "-1"
+  ],
+  "error": "Invalid command arguments: --capability must be supplied by the installed launcher or explicitly"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--profile",
+   "cnf"
+  ],
+  "error": "Invalid command arguments: --profile cnf is dispatched by the fang launcher, not by the v8 adapter"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--max-input-bytes",
+   "2000000"
+  ],
+  "error": "Invalid command arguments: --capability must be supplied by the installed launcher or explicitly"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--wall-seconds",
+   "nan"
+  ],
+  "error": "Invalid command arguments: --capability must be supplied by the installed launcher or explicitly"
+ },
+ {
+  "argv": [
+   "p.p",
+   "--check=kernel",
+   "--wall"
+  ],
+  "error": "Invalid command arguments: argument --wall-seconds: expected one argument"
+ }
+]

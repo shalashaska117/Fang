@@ -11,7 +11,7 @@ mutual
 def namedTerm (symbols : List Frontend.Symbol) : Fang.Term → Except String Source.Term
   | .var index => .ok (.var s!"X{index}")
   | .app index arguments =>
-    match TstpExport.symbol symbols index arguments.length, namedTerms symbols arguments with
+    match TstpExport.symbolName symbols index arguments.length, namedTerms symbols arguments with
     | .ok symbol, .ok named => .ok (.app symbol named)
     | .error reason, _ => .error reason
     | .ok _, .error reason => .error reason
@@ -34,7 +34,7 @@ theorem namedTerm_spec {symbols : List Frontend.Symbol} :
     subst named
     exact ⟨.variable index, by simpa [FormulaText.TermNames] using variable_name_grammar index⟩
   | .app index arguments, named, success => by
-    cases symbolRun : TstpExport.symbol symbols index arguments.length with
+    cases symbolRun : TstpExport.symbolName symbols index arguments.length with
     | error reason => simp [namedTerm, symbolRun] at success
     | ok symbol =>
       cases childRun : namedTerms symbols arguments with
@@ -42,11 +42,11 @@ theorem namedTerm_spec {symbols : List Frontend.Symbol} :
       | ok children =>
         simp only [namedTerm, symbolRun, childRun, Except.ok.injEq] at success
         subst named
-        have text := symbol_correspondence symbolRun
+        have text := symbolName_correspondence symbolRun
         obtain ⟨related, valid⟩ := namedTerms_spec childRun
         refine ⟨.application text related, ?_⟩
         simp only [FormulaText.TermNames]
-        exact ⟨text.grammar, valid⟩
+        exact ⟨text.printable, valid⟩
 
 theorem namedTerms_spec {symbols : List Frontend.Symbol} :
     ∀ {terms : List Fang.Term} {named : List Source.Term}, namedTerms symbols terms = .ok named →
@@ -77,7 +77,7 @@ def namedLiteral (names : Body.Names) (value : Equality.Literal) :
     Except String EqualitySource.Literal :=
   match value.atom with
   | .predicate atom =>
-    match TstpExport.symbol names.predicates atom.pred atom.args.length,
+    match TstpExport.symbolName names.predicates atom.pred atom.args.length,
         namedTerms names.functions atom.args with
     | .ok symbol, .ok arguments => .ok ⟨value.positive, .predicate symbol arguments⟩
     | .error reason, _ => .error reason
@@ -99,7 +99,7 @@ theorem namedLiteral_spec {names : Body.Names} {value : Equality.Literal} {named
   obtain ⟨positive, atom⟩ := value
   cases atom with
   | predicate atom =>
-    cases symbolRun : TstpExport.symbol names.predicates atom.pred atom.args.length with
+    cases symbolRun : TstpExport.symbolName names.predicates atom.pred atom.args.length with
     | error reason => simp [namedLiteral, symbolRun] at success
     | ok symbol =>
       cases argumentsRun : namedTerms names.functions atom.args with
@@ -107,11 +107,11 @@ theorem namedLiteral_spec {names : Body.Names} {value : Equality.Literal} {named
       | ok arguments =>
         simp only [namedLiteral, symbolRun, argumentsRun, Except.ok.injEq] at success
         subst named
-        have text := symbol_correspondence symbolRun
+        have text := symbolName_correspondence symbolRun
         obtain ⟨related, valid⟩ := namedTerms_spec argumentsRun
         refine ⟨.predicate (named := ⟨positive, symbol, arguments⟩) ⟨rfl, text, related⟩, ?_⟩
         simp only [LiteralNames, FormulaText.TermNames]
-        exact ⟨text.grammar, valid⟩
+        exact ⟨text.printable, valid⟩
   | equal left right =>
     cases leftRun : namedTerm names.functions left with
     | error reason => simp [namedLiteral, leftRun] at success

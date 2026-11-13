@@ -1,18 +1,19 @@
 # Fang
 
-Fang is an automated theorem prover for first-order logic, written in Rust. Every proof it finds is checked by an independent Lean 4 checker against the original input before Fang reports a result.
+Fang is an automated theorem prover for first-order logic, written in Rust. By default, an independent Lean 4 checker checks each refutation or finite model against the original input before Fang reports a result.
 
-Fang reads TPTP CNF and FOF problems, with and without equality, including conjectures, include directives, annotations and distinct objects. It reports `Theorem` or `Unsatisfiable` only after the checker accepts, and it can print the proof as a TSTP refutation, except for problems that combine conjectures with include directives. It never reports that a problem is satisfiable. Typed and higher-order input (TFF, THF) and arithmetic are rejected.
+Fang reads TPTP CNF and FOF problems, with and without equality, including conjectures, include directives, annotations and distinct objects. Checked refutations give `Theorem` or `Unsatisfiable`; checked finite models give `Satisfiable` or `CounterSatisfiable`. It can print refutations and models in TSTP format, subject to the export limits in [Usage](docs/USAGE.md). Typed and higher-order input (TFF, THF) and arithmetic are rejected.
 
-The search is still weak. On 111 TPTP problems sampled from 37 domains, Fang proved 2 and Vampire proved 61 under the same limits of 60 seconds and 2 GiB. Improving the search is the goal of the next version.
+The explicit `--check none` option reports refutation candidates without checking them and labels each run as unchecked. It is never the default.
 
 ## Quick start
 
-Use Linux or WSL with rustup-managed Rust 1.90.0, Lean 4.35.0 and Python 3.14.4. Set `LEAN_ROOT` to the Lean 4.35.0 toolchain directory. The first command needs network access: it fetches the pinned Lean packages and the prebuilt mathlib cache. The second builds Fang; its Lean part takes about 20 minutes and close to 4 GiB of memory.
+Use Linux or WSL with rustup-managed Rust 1.90.0 and Lean 4.35.0. Set `LEAN_ROOT` to the Lean 4.35.0 toolchain directory. Build the local Rust tools first. The fetch command needs network access for the pinned Lean packages and the prebuilt mathlib cache. The final build command builds Fang and the Lean checkers. Build time and memory use depend on the host and toolchain cache.
 
 ```sh
-python3 tools/fetch-v8-backend.py --work .local/backend --lean-toolchain "$LEAN_ROOT"
-python3 tools/build-v8-local.py --out .local/fang --lean-toolchain "$LEAN_ROOT" \
+cargo build --release --locked --offline -p fang-install -p fang-source-checks
+target/release/fang-fetch-v8-backend --work .local/backend --lean-toolchain "$LEAN_ROOT"
+target/release/fang-build-v8-local --out .local/fang --lean-toolchain "$LEAN_ROOT" \
   --packages .local/backend/project/.lake/packages --lean-work /var/tmp/lean-build
 export PATH="$PWD/.local/fang/bin:$PATH"
 fang examples/problems/socrates.p

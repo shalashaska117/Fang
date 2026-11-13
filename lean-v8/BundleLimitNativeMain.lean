@@ -1,5 +1,5 @@
 /- Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
-   Compiled version-8 checker for a sealed bundle on the limits record. `BundleFastNativeMain.lean` with the hashed framer `BundleLimit.limited` in place of the linear framer and the limits of `NativeLimits.lean`: at most `Fang.NativeLimits.declarationLimit` formulas per file, duplicate names found through a hash set, and the replay limits, the predicate and literal caps and the per-file byte limit of that record. `BundleLimit.acceptsBundleLimited_refuted` states what an acceptance proves. The binary keeps the name `fang-bundle-native-fast`; the readers and error messages are those of `BundleFastNativeMain.lean`. -/
+   Compiled version-8 checker for a sealed bundle on the limits record. `BundleFastNativeMain.lean` with the hashed framer `BundleLimit.limited` in place of the linear framer and the limits of `NativeLimits.lean`: at most `Fang.NativeLimits.declarationLimit` formulas per file, duplicate names found through a hash set, and the replay limits, the predicate and literal caps and the per-file byte limit of that record. `BundleLimit.acceptsBundleLimited_refuted` states what an acceptance proves. The binary keeps the name `fang-bundle-native-fast`; the readers and error messages are those of `BundleFastNativeMain.lean`. The certificate is read under `Fang.NativeLimits.certificateLimit`. -/
 import BundleReplayLimit
 import Fang.BoundedInput
 
@@ -15,6 +15,8 @@ def maximumPredicates : Usize := Fang.NativeLimits.maximumPredicates
 def maximumLiterals : Usize := Fang.NativeLimits.maximumLiterals
 def byteLimit : Nat := Fang.NativeLimits.byteLimit
 
+def certificateLimit : Nat := Fang.NativeLimits.certificateLimit
+
 inductive ReadError where
   | limit
   | invalidUtf8
@@ -22,14 +24,14 @@ inductive ReadError where
   | nonAscii : Nat → ReadError
   | roundtrip
 
-def readBytes (path : String) : IO (Except ReadError ByteArray) := do
+def readBytes (path : String) (limit : Nat := byteLimit) : IO (Except ReadError ByteArray) := do
   let bytes ← IO.FS.withFile path .read fun handle =>
-    Fang.Runtime.readAtMost handle (byteLimit + 1)
-  if bytes.size > byteLimit then return .error .limit
+    Fang.Runtime.readAtMost handle (limit + 1)
+  if bytes.size > limit then return .error .limit
   return .ok bytes
 
-def readText (path : String) : IO (Except ReadError String) := do
-  match ← readBytes path with
+def readText (path : String) (limit : Nat := certificateLimit) : IO (Except ReadError String) := do
+  match ← readBytes path limit with
   | .error error => return .error error
   | .ok bytes =>
     let some text := String.fromUTF8? bytes | return .error .invalidUtf8

@@ -4,7 +4,8 @@
    the limits of NativeLimits, whose acceptance proves the bytes unsatisfiable.
    The caller seals and hashes both files; each is read once. The input bytes are
    passed unchanged to the byte decoder; the certificate is preserved exactly as
-   a Lean String. -/
+   a Lean String. The input is read under `byteLimit` and the certificate under
+   `certificateLimit`, both from NativeLimits. -/
 import ExpandedLimitDecoder
 import NativeLimits
 import Fang.BoundedInput
@@ -23,14 +24,16 @@ inductive ReadError where
 
 def byteLimit : Nat := Fang.NativeLimits.byteLimit
 
-def readBytes (path : String) : IO (Except ReadError ByteArray) := do
+def certificateLimit : Nat := Fang.NativeLimits.certificateLimit
+
+def readBytes (path : String) (limit : Nat := byteLimit) : IO (Except ReadError ByteArray) := do
   let bytes ← IO.FS.withFile path .read fun handle =>
-    Fang.Runtime.readAtMost handle (byteLimit + 1)
-  if bytes.size > byteLimit then return .error .limit
+    Fang.Runtime.readAtMost handle (limit + 1)
+  if bytes.size > limit then return .error .limit
   return .ok bytes
 
-def readText (path : String) : IO (Except ReadError String) := do
-  match ← readBytes path with
+def readText (path : String) (limit : Nat := certificateLimit) : IO (Except ReadError String) := do
+  match ← readBytes path limit with
   | .error error => return .error error
   | .ok bytes =>
     let some text := String.fromUTF8? bytes | return .error .invalidUtf8

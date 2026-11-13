@@ -1,0 +1,35 @@
+import NamedGoalDocumentDepth
+
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.decodeSignedLimited_witness
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.prepareGoalNamed_witness
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.prepareGoalNamed_check_entails
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.prepareInputsNamed_check_unsat
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.acceptsGoalNamed_replay
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.acceptsGoalNamed_entails
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.acceptsGoalsNamed_theorem
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.acceptsInputsNamed_unsat
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.decodeSignedLimited_accepted
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.prepareGoalNamed_accepted
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.prepareInputsNamed_accepted
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.acceptsGoalNamed_accepted
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.acceptsInputsNamed_accepted
+#print axioms Fang.TptpCandidate.Roles.Signed.DepthNamed.prepareGoalNamed_models
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.buildGoal_witness
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.buildGoal_check
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.buildGoal_accepts
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.buildGoal_entails
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goal_rows
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goal_row_checked
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goal_final_row_empty
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goal_row_local
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goal_group_sap
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goal_entry
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goal_closed
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goalCountermodel_negated
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.premiseEntries_names
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goalDocument_spec
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goalDocument_theorem
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.goalDocument_group
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.exportGoalDocument_spec
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.buildGoal_accepted
+#print axioms Fang.TptpCandidate.GoalDocument.NamedDepth.exportGoalDocument_accepted

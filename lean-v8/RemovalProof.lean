@@ -24,7 +24,7 @@ theorem remove_spec (source : Input) (depth : Usize) (limits : Limits) (before :
         simp only [Counters]
         omega
       next withinDepth =>
-        have depthBound : depth.val ≤ 64 := by
+        have depthBound : depth.val ≤ 65536 := by
           simp only [core.cmp.impls.OrdUsize.min] at withinDepth
           split at withinDepth <;> scalar_tac
         apply spec_bind (increment_spec before.output_nodes limits.max_output_nodes .OutputNodes)
@@ -66,7 +66,7 @@ theorem remove_spec (source : Input) (depth : Usize) (limits : Limits) (before :
         simp only [Counters]
         omega
       next withinDepth =>
-        have depthBound : depth.val ≤ 64 := by
+        have depthBound : depth.val ≤ 65536 := by
           simp only [core.cmp.impls.OrdUsize.min] at withinDepth
           split at withinDepth <;> scalar_tac
         apply spec_bind (increment_spec before.output_nodes limits.max_output_nodes .OutputNodes)
@@ -108,7 +108,7 @@ theorem remove_spec (source : Input) (depth : Usize) (limits : Limits) (before :
         simp only [Counters]
         omega
       next withinDepth =>
-        have depthBound : depth.val ≤ 64 := by
+        have depthBound : depth.val ≤ 65536 := by
           simp only [core.cmp.impls.OrdUsize.min] at withinDepth
           split at withinDepth <;> scalar_tac
         apply spec_bind (increment_spec before.output_nodes limits.max_output_nodes .OutputNodes)
@@ -150,7 +150,7 @@ theorem remove_spec (source : Input) (depth : Usize) (limits : Limits) (before :
         simp only [Counters]
         omega
       next withinDepth =>
-        have depthBound : depth.val ≤ 64 := by
+        have depthBound : depth.val ≤ 65536 := by
           simp only [core.cmp.impls.OrdUsize.min] at withinDepth
           split at withinDepth <;> scalar_tac
         apply spec_bind (increment_spec before.output_nodes limits.max_output_nodes .OutputNodes)
@@ -229,7 +229,7 @@ theorem remove_spec (source : Input) (depth : Usize) (limits : Limits) (before :
         simp only [Counters]
         omega
       next withinDepth =>
-        have depthBound : depth.val ≤ 64 := by
+        have depthBound : depth.val ≤ 65536 := by
           simp only [core.cmp.impls.OrdUsize.min] at withinDepth
           split at withinDepth <;> scalar_tac
         apply spec_bind (increment_spec before.output_nodes limits.max_output_nodes .OutputNodes)
@@ -308,7 +308,7 @@ theorem remove_spec (source : Input) (depth : Usize) (limits : Limits) (before :
         simp only [Counters]
         omega
       next withinDepth =>
-        have depthBound : depth.val ≤ 64 := by
+        have depthBound : depth.val ≤ 65536 := by
           simp only [core.cmp.impls.OrdUsize.min] at withinDepth
           split at withinDepth <;> scalar_tac
         apply spec_bind (Usize.add_spec (x := depth) (y := 1#usize) (by scalar_tac))
@@ -342,7 +342,7 @@ theorem remove_spec (source : Input) (depth : Usize) (limits : Limits) (before :
         simp only [Counters]
         omega
       next withinDepth =>
-        have depthBound : depth.val ≤ 64 := by
+        have depthBound : depth.val ≤ 65536 := by
           simp only [core.cmp.impls.OrdUsize.min] at withinDepth
           split at withinDepth <;> scalar_tac
         simp only [spec_ok]

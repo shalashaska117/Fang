@@ -14,7 +14,7 @@ structure NamedLiteral (problem : TstpExport.NamedProblem) (value : Fang.Literal
   arguments : NamedTerms problem.functions value.atom.args named.arguments
 
 def LiteralBytesParse (bytes : Bytes) (literal : Source.Literal) : Prop :=
-  ∃ tokens, Tokenization bytes tokens ∧ LiteralTokens tokens literal []
+  ∃ tokens, TextTokenization bytes tokens ∧ LiteralTokens tokens literal []
 
 theorem LiteralBytesParse.unique {bytes left right}
     (hl : LiteralBytesParse bytes left) (hr : LiteralBytesParse bytes right) : left = right := by
@@ -28,23 +28,22 @@ theorem atom_tokens {problem : TstpExport.NamedProblem} {value : Fang.Atom} {tex
     (h : AtomText problem value text) :
     ∃ name names tokens,
       SymbolText problem.predicates value.pred value.args.length name ∧
-      NamedTerms problem.functions value.args names ∧ Tokenization (spelling text) tokens ∧
+      NamedTerms problem.functions value.args names ∧ TextTokenization (spelling text) tokens ∧
       ∀ suffix, suffix.head? ≠ some Token.lparen →
         TermTokens (tokens ++ suffix) (.app name names) suffix := by
   cases h with
-  | nullary symbol =>
-    refine ⟨_, [], [.lower _], symbol, .nil,
-      word_tokenization (.lower _ rfl symbol.grammar), ?_⟩
+  | nullary symbol word =>
+    refine ⟨_, [], [.lower _], symbol, .nil, atomic_tokenization word, ?_⟩
     intro suffix boundary
     exact .constant _ suffix boundary
-  | @application predicate arguments rendered name nonempty symbol children =>
+  | @application predicate arguments rendered name text nonempty symbol word children =>
     obtain ⟨names, tokens, named, lexical, parsed⟩ := terms_tokens children
-    have close : Tokenization ((spelling (String.intercalate "," rendered)) ++ [41])
+    have close : TextTokenization ((spelling (String.intercalate "," rendered)) ++ [41])
         (tokens ++ [.rparen]) :=
       tokenization_append lexical (.token (.punctuation .rparen) .empty)
         (punctuation_boundary Punctuation.rparen)
-    have openClose := Tokenization.token (Lexeme.punctuation Punctuation.lparen) close
-    have whole := tokenization_append (word_tokenization (.lower name rfl symbol.grammar))
+    have openClose := TextTokenization.token (TextLexeme.punctuation Punctuation.lparen) close
+    have whole := tokenization_append (atomic_tokenization word)
       openClose (punctuation_boundary Punctuation.lparen)
     refine ⟨name, names, .lower name :: .lparen :: (tokens ++ [.rparen]),
       symbol, named, ?_, ?_⟩
@@ -55,7 +54,7 @@ theorem atom_tokens {problem : TstpExport.NamedProblem} {value : Fang.Atom} {tex
 
 theorem literal_tokens {problem : TstpExport.NamedProblem} {value : Fang.Literal} {text : String}
     (h : LiteralText problem value text) :
-    ∃ named tokens, NamedLiteral problem value named ∧ Tokenization (spelling text) tokens ∧
+    ∃ named tokens, NamedLiteral problem value named ∧ TextTokenization (spelling text) tokens ∧
       ∀ suffix, suffix.head? ≠ some Token.lparen →
         LiteralTokens (tokens ++ suffix) named suffix := by
   cases h with
@@ -68,7 +67,7 @@ theorem literal_tokens {problem : TstpExport.NamedProblem} {value : Fang.Literal
     obtain ⟨name, names, tokens, symbol, named, lexical, parsed⟩ := atom_tokens body
     refine ⟨⟨false, name, names⟩, .negate :: tokens, ⟨rfl, symbol, named⟩, ?_, ?_⟩
     · simpa [spelling_append] using
-        Tokenization.token (Lexeme.punctuation Punctuation.negate) lexical
+        TextTokenization.token (TextLexeme.punctuation Punctuation.negate) lexical
     · intro suffix boundary
       exact .negative (parsed suffix boundary)
 

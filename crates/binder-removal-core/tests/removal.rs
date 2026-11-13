@@ -218,7 +218,7 @@ fn exact_and_one_short_caps_are_distinguished() {
 }
 
 #[test]
-fn hard_depth_cap_cannot_be_disabled() {
+fn formula_depth_follows_the_limits_record() {
     fn chain(count: u32) -> Nnf {
         let mut result = Nnf::True;
         for id in 0..count {
@@ -226,13 +226,18 @@ fn hard_depth_cap_cannot_be_disabled() {
         }
         result
     }
-    let limits = Limits {
+    let unbounded = Limits {
         max_formula_depth: usize::MAX,
         ..Limits::default()
     };
-    assert!(remove_universals(chain(63), &limits).is_ok());
+    assert!(remove_universals(chain(64), &unbounded).is_ok());
+    let bounded = Limits {
+        max_formula_depth: 100,
+        ..Limits::default()
+    };
+    assert!(remove_universals(chain(99), &bounded).is_ok());
     assert_eq!(
-        remove_universals(chain(64), &limits),
+        remove_universals(chain(100), &bounded),
         Err(Error::Resource(Resource::FormulaDepth))
     );
 }

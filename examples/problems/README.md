@@ -6,6 +6,6 @@
 
 `mortality.p` gives the same facts as three CNF clauses together with the clause that Socrates is not mortal. The clauses are inconsistent, so Fang reports `Unsatisfiable`, and `--output tstp` prints the refutation.
 
-`open-world.p` keeps only the first two clauses of `mortality.p`. Nothing contradicts them, so the search ends without a refutation and Fang reports `GaveUp`. Fang has no model checker and makes no satisfiability claim.
+`open-world.p` keeps only the first two clauses of `mortality.p`. The clauses have a finite model. Fang can report `Satisfiable` after the compiled Lean model checker accepts one; `--output tstp` requests its `FiniteModel` document.
 
 Copyright (c) 2026 Pietro Pellegrino. These examples use the project's BSD 3-Clause license.

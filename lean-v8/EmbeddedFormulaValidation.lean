@@ -96,7 +96,7 @@ theorem validate_formula_spec (formula : Formula) (depth : Usize) (signature : S
         simp only [spec_ok, FormulaPost, ValidationPost, FormulaResource]
         exact ⟨stack_valid, stackFrame_refl stack, by omega, Or.inr (Or.inl trivial)⟩
       next depthWithin =>
-        have hd : depth.val ≤ 64 := by scalar_tac
+        have hd : depth.val ≤ 65536 := by scalar_tac
         apply spec_bind (bounded_add_spec work.statistics.input_formula_nodes 1#usize
           limits.max_formula_nodes .FormulaNodes)
         intro count count_checked

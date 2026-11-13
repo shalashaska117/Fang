@@ -514,6 +514,7 @@
     "RectifyPrimitives",
     "RemovalPrimitives",
     "BooleanClausifierPrimitives",
+    "BooleanClausifierSinglePass",
     "PublicNormalizationKernel",
     "SkolemPrimitives",
     "SkolemWorkKernel",
@@ -537,6 +538,18 @@
     "independent_review": {
       "path": "evidence/verification/fof-equality-kernel-v8-independent-review-v1-20261024/manifest.json",
       "sha256": "7489a31de2a6755237e87f411057d7e5557af68b72d5f6325c74d801a857e080"
+    },
+    "revision_7": {
+      "added": [
+        "BooleanClausifierSinglePass"
+      ],
+      "changed": {
+        "EqualityBridgeKernel": {
+          "from": "00a30147b127946dfaa00cf01a6a0a019cf04eb9fdca7f9a350579f59e0fe5ac",
+          "to": "7e18b0be241ddb3165180b3a44da8c7899bedf8ff81be7400fc3b158e1887112"
+        }
+      },
+      "note": "Every other helper source and every axiom audit is unchanged from revision 6."
     }
   },
   "provided_by_lean_v8": [
@@ -548,6 +561,7 @@
   "sources_sha256": {
     "BooleanClausifierCall": "86412faa3101c5be65182fea56f1c75a9f3b9df5551667fe07d1cdb26f19cd96",
     "BooleanClausifierPrimitives": "b4e4c22b26bb6041dc90ecc36ec2079cc497a742d2ec8ac0799a6ab87bed15f1",
+    "BooleanClausifierSinglePass": "315d8656bfaa9967e448ee560ef963f2fc2297bc9abc61c2e0d0d87d863ac342",
     "BooleanTransformComposition": "a832113d31d4a769490c81ccb7166bf69cb9eb6ac63256133a270823f3004e14",
     "ClausifierCall": "40046a705333509e84e29fda4d112ea8a5a5595ba13229e0ce143de4f20e4c22",
     "ClausifierPrimitives": "35035bf15109380dbd0681d0c661d101145e0385b5d2891257b17b4bda947e11",
@@ -558,7 +572,7 @@
     "CoreRectifyCopyKernel": "04c726ad6437312967f05c04f4f80ccadd647bca6e299c5b08b23042db8681c9",
     "DeclarationsTransformKernel": "ad5d4e37f1f9b5de2a965fd07e3b52cd2daacb99bcb976ce22479303b988032f",
     "DeclarationsValidationKernel": "aa2e1f8e075f89f873ee9a0bb78ace6201946861bf8a105a89812949281295f8",
-    "EqualityBridgeKernel": "00a30147b127946dfaa00cf01a6a0a019cf04eb9fdca7f9a350579f59e0fe5ac",
+    "EqualityBridgeKernel": "7e18b0be241ddb3165180b3a44da8c7899bedf8ff81be7400fc3b158e1887112",
     "EqualityOriginalCertificate": "b0eabeee8175752911d82acf6adacc5dc7bd75173ca6996106a69a855eab26cf",
     "EqualityOriginalCertificateInput": "1cc26143dc59636e4183cf50662f5130aa2992e85a000245d233c572c347c0b8",
     "EqualityReplayKernel": "98a0b42f20ead08f3de361aca39a37885c70eae83d1a84ea6dcac26a2e6e6864",

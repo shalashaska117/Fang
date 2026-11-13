@@ -270,14 +270,14 @@ fn limits_count_both_equality_operands_and_inequality_ast_nodes() {
     );
     limits.input.max_operations += 1;
     assert!(parse(source.as_bytes(), &limits).is_ok());
+    // Literals are bounded by the encoder after normalization, not by the parser.
     limits.input.max_literals = 0;
+    let falsity = parse(b"cnf(c,axiom,($false)).", &limits).unwrap();
+    assert!(falsity.encode(1, 0).is_ok());
+    let equation = parse(b"cnf(c,axiom,(a=a)).", &limits).unwrap();
     assert_eq!(
-        parse(b"cnf(c,axiom,($false)).", &limits).unwrap_err().kind,
-        ErrorKind::ResourceLimit
-    );
-    assert_eq!(
-        parse(b"cnf(c,axiom,(a=a)).", &limits).unwrap_err().kind,
-        ErrorKind::ResourceLimit
+        equation.encode(1, 0).unwrap_err(),
+        BridgeError::LiteralLimit
     );
 }
 
@@ -373,8 +373,10 @@ fn reservation_and_mutated_ordinary_heads_fail_without_partial_output() {
     let mut p = parsed("fof(a,axiom,p(a)).");
     p.predicates.clear();
     assert_eq!(p.encode(1, 1).unwrap_err(), BridgeError::UnknownPredicate);
+    // Duplicate literals merge before the literal bound, as in the checker's conversion.
+    assert!(parsed("cnf(a,axiom,(a=a|a=a)).").encode(1, 1).is_ok());
     assert_eq!(
-        parsed("cnf(a,axiom,(a=a|a=a)).").encode(1, 1).unwrap_err(),
+        parsed("cnf(a,axiom,(a=a|b=b)).").encode(1, 1).unwrap_err(),
         BridgeError::LiteralLimit
     );
 }

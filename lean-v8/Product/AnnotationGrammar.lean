@@ -53,13 +53,9 @@ theorem NaturalSpelling.functional {chars left right}
     (hl : NaturalSpelling chars left) (hr : NaturalSpelling chars right) : left = right :=
   hl.value.symm.trans hr.value
 
-inductive AtomicText : String → String → Prop where
-  | lower {name} (valid : Source.Grammar.LowerName name) : AtomicText name name
-  | quoted {text name} (valid : QuotedAtom text.toList name.toList) : AtomicText text name
-
 theorem checked_lower (name : String) (valid : Frontend.lowerName name = true) :
     AtomicText name name :=
-  .lower ((Frontend.lowerName_iff name (Frontend.lowerName_ascii valid)).mp valid)
+  .lower (.of_name ((Frontend.lowerName_iff name (Frontend.lowerName_ascii valid)).mp valid))
 
 /-- Only the general-data constructors emitted by Fang. Formula data, colon
 data, signed/reals and variables are outside this narrow annotation grammar. -/

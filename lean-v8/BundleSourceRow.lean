@@ -118,20 +118,43 @@ def objectPiece (piece : SourceRow.Piece) : SourceRow.Piece :=
   | .legacy (.quoted value) => if Coverage.FramerV2.isObject value then (piece.1, objectText value) else piece
   | _ => piece
 
-def rowText (file : String) (declaration : Declaration) : String :=
-  SourceRow.text ((SourceRow.rowPieces "axiom" file declaration).map objectPiece)
+/-- The framer reads a FOF formula directly after the role separator. An outer
+    pair of parentheses would consume another level of its unchanged depth
+    budget. Operands keep the accepted printer's grouping; CNF stays unchanged. -/
+def bundleBodyPieces : Body → List SourceRow.Piece
+  | .fof value => SourceRow.formulaPieces value
+  | value => SourceRow.bodyPieces value
+
+def bundleRowPieces (file : String) (declaration : Declaration) : List SourceRow.Piece :=
+  SourceRow.wordPiece (Grammar.BodyKind declaration.body) :: SourceRow.punct '(' ::
+    SourceRow.namePiece declaration.name :: SourceRow.punct ',' ::
+    SourceRow.wordPiece "axiom" :: SourceRow.punct ',' ::
+    bundleBodyPieces declaration.body ++ SourceRow.trailerPieces file declaration.name
+
+def compactRowText (file : String) (declaration : Declaration) : String :=
+  SourceRow.text ((bundleRowPieces file declaration).map objectPiece)
 
 def rowBytes (text : String) : List UInt8 := text.toUTF8.data.toList
 
 def maximumRowBytes : Nat := 1048576
 
+/-- Keep the historical bytes whenever they frame as one formula. Only a
+    framing refusal selects the form without the redundant outer FOF pair.
+    The caller still checks the selected row's exact name and body. -/
+def rowText (file : String) (declaration : Declaration) : String :=
+  let original := SourceRow.text ((SourceRow.rowPieces "axiom" file declaration).map objectPiece)
+  match Coverage.FramerV2.frameFile (rowBytes original) maximumRowBytes with
+  | .ok [.formula _] => original
+  | _ => compactRowText file declaration
+
 /-- One source row, accepted only when the framer reads it back as the declaration. -/
 def bundleSourceRow (file : String) (declaration : Declaration) : Except String String :=
   if !SourceRow.bodyOk declaration.body then .error "export-error: CNF body is empty or has an unsupported literal"
   else
-    match Coverage.FramerV2.frameFile (rowBytes (rowText file declaration)) maximumRowBytes with
+    let row := rowText file declaration
+    match Coverage.FramerV2.frameFile (rowBytes row) maximumRowBytes with
     | .ok [.formula value] =>
-      if value.name == declaration.name && bodyEq value.body declaration.body then .ok (rowText file declaration)
+      if value.name == declaration.name && bodyEq value.body declaration.body then .ok row
       else .error "export-error: source row reads as another declaration"
     | _ => .error "export-error: source row does not frame as one formula"
 
@@ -146,7 +169,8 @@ theorem bundleSourceRow_spec {file : String} {declaration : Declaration} {row : 
   unfold bundleSourceRow at success
   split at success
   · cases success
-  · split at success
+  · dsimp only at success
+    split at success
     · rename_i value framed
       split at success
       · rename_i same

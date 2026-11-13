@@ -1,0 +1,28 @@
+# Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
+[package]
+name = "fang-launcher"
+description = "The fang command: profiles, capability, checking and export stages, SZS output and the run record."
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[lib]
+path = "src/lib.rs"
+
+# The installer copies this binary to bin/fang; the name differs because the root package's engine binary is
+# already called fang in the same workspace.
+[[bin]]
+name = "fang-launcher"
+path = "src/main.rs"
+
+[dependencies]
+fang-hash = { path = "../fang-hash" }
+fang-json = { path = "../fang-json" }
+fang-supervisor = { path = "../fang-supervisor" }
+fang-axiom-audit = { path = "../fang-axiom-audit" }
+fang-kernel-workspace = { path = "../fang-kernel-workspace" }
+
+[lints.rust]
+unsafe_code = "forbid"

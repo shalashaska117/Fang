@@ -400,3 +400,5 @@ fn prepare_impl<O: Observer>(
         .map_err(ObservationError::Observer)?;
     Ok(prepared)
 }
+
+pub mod named;

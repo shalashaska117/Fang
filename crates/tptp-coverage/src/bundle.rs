@@ -3,8 +3,8 @@
 //! filesystem; `expand` is a function of the bundle bytes and the limits.
 
 use crate::{
-    Annotation, Body, CnfLiteral, Declaration, Error, Limits, NameKind, Parsed, Parser, Reason,
-    Statement, Statistics, Token, lex, sha256,
+    Annotation, Body, CnfLiteral, Declaration, Error, Limits, NameKind, OPERATIONS_PER_BYTE,
+    Parsed, Parser, Reason, Statement, Statistics, Token, lex, sha256,
 };
 use fang::ErrorKind;
 use fang::syntax::Term;
@@ -331,16 +331,19 @@ impl<F: Files> Expander<'_, F> {
         let bytes = self.files.get(index).bytes.clone();
         let mut lexing = Statistics {
             operations: self.framing.operations,
+            budget: self.framing.budget,
             ..Statistics::default()
         };
         let tokens = lex(&bytes, self.limits, &mut lexing).map_err(|e| e.in_file(index))?;
         self.lexed.operations += lexing.operations - self.framing.operations;
+        self.lexed.budget += lexing.budget - self.framing.budget;
         let mut parser = Parser::new(
             tokens,
             bytes.len(),
             self.limits,
             Statistics {
                 operations: lexing.operations,
+                budget: lexing.budget,
                 ..self.framing
             },
         );
@@ -416,7 +419,9 @@ impl<F: Files> Expander<'_, F> {
     }
 
     fn tick(&mut self) -> Result<(), Error> {
-        if self.work >= self.limits.input.max_operations {
+        // Expansion work is linear in the bundle: at most OPERATIONS_PER_BYTE per bundle byte.
+        let cap = OPERATIONS_PER_BYTE.saturating_mul(self.limits.max_bundle_bytes);
+        if self.work >= self.limits.input.max_operations.min(cap) {
             return Err(Error::resource("include expansion work limit exceeded"));
         }
         self.work += 1;

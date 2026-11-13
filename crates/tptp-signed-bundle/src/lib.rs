@@ -2,7 +2,7 @@
 // Shared Fang components retain LICENSES/Vampire.txt and Vampire.ORIGIN.
 #![forbid(unsafe_code)]
 
-//! Signed role tasks over a sealed include bundle. The coverage candidate frames and expands the bundle with every record role read as `axiom`; the original roles are restored by statement position. The expansion is written as one flat TPTP text, and the accepted signed producer of crates/tptp-signed-roles runs on it unchanged.
+//! Signed role tasks over a sealed include bundle. The coverage candidate frames and expands the bundle with every record role read as `axiom`; the original roles are restored by statement position. The expansion is written as one flat TPTP text, and the accepted signed producer of roles/signed runs on it unchanged.
 //!
 //! The flat text lists the selected records in expansion order with their roles and with distinct objects renamed to fresh constants, then one disequality per pair of objects in the order of the Lean `distinctItems`: objects by their position in the function table, each pair once with the earlier object on the left. Output is a candidate certificate or Unknown, never a checked result.
 
@@ -24,6 +24,8 @@ pub enum Error {
     /// A selected conjecture together with a selected negated conjecture, refused before parsing as the Lean read refuses it.
     Modes,
     Signed(fang_tptp_signed_roles::Error),
+    /// A cited item that is not an expanded premise (goal task) or positive input (inputs task); the checker refuses it too.
+    Citation((usize, usize)),
 }
 
 /// One bundle file as the checker receives it: root, slash-separated path, bytes.
@@ -185,8 +187,19 @@ pub fn neutral_roles(
     Ok((output, roles))
 }
 
-/// The coverage expansion of the bundle with roles read as `axiom`, and each file's original roles.
+/// The coverage expansion of the bundle with roles read as `axiom`, and each file's original roles, reading formulas to the coverage candidate's default height.
 pub fn expand(bundle: &Bundle) -> Result<(Expanded, Vec<BTreeMap<usize, String>>), Error> {
+    expand_to_depth(
+        bundle,
+        fang_tptp_coverage_candidate::Limits::default().max_formula_depth,
+    )
+}
+
+/// `expand`, reading formulas to height `depth`. The flat text is written from this expansion, so a task's formula height must be read here as well as when the flat text is parsed.
+pub fn expand_to_depth(
+    bundle: &Bundle,
+    depth: usize,
+) -> Result<(Expanded, Vec<BTreeMap<usize, String>>), Error> {
     let mut neutral = bundle.clone();
     let mut roles = Vec::new();
     for (index, file) in neutral.files.iter_mut().enumerate() {
@@ -196,6 +209,7 @@ pub fn expand(bundle: &Bundle) -> Result<(Expanded, Vec<BTreeMap<usize, String>>
     }
     let limits = fang_tptp_coverage_candidate::Limits {
         max_bundle_bytes: BUNDLE_BYTES,
+        max_formula_depth: depth,
         ..Default::default()
     };
     let expanded =
@@ -297,13 +311,43 @@ pub struct Flat {
     pub text: String,
     /// Bundle item (file, statement) of each selected conjecture, in expansion order.
     pub goals: Vec<(usize, usize)>,
+    /// Bundle item of each record of the text, in order; the generated disequalities have none.
+    pub items: Vec<(usize, usize)>,
+    /// The original role word of each record, beside `items`.
+    pub roles: Vec<String>,
     /// Generated disequalities.
     pub distinct_clauses: usize,
 }
 
 /// Write the expansion as one flat text whose signed tasks are the Lean bundle tasks.
 pub fn flatten(bundle: &Bundle, limits: &Limits) -> Result<Flat, Error> {
-    let (expanded, roles) = expand(bundle)?;
+    write_flat(bundle, limits, |_| true, true)
+}
+
+/// The flat text of the kept part of the expansion: the records whose items are cited, and `extra`, in expansion order, with the disequalities over their own objects only. Its tasks are the Lean cited tasks.
+pub fn flatten_kept(
+    bundle: &Bundle,
+    limits: &Limits,
+    cited: &[(usize, usize)],
+    extra: Option<(usize, usize)>,
+) -> Result<Flat, Error> {
+    let cited: BTreeSet<_> = cited.iter().copied().collect();
+    write_flat(
+        bundle,
+        limits,
+        |item| cited.contains(&item) || extra == Some(item),
+        false,
+    )
+}
+
+/// The records `keep` accepts, in expansion order, with the disequalities over the distinct objects they use. Record names keep their position in the whole expansion. Mixed goal modes are checked over the whole expansion, as the Lean read checks them. With `whole`, every distinct object must occur in the text.
+fn write_flat(
+    bundle: &Bundle,
+    limits: &Limits,
+    keep: impl Fn((usize, usize)) -> bool,
+    whole: bool,
+) -> Result<Flat, Error> {
+    let (expanded, roles) = expand_to_depth(bundle, limits.input.max_formula_depth)?;
     let names = object_names(&expanded);
     let contents: Vec<String> = expanded
         .distinct_objects
@@ -312,6 +356,9 @@ pub fn flatten(bundle: &Bundle, limits: &Limits) -> Result<Flat, Error> {
         .collect();
     let mut text = String::new();
     let mut goals = Vec::new();
+    let mut items = Vec::new();
+    let mut kept_roles = Vec::new();
+    let mut any_goal = false;
     let mut negated = false;
     for (index, (declaration, source)) in expanded
         .parsed
@@ -330,10 +377,15 @@ pub fn flatten(bundle: &Bundle, limits: &Limits) -> Result<Flat, Error> {
             .get(*file)
             .and_then(|found| found.get(statement))
             .ok_or(Error::Render("record without a role"))?;
-        if role == "conjecture" {
-            goals.push((*file, *statement));
-        }
+        any_goal |= role == "conjecture";
         negated |= role == "negated_conjecture";
+        let item = (*file, *statement);
+        if !keep(item) {
+            continue;
+        }
+        if role == "conjecture" {
+            goals.push(item);
+        }
         let bytes = &expanded.bundle.files[*file].bytes;
         let body = bytes
             .get(declaration.body_bytes.clone())
@@ -346,8 +398,10 @@ pub fn flatten(bundle: &Bundle, limits: &Limits) -> Result<Flat, Error> {
             "{kind}(fang_bundle_{index},{role},{}).\n",
             body_text(body, &contents, &names)?
         ));
+        items.push(item);
+        kept_roles.push(role.clone());
     }
-    if !goals.is_empty() && negated {
+    if any_goal && negated {
         return Err(Error::Modes);
     }
     // Lean orders the objects as the complete function table does; the role parser builds that table from the same records.
@@ -356,17 +410,18 @@ pub fn flatten(bundle: &Bundle, limits: &Limits) -> Result<Flat, Error> {
         &flat_limits(limits, bundle.files.len(), text.len(), 0).input,
     )
     .map_err(Error::Flat)?;
-    let mut ordered: Vec<(usize, &String)> = names
-        .iter()
-        .map(|name| {
-            parsed
-                .functions
-                .iter()
-                .position(|symbol| symbol.name == *name && symbol.arity == 0)
-                .map(|position| (position, name))
-                .ok_or(Error::Render("object missing from the function table"))
-        })
-        .collect::<Result<_, _>>()?;
+    let mut ordered: Vec<(usize, &String)> = Vec::new();
+    for name in &names {
+        match parsed
+            .functions
+            .iter()
+            .position(|symbol| symbol.name == *name && symbol.arity == 0)
+        {
+            Some(position) => ordered.push((position, name)),
+            None if whole => return Err(Error::Render("object missing from the function table")),
+            None => {}
+        }
+    }
     ordered.sort();
     let mut distinct_clauses = 0;
     for (left, (_, first)) in ordered.iter().enumerate() {
@@ -380,6 +435,8 @@ pub fn flatten(bundle: &Bundle, limits: &Limits) -> Result<Flat, Error> {
     Ok(Flat {
         text,
         goals,
+        items,
+        roles: kept_roles,
         distinct_clauses,
     })
 }
@@ -420,6 +477,130 @@ pub fn produce_bundle_task(
     Ok((flat, produced))
 }
 
+/// Canonical premise references in expansion order.
+pub type Citations = Vec<(usize, usize)>;
+/// Cited items, the kept source text, and its prepared task.
+pub type CitedPrepared = (Citations, Flat, Prepared);
+/// Cited items, the kept source text, and its produced candidate.
+pub type CitedProduced = (Citations, Flat, Produced);
+type KeptTask = (Citations, Flat, Selection);
+
+/// Role words of the premises of a goal task.
+const PREMISE_ROLES: &[&str] = &[
+    "axiom",
+    "hypothesis",
+    "definition",
+    "lemma",
+    "theorem",
+    "corollary",
+];
+/// Role words of the positive inputs of the satisfiability task.
+const INPUT_ROLES: &[&str] = &[
+    "axiom",
+    "hypothesis",
+    "definition",
+    "lemma",
+    "theorem",
+    "corollary",
+    "negated_conjecture",
+];
+
+/// The premise line a cited certificate begins with, in canonical form: `(premises (item F S) ...)`.
+pub fn premise_line(cited: &[(usize, usize)]) -> String {
+    let mut line = String::from("(premises");
+    for (file, statement) in cited {
+        line.push_str(&format!(" (item {file} {statement})"));
+    }
+    line.push(')');
+    line
+}
+
+/// The cited items in expansion order without repeats, the kept flat text and the selection within it. The checks and their order follow the Lean cited entries: the whole expansion is read first, then every citation must be an expanded premise (goal task) or positive input (inputs task), then the goal is chosen among the conjectures of the whole expansion. The kept text holds no other conjecture, so the goal is its first.
+fn kept_task(
+    bundle: &Bundle,
+    selection: Selection,
+    cited: &[(usize, usize)],
+    limits: &Limits,
+) -> Result<KeptTask, Error> {
+    let whole = flatten(bundle, limits)?;
+    let allowed = match selection {
+        Selection::Goal(_) => PREMISE_ROLES,
+        Selection::Inputs => INPUT_ROLES,
+    };
+    let mut roles = BTreeMap::new();
+    for (item, role) in whole.items.iter().zip(&whole.roles) {
+        roles.entry(*item).or_insert(role.as_str());
+    }
+    for item in cited {
+        if !roles.get(item).is_some_and(|role| allowed.contains(role)) {
+            return Err(Error::Citation(*item));
+        }
+    }
+    let extra = match selection {
+        Selection::Goal(index) => Some(
+            *whole
+                .goals
+                .get(index)
+                .ok_or(Error::Signed(fang_tptp_signed_roles::Error::NoGoal))?,
+        ),
+        Selection::Inputs if whole.goals.is_empty() => None,
+        Selection::Inputs => {
+            return Err(Error::Signed(fang_tptp_signed_roles::Error::GoalsPresent));
+        }
+    };
+    let kept = flatten_kept(bundle, limits, cited, extra)?;
+    let mut citations = Vec::new();
+    let mut seen = BTreeSet::new();
+    for item in &kept.items {
+        if Some(*item) != extra && seen.insert(*item) {
+            citations.push(*item);
+        }
+    }
+    let selection = match selection {
+        Selection::Goal(_) => Selection::Goal(0),
+        Selection::Inputs => Selection::Inputs,
+    };
+    Ok((citations, kept, selection))
+}
+
+/// The cited task: the cited items and, for a goal task, the selected goal of the whole expansion. Returns the cited items in expansion order, the kept flat text and the prepared task.
+pub fn prepare_cited_task(
+    bundle: &Bundle,
+    selection: Selection,
+    cited: &[(usize, usize)],
+    limits: &Limits,
+) -> Result<CitedPrepared, Error> {
+    let (citations, kept, selection) = kept_task(bundle, selection, cited, limits)?;
+    let limits = flat_limits(
+        limits,
+        bundle.files.len(),
+        kept.text.len(),
+        kept.distinct_clauses,
+    );
+    let prepared = fang_tptp_signed_roles::prepare_task(kept.text.as_bytes(), selection, &limits)
+        .map_err(Error::Signed)?;
+    Ok((citations, kept, prepared))
+}
+
+/// Prepare the cited task, then run the accepted prepared ordered search and serializer on it. A candidate is printed after `premise_line` of the returned items.
+pub fn produce_cited_task(
+    bundle: &Bundle,
+    selection: Selection,
+    cited: &[(usize, usize)],
+    limits: &Limits,
+) -> Result<CitedProduced, Error> {
+    let (citations, kept, selection) = kept_task(bundle, selection, cited, limits)?;
+    let limits = flat_limits(
+        limits,
+        bundle.files.len(),
+        kept.text.len(),
+        kept.distinct_clauses,
+    );
+    let produced = fang_tptp_signed_roles::produce_task(kept.text.as_bytes(), selection, &limits)
+        .map_err(Error::Signed)?;
+    Ok((citations, kept, produced))
+}
+
 /// The rejection kind printed by the agreement campaign; the Lean probe maps `BundleError` to the same names.
 pub fn error_kind(error: &Error) -> &'static str {
     match error {
@@ -434,6 +615,7 @@ pub fn error_kind(error: &Error) -> &'static str {
         },
         Error::Role { .. } => "frame",
         Error::Modes => "modes",
+        Error::Citation(_) => "citation",
         Error::Flat(_) | Error::Render(_) => "internal",
         Error::Signed(fang_tptp_signed_roles::Error::Encoding(
             fang_fof_equality_bridge::Error::SymbolId,
@@ -441,3 +623,9 @@ pub fn error_kind(error: &Error) -> &'static str {
         Error::Signed(error) => fang_tptp_signed_roles::error_kind(error),
     }
 }
+
+mod named_prepare;
+pub use named_prepare::{prepare_bundle_task_named, prepare_cited_task_named};
+
+mod cited_inputs;
+pub use cited_inputs::{InputOriginError, cited_inputs};

@@ -1,0 +1,45 @@
+# Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
+# Development copy of kernel mode, entry revision 8. It is staged as crates/v8-kernel, where the
+# path dependencies point at the staged shared crates.
+[package]
+name = "fang-v8-kernel"
+description = "Kernel mode, entry revision 8: the version-8 kernel entry, its installer, helper build and generators."
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "fang-v8-kernel"
+path = "src/bin/entry.rs"
+
+[[bin]]
+name = "fang-v8-kernel-helpers"
+path = "src/bin/helpers.rs"
+
+[[bin]]
+name = "fang-v8-kernel-install"
+path = "src/bin/install.rs"
+
+[[bin]]
+name = "fang-v8-kernel-provision"
+path = "src/bin/provision.rs"
+
+[dependencies]
+fang-axiom-audit = { path = "../fang-axiom-audit" }
+fang-hash = { path = "../fang-hash" }
+fang-json = { path = "../fang-json" }
+fang-kernel-workspace = { path = "../fang-kernel-workspace" }
+fang-supervisor = { path = "../fang-supervisor" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true
+
+

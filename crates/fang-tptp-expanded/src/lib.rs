@@ -357,3 +357,8 @@ pub fn prove_bytes(input: &[u8], limits: &Limits) -> Result<CandidateRun, Error>
     .map_err(Error::Search)?;
     Ok(CandidateRun { prepared, outcome })
 }
+
+mod named_prepare;
+pub use named_prepare::prepare_named;
+
+pub mod final_limits;

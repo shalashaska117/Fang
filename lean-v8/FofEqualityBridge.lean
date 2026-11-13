@@ -2,6 +2,7 @@
 -- [fang_fof_equality_bridge]
 module
 public import Aeneas
+public import FangFastVec
 @[expose] public section
 open Aeneas Aeneas.Std Result ControlFlow Error
 set_option linter.dupNamespace false

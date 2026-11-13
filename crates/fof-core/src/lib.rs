@@ -232,7 +232,7 @@ fn validate_formula(
     work: &mut Work,
 ) -> Result<(), Error> {
     work.tick(limits)?;
-    if depth > limits.max_formula_depth.min(64) {
+    if depth > limits.max_formula_depth {
         return Err(Error::Resource(Resource::FormulaDepth));
     }
     work.statistics.input_formula_nodes = bounded_add(
@@ -649,3 +649,5 @@ pub fn preprocess_with_scope(
 }
 
 pub mod nnf_entry;
+
+pub mod naming;

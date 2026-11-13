@@ -1,0 +1,91 @@
+{
+  "batch_sha256": "c0f18bbe3457610f7972c49cd2b6ede5270727fa844c3d2b174bd748b94dac0c",
+  "entry_review": {
+    "entry_sources_sha256": {
+      "policy.json": "5e10e2ac4f9ecae7c9c4405e40418b3aa96d1ac84ecdcf2e60582bcd2bf178ed"
+    },
+    "provenance": "evidence/verification/kernel-final-source-independent-review-v1-20261113/manifest.json",
+    "sha256": "bf6ab7618c4a11fc441da7b9cc3e9d5718a2567e4aa211a869c6f7784605e66f",
+    "status": "passed"
+  },
+  "files": {
+    "Cargo.lock": "f12de69548fe1fbd296b8cf82b21a9399b39253bf59f5d8564be988954f8e33f",
+    "Cargo.toml": "f60c16897f54f046e67fe16b73ce873819629c497c742c30a32a37386d909734",
+    "crates/fang-axiom-audit/Cargo.toml": "401c0e0c14b32903b588c70dea93901b76d10c91fbe2828fcfa354a67ad4c377",
+    "crates/fang-axiom-audit/src/lib.rs": "3bf6af5fafdd7e0487b4853afbc7ddd79681145e5dd5fa09bfe3e33666521b67",
+    "crates/fang-axiom-audit/src/main.rs": "10d672b3606854aa00fbc98097ea7a09135819a15312be593dd19a5aedba1d83",
+    "crates/fang-hash/Cargo.toml": "8c2668b8d37611de00f247a1a197816334eedae2b8700a82f51885f41f73904c",
+    "crates/fang-hash/src/chunked.rs": "19e29c7e69bd5a04e60bb53e0f66b525b05a5f1c7f6093d3ceb7617b95a096ac",
+    "crates/fang-hash/src/file.rs": "a85c30763fd9cc06da5cc9561a4d24bf19567685528e2c6040e08ecead369af5",
+    "crates/fang-hash/src/lib.rs": "040a81ac8c93b6f5a255e23c0b8d1c7f24121c3fef25255376bb074baf24fd23",
+    "crates/fang-hash/src/sha256.rs": "ebf5fb64115aba31d55eb0eb62353b49f6b3cc0af998e5dd36d51e1ee056aee2",
+    "crates/fang-hash/src/stream.rs": "3238df866c9bd7edff8b953536e71c33e29e21fa03e7b9bf3a763426f66d2a2a",
+    "crates/fang-json/Cargo.toml": "826efadaab90fed713464c486bdc27ef23cbe3365adeed6094845622444cbb2d",
+    "crates/fang-json/src/float.rs": "b71fe428802312b52265f40f9d876fb2576cd183630767237b844551292325c5",
+    "crates/fang-json/src/lib.rs": "0cac634ae285252d26fda22190829d6eba47491a7bba6fc33fe4b1dff55650b3",
+    "crates/fang-json/src/parse.rs": "dc97718ace2970a02e836b18154a390ecf5bd111089e1846e452df650cb16b31",
+    "crates/fang-json/src/python.rs": "b934f167447c7633900e34b55ea34bf20f0e171fb338239d775705bf0a981378",
+    "crates/fang-json/src/value.rs": "8cd55204ad63ab1182fb4c6c4a9a4462e7eb927c23832f9bd88d43c988d83fd1",
+    "crates/fang-json/src/write.rs": "4d78eb5a8fdd6133fb39fb49568abc3c7ca9b927295b45483fa69f1e6f2d075a",
+    "crates/fang-kernel-workspace/Cargo.toml": "c60a1962145ff4777124f9f2736cc4a3cbc8fcae13c18f3c25ca832ad1aeb980",
+    "crates/fang-kernel-workspace/src/lib.rs": "6df69f8975353fe57b7b97c6c20cef50b02ab2ad1e08a52e749b9b9d039e8d1e",
+    "crates/fang-supervisor/Cargo.toml": "f96ceb5c966cbb2cc9ff39827d6d76f03e98545752654e2d9e4a991fe883f3c0",
+    "crates/fang-supervisor/src/guard.rs": "7b37b5095c5554b1abee89d35a1bbda3a2b7daf9375df665700db6c02e7030ee",
+    "crates/fang-supervisor/src/io.rs": "d7a5b2b85cdb8592a02eda418546a132fec2fd826b02b938ec7811db67f25357",
+    "crates/fang-supervisor/src/lib.rs": "78b596fc22b12d4483c33ebb3d6002fb39a6e541ae3629be2511361ea072f724",
+    "crates/fang-supervisor/src/limits.rs": "6c1d6e5bab8226077489c8672d68ef60f36e59e54fe736894fdffd05a955598a",
+    "crates/fang-supervisor/src/procfs.rs": "8533bb1e10a42be7cebd5559eed8549c8af87b82231a7dc57bfd36e0aa19d37d",
+    "crates/fang-supervisor/src/run.rs": "a0f08a1085dc1d8a3bd58cf99131c5cdb6d5ba7c8c75a795f2b06c835653c7c0",
+    "crates/fang-supervisor/src/status.rs": "df57b4489d8b78f71f7e0ce7e0195f5abcb7c763fc220db020e87a630c6ae9f3",
+    "crates/v8-kernel/Cargo.toml": "aca00bd7dac9019f94370077979dc511c6f8c92c111859e38a73e3aaa10fe272",
+    "crates/v8-kernel/src/bin/entry.rs": "9eab193550f532edeb4747b412852ff98abcc9bd2c97d943a63a136c104a80af",
+    "crates/v8-kernel/src/bin/helpers.rs": "c4cba2f9a7ad54ada9c8c552333e891d20346205227888575f05c7586a96e508",
+    "crates/v8-kernel/src/bin/install.rs": "73099b8b98ae58e689415baa2bb7df7bdeec6a8852ca5805cae76ba534c93035",
+    "crates/v8-kernel/src/bin/provision.rs": "bb7fe0e7b1df136922ce0bba15f63a78d2c89d45391937f457841df77514e141",
+    "crates/v8-kernel/src/check.rs": "9e2e2bdcffccea701779195c5a89c3b143691261d06651e108f092f0b85bfe22",
+    "crates/v8-kernel/src/entry.rs": "c6317ae3d40a8c36cc2b61162fb59a84484474a61669f08bbf7a7085c669a90d",
+    "crates/v8-kernel/src/generator/certificate.rs": "bb572e63a0ad88bf28123dc9de1a64c5d5b817329f381299704a7c409e2727c8",
+    "crates/v8-kernel/src/generator/clausifier.rs": "462d7f9241708da02a842eee9891d2b1e194bd4f7a5cc05f21ffbb7a7e24df8c",
+    "crates/v8-kernel/src/generator/emit.rs": "85b20de439c6f7ac5c3df8ab38af62323b39b7ed04cdb37073bbebf8768debab",
+    "crates/v8-kernel/src/generator/mod.rs": "a6fccc54f9d040c35002690a3cdcc2886e94d580213eef12988e9c039b3a7e56",
+    "crates/v8-kernel/src/generator/py.rs": "649decb352880103663dbb679ca66438e19db064e1d3041d22694f8695589c08",
+    "crates/v8-kernel/src/generator/recipe.rs": "00cc885739c93dc959ac4e25c0dda70886096efef9fa663517edb03c698b589f",
+    "crates/v8-kernel/src/generator/rectify.rs": "3dbbf6a97e00dbfaf7b0cb32cd0f22db824b425e774ba627306cb28b14b670bc",
+    "crates/v8-kernel/src/generator/removal.rs": "784e3b4b5565b9edc4bdcf2468c034186a2c9eeb1615d9eec134a84d1e5d4d00",
+    "crates/v8-kernel/src/generator/skolem.rs": "473a0b3d795aaeb3301b96bbae51e7553084d1801f31f2894db78ead5f248e7b",
+    "crates/v8-kernel/src/generator/split.rs": "5d941e18ac0024c4198986fdbc68e58cd5a9e789232183e8d49b8fa7cc4e9421",
+    "crates/v8-kernel/src/generator/v8.rs": "9bc722f0b92ede381ce3d0a25cc1e0376b98a1191ddf0891dc66f597076b2a54",
+    "crates/v8-kernel/src/generator/validate.rs": "80443e6703fcbf42540071c0b2a0971239725f4767f0458cbc51bfcdc682c1db",
+    "crates/v8-kernel/src/generator/witness.rs": "611bf5c99f1d8a5af2bba9308e0302d4a76b6389a8b2c3a6d7b2cf1550d3bc6a",
+    "crates/v8-kernel/src/helpers.rs": "bacb01e3eb81761d6fbfbcc8d8e3abb755e36c57678dd64e963efa32904dc62b",
+    "crates/v8-kernel/src/install.rs": "4850b6d13ba085c70073193a959e73732b1a2b7b2c3313d720bb97a45c60b086",
+    "crates/v8-kernel/src/internal.rs": "aeac77a0bba639c71d147d656306a1d15dab39d05f3eb4bc5fd343609c267c16",
+    "crates/v8-kernel/src/launch.rs": "5e866b0c68a9f7c3894419aa0682c2043a11a9ee284fd176b4e7050549dc0f6b",
+    "crates/v8-kernel/src/lib.rs": "86c5fc8e9c066d33d688fb9c9b156dbbc9fb397fdd07fa3ca66b6b98e025d124",
+    "crates/v8-kernel/src/provision.rs": "b60379f44b524aa89a0019e12bb0ba269614fcb9ff3572975fe1404e91bd22df",
+    "crates/v8-kernel/src/trees.rs": "13f4a46a4320c82b56249bca236f851329ba66a8330dea36f0b88ded1ec64e0e",
+    "crates/v8-kernel/src/util.rs": "7ee27ca4367f397f0c5bfbd4bbe245300a43972178b4bf8206730082a3a0323b",
+    "rust-toolchain.toml": "5597a94fc41b6f56313d195195fbeb63df9eb694cfe9fa5d0a8011c999e335ed"
+  },
+  "independent_review": {
+    "bindings": {
+      "pins.link_v2": "c0f18bbe3457610f7972c49cd2b6ede5270727fa844c3d2b174bd748b94dac0c",
+      "pins.proof": "e8dbfe675733e2b708870349e4eed81d2ef5dea2f02f3c97b2a3a2214d75a5ea"
+    },
+    "provenance": "evidence/verification/tptp-expanded-certificate-independent-review-v2-20261024/manifest.json",
+    "sha256": "9454d117e63f255ad0ce3a461f3aa920c23e30cf185b0fd2dbb664540f2db438"
+  },
+  "provenance": {
+    "gate_manifest_sha256": "e8dbfe675733e2b708870349e4eed81d2ef5dea2f02f3c97b2a3a2214d75a5ea",
+    "link_sha256": "c0f18bbe3457610f7972c49cd2b6ede5270727fa844c3d2b174bd748b94dac0c",
+    "note": "Receipts named here are provenance; the installation reads none of them."
+  },
+  "revision": 8,
+  "schema": "fang-v8-equality-kernel-entry-policy-v5",
+  "toolchain": {
+    "lake_sha256": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean_sha256": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "lib_tree_sha256": "0cf201fdce9c10d409d4e96e702b581d79248931f2318730d746a313822a08d1",
+    "release": "v4.35.0"
+  }
+}

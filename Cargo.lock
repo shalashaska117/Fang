@@ -11,6 +11,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "fang-axiom-audit"
+version = "0.0.0"
+dependencies = [
+ "fang-json",
+]
+
+[[package]]
 name = "fang-binder-removal-core"
 version = "0.0.0"
 dependencies = [
@@ -84,6 +91,57 @@ dependencies = [
 ]
 
 [[package]]
+name = "fang-hash"
+version = "0.0.0"
+
+[[package]]
+name = "fang-install"
+version = "0.0.0"
+dependencies = [
+ "fang-axiom-audit",
+ "fang-hash",
+ "fang-json",
+ "fang-launcher",
+ "fang-source-checks",
+ "fang-supervisor",
+ "fang-toml",
+]
+
+[[package]]
+name = "fang-json"
+version = "0.0.0"
+
+[[package]]
+name = "fang-kernel-workspace"
+version = "0.0.0"
+dependencies = [
+ "fang-hash",
+ "fang-json",
+ "fang-supervisor",
+]
+
+[[package]]
+name = "fang-launcher"
+version = "0.0.0"
+dependencies = [
+ "fang-axiom-audit",
+ "fang-hash",
+ "fang-json",
+ "fang-kernel-workspace",
+ "fang-supervisor",
+]
+
+[[package]]
+name = "fang-models"
+version = "0.0.0"
+dependencies = [
+ "fang",
+ "fang-equality-inference-core",
+ "fang-tptp-coverage-candidate",
+ "fang-tptp-signed-bundle",
+]
+
+[[package]]
 name = "fang-predicate-index-core"
 version = "0.0.0"
 
@@ -154,11 +212,53 @@ dependencies = [
 ]
 
 [[package]]
+name = "fang-saturation"
+version = "0.0.0"
+dependencies = [
+ "fang",
+ "fang-equality-inference-core",
+ "fang-equality-paramodulation-core",
+ "fang-equality-search",
+ "fang-tptp-bundle-v8",
+ "fang-tptp-coverage-candidate",
+ "fang-tptp-expanded-integration",
+ "fang-tptp-expanded-v8",
+ "fang-tptp-roles",
+ "fang-tptp-signed-bundle",
+ "fang-tptp-signed-roles",
+]
+
+[[package]]
 name = "fang-skolem-core"
 version = "0.0.0"
 dependencies = [
  "fang",
  "fang-quantified-fof-core",
+]
+
+[[package]]
+name = "fang-source-checks"
+version = "0.0.0"
+dependencies = [
+ "fang-hash",
+ "fang-json",
+ "fang-supervisor",
+ "fang-toml",
+]
+
+[[package]]
+name = "fang-supervisor"
+version = "0.0.0"
+dependencies = [
+ "fang-hash",
+ "fang-json",
+]
+
+[[package]]
+name = "fang-toml"
+version = "0.0.0"
+dependencies = [
+ "fang-json",
 ]
 
 [[package]]
@@ -258,6 +358,17 @@ dependencies = [
  "fang-quantified-fof-core",
  "fang-skolem-core",
  "fang-tptp-roles",
+]
+
+[[package]]
+name = "fang-v8-kernel"
+version = "0.0.0"
+dependencies = [
+ "fang-axiom-audit",
+ "fang-hash",
+ "fang-json",
+ "fang-kernel-workspace",
+ "fang-supervisor",
 ]
 
 [[package]]

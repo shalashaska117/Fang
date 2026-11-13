@@ -1,26 +1,151 @@
 {
   "note": "Every lean-v8 module the kernel helpers or the generated per-input modules import, directly or not. build-helpers.py refuses a lean-v8 project whose source for any of these differs.",
   "provenance": {
+    "added_modules": {},
     "changed_modules": {
+      "Arithmetic": {
+        "from": "1fa01beca9ae7d1abcf24f30d38af87c7b8b0630a87a3d6227b2a802fd3be74f",
+        "to": "394f25990ea4028f6b30562a9cc2e6c4984b2b89e3df934880a70597a0a5e22f"
+      },
       "BinderRemoval": {
-        "from": "edbe362cc3297644df6a8a09ebfb22d9f0ef324165c99fb0657d6b71e88a4235",
-        "to": "c1c2fdd3356945dbb793ac6a039da7edac996f4fad6a858830129f82ae9f5ad5"
+        "from": "98cedf756f881d1027ddd3fffadb71ede639e14ac1575ed882e81d18a8f36236",
+        "to": "a005a38f8bda05f07e194b8633def176f66e6241c475769dbaae817042999961"
+      },
+      "CnfBooleanByteSemantics": {
+        "from": "c3972e834ee90ea2eb93f8bc9e7dd23714e62e181437f1f48c7702db756d49b3",
+        "to": "c4dc3fb7f08cb3edcae5f2aea739cb07baebdccf48fb51c52a3aaf6fbfddcb22"
+      },
+      "CnfBooleanDeclarationInput": {
+        "from": "d005c4b52597004f733921810adc94964c67088dfe0bcbbd8c9ef6e1877d6adf",
+        "to": "14a7ba8efccc73c8a9fe2386f9b4a789ee8505000b4378fc2b0f5816ff725917"
+      },
+      "CnfBooleanDeclarationSound": {
+        "from": "303aea01168e5881d01a9d675b84d17210c9df4d11d3474781b2abb673a2f5f7",
+        "to": "f44579a1237808f23e6e0dd09710809e29d5fdafc95f1b8f9a3f3d10a1277278"
+      },
+      "CnfBooleanGrammar": {
+        "from": "1e691898e7bdb223635555a2fa01603f557ae4b99c0d16713ada78479954247a",
+        "to": "301e8632e0fb990c10e11e2fb1e90186baeac9098e0daafd108e6eb91e106041"
+      },
+      "CnfBooleanProblemInput": {
+        "from": "41e582633dfedf5b806ad85ef626e1d50fd5ef8babcb85052a48bc1105425f60",
+        "to": "1c72caf9849f472f403d1924da2477167ee9d4987f4c4e2d54947cbea634cea6"
+      },
+      "CnfBooleanProblemSound": {
+        "from": "a7bbd109e249bd7b4991a7e4b5416fda588ed7ade1809a9f9ea66108bae636ec",
+        "to": "d1b785b142ba6045fea1081ea6a8aa927844427ef6ed5f3765c200c5f01e2541"
+      },
+      "CnfBooleanProblemUnique": {
+        "from": "b40343fd5984879984990f89a8b499e0042216ccc639da9037d8d64d2fa91961",
+        "to": "e32a66de6cd89301ce5e685be74aef63900f19bccf48137a6fdd1ce72b873dc7"
+      },
+      "CnfBooleanScope": {
+        "from": "51a5b636adb3b33e9a5f17eabcd33a4dd41bcf5f724947330dfef3915f965d21",
+        "to": "f5679bcd588b4a1c26917c9281e0dd7dc0882039b61ba9ace4e7015e6eda6c29"
+      },
+      "DeclarationsTrace": {
+        "from": "0098d8e45cb67930bbb02aaf39f4cd1671aa4de2e76a2138f08cb4f708f16b53",
+        "to": "6c71babccb2e20de14e75ef9d357c2cb3ce565e673c88877fe23701c6e9f177d"
+      },
+      "EmbeddedArithmetic": {
+        "from": "25bd5c3d56edbe56f639d0b5b8bc42586e4d08966b77486b4c77a017777fc54a",
+        "to": "a9b628e23879049b6f2d9048f4aa99a075da833b13cd3784e22afd40289d6100"
+      },
+      "EmbeddedFormulaScope": {
+        "from": "b0cdab85cc84ad05f2e9102d1c649872224039b059c2117644d5140a9a9fbd5a",
+        "to": "6396150d745cd7057b28ef25d834b9338b07b4fbb73b9f7b0d9abd0dda87b671"
+      },
+      "EmbeddedFormulaValidation": {
+        "from": "035349950af5694851cd6095eb9a50e15812c529023655af07041f8b65869610",
+        "to": "368729a474c8358fc7d2d7bf173abe5db8957fb12fe2417077948bf815f9dd11"
+      },
+      "EmbeddedNameLookup": {
+        "from": "f88df1d9d724746e54410f2494f332edd09bfda80872983d5bfe198a9f28435d",
+        "to": "eff2c95b219462f8b810e1a58e31d0a5e680f240afa0191aba238855853ce936"
+      },
+      "EmbeddedNormalize": {
+        "from": "9afb1febb714b07f98c174e61c7c78ef2f04de5a18754b5c3fe0d6c6f02d518d",
+        "to": "4d40594b3f75a6ca659e0eeb8b11cd13b64107b079adf6d0de29fbaa126f319e"
+      },
+      "EmbeddedRectifyState": {
+        "from": "910fb644fe7aeefdc9966130f30ef551891d1b87fc20b822fd0ba167c3c2a5ab",
+        "to": "7bbb0a08574174d8a83bd88206198079271edd7fe184cbbed3c6f1b9999730b8"
+      },
+      "EmbeddedTermScope": {
+        "from": "b78b6b1ae464b865c1d9de37ec304d30da1068e45f1773d38317b7a8390befa7",
+        "to": "8e8ecf12c98c486159a76acf80c230ab941250484a07eac7fe3c92a5b3b8e2ed"
+      },
+      "EmbeddedTermValidation": {
+        "from": "3e668f6095eaae8994ec2350f1aca1aca2d94ee6d992dd347146c7f14f202c7d",
+        "to": "d9d1057c5e041aa134eaaf566ecbc83e1c6f4a52df3d15c31543327c932f5481"
+      },
+      "EqualityLiteralGrammar": {
+        "from": "cfab44cfb7c7aa7a36e824c0d7c78d9088fbe286850b53184c41e5fba65ef96d",
+        "to": "5fce57bf62fb0b7a1984d85081f3b3def45412f8900cf55d555e8f02401176a8"
+      },
+      "EqualityQuantifiedEncoding": {
+        "from": "0d0ae495755697c1009cf50f0024f52e880c7eede0d7485e3f9103e8865f4dbc",
+        "to": "a8c87ee884b8f355a0f0d774834057f111ab2737f9820f218ad3d834be8eb63c"
+      },
+      "EqualityQuantifiedEncodingProof": {
+        "from": "36b88e8501b484b4a69ae9871d4a1dc7553f74196adfbb0823dfbe988e12a42c",
+        "to": "1796c415d6a4da232061d121c7411f60b47f521f9e932c853c9e8cfcc59eb029"
+      },
+      "EqualityQuantifiedLexing": {
+        "from": "2f8b7625bb0a2b7a7cba707c91dda024cda99d66ed20a256b1b1dd094f237894",
+        "to": "18549aae22dfaaf29b11cfc03d9b70347892d416e5e0d47f81f4f2caa240ef54"
+      },
+      "EqualityQuantifiedUniqueness": {
+        "from": "27a6237b1c7588cc3493f786ae876864e6304c10a5ddf360184b269a0110b374",
+        "to": "5f10bce66f0bc93f627a3edce06c4abae79c4f313bbee2f5220f687502a4437e"
+      },
+      "EqualitySourceGrammar": {
+        "from": "3bbde8e50eb4209b594b0260ecb18df0126d9cc6d00c22c3312cd3b518b3b238",
+        "to": "ff30503e8a9157129c8b98b33e667c6907787e273e0efe19c738389c160fcd52"
+      },
+      "ExpandedArityTable": {
+        "from": "eb95841d262f08dc6afc10900ec618d7f96b17a96d5741c35788ca3cf2ed4a87",
+        "to": "97b58c1c5d7bdec5164f7672273489e44f28daf5895ed62979e1a74bb011db05"
       },
       "Fof": {
-        "from": "1a136f3db1b8aa2ff7b6136c3c41884438468f1f446d5e3c6807947a585ae330",
-        "to": "3f0993dd0a8572710508a97ab37b9fd5f653ce690fe4bb88e44d2ecb598cba0f"
+        "from": "5f92d0f0e575e41be5ccf8886f75c9739491db10b43da3cb7719acba9c0ec8a8",
+        "to": "bdebe85b982086a0b6d89cff962e830f242238bd0216b3bb2b3504a365c0d7e4"
       },
-      "FofEqualityBridge": {
-        "from": "84010cea0c67754f6695f6fef985d4844d9bbd3f9e0a93dc69d1ea58c9a65510",
-        "to": "06b71ec545c312ff6451ff8593a85a427f405b83dacb83b02a84db233fb4bac7"
+      "QuantifiedFormula": {
+        "from": "3f291741b957b1af33c4ba3f40d13cfa021a10d5bcc0cbf11f1b1819cf47e1af",
+        "to": "fec13a68628260f0478a17973212fc33c5c616c4b87bdc5f1148c30144ae609f"
+      },
+      "RemovalProof": {
+        "from": "2a696accb22692fd4a3b1f6d8d882c023efa6033d05482fc1336cd8f87f3042f",
+        "to": "c163f80d55616a1dec032070b356d101cfd1bab893167155e50719618d993cf2"
+      },
+      "ReservedFunctionBounds": {
+        "from": "aa53e2214e80182c64507527b28706f66a5cbdaafc2851936055cb6bfad8bfa7",
+        "to": "82dabc1337467a0be6d245b5b06e6e46d554c1a5b081724cf0bdb9cdf03b84f4"
+      },
+      "ScopedCnf": {
+        "from": "defde3ed04a7a68cad56ac37dfb8ec575039ef440210d803797bceb184e1a17c",
+        "to": "cfb6b0216cfa70d312cda50774e3d12aab9e2a5efedcbdf816a73b594571e7f7"
+      },
+      "ScopedCnfCopy": {
+        "from": "bf148be0f460e7ae8187937d8bc9bd356101985413292d81eb3b19a2a25e8544",
+        "to": "b67dbeb651ea1df1572461f99021a5c7b79813501748cc0cc07d39dbba0a15aa"
+      },
+      "ScopedCnfProduct": {
+        "from": "3f9b78b435ac9d092836bb0fd74d26269c2ed925342db198ab33d32ed617f215",
+        "to": "7a68ce9f00cac44008103b576d82fb149d21bb81ab5b891ce848117fb3a100ea"
+      },
+      "ScopedCopy": {
+        "from": "93a9ff21b9235f0af121e6f7b0a3e318f24512a1821aca15b6c5730a3c83b24d",
+        "to": "328e761f33da92e17e98b35c91ae1e2fbab9ae8dd613955a44974adbb6c878f0"
       },
       "Skolem": {
-        "from": "ffd10734f4df22f71886bd9b73fafb5e6bbac0095ba8ce94bb267e1a7627f255",
-        "to": "0d0547cec45e373ddd985e9c96f588e03f388daeede93c62d94ef23323d60cf4"
+        "from": "fcb75c4e4331be64ba9230d4a586390add66590ae01084effc9a9a91bbaa1143",
+        "to": "961eeeb41aa19a882d9ccb82523be518a2848397ce1206573516880f1ec9abf3"
       }
     },
-    "note": "Same modules as the pin it replaces; only the listed sources changed.",
-    "replaces_sha256": "25c0f1caa0ac5ebc042beda73d68d35af3a24e2ab810624a7e71f5f74e9273b0"
+    "note": "The modules of the pin it replaces plus the added ones; only the listed sources changed.",
+    "replaces_sha256": "8f77e642081fc8b283bd598696de09869070a013951d1cad5a10e691ca5a54de"
   },
   "roots": [
     "ArityTable",
@@ -35,11 +160,11 @@
   "schema": "fang-v8-kernel-lean-v8-closure-v1",
   "sources_sha256": {
     "Absorb": "9383a537b134eb6e4a5772f13908702a4c2434fe271bc30a2f6b82889be06c09",
-    "Arithmetic": "1fa01beca9ae7d1abcf24f30d38af87c7b8b0630a87a3d6227b2a802fd3be74f",
+    "Arithmetic": "394f25990ea4028f6b30562a9cc2e6c4984b2b89e3df934880a70597a0a5e22f",
     "ArityProblem": "709583971d02118154a58bcb63b8c976cf50e34f66300e50a6e5f010038dc415",
     "AritySemantics": "82e583d6a046a709dfa50e57d9319da23a4dd0129569fdc1eeb19aa922463586",
     "ArityTable": "f0719696f4563113af40b61f05cd5ac077f9d9e5c71f4c76a2584f1a3f46ac79",
-    "BinderRemoval": "c1c2fdd3356945dbb793ac6a039da7edac996f4fad6a858830129f82ae9f5ad5",
+    "BinderRemoval": "a005a38f8bda05f07e194b8633def176f66e6241c475769dbaae817042999961",
     "BinderSemantics": "3996d3a84cea29048125d1af260d93398d48ab5b07a896ad5a2aaf15ca17734f",
     "BinderSyntax": "494af68124ae69a9a87cad1b65279e5a4cd6921fbdbca0dd01b247a9d3f4a5cc",
     "ClauseConversion": "c5fe1365d6a775f410006ba71ea36f6c7872049783bf5e8b61aa14d0a55abfa6",
@@ -47,16 +172,16 @@
     "ClauseEncoding": "c1d0a48db21d0ab251629350405d707d2e106817666785531fdf287e23d14a39",
     "ClauseUpdate": "a0bdd868e239c8a604cec98c4edcb3b460434c319a4872dc52552cb793f595e6",
     "CnfBoolean": "2026fded9cf58afd00e59a96395bcdd7756a857d481dd46d5e204b539cb300f6",
-    "CnfBooleanByteSemantics": "c3972e834ee90ea2eb93f8bc9e7dd23714e62e181437f1f48c7702db756d49b3",
-    "CnfBooleanDeclarationInput": "d005c4b52597004f733921810adc94964c67088dfe0bcbbd8c9ef6e1877d6adf",
-    "CnfBooleanDeclarationSound": "303aea01168e5881d01a9d675b84d17210c9df4d11d3474781b2abb673a2f5f7",
-    "CnfBooleanGrammar": "1e691898e7bdb223635555a2fa01603f557ae4b99c0d16713ada78479954247a",
+    "CnfBooleanByteSemantics": "c4dc3fb7f08cb3edcae5f2aea739cb07baebdccf48fb51c52a3aaf6fbfddcb22",
+    "CnfBooleanDeclarationInput": "14a7ba8efccc73c8a9fe2386f9b4a789ee8505000b4378fc2b0f5816ff725917",
+    "CnfBooleanDeclarationSound": "f44579a1237808f23e6e0dd09710809e29d5fdafc95f1b8f9a3f3d10a1277278",
+    "CnfBooleanGrammar": "301e8632e0fb990c10e11e2fb1e90186baeac9098e0daafd108e6eb91e106041",
     "CnfBooleanInput": "3118d985c9aa39ab04cddd34f8ac01bb7d525b643040a15604436f9869bbf82c",
     "CnfBooleanNormalize": "49b9c6b6fcbb5ff26c683516fd8ef54e140a026309e6fb3b105e6273542b0069",
-    "CnfBooleanProblemInput": "41e582633dfedf5b806ad85ef626e1d50fd5ef8babcb85052a48bc1105425f60",
-    "CnfBooleanProblemSound": "a7bbd109e249bd7b4991a7e4b5416fda588ed7ade1809a9f9ea66108bae636ec",
-    "CnfBooleanProblemUnique": "b40343fd5984879984990f89a8b499e0042216ccc639da9037d8d64d2fa91961",
-    "CnfBooleanScope": "51a5b636adb3b33e9a5f17eabcd33a4dd41bcf5f724947330dfef3915f965d21",
+    "CnfBooleanProblemInput": "1c72caf9849f472f403d1924da2477167ee9d4987f4c4e2d54947cbea634cea6",
+    "CnfBooleanProblemSound": "d1b785b142ba6045fea1081ea6a8aa927844427ef6ed5f3765c200c5f01e2541",
+    "CnfBooleanProblemUnique": "e32a66de6cd89301ce5e685be74aef63900f19bccf48137a6fdd1ce72b873dc7",
+    "CnfBooleanScope": "f5679bcd588b4a1c26917c9281e0dd7dc0882039b61ba9ace4e7015e6eda6c29",
     "CnfBooleanUnique": "04765caa6d28a9277b6950487393bbb61d0c54440776ca18f25ba3b1cb204610",
     "CommonRules": "7ccadc9b06efbf503a95526036adf2a4813a11d445dade94c13960b46429e6cc",
     "CopyArities": "fb129eb0db60e228b1f619ccb7f4fa1dc67f1fdf25bde2fdecc6b4afcc742324",
@@ -64,15 +189,15 @@
     "CopyTerm": "0f60c4c9a48493e558a8b1d858010497ae493926d3a20ff9f06492c12e576d19",
     "DeclarationArities": "275dac26bcf6ea8e17c82c0da0e475e21ea8c4465d783a5826d0a5b3a1c9422f",
     "DeclarationMeaning": "7018d5610e873e7438f750fa29b1a386d83c6f0eff717601c5e54e2df81dad60",
-    "DeclarationsTrace": "0098d8e45cb67930bbb02aaf39f4cd1671aa4de2e76a2138f08cb4f708f16b53",
+    "DeclarationsTrace": "6c71babccb2e20de14e75ef9d357c2cb3ce565e673c88877fe23701c6e9f177d",
     "Decoding": "ffdd2b613d90afd3ae1b1b23f3602ba525e17827b27f733359a2c801b051726e",
     "DependencyCopy": "f128d26b92cc8b034c720c30b3bf7ee1ab477132a4944f595a871d30a602671d",
     "EmbeddedArgumentsCopy": "309249dc4df4cdb47405980fa66b30dfea9ed2b867716f0937045a49ee0015e2",
-    "EmbeddedArithmetic": "25bd5c3d56edbe56f639d0b5b8bc42586e4d08966b77486b4c77a017777fc54a",
-    "EmbeddedFormulaScope": "b0cdab85cc84ad05f2e9102d1c649872224039b059c2117644d5140a9a9fbd5a",
-    "EmbeddedFormulaValidation": "035349950af5694851cd6095eb9a50e15812c529023655af07041f8b65869610",
-    "EmbeddedNameLookup": "f88df1d9d724746e54410f2494f332edd09bfda80872983d5bfe198a9f28435d",
-    "EmbeddedNormalize": "9afb1febb714b07f98c174e61c7c78ef2f04de5a18754b5c3fe0d6c6f02d518d",
+    "EmbeddedArithmetic": "a9b628e23879049b6f2d9048f4aa99a075da833b13cd3784e22afd40289d6100",
+    "EmbeddedFormulaScope": "6396150d745cd7057b28ef25d834b9338b07b4fbb73b9f7b0d9abd0dda87b671",
+    "EmbeddedFormulaValidation": "368729a474c8358fc7d2d7bf173abe5db8957fb12fe2417077948bf815f9dd11",
+    "EmbeddedNameLookup": "eff2c95b219462f8b810e1a58e31d0a5e680f240afa0191aba238855853ce936",
+    "EmbeddedNormalize": "4d40594b3f75a6ca659e0eeb8b11cd13b64107b079adf6d0de29fbaa126f319e",
     "EmbeddedPublicRectification": "fc185fb7d6f0c47a856e4db5a99b9c5ba6d51f1b569e23b58a7281555fe8f8e7",
     "EmbeddedPublicValidation": "73e74d904a1272de0609606291bd35b98baabf71f0eeecae72b2fa6dad0b7d68",
     "EmbeddedRectification": "f04f289a913c18fbb87707a6a75d5d3c93265f8c8267a64c69331f34ea8cfcca",
@@ -80,15 +205,15 @@
     "EmbeddedRectifyNormalize": "5285e2658fdb72a264c8312e66dd8e1b78c1f520e793aea5ae4334fce81a90e3",
     "EmbeddedRectifySemantics": "04d5ee2fc543deed079fa30334d9adff4564328c36d013a7574f174be6a23c76",
     "EmbeddedRectifySpecification": "313b2febe663558acf8448b5bc86a044acdf1ef0d8450ab879de287dbbf2a652",
-    "EmbeddedRectifyState": "910fb644fe7aeefdc9966130f30ef551891d1b87fc20b822fd0ba167c3c2a5ab",
+    "EmbeddedRectifyState": "7bbb0a08574174d8a83bd88206198079271edd7fe184cbbed3c6f1b9999730b8",
     "EmbeddedRectifyValidity": "826111225c98081449773afc847f2e0f686ca164252fee7dfb7b1f775bfdb75f",
     "EmbeddedRenameProperties": "a532b28a636ddd39c9616eb66c8cb311142f1706bf835d7507929f918ad739f9",
     "EmbeddedRepresentation": "2c03cdec3c5074ea345771e2361b7335972cbf82756fbe1878957a1c84deef79",
     "EmbeddedStack": "77e1ef5029ad95700cd46ee14e62506fb5f055115c05b25265a56c120604b1d0",
     "EmbeddedStackFrame": "ab2bf83843e881709647c41f06ec83c72b946f49ef0d7e48048d173a5293d022",
     "EmbeddedTermCopy": "18afaa030641e94c57f16f694c1434434e29c13e1bc357fe56abd1450052b171",
-    "EmbeddedTermScope": "b78b6b1ae464b865c1d9de37ec304d30da1068e45f1773d38317b7a8390befa7",
-    "EmbeddedTermValidation": "3e668f6095eaae8994ec2350f1aca1aca2d94ee6d992dd347146c7f14f202c7d",
+    "EmbeddedTermScope": "8e8ecf12c98c486159a76acf80c230ab941250484a07eac7fe3c92a5b3b8e2ed",
+    "EmbeddedTermValidation": "d9d1057c5e041aa134eaaf566ecbc83e1c6f4a52df3d15c31543327c932f5481",
     "Equality": "d20324d808973d5dca94953eec8a2d07c530a56d50d827da8fcadb66d0153832",
     "EqualityCertificateInput": "2a2a27913b3a79db23185fc4c288cd894a97ecbaa723c1db2591cc34c9d89ee6",
     "EqualityClauseGrammar": "3b396bafcefe540a54998067889581d1a310d6fb88eee381b65731f51f81a0e3",
@@ -97,7 +222,7 @@
     "EqualityEncodingProof": "300a140c362e4904b2d149f67428d6d403f5906ed78c06ffca2b3622641e4677",
     "EqualityGrammarUniqueness": "f13377b24a92c8c927bc80aec96d9c4bb507587b088ec41aea7336987ac288eb",
     "EqualityLexing": "f740cfb25ffe0cdb604a830e6e145c0471e70adc286947c4b54e4f5db3c8dbe6",
-    "EqualityLiteralGrammar": "cfab44cfb7c7aa7a36e824c0d7c78d9088fbe286850b53184c41e5fba65ef96d",
+    "EqualityLiteralGrammar": "5fce57bf62fb0b7a1984d85081f3b3def45412f8900cf55d555e8f02401176a8",
     "EqualityNamedSource": "9df547375c57191a4c719d2e9e77c83bbcaecf4310f2244818f4bcf6b8ed80d1",
     "EqualityOrderedCertificateInput": "27db7a949bdf4fc43435d1b51153203e8d64e3e0336e7d023ab21c19845ddf6d",
     "EqualityOriginalCertificate": "b0eabeee8175752911d82acf6adacc5dc7bd75173ca6996106a69a855eab26cf",
@@ -107,22 +232,22 @@
     "EqualityQuantifiedAtom": "b544621099acddacb92ea7e336ac3eaa7de3fb9e34f3eaa7f33aab19c15dde54",
     "EqualityQuantifiedBytes": "9185f1de6b50916dc9f7a6dcb609c55baa18228efb4126efe7a7d1184b59cff9",
     "EqualityQuantifiedDeclaration": "f1c83b24fa04c194a4657ea867567a43bb3bb64e72c4b34fb94891ad4254c229",
-    "EqualityQuantifiedEncoding": "0d0ae495755697c1009cf50f0024f52e880c7eede0d7485e3f9103e8865f4dbc",
-    "EqualityQuantifiedEncodingProof": "36b88e8501b484b4a69ae9871d4a1dc7553f74196adfbb0823dfbe988e12a42c",
+    "EqualityQuantifiedEncoding": "a8c87ee884b8f355a0f0d774834057f111ab2737f9820f218ad3d834be8eb63c",
+    "EqualityQuantifiedEncodingProof": "1796c415d6a4da232061d121c7411f60b47f521f9e932c853c9e8cfcc59eb029",
     "EqualityQuantifiedFormula": "9cdcac0fd96fcbf2ad64d48be0ee7ea37cfd630a2e79fc8910fc247b7a06a0d3",
     "EqualityQuantifiedGrammar": "5f8bd106ae166329662a2a615a95047a6bfa32be5dbfcb216d934c81ade35115",
     "EqualityQuantifiedInput": "090258bf8e4e7652d74add1873c160867f704637f119f5f77b8b1e53d88c7d83",
-    "EqualityQuantifiedLexing": "2f8b7625bb0a2b7a7cba707c91dda024cda99d66ed20a256b1b1dd094f237894",
+    "EqualityQuantifiedLexing": "18549aae22dfaaf29b11cfc03d9b70347892d416e5e0d47f81f4f2caa240ef54",
     "EqualityQuantifiedMeaning": "7c81dda8b2ca53944fa926b82b73a8f7e680aeb492c7a93ea91b328b393c3922",
     "EqualityQuantifiedNamed": "0f5af06bdee3c5c4c2f892524b606277f2573ba654f815aeed4301eb6051e579",
     "EqualityQuantifiedScope": "369715a021c17621dd64e6cc27cbdcdb7a0ad18558eb9d6afa5aacb8f6390a39",
-    "EqualityQuantifiedUniqueness": "27a6237b1c7588cc3493f786ae876864e6304c10a5ddf360184b269a0110b374",
+    "EqualityQuantifiedUniqueness": "5f10bce66f0bc93f627a3edce06c4abae79c4f313bbee2f5220f687502a4437e",
     "EqualitySourceEncoding": "3229dbbe2942471aecadd580182e4f9d4a781fcaca01e3d9e51aebcb30d661e9",
-    "EqualitySourceGrammar": "3bbde8e50eb4209b594b0260ecb18df0126d9cc6d00c22c3312cd3b518b3b238",
+    "EqualitySourceGrammar": "ff30503e8a9157129c8b98b33e667c6907787e273e0efe19c738389c160fcd52",
     "EqualitySourceInput": "5768e1cadf5e8841589e8b57577e4da93817de00d138241715f0c9e81ae61a7a",
     "EqualityTermGrammar": "fed8a290f989376657b023af9d6ef0fb708232685b53d40fbbec9e6ebc3fdf39",
     "ExistentialExtension": "efe3ceaa4ea46f1fd89f9206f78f4aeb9ef32d8ada95adb2dd2dd2f4717d6946",
-    "ExpandedArityTable": "eb95841d262f08dc6afc10900ec618d7f96b17a96d5741c35788ca3cf2ed4a87",
+    "ExpandedArityTable": "97b58c1c5d7bdec5164f7672273489e44f28daf5895ed62979e1a74bb011db05",
     "ExpandedBounds": "b4cf7505d1444ee38fa3018a44ca2f1c363f7ddc23597132e6c84f63271fce25",
     "ExpandedCertificate": "330b86a4e79f41e88909007a7c9f9327378f0a3c5fdddd5689d1f6e7a289fb3e",
     "ExpandedEnvelope": "fd59b12ebc8488e98343577ddc0900faf978ee220cddb2c230469b9d9211281c",
@@ -175,11 +300,12 @@
     "Fang.SourceLexing": "4c8c7b47ce6ec73c1604de8bfd273932e748b8c65286a5bfcfaf4685c4c6f931",
     "Fang.SourceSemantics": "3cef698ba07f1bbe165622349784f4ed29213f664eafeb004311248a9f292a2e",
     "FangDiscriminant": "0d165cb43e9cad6d58b3c9161cb113157f9effee47da76c1a12bfa6fdd649e12",
-    "Fof": "3f0993dd0a8572710508a97ab37b9fd5f653ce690fe4bb88e44d2ecb598cba0f",
+    "FangFastVec": "6009be52cc5d296cb8669138f298675fbeba80b0fe06d38625a97a8acdef7171",
+    "Fof": "bdebe85b982086a0b6d89cff962e830f242238bd0216b3bb2b3504a365c0d7e4",
     "FofDeclarationGrammar": "19b13c5201966dbc9b1163b28e7021a9c540b20d46083878286f8b413ab9e383",
     "FofDeclarationSound": "25855d2646142d8340c8c9494602c6b4997d793ac1bf033c44c177055446f4c6",
     "FofEncoding": "ddf247ce54aa5558068c15d9b485e197448093ff6448d0a269320fe205d10621",
-    "FofEqualityBridge": "06b71ec545c312ff6451ff8593a85a427f405b83dacb83b02a84db233fb4bac7",
+    "FofEqualityBridge": "bfafdc1e5b564ac6cd132be4cb5f3d11ecad11b2c0c173b0ba6602d58ff6c0de",
     "FofFormulaSound": "a23b6ee887afe44fbef3f842ec11c221637a6b28d8b058f8d9fc731a09954d88",
     "FofFormulaUnique": "3c8d576b47254e0666f3d6d49dc1e260dc4e562089c3795fe21c1f09d5baab37",
     "FofGrammarTypes": "fe466fea3672f8f11df75909647eded5da4cbf7c633f1487357a406c448f1087",
@@ -221,7 +347,7 @@
     "QuantifiedDeclarationEncoding": "bb5ff87ac05ae8e2fd6b178e75f7552662eb7dd71d0fe2f247caa11141ac48aa",
     "QuantifiedDeclarationGrammar": "90f2bb8dffdb017017f12295e5b2a68294f4d640d7e85566ccc56b06666a2df0",
     "QuantifiedEncoding": "000252e4673689138f2a044b96d8ad74464f9b6e26093e4580aa33d37d67c342",
-    "QuantifiedFormula": "3f291741b957b1af33c4ba3f40d13cfa021a10d5bcc0cbf11f1b1819cf47e1af",
+    "QuantifiedFormula": "fec13a68628260f0478a17973212fc33c5c616c4b87bdc5f1148c30144ae609f",
     "QuantifiedFormulaGrammar": "728daf972d496c611473245098d97f4335498e0695135baf6b3bf4bc030ba15c",
     "QuantifiedGrammar": "ff7ba8e5469c620fa3d28b6ee5b13fc8355bb5ad83a7aaeaee5ca0c6c36ded7e",
     "QuantifiedInput": "c7fd380dc87a5c98a84bef4b64636636f4e5ed1d77950a3b92de273f5299eb12",
@@ -236,7 +362,7 @@
     "RecursiveExtension": "3b87050e34127d4f897974ae085079c83641c446570ba30c0710024fa97f5841",
     "RemovalClausifierMap": "bac3ea9dbcdf97c5f5250727c6880368582a4a8a36f9fc38ad4103c936d8d13f",
     "RemovalContract": "add0cb78f16a2dbdf36a65361dc815722031b25cd75d7847b6cb4c7af4b00adc",
-    "RemovalProof": "2a696accb22692fd4a3b1f6d8d882c023efa6033d05482fc1336cd8f87f3042f",
+    "RemovalProof": "c163f80d55616a1dec032070b356d101cfd1bab893167155e50719618d993cf2",
     "RemovalPublic": "3b7db93c40d61fd34ff41ac1672ac1986db8207b0df5fdcf84815387dec45d03",
     "RemovalResources": "44bc1a9a63624bf95f5505a35e7b96dc207831dc983fdea3f08b1ffcdca9d2df",
     "RemovalScope": "0fa299b4ffc94fcb41453dd2ddefc08c90a22cbfcb0420a4c1cb74a4ff10f4dc",
@@ -246,25 +372,25 @@
     "Representation": "f67903467d4fbebe9d0f2c0cb56baf34d3aed77d88b370c5cacc045143cf1c66",
     "Reservation": "837c3de438a57f7462302517531bc83d057c75fb111f9d7d23cf01bbb7a6b450",
     "ReservedByteEntry": "37f67212cd98747d782153bf96944fe39aa117f8a36ed134cdfc9991f6e4e2fd",
-    "ReservedFunctionBounds": "aa53e2214e80182c64507527b28706f66a5cbdaafc2851936055cb6bfad8bfa7",
+    "ReservedFunctionBounds": "82dabc1337467a0be6d245b5b06e6e46d554c1a5b081724cf0bdb9cdf03b84f4",
     "ReservedInput": "28ba7bd66dce37d730fef43f64c09016695363d3edc6d14764503bd055cd7abf",
     "ReservedModels": "ce803beaba36c9cc8c9b0e768c8ea7544ac78067f8c0be0d68f0363004fff0c5",
     "RetainedBounds": "db5125f836b9ac7160ee6bee1405fd36c5bb875b7e781499d337ddcc05cf0943",
     "Scope": "4ca98bcdd855a2c251f4c16480a4a13b4c13089c02a53bbf1ecd04c14b43699b",
     "ScopedArithmetic": "8a3b9ebc62ce30f41a8856c4d4e091932c2e2b4e53c536cbcf723cb3c7b4f991",
     "ScopedClausify": "ffe15f6544a43018d9e49b39d4412058f0e29c949f25bbb02667c56a8aae2560",
-    "ScopedCnf": "defde3ed04a7a68cad56ac37dfb8ec575039ef440210d803797bceb184e1a17c",
+    "ScopedCnf": "cfb6b0216cfa70d312cda50774e3d12aab9e2a5efedcbdf816a73b594571e7f7",
     "ScopedCnfChecks": "468382b0022aa674ffa5cee751658e687af3d76613f62e5566c0724a7b3f0f2f",
-    "ScopedCnfCopy": "bf148be0f460e7ae8187937d8bc9bd356101985413292d81eb3b19a2a25e8544",
+    "ScopedCnfCopy": "b67dbeb651ea1df1572461f99021a5c7b79813501748cc0cc07d39dbba0a15aa",
     "ScopedCnfInvariant": "d97698142cf1ad8430c9a41b9a285b49cc26c1f77cddc4c1338c67bf03095f79",
-    "ScopedCnfProduct": "3f9b78b435ac9d092836bb0fd74d26269c2ed925342db198ab33d32ed617f215",
+    "ScopedCnfProduct": "7a68ce9f00cac44008103b576d82fb149d21bb81ab5b891ce848117fb3a100ea",
     "ScopedCnfSemantics": "9521adcf93859f2ba18919124f5ab2b0fd61f6a4e042f157e8bb820426162931",
-    "ScopedCopy": "93a9ff21b9235f0af121e6f7b0a3e318f24512a1821aca15b6c5730a3c83b24d",
+    "ScopedCopy": "328e761f33da92e17e98b35c91ae1e2fbab9ae8dd613955a44974adbb6c878f0",
     "ScopedCopyAllocation": "bb1294def25c7202ba5981acf6c152f1ebc96d9e0576bac4fc7a28868445b382",
     "ScopedRepresentation": "78c7a95874223557804c4deb617e0b4b8fc706738f57be1b0c0e0745e7927405",
     "SemanticModel": "c3fe3bf9b7991f1a86c5421e1c9ae8a76d8e739a6d6450c5853a7a9108049210",
     "SignatureInventory": "a90b551501df80e0bc4980fb9a95c7129f00b9135ae8ff3ca176124e07207189",
-    "Skolem": "0d0547cec45e373ddd985e9c96f588e03f388daeede93c62d94ef23323d60cf4",
+    "Skolem": "961eeeb41aa19a882d9ccb82523be518a2848397ce1206573516880f1ec9abf3",
     "SkolemModel": "ac6897dc154f0db4aa11ffa1067c2a4e3b3f48a08fb513a94640489988f6dfc1",
     "SkolemRemovalMap": "ddbed931765e50a80794b9faab1a2f4eed8cfaada980dfa4cce3e96dab2d82b6",
     "SubstituteCapture": "deff50a22efe38479d25aa2191526fc026106fa9be322df9fc0dc7bf1ac21008",

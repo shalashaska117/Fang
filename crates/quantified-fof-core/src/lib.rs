@@ -338,7 +338,7 @@ fn validate_formula(
     work: &mut Work,
 ) -> Result<(), Error> {
     work.tick(limits)?;
-    if depth > limits.max_formula_depth.min(64) {
+    if depth > limits.max_formula_depth.min(65536) {
         return Err(Error::Resource(Resource::FormulaDepth));
     }
     work.statistics.input_formula_nodes = bounded_add(

@@ -108,31 +108,30 @@ fn truth_does_not_skip_parse_errors_late_declarations_or_head_validation() {
     );
 }
 
+/// The literal bound is the encoder's and counts the clause the checker converts: a true constant
+/// drops the clause, a false constant drops its literal, and duplicate literals merge.
 #[test]
-fn literal_limits_count_the_unsimplified_input() {
+fn literal_limits_count_the_normalized_clause() {
     let limits = Limits {
         input: fang::Limits {
-            max_literals: 2,
+            max_literals: 0,
             ..Default::default()
         },
         ..Default::default()
     };
-    assert!(parse(b"cnf(a,axiom,$true|$false|p).", &limits).is_err());
-    let parsed = parse(b"cnf(a,axiom,$true|$false|p).", &Limits::default()).unwrap();
-    assert_eq!(parsed.encode(2, 2).unwrap_err(), BridgeError::LiteralLimit);
-    assert!(
-        parse(
-            b"cnf(a,axiom,$false).",
-            &Limits {
-                input: fang::Limits {
-                    max_literals: 0,
-                    ..Default::default()
-                },
-                ..Default::default()
-            }
-        )
-        .is_err()
+    assert!(parse(b"cnf(a,axiom,$true|$false|p).", &limits).is_ok());
+    let encode = |source: &[u8], predicates: usize, literals: usize| {
+        parse(source, &Limits::default())
+            .unwrap()
+            .encode(predicates, literals)
+    };
+    assert!(encode(b"cnf(a,axiom,$true|$false|p).", 2, 0).is_ok());
+    assert!(encode(b"cnf(a,axiom,$false|p|p).", 2, 1).is_ok());
+    assert_eq!(
+        encode(b"cnf(a,axiom,$false|p|q).", 3, 1).unwrap_err(),
+        BridgeError::LiteralLimit
     );
+    assert!(encode(b"cnf(a,axiom,$false).", 1, 0).is_ok());
 }
 
 fn term(input: &Term, valuation: [bool; 2], bits: usize) -> bool {

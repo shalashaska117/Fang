@@ -1,0 +1,57 @@
+[package]
+name = "fang-saturation"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+# Built on its own, like the crates the root workspace excludes; it joins the root workspace only at integration.
+
+[dependencies]
+fang = { path = "../.." }
+fang-equality-inference-core = { path = "../equality-inference-core" }
+fang-equality-paramodulation-core = { path = "../equality-paramodulation-core" }
+fang-equality-search = { path = "../equality-search" }
+fang-tptp-expanded-integration = { path = "../fang-tptp-expanded" }
+fang-tptp-expanded-v8 = { path = "../fang-v8" }
+fang-tptp-bundle-v8 = { path = "../tptp-bundle-v8" }
+fang-tptp-coverage-candidate = { path = "../tptp-coverage" }
+fang-tptp-signed-roles = { path = "../tptp-signed-roles" }
+fang-tptp-signed-bundle = { path = "../tptp-signed-bundle" }
+# The role type of the staged `Prepared::origins` field.
+fang-tptp-full-frontend-candidate = { package = "fang-tptp-roles", path = "../tptp-roles" }
+
+[[bin]]
+name = "fang-v3-single"
+path = "src/bin/single.rs"
+
+[[bin]]
+name = "fang-v3-bundle"
+path = "src/bin/bundle.rs"
+
+[[bin]]
+name = "fang-v3-signed-bundle"
+path = "src/bin/signed_bundle.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true
+
+[[bin]]
+name = "fang-v3-cited-bundle"
+path = "src/bin/cited_bundle_cli.rs"
+
+[[bin]]
+name = "fang-v3-cited-bundle-final"
+path = "src/bin/cited_bundle_final.rs"
+
+[[bin]]
+name = "fang-v3-signed-named"
+path = "src/bin/signed_named.rs"
+
+[[bin]]
+name = "fang-v3-single-named"
+path = "src/bin/single_named.rs"

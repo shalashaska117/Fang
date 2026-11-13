@@ -1,0 +1,17 @@
+# Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
+[package]
+name = "fang-kernel-workspace"
+description = "Fresh native kernel files, a checked archive and explicit partial retention, shared by the launcher's older profiles and kernel mode."
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+license = "BSD-3-Clause"
+
+[dependencies]
+fang-hash = { path = "../fang-hash" }
+fang-json = { path = "../fang-json" }
+fang-supervisor = { path = "../fang-supervisor" }
+
+[lints.rust]
+unsafe_code = "forbid"

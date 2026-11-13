@@ -14,16 +14,18 @@ pub const HEADER: &str =
     "(fang-proof 8\n  (preprocessing expanded-fof-equality-skolem-distributive-v1)\n";
 const TRACE_HEADER: &str = "(fang-proof 5\n  (preprocessing identity-cnf-equality-v1)\n";
 
-/// The limits record of every native main (`NativeLimits.lean`).
-/// Declarations, the Skolem work counters, the symbol caps, the predicate table and the
-/// literals per clause take the record's values. The parser's whole-file counts of term nodes,
-/// formula nodes and binders have no counterpart in the record; they are raised to the input
-/// byte bound, which already caps them. Skolemization does not read the core clause and literal
-/// counts. The producer's pipeline reads them as caps on the output of the whole problem, which
-/// the checker does not have, so they are raised to the stored-node bound. The pipeline also
-/// spends one operation and storage budget on Skolemization, removal and clausification
-/// together, where the checker gives removal and clausification a fresh budget per declaration,
-/// so the producer can still refuse a large FOF input that the checker accepts.
+/// The limits record of every native main: the final record of decision 9 (`NativeLimits.lean`).
+/// Declarations, the Skolem work counters and formula depth, the symbol caps, the predicate
+/// table, the literals per clause and the certificate bytes take the record's values. The
+/// parser keeps its formula height bound of 64, as the checker's decoder does in round one.
+/// The parser's whole-file counts of term nodes, formula nodes and binders have no counterpart
+/// in the record; they are raised to the input byte bound, which already caps them.
+/// Skolemization does not read the core clause and literal counts. The producer's pipeline reads
+/// them as caps on the output of the whole problem, which the checker does not have, so they are
+/// raised to the stored-node bound. The pipeline also spends one operation and storage budget on
+/// Skolemization, removal and clausification together, where the checker gives removal and
+/// clausification a fresh budget per declaration, so the producer can still refuse a large FOF
+/// input that the checker accepts.
 pub fn native_limits() -> Limits {
     let mut limits = Limits::default();
     let bytes = limits.input.input.max_input_bytes;
@@ -32,14 +34,17 @@ pub fn native_limits() -> Limits {
     limits.input.max_formula_nodes = bytes;
     limits.input.max_binders = bytes;
     limits.preprocessing.max_declarations = 65_536;
-    limits.preprocessing.max_functions = 7_081;
-    limits.preprocessing.max_skolem_symbols = 4_703;
-    let stored = 4_000_000;
+    limits.preprocessing.max_functions = 83_412;
+    limits.preprocessing.max_skolem_symbols = 30_675;
+    let stored = 7_943_814;
+    limits.preprocessing.core.max_formula_depth = 2_984;
     limits.preprocessing.core.max_stored_nodes = stored;
     limits.preprocessing.core.max_operations = 16_000_000;
     limits.preprocessing.core.max_clauses = stored;
     limits.preprocessing.core.max_literals = stored;
-    limits.max_predicates = 5_808;
+    limits.max_predicates = 74_339;
+    // The checker refuses a certificate above its certificateLimit, so the producer stops there.
+    limits.search.input.max_proof_bytes = 5_081_233;
     limits.max_bridge_literals = 256;
     limits
 }

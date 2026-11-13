@@ -28,6 +28,10 @@ fn native_limits_match_the_lean_record() {
     assert!(RECORD.contains("def byteLimit : Nat := 1024 * 1024"));
     assert_eq!(limits.input.input.max_input_bytes, 1024 * 1024);
     assert_eq!(
+        limits.search.input.max_proof_bytes,
+        record("def certificateLimit : Nat")
+    );
+    assert_eq!(
         limits.input.input.max_clauses,
         record("def declarationLimit : Nat")
     );

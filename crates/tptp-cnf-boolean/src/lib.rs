@@ -34,21 +34,45 @@ enum NamedTerm {
     Function(String, Vec<NamedTerm>),
 }
 
+/// The deepest formula nesting any configuration may ask for: the formula height of the final limits
+/// record (2,984, `formulaDepthLimit` of the final limits record). The parser, the
+/// encoder and the drop of the syntax tree recurse once per level on the native stack, so a
+/// configured `max_formula_depth` above it is capped here; `tests/depth.rs` checks the stack.
+pub const FORMULA_DEPTH_CEILING: usize = 2_984;
+
+/// Parser operations allowed per input byte: about four times the 1.9 measured on 4 MiB of FOF
+/// records. Each declaration also gets `max_formula_nodes + input.max_term_nodes`, the most its
+/// equivalence and exclusive-or copies can take, so the budget refuses no input that the formula,
+/// term and binder bounds admit and still stops any work that grows faster than the input.
+pub const OPERATIONS_PER_BYTE: usize = 8;
+
+/// Parse-time bounds follow the checker's decoder, from the limits record: bytes, declarations
+/// per file (`input.max_clauses`), formula height and term depth. The formula node, binder and
+/// term node bounds are the Skolem core's per-formula bounds, counted on the lowered tree the core
+/// receives, so the parser refuses exactly the formulas the core refuses. `input.max_operations`
+/// is an extra fixed cap, off by default; the operation budget is `OPERATIONS_PER_BYTE`.
+/// `input.max_literals` is not a parse bound: `Parsed::encode` takes the literal bound.
 #[derive(Clone, Debug)]
 pub struct Limits {
     pub input: fang::Limits,
-    /// Formula depth, including grouping and each expanded binder, capped at 64.
+    /// Formula depth, including grouping and each expanded binder. Callers set the formula height of
+    /// the limits record; a larger value is capped at `FORMULA_DEPTH_CEILING`.
     pub max_formula_depth: usize,
-    /// Total FOF AST nodes in the file. Parentheses add no AST node.
+    /// FOF AST nodes in one formula, copies of equivalence and exclusive-or operands included.
+    /// Parentheses add no AST node.
     pub max_formula_nodes: usize,
-    /// Total binder occurrences in the file, including unused/shadowed names.
+    /// Binder occurrences in one formula, including unused/shadowed names.
     pub max_binders: usize,
 }
 
 impl Default for Limits {
     fn default() -> Self {
         Self {
-            input: fang::Limits::default(),
+            input: fang::Limits {
+                max_clauses: 65_536,
+                max_operations: usize::MAX,
+                ..fang::Limits::default()
+            },
             max_formula_depth: 64,
             max_formula_nodes: 10_000,
             max_binders: 10_000,
@@ -96,6 +120,9 @@ pub struct Declaration<B = Body> {
 pub struct Statistics {
     /// One operation per lexed byte, consumed token and copied AST node.
     pub operations: usize,
+    /// Operations allowed so far: `OPERATIONS_PER_BYTE` per lexed byte, plus the per-declaration
+    /// allowance for each declaration started.
+    pub budget: usize,
     pub formula_nodes: usize,
     pub term_nodes: usize,
     pub binders: usize,
@@ -165,14 +192,14 @@ fn encode_formula(
 
 // Consume every original literal, even after a true constant. This checks all
 // ordinary heads and preserves the complete source tables and later failures.
+// The literal bound applies as in the checker's conversion: after constants are
+// normalized (a true constant drops the clause, a false one drops the literal)
+// and duplicate literals are merged.
 fn encode_cnf(
     input: Vec<CnfLiteral>,
     reservation: &Reservation,
     maximum: usize,
 ) -> Result<Option<fang::syntax::Clause>, BridgeError> {
-    if input.len() > maximum {
-        return Err(BridgeError::LiteralLimit);
-    }
     let mut tautology = false;
     let mut output = Vec::new();
     for literal in input {
@@ -183,7 +210,14 @@ fn encode_cnf(
             }
         }
     }
-    Ok(if tautology { None } else { Some(output) })
+    if tautology {
+        return Ok(None);
+    }
+    let distinct: std::collections::BTreeSet<_> = output.iter().collect();
+    if distinct.len() > maximum {
+        return Err(BridgeError::LiteralLimit);
+    }
+    Ok(Some(output))
 }
 
 impl Parsed {
@@ -268,7 +302,7 @@ fn error(kind: ErrorKind, offset: usize, message: &str) -> Error {
 }
 
 fn tick(statistics: &mut Statistics, cap: usize) -> Result<(), Error> {
-    if statistics.operations >= cap {
+    if statistics.operations >= cap.min(statistics.budget) {
         return Err(Error::resource("parser operation limit exceeded"));
     }
     statistics.operations += 1;
@@ -279,6 +313,9 @@ fn lex(input: &[u8], limits: &Limits, statistics: &mut Statistics) -> Result<Vec
     if input.len() > limits.input.max_input_bytes {
         return Err(Error::resource("input byte limit exceeded"));
     }
+    statistics.budget = statistics
+        .budget
+        .saturating_add(OPERATIONS_PER_BYTE.saturating_mul(input.len()));
     let mut tokens = Vec::new();
     let mut pos = 0;
     while pos < input.len() {
@@ -568,6 +605,9 @@ struct Parser<'a> {
     active_binders: Vec<u32>,
     scope: Scope,
     statistics: Statistics,
+    /// The statistics when the current formula started; formula, term and binder bounds count
+    /// from here.
+    formula_start: Statistics,
 }
 
 impl Parser<'_> {
@@ -657,7 +697,9 @@ impl Parser<'_> {
         if depth > self.limits.input.max_term_depth.min(64) {
             return Err(Error::resource("term depth limit exceeded"));
         }
-        if self.statistics.term_nodes >= self.limits.input.max_term_nodes {
+        if self.statistics.term_nodes - self.formula_start.term_nodes
+            >= self.limits.input.max_term_nodes
+        {
             return Err(Error::resource("input term node limit exceeded"));
         }
         self.statistics.term_nodes += 1;
@@ -771,7 +813,7 @@ impl Parser<'_> {
         Ok(literal)
     }
     fn clause_formula(&mut self, depth: usize) -> Result<Vec<CnfLiteral>, Error> {
-        if depth > self.limits.max_formula_depth.min(64) {
+        if depth > self.limits.max_formula_depth.min(FORMULA_DEPTH_CEILING) {
             return Err(Error::resource("CNF parenthesis depth limit exceeded"));
         }
         if self.accept(b'(')? {
@@ -785,9 +827,6 @@ impl Parser<'_> {
     fn clause(&mut self) -> Result<Vec<CnfLiteral>, Error> {
         let mut literals = Vec::new();
         loop {
-            if literals.len() >= self.limits.input.max_literals {
-                return Err(Error::resource("input literal limit exceeded"));
-            }
             literals.push(self.literal()?);
             if !self.accept(b'|')? {
                 break;
@@ -803,7 +842,9 @@ impl Parser<'_> {
         Ok(literals)
     }
     fn count_formula(&mut self) -> Result<(), Error> {
-        if self.statistics.formula_nodes >= self.limits.max_formula_nodes {
+        if self.statistics.formula_nodes - self.formula_start.formula_nodes
+            >= self.limits.max_formula_nodes
+        {
             return Err(Error::resource("input formula node limit exceeded"));
         }
         self.statistics.formula_nodes += 1;
@@ -818,7 +859,9 @@ impl Parser<'_> {
             return Err(Error::resource("copied term depth limit exceeded"));
         }
         tick(&mut self.statistics, self.limits.input.max_operations)?;
-        if self.statistics.term_nodes >= self.limits.input.max_term_nodes {
+        if self.statistics.term_nodes - self.formula_start.term_nodes
+            >= self.limits.input.max_term_nodes
+        {
             return Err(Error::resource("copied term node limit exceeded"));
         }
         self.statistics.term_nodes += 1;
@@ -881,12 +924,12 @@ impl Parser<'_> {
             let Some(Kind::Variable(name)) = self.peek().cloned() else {
                 return Err(self.invalid("expected a nonempty list of uppercase binder names"));
             };
-            if self.statistics.binders >= self.limits.max_binders {
+            if self.statistics.binders - self.formula_start.binders >= self.limits.max_binders {
                 return Err(Error::resource("input binder limit exceeded"));
             }
             // Each list element is a real nested AST node, even if unused.
             // Check before allocation so a long flat prefix cannot bypass depth.
-            if depth + binders.len() >= self.limits.max_formula_depth.min(64) {
+            if depth + binders.len() >= self.limits.max_formula_depth.min(FORMULA_DEPTH_CEILING) {
                 return Err(Error::resource("formula nesting limit exceeded"));
             }
             self.count_formula()?;
@@ -931,7 +974,7 @@ impl Parser<'_> {
         let end = depth
             .checked_add(height.saturating_sub(1))
             .ok_or_else(|| Error::resource("formula depth overflow"))?;
-        if end > self.limits.max_formula_depth.min(64) {
+        if end > self.limits.max_formula_depth.min(FORMULA_DEPTH_CEILING) {
             return Err(Error::resource("formula nesting limit exceeded"));
         }
         Ok(())
@@ -1081,6 +1124,7 @@ pub fn parse(input: &[u8], limits: &Limits) -> Result<Parsed, Error> {
         active_binders: Vec::new(),
         scope: Scope::FofExplicit,
         statistics,
+        formula_start: statistics,
     };
     let mut names = BTreeSet::new();
     let mut declarations = Vec::new();
@@ -1132,6 +1176,12 @@ pub fn parse(input: &[u8], limits: &Limits) -> Result<Parsed, Error> {
             Scope::FofExplicit
         };
         let body_start = parser.offset();
+        parser.statistics.budget = parser.statistics.budget.saturating_add(
+            limits
+                .max_formula_nodes
+                .saturating_add(limits.input.max_term_nodes),
+        );
+        parser.formula_start = parser.statistics;
         let body = if kind == "cnf" {
             Body::Cnf(parser.clause_formula(1)?)
         } else {

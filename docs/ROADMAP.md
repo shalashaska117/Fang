@@ -1,28 +1,18 @@
 # Roadmap
 
-The second release reads TPTP CNF and FOF with and without equality, proves conjectures, checks every positive answer with a Lean checker against the original input, and prints TSTP refutations, for conjectures only when the problem is a single file. Its search is weak: it proved 2 of 111 sampled TPTP problems where Vampire proved 61. It is not a complete TPTP implementation or a CASC entry.
+Version 3 covers TPTP CNF and FOF with equality, checked refutations and finite models, and TSTP output within the export scope described in [Usage](USAGE.md). Compiled Lean checking remains the default. Kernel replay is opt-in for supported refutations; the explicit unchecked mode labels its results.
 
-## Next: the search
+## Version 4
 
-The third version is about solving more problems. Each step is measured against Vampire on the same corpus, hardware and limits, and every new inference rule gets checker support before it can produce a checked answer.
+The next version targets competitive first-order reasoning on FOF and CNF, including equality, unit equality and effectively propositional problems. Work includes broader strategy schedules, AVATAR splitting, learned selection, control of the passive clause set, lower runtime overhead and support for larger theories. Infinite-model satisfiability and the remaining signed-bundle refutation export gaps belong here.
 
-- A term ordering (KBO) with ordered resolution and superposition.
-- Subsumption and tautology deletion. Deleting clauses needs no change to the checker, because a proof only uses the clauses it derives from.
-- Demodulation, with a matching certificate rule and its Lean proof.
-- Clause selection by age and weight, and term indexes for unification and subsumption.
-- Several strategies run in parallel.
+Changes are evaluated against Vampire on fixed corpora with matching resource limits. Solved counts and timings on common solves are reported separately, with checking and requested output included.
 
-The command gets three checking layers. `--check compiled` stays the default and `--check kernel` stays opt-in. A new `--check none` reports the search result without checking it and says so on every run; it is never the default, and its main use is measuring a search technique before the checker supports it. Kernel replay gets a split of its slowest proof phase, which made one of the release test inputs stop with Timeout.
+## Later versions
 
-TSTP output for conjectures in problems with include directives also belongs here.
+- Version 5: FNT and TFN, including typed first-order input without arithmetic.
+- Version 6: THF and SLH, for higher-order reasoning.
+- Version 7: TFA, typed first-order arithmetic.
+- Later work: SMT-LIB, arrays, datatypes and induction.
 
-## Later
-
-- Many-sorted first-order logic and TFF input.
-- Arithmetic, with its own certificate rules.
-- A separate model checker before Fang reports satisfiability or countermodels.
-- More of the Rust engine proved directly through Charon, Aeneas and Lean.
-- Higher-order logic and THF, SMT-LIB, and checking external TSTP proofs.
-- Results on the CASC divisions for first-order logic with and without equality (FNE, FEQ) and unit equality (UEQ), following the [division definitions](https://tptp.cs.miami.edu/CASC/J13/Design.html).
-
-These are plans, not supported features. Each one needs a specification, an implementation, proofs, adversarial and differential tests, measurements and review. Unsupported input keeps failing explicitly.
+These are plans, not supported features. External proof checking through PRV/ProoVer is outside this roadmap. Unsupported input continues to receive an explicit refusal.
