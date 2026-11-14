@@ -381,6 +381,7 @@ fn build(
     }
     let project_source = root.join(field(&lean_map, "project")?.as_str().unwrap_or_default());
     let executables = entries(field(&lean_map, "executables")?)?.clone();
+    let checker_name = primary_checker_name(&executables)?;
     report.set("closures", check_closures(&project_source, &lean_map)?);
     let pins = adapt::load_pins(root)?;
     report.set(
@@ -799,10 +800,7 @@ fn build(
             && adapt::digest(lake)? == lake_sha256,
         "Lean toolchain changed during the build",
     )?;
-    let checker = built
-        .get(CHECKER)
-        .cloned()
-        .ok_or_else(|| Error::Key(format!("'{CHECKER}'")))?;
+    let checker = checker_from_build(&built, checker_name)?;
     report.set("status", "built-and-audited");
     report.set("executables", Value::Object(built));
     report.set(
@@ -818,6 +816,33 @@ fn build(
         checker.get("bytes").cloned().unwrap_or(Value::Null),
     );
     Ok(())
+}
+
+fn primary_checker_name(executables: &Object) -> Result<&str> {
+    let mut primary = None;
+    for (name, entry) in executables.iter() {
+        let installed_as = entries(entry)?
+            .get("installed_as")
+            .and_then(Value::as_str)
+            .ok_or_else(|| {
+                Error::Value(format!("Invalid installed_as for Lean executable: {name}"))
+            })?;
+        if installed_as == CHECKER {
+            require(
+                primary.is_none(),
+                "Multiple Lean executables install as fang-v8-check",
+            )?;
+            primary = Some(name);
+        }
+    }
+    primary.ok_or_else(|| Error::Value("No Lean executable installs as fang-v8-check".to_string()))
+}
+
+fn checker_from_build(built: &Object, name: &str) -> Result<Value> {
+    built
+        .get(name)
+        .cloned()
+        .ok_or_else(|| Error::Key(format!("'{name}'")))
 }
 
 fn pinned_value(pinned: &Object, name: &str) -> Result<Value> {
@@ -950,5 +975,54 @@ mod tests {
             "ValueError: Unpinned external import: Unreviewed.External"
         );
         fs::remove_dir_all(&directory).unwrap();
+    }
+
+    #[test]
+    fn primary_checker_uses_unique_installed_alias_and_requires_its_build() {
+        let mut executables = Object::new();
+        let mut built = Object::new();
+        executables.set(CHECKER, object(vec![("installed_as", CHECKER.into())]));
+        built.set(CHECKER, "legacy-checker-record");
+        assert_eq!(primary_checker_name(&executables).unwrap(), CHECKER);
+        assert_eq!(
+            checker_from_build(&built, primary_checker_name(&executables).unwrap()).unwrap(),
+            Value::from("legacy-checker-record")
+        );
+
+        executables = Object::new();
+        executables.set(
+            "fang-expanded-native-named",
+            object(vec![("installed_as", CHECKER.into())]),
+        );
+        executables.set(
+            "unrelated",
+            object(vec![("installed_as", "other-binary".into())]),
+        );
+        built.set("fang-expanded-native-named", "final-checker-record");
+        let name = primary_checker_name(&executables).unwrap();
+        assert_eq!(name, "fang-expanded-native-named");
+        assert_eq!(
+            checker_from_build(&built, name).unwrap(),
+            Value::from("final-checker-record")
+        );
+        assert!(checker_from_build(&Object::new(), name).is_err());
+        assert!(primary_checker_name(&Object::new()).is_err());
+
+        executables.set(CHECKER, object(vec![("installed_as", CHECKER.into())]));
+        assert!(primary_checker_name(&executables).is_err());
+        let mut missing_alias = Object::new();
+        missing_alias.set(CHECKER, object(vec![]));
+        assert!(primary_checker_name(&missing_alias).is_err());
+        for alias in [Value::Null, true.into(), 7u64.into()] {
+            let mut malformed = Object::new();
+            malformed.set(CHECKER, object(vec![("installed_as", alias)]));
+            assert!(primary_checker_name(&malformed).is_err());
+        }
+        let mut unrelated = Object::new();
+        unrelated.set(
+            "other",
+            object(vec![("installed_as", "other-binary".into())]),
+        );
+        assert!(primary_checker_name(&unrelated).is_err());
     }
 }

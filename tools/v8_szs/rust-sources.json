@@ -1050,15 +1050,125 @@
           "to": "    \"Std.Data.HashSet\",\n    \"Std.Data.String.ToNat\","
         },
         {
+          "line": 382,
+          "from": "    let executables = entries(field(&lean_map, \"executables\")?)?.clone();",
+          "to": "    let executables = entries(field(&lean_map, \"executables\")?)?.clone();\n    let checker_name = primary_checker_name(&executables)?;"
+        },
+        {
+          "line": 801,
+          "from": "    let checker = built",
+          "to": "    let checker = checker_from_build(&built, checker_name)?;"
+        },
+        {
+          "line": 802,
+          "from": "        .get(CHECKER)",
+          "to": "    report.set(\"status\", \"built-and-audited\");"
+        },
+        {
+          "line": 803,
+          "from": "        .cloned()",
+          "to": "    report.set(\"executables\", Value::Object(built));"
+        },
+        {
+          "line": 804,
+          "from": "        .ok_or_else(|| Error::Key(format!(\"'{CHECKER}'\")))?;",
+          "to": "    report.set("
+        },
+        {
+          "line": 805,
+          "from": "    report.set(\"status\", \"built-and-audited\");",
+          "to": "        \"executable\","
+        },
+        {
+          "line": 806,
+          "from": "    report.set(\"executables\", Value::Object(built));",
+          "to": "        checker.get(\"path\").cloned().unwrap_or(Value::Null),"
+        },
+        {
+          "line": 807,
+          "from": "    report.set(",
+          "to": "    );"
+        },
+        {
+          "line": 808,
+          "from": "        \"executable\",",
+          "to": "    report.set("
+        },
+        {
+          "line": 809,
+          "from": "        checker.get(\"path\").cloned().unwrap_or(Value::Null),",
+          "to": "        \"executable_sha256\","
+        },
+        {
+          "line": 810,
+          "from": "    );",
+          "to": "        checker.get(\"sha256\").cloned().unwrap_or(Value::Null),"
+        },
+        {
+          "line": 811,
+          "from": "    report.set(",
+          "to": "    );"
+        },
+        {
+          "line": 812,
+          "from": "        \"executable_sha256\",",
+          "to": "    report.set("
+        },
+        {
+          "line": 813,
+          "from": "        checker.get(\"sha256\").cloned().unwrap_or(Value::Null),",
+          "to": "        \"executable_bytes\","
+        },
+        {
+          "line": 814,
+          "from": "    );",
+          "to": "        checker.get(\"bytes\").cloned().unwrap_or(Value::Null),"
+        },
+        {
+          "line": 815,
+          "from": "    report.set(",
+          "to": "    );"
+        },
+        {
+          "line": 816,
+          "from": "        \"executable_bytes\",",
+          "to": "    Ok(())"
+        },
+        {
+          "line": 817,
+          "from": "        checker.get(\"bytes\").cloned().unwrap_or(Value::Null),",
+          "to": "}"
+        },
+        {
+          "line": 818,
+          "from": "    );",
+          "to": ""
+        },
+        {
+          "line": 819,
+          "from": "    Ok(())",
+          "to": "fn primary_checker_name(executables: &Object) -> Result<&str> {"
+        },
+        {
+          "line": 820,
+          "from": "}",
+          "to": "    let mut primary = None;"
+        },
+        {
+          "line": 821,
+          "from": "",
+          "to": "    for (name, entry) in executables.iter() {\n        let installed_as = entries(entry)?\n            .get(\"installed_as\")\n            .and_then(Value::as_str)\n            .ok_or_else(|| {\n                Error::Value(format!(\"Invalid installed_as for Lean executable: {name}\"))\n            })?;\n        if installed_as == CHECKER {\n            require(\n                primary.is_none(),\n                \"Multiple Lean executables install as fang-v8-check\",\n            )?;\n            primary = Some(name);\n        }\n    }\n    primary.ok_or_else(|| Error::Value(\"No Lean executable installs as fang-v8-check\".to_string()))\n}\n\nfn checker_from_build(built: &Object, name: &str) -> Result<Value> {\n    built\n        .get(name)\n        .cloned()\n        .ok_or_else(|| Error::Key(format!(\"'{name}'\")))\n}\n"
+        },
+        {
           "line": 901,
           "from": "}",
-          "to": "\n    #[test]\n    fn complete_closures_allow_pinned_string_parser_and_reject_other_external_imports() {\n        let directory = std::env::temp_dir().join(format!(\n            \"fang-install-closure-stdlib-{}\",\n            std::process::id()\n        ));\n        fs::create_dir(&directory).unwrap();\n        fs::write(directory.join(\"Library.lean\"), \"-- Synthetic library.\\n\").unwrap();\n        let main = directory.join(\"ModelExportComplete.lean\");\n        fs::write(&main, \"import Library\\nimport Std.Data.String.ToNat\\n\").unwrap();\n        let lean_map = object(vec![\n            (\n                \"files\",\n                object(vec![\n                    (\"Library.lean\", Value::Null),\n                    (\"ModelExportComplete.lean\", Value::Null),\n                ]),\n            ),\n            (\n                \"executables\",\n                object(vec![(\n                    \"model-export\",\n                    object(vec![\n                        (\"root\", \"ModelExportComplete\".into()),\n                        (\n                            \"closure\",\n                            strings(&[\"Library\".to_string(), \"ModelExportComplete\".to_string()]),\n                        ),\n                    ]),\n                )]),\n            ),\n            (\"library_roots\", strings(&[\"Library\".to_string()])),\n        ]);\n        let accepted = check_closures(&directory, &lean_map).unwrap();\n        assert_eq!(\n            accepted.get(\"model-export\").and_then(Value::as_u64),\n            Some(2)\n        );\n        assert_eq!(accepted.get(\"library\").and_then(Value::as_u64), Some(1));\n        assert_eq!(\n            accepted.get(\"external\"),\n            Some(&strings(&[\"Std.Data.String.ToNat\".to_string()]))\n        );\n        fs::write(&main, \"import Library\\nimport Unreviewed.External\\n\").unwrap();\n        let error = check_closures(&directory, &lean_map).unwrap_err();\n        assert_eq!(\n            error.typed(),\n            \"ValueError: Unpinned external import: Unreviewed.External\"\n        );\n        fs::remove_dir_all(&directory).unwrap();\n    }\n}"
+          "to": "\n    #[test]\n    fn complete_closures_allow_pinned_string_parser_and_reject_other_external_imports() {\n        let directory = std::env::temp_dir().join(format!(\n            \"fang-install-closure-stdlib-{}\",\n            std::process::id()\n        ));\n        fs::create_dir(&directory).unwrap();\n        fs::write(directory.join(\"Library.lean\"), \"-- Synthetic library.\\n\").unwrap();\n        let main = directory.join(\"ModelExportComplete.lean\");\n        fs::write(&main, \"import Library\\nimport Std.Data.String.ToNat\\n\").unwrap();\n        let lean_map = object(vec![\n            (\n                \"files\",\n                object(vec![\n                    (\"Library.lean\", Value::Null),\n                    (\"ModelExportComplete.lean\", Value::Null),\n                ]),\n            ),\n            (\n                \"executables\",\n                object(vec![(\n                    \"model-export\",\n                    object(vec![\n                        (\"root\", \"ModelExportComplete\".into()),\n                        (\n                            \"closure\",\n                            strings(&[\"Library\".to_string(), \"ModelExportComplete\".to_string()]),\n                        ),\n                    ]),\n                )]),\n            ),\n            (\"library_roots\", strings(&[\"Library\".to_string()])),\n        ]);\n        let accepted = check_closures(&directory, &lean_map).unwrap();\n        assert_eq!(\n            accepted.get(\"model-export\").and_then(Value::as_u64),\n            Some(2)\n        );\n        assert_eq!(accepted.get(\"library\").and_then(Value::as_u64), Some(1));\n        assert_eq!(\n            accepted.get(\"external\"),\n            Some(&strings(&[\"Std.Data.String.ToNat\".to_string()]))\n        );\n        fs::write(&main, \"import Library\\nimport Unreviewed.External\\n\").unwrap();\n        let error = check_closures(&directory, &lean_map).unwrap_err();\n        assert_eq!(\n            error.typed(),\n            \"ValueError: Unpinned external import: Unreviewed.External\"\n        );\n        fs::remove_dir_all(&directory).unwrap();\n    }\n\n    #[test]\n    fn primary_checker_uses_unique_installed_alias_and_requires_its_build() {\n        let mut executables = Object::new();\n        let mut built = Object::new();\n        executables.set(CHECKER, object(vec![(\"installed_as\", CHECKER.into())]));\n        built.set(CHECKER, \"legacy-checker-record\");\n        assert_eq!(primary_checker_name(&executables).unwrap(), CHECKER);\n        assert_eq!(\n            checker_from_build(&built, primary_checker_name(&executables).unwrap()).unwrap(),\n            Value::from(\"legacy-checker-record\")\n        );\n\n        executables = Object::new();\n        executables.set(\n            \"fang-expanded-native-named\",\n            object(vec![(\"installed_as\", CHECKER.into())]),\n        );\n        executables.set(\n            \"unrelated\",\n            object(vec![(\"installed_as\", \"other-binary\".into())]),\n        );\n        built.set(\"fang-expanded-native-named\", \"final-checker-record\");\n        let name = primary_checker_name(&executables).unwrap();\n        assert_eq!(name, \"fang-expanded-native-named\");\n        assert_eq!(\n            checker_from_build(&built, name).unwrap(),\n            Value::from(\"final-checker-record\")\n        );\n        assert!(checker_from_build(&Object::new(), name).is_err());\n        assert!(primary_checker_name(&Object::new()).is_err());\n\n        executables.set(CHECKER, object(vec![(\"installed_as\", CHECKER.into())]));\n        assert!(primary_checker_name(&executables).is_err());\n        let mut missing_alias = Object::new();\n        missing_alias.set(CHECKER, object(vec![]));\n        assert!(primary_checker_name(&missing_alias).is_err());\n        for alias in [Value::Null, true.into(), 7u64.into()] {\n            let mut malformed = Object::new();\n            malformed.set(CHECKER, object(vec![(\"installed_as\", alias)]));\n            assert!(primary_checker_name(&malformed).is_err());\n        }\n        let mut unrelated = Object::new();\n        unrelated.set(\n            \"other\",\n            object(vec![(\"installed_as\", \"other-binary\".into())]),\n        );\n        assert!(primary_checker_name(&unrelated).is_err());\n    }\n}"
         }
       ],
       "origin": "product",
       "original": "experiments/product/install-chain/crates/fang-install/src/lean_build.rs",
       "original_sha256": "4bb484406bdce8caabf892f17f383d2d45a6e554643a1fba118bd9fdf47da869",
-      "sha256": "fd3a9758311fdb60a2a98776e8cc2c332df34e13c813742bb17fccd823b8592f"
+      "sha256": "1c5d0d4c0d5476b7fbb623dda8b0725906179aee78a8307cab2b0d043885fd7b"
     },
     "crates/fang-install/src/lib.rs": {
       "line_edits": [],
