@@ -145,7 +145,22 @@
       }
     },
     "note": "The modules of the pin it replaces plus the added ones; only the listed sources changed.",
-    "replaces_sha256": "8f77e642081fc8b283bd598696de09869070a013951d1cad5a10e691ca5a54de"
+    "replaces_sha256": "8f77e642081fc8b283bd598696de09869070a013951d1cad5a10e691ca5a54de",
+    "v4_array_store": {
+      "source_gate": "fang-v4-array-store-promotion-v1-20261114",
+      "previous_pin_sha256": "ec911d9b5c03ee964f35cdab65d4cca1153d4ab9462073ee2d6d54526d4d7efb",
+      "changed_modules": {
+        "Trace": {
+          "from": "e3d24d0546a798feee616e8866665c4cc53d0faec2711555f7af304cbc4fc394",
+          "to": "4113001c1087527fb0f0d5886ffd44c9b06b8fefb3128f85f6192816cfcbabed"
+        },
+        "OrderedTrace": {
+          "from": "42dc4036b4ec5f03d0618ec67d7843105c70e5f25d42463438d390a3ba44826b",
+          "to": "5844d3ea972bbfcd8c37ea71083b6ef0d2e9e7758922111f05f3ca963cdcc23d"
+        }
+      },
+      "scope": "Exact checker equivalence; kernel helper compatibility is validated separately."
+    }
   },
   "roots": [
     "ArityTable",
@@ -333,7 +348,7 @@
     "NormalizedReady": "551566a1e678ab90ae8b028e30cc09aefd2353d002e496eb21f7765dc4cc6412",
     "OrderedPath": "3a1ad65d2e7b7bb1443d4c91417c1ce672fbab806efe35ec012c04d976174d37",
     "OrderedRule": "76a5147c90c3e58f358106f7269af09f91ae7d384b6b74ad5c57d9ed6d51bc96",
-    "OrderedTrace": "42dc4036b4ec5f03d0618ec67d7843105c70e5f25d42463438d390a3ba44826b",
+    "OrderedTrace": "5844d3ea972bbfcd8c37ea71083b6ef0d2e9e7758922111f05f3ca963cdcc23d",
     "OriginalInput": "8ac905268a04a42e81a4546ad39664b5b49bff2fc7328bca4c0b5603387c625b",
     "OriginalReplay": "4e816dfa834500fe92da12041a0483f3595b58d1460650af7ea1d38f3388d7cf",
     "OutputIntervals": "9791568c0ddc7f1e0e931f5b9d678cc4ce0ebe01dfd9de56a9d3837768db3987",
@@ -403,7 +418,7 @@
     "Substitution": "c4f042cb1772687659b2e34a37ac2b8909608cb90fbd4543d7e31915332fc5b7",
     "SymbolBounds": "f9b7d97ec3b29a478fa919f036652abe4990a5936ac616e3f11316c577275e89",
     "TptpLexical": "17c7d59605eff1ebb9d9442eac656672343dc8d5c8250f24e6bf16a86745885e",
-    "Trace": "e3d24d0546a798feee616e8866665c4cc53d0faec2711555f7af304cbc4fc394",
+    "Trace": "4113001c1087527fb0f0d5886ffd44c9b06b8fefb3128f85f6192816cfcbabed",
     "Transform": "408bf826f39c79a506990161cd324ce50b76d154494ff49b072f8639240f1f6f",
     "TransformArities": "1cf05266d089d2792b992ab7206b889349e596c35aaf5327060bb323eb8ea1d8",
     "TransformArityBranches": "2fd29623fec04b96df911cec1a2f5b3a469cac44c8b658d2100fec8c9284e904",

@@ -16,14 +16,15 @@ def retain (problem : Equality.Problem) (certificate : Ordered.Certificate) :
 
 theorem retain_erases (problem : Equality.Problem) (certificate : Ordered.Certificate) :
     (retain problem certificate).map (fun _ => ()) = Ordered.check problem certificate := by
+  rw [Ordered.check_eq_list]
   cases checked : Ordered.checkSteps problem [] certificate.steps with
-  | error reason => simp [retain, Ordered.check, checked, Except.map, Bind.bind, Except.bind]
+  | error reason => simp [retain, Ordered.checkList, checked, Except.map, Bind.bind, Except.bind]
   | ok clauses =>
     by_cases last : certificate.final + 1 = clauses.length
     · by_cases empty : clauses[certificate.final]? = some []
-      · simp [retain, Ordered.check, checked, last, empty, Except.map, Bind.bind, Except.bind]
-      · simp [retain, Ordered.check, checked, last, empty, Except.map, Bind.bind, Except.bind]
-    · simp [retain, Ordered.check, checked, last, Except.map, Bind.bind, Except.bind]
+      · simp [retain, Ordered.checkList, checked, last, empty, Except.map, Bind.bind, Except.bind]
+      · simp [retain, Ordered.checkList, checked, last, empty, Except.map, Bind.bind, Except.bind]
+    · simp [retain, Ordered.checkList, checked, last, Except.map, Bind.bind, Except.bind]
 
 theorem retain_witness {problem certificate clauses}
     (success : retain problem certificate = .ok clauses) :

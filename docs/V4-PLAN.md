@@ -22,10 +22,10 @@ On the 1000-case sample, Fang returned 493 checked positive statuses. Of these, 
 
 Work proceeds on a branch based on the published v3 source. The released source, installation and benchmark evidence remain the reference.
 
-- Item 14: an isolated array clause-store prototype has compiled equivalence proofs for both trace checkers, including the complete result and every error. Integration into the runtime call paths, production-certificate replay and performance measurements are still required.
-- Item 24: the 226 missing documents have been classified against their retained inputs. A two-file premise/goal fixture reproduces the include limitation. The exporter extension must preserve source identities, include selections and the checked cited-premise certificate. No broader export support is established by the inventory alone.
+- Item 14: both trace checker entry points now use an array clause store. Equivalence proofs preserve the complete result and every error. The source integration passed axiom audits for 1,596 declarations, 36 AST checks and 24 compiled-certificate replays against v3, with identical exits and output. Installation and end-to-end performance measurements remain separate work.
+- Item 24: the 226 missing documents have been classified against their retained inputs. A two-file premise/goal fixture reproduces the include limitation. An isolated Lean bridge now connects the cited task to checked refutation rows and the final empty clause, with seven proofs and seven executable checks. Source-row rendering and runtime routing are still required before this becomes broader TSTP support.
 
-Both isolated milestones have independent reviews. Integration needs its own review and tests before either is treated as a product change.
+The array checker source integration and the isolated exporter bridge have independent reviews. Focused kernel compatibility tests also check the existing helpers and concrete certificates against both checker versions. The bridge is not part of the installed exporter. No speedup is claimed from the array change until it is measured.
 
 ## Search
 

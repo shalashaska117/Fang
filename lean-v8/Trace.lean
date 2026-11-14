@@ -234,18 +234,91 @@ theorem checkSteps_sound {D : Type} (model : Interpretation D) (problem : Proble
         subst clause
         exact checkStep_sound model problem checked step output original previous current
 
-def check (problem : Problem) (certificate : Certificate) : Except TraceError Unit := do
+namespace ArrayStore
+
+abbrev Store := Array Clause
+
+def fetch (clauses : Store) (index : Nat) (error : TraceError) : Except TraceError Clause :=
+  match clauses[index]? with
+  | none => .error error
+  | some clause => .ok clause
+
+theorem fetch_eq_list (clauses : Store) (index : Nat) (error : TraceError) :
+    fetch clauses index error = Equality.fetch clauses.toList index error := by
+  simp only [fetch, Equality.fetch, Array.getElem?_toList]
+
+theorem push_eq_append (clauses : Store) (clause : Clause) :
+    (clauses.push clause).toList = clauses.toList ++ [clause] := by
+  simp
+
+def checkStep (problem checked : Store) : Equality.Step → Except TraceError Clause
+  | .input index => fetch problem index (.inputIndex index)
+  | .unary parent rule claimed => do
+      let premise ← fetch checked parent (.parentIndex parent)
+      requireClaim (inferUnary premise claimed rule) claimed
+  | .binary left right rule claimed => do
+      let leftParent ← fetch checked left (.parentIndex left)
+      let rightParent ← fetch checked right (.parentIndex right)
+      requireClaim (inferBinary leftParent rightParent claimed rule) claimed
+
+theorem checkStep_eq_list (problem checked : Store) (step : Equality.Step) :
+    checkStep problem checked step = Equality.checkStep problem.toList checked.toList step := by
+  cases step <;> simp only [checkStep, Equality.checkStep, fetch_eq_list]
+
+def checkSteps (problem : Store) : Store → List Equality.Step → Except TraceError Store
+  | checked, [] => .ok checked
+  | checked, step :: rest => do
+      let output ← checkStep problem checked step
+      checkSteps problem (checked.push output) rest
+
+theorem checkSteps_eq_list (problem checked : Store) (steps : List Equality.Step) :
+    (checkSteps problem checked steps).map Array.toList =
+      Equality.checkSteps problem.toList checked.toList steps := by
+  induction steps generalizing checked with
+  | nil => rfl
+  | cons step rest ih =>
+    simp only [checkSteps, Equality.checkSteps, checkStep_eq_list]
+    cases result : Equality.checkStep problem.toList checked.toList step with
+    | error error => simp [bind, Except.bind, Except.map]
+    | ok output =>
+      simp only [bind, Except.bind]
+      simpa only [push_eq_append] using ih (checked.push output)
+
+def finish (checked : Store) (final : Nat) : Except TraceError Unit :=
+  if final + 1 = checked.size then
+    if checked[final]? = some [] then .ok () else .error .finalNotEmpty
+  else .error .finalIndex
+
+end ArrayStore
+
+def checkList (problem : Problem) (certificate : Certificate) : Except TraceError Unit := do
   let checked ← checkSteps problem [] certificate.steps
   if certificate.final + 1 = checked.length then
     if checked[certificate.final]? = some [] then .ok () else .error .finalNotEmpty
   else .error .finalIndex
+
+def check (problem : Problem) (certificate : Equality.Certificate) : Except TraceError Unit := do
+  let checked ← ArrayStore.checkSteps problem.toArray #[] certificate.steps
+  ArrayStore.finish checked certificate.final
+
+theorem check_eq_list (problem : Problem) (certificate : Equality.Certificate) :
+    check problem certificate = checkList problem certificate := by
+  have same := ArrayStore.checkSteps_eq_list problem.toArray #[] certificate.steps
+  cases result : ArrayStore.checkSteps problem.toArray #[] certificate.steps with
+  | error error =>
+    simp [result, Except.map] at same
+    simp [check, checkList, result, ← same, bind, Except.bind]
+  | ok checked =>
+    simp [result, Except.map] at same
+    simp [check, checkList, result, ← same, bind, Except.bind, ArrayStore.finish]
 
 theorem check_endpoint (problem : Problem) (certificate : Certificate)
     (accepted : check problem certificate = .ok ()) :
     ∃ checked, checkSteps problem [] certificate.steps = .ok checked ∧
       checked.length = certificate.steps.length ∧ certificate.final + 1 = checked.length ∧
       checked[certificate.final]? = some [] := by
-  unfold check at accepted
+  rw [check_eq_list] at accepted
+  unfold checkList at accepted
   cases checkedResult : checkSteps problem [] certificate.steps with
   | error error => simp [checkedResult, bind, Except.bind] at accepted
   | ok checked =>
@@ -262,7 +335,8 @@ theorem check_endpoint (problem : Problem) (certificate : Certificate)
 theorem check_refutes (problem : Problem) (certificate : Certificate)
     (accepted : check problem certificate = .ok ()) : ¬ Satisfiable problem := by
   rintro ⟨D, ⟨element⟩, model, original⟩
-  unfold check at accepted
+  rw [check_eq_list] at accepted
+  unfold checkList at accepted
   cases checkedResult : checkSteps problem [] certificate.steps with
   | error error => simp [checkedResult, bind, Except.bind] at accepted
   | ok checked =>
