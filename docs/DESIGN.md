@@ -37,16 +37,4 @@ The signed checker's own `--goals` listing decides the status. Theorem needs at 
 
 The roles `axiom`, `hypothesis`, `definition`, `lemma`, `theorem` and `corollary` are premises, `conjecture` is a goal and `negated_conjecture` is an input that is already negated. The roles `assumption`, `plain`, `type`, `interpretation` and `logic` are Inappropriate, and so is input that selects both a conjecture and a negated conjecture. The finite-model path reports Satisfiable only for an accepted model of the input, or CounterSatisfiable for an accepted countermodel to a selected conjecture. Finding no model is not a refutation.
 
-## Source layout
-
-| Directory | Contents |
-| --- | --- |
-| `crates/` | Rust parsers, search, launcher, installer, shared runtime tools and kernel entry |
-| `src/` | The core Rust engine: terms, unification, resolution and factoring |
-| `lean-v8/` | Lean checkers, TSTP exporters and their proofs |
-| `lean/`, `proofs/` | The first release's CNF and ground-FOF checker and proofs, used by the older profiles |
-| `tools/` | Pinned source maps, backend identities and kernel policy |
-| `tests/`, `examples/` | Rust regressions and small example problems |
-| `LICENSES/` | Third-party notices |
-
-Experiments, benchmark runs and evidence archives stay local and are not distributed with Fang.
+See the [code map](../CODEMAP.md) for the folder tree, every Rust crate, checker and exporter entry points, and a guide through the execution pipeline.
