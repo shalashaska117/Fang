@@ -259,8 +259,13 @@ fn object_names(expanded: &Expanded) -> Vec<String> {
 }
 
 /// Formula bytes with each distinct object replaced by its fresh name; comments and quoted atoms are copied.
-fn body_text(bytes: &[u8], contents: &[String], names: &[String]) -> Result<String, Error> {
+fn body_text(
+    bytes: &[u8],
+    contents: &[String],
+    names: &[String],
+) -> Result<(String, Vec<usize>), Error> {
     let mut output = Vec::with_capacity(bytes.len());
+    let mut objects = BTreeSet::new();
     let mut position = 0;
     while position < bytes.len() {
         let next = copy_layout(bytes, position, &mut output)
@@ -294,6 +299,7 @@ fn body_text(bytes: &[u8], contents: &[String], names: &[String]) -> Result<Stri
                     .position(|value| *value == content)
                     .ok_or(Error::Render("object outside the inventory"))?;
                 output.extend_from_slice(names[index].as_bytes());
+                objects.insert(index);
                 position = end;
             }
             byte => {
@@ -302,7 +308,8 @@ fn body_text(bytes: &[u8], contents: &[String], names: &[String]) -> Result<Stri
             }
         }
     }
-    String::from_utf8(output).map_err(|_| Error::Render("non-ASCII formula"))
+    let text = String::from_utf8(output).map_err(|_| Error::Render("non-ASCII formula"))?;
+    Ok((text, objects.into_iter().collect()))
 }
 
 #[derive(Debug)]
@@ -317,6 +324,10 @@ pub struct Flat {
     pub roles: Vec<String>,
     /// Generated disequalities.
     pub distinct_clauses: usize,
+    /// Object IDs occurring in each item's formula, beside `items`. IDs refer to the whole expansion.
+    pub item_objects: Vec<Vec<usize>>,
+    /// Object IDs of each generated disequality, in the same order as the synthetic declarations.
+    pub distinct_pairs: Vec<(usize, usize)>,
 }
 
 /// Write the expansion as one flat text whose signed tasks are the Lean bundle tasks.
@@ -358,6 +369,7 @@ fn write_flat(
     let mut goals = Vec::new();
     let mut items = Vec::new();
     let mut kept_roles = Vec::new();
+    let mut item_objects = Vec::new();
     let mut any_goal = false;
     let mut negated = false;
     for (index, (declaration, source)) in expanded
@@ -394,12 +406,11 @@ fn write_flat(
             Body::Cnf(_) => "cnf",
             Body::Fof(_) => "fof",
         };
-        text.push_str(&format!(
-            "{kind}(fang_bundle_{index},{role},{}).\n",
-            body_text(body, &contents, &names)?
-        ));
+        let (body, objects) = body_text(body, &contents, &names)?;
+        text.push_str(&format!("{kind}(fang_bundle_{index},{role},{body}).\n"));
         items.push(item);
         kept_roles.push(role.clone());
+        item_objects.push(objects);
     }
     if any_goal && negated {
         return Err(Error::Modes);
@@ -410,26 +421,28 @@ fn write_flat(
         &flat_limits(limits, bundle.files.len(), text.len(), 0).input,
     )
     .map_err(Error::Flat)?;
-    let mut ordered: Vec<(usize, &String)> = Vec::new();
-    for name in &names {
+    let mut ordered: Vec<(usize, usize, &String)> = Vec::new();
+    for (object, name) in names.iter().enumerate() {
         match parsed
             .functions
             .iter()
             .position(|symbol| symbol.name == *name && symbol.arity == 0)
         {
-            Some(position) => ordered.push((position, name)),
+            Some(position) => ordered.push((position, object, name)),
             None if whole => return Err(Error::Render("object missing from the function table")),
             None => {}
         }
     }
     ordered.sort();
     let mut distinct_clauses = 0;
-    for (left, (_, first)) in ordered.iter().enumerate() {
-        for (right, (_, second)) in ordered.iter().enumerate().skip(left + 1) {
+    let mut distinct_pairs = Vec::new();
+    for (left, (_, first_object, first)) in ordered.iter().enumerate() {
+        for (right, (_, second_object, second)) in ordered.iter().enumerate().skip(left + 1) {
             text.push_str(&format!(
                 "cnf(fang_distinct_{left}_{right},axiom,{first} != {second}).\n"
             ));
             distinct_clauses += 1;
+            distinct_pairs.push((*first_object, *second_object));
         }
     }
     Ok(Flat {
@@ -438,6 +451,8 @@ fn write_flat(
         items,
         roles: kept_roles,
         distinct_clauses,
+        item_objects,
+        distinct_pairs,
     })
 }
 
@@ -629,3 +644,40 @@ pub use named_prepare::{prepare_bundle_task_named, prepare_cited_task_named};
 
 mod cited_inputs;
 pub use cited_inputs::{InputOriginError, cited_inputs};
+
+#[cfg(test)]
+mod object_metadata_tests {
+    use super::*;
+
+    #[test]
+    fn object_metadata_follows_rendering_quotes_comments_and_escapes() {
+        let bytes = br#"p("a\"b", '"ignored"') /* "ignored" */ % "ignored"
+ | q("plain", "a\"b")"#;
+        let (text, objects) = body_text(
+            bytes,
+            &["plain".into(), "a\"b".into()],
+            &["obj0".into(), "obj1".into()],
+        )
+        .unwrap();
+        assert_eq!(objects, vec![0, 1]);
+        assert_eq!(
+            text,
+            "p(obj1, '\"ignored\"') /* \"ignored\" */ % \"ignored\"\n | q(obj0, obj1)"
+        );
+    }
+
+    #[test]
+    fn pair_metadata_follows_kept_function_order_instead_of_original_object_ids() {
+        let bundle = sealed(vec![(
+            Root::Base,
+            "top.p".into(),
+            b"fof(a,axiom,p(\"o0\")). fof(b,axiom,q(\"o1\",\"o0\")).".to_vec(),
+        )]);
+        let limits = Limits::default();
+        let whole = flatten(&bundle, &limits).unwrap();
+        let kept = flatten_kept(&bundle, &limits, &[(0, 1)], None).unwrap();
+        assert_eq!(whole.distinct_pairs, vec![(0, 1)]);
+        assert_eq!(kept.distinct_pairs, vec![(1, 0)]);
+        assert!(kept.text.contains("fang_object_1 != fang_object_0"));
+    }
+}

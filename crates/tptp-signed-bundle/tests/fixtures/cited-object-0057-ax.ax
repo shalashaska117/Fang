@@ -1,0 +1,11 @@
+cnf(h6,axiom,r(f(g(b,"o1"))) | a = f(b) | ~p).
+cnf(h5,axiom,X = "o1").
+cnf(h0,axiom,q).
+cnf(h1,axiom,~r(Y)).
+cnf(h8,axiom,~s(b) | f(b) = b | ~p).
+cnf(h9,axiom,a = X | ~p).
+cnf(h11,axiom,"o2" != g(a,f("o1")) | c != g(f("o1"),"o2")).
+cnf(h4,axiom,g(b,g("o2","o1")) != g(f(c),b) | "o1" != b | g(g("o1",c),f("o1")) != g(b,c)).
+fof(goal,conjecture,((?[X0]: (s(X0)) | ?[X0]: (c != X0)) <~> (![X0]: (r(c)) ~& (f(g("o1","o1")) = g(f(c),b) ~| q)))).
+cnf(h7,axiom,b = Y).
+cnf(h3,axiom,Y != X | q | b != Y).

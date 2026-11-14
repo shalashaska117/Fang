@@ -4758,7 +4758,8 @@
     "crates/tptp-signed-bundle/src/cited_inputs.rs": {
       "origin": "product",
       "original": "crates/tptp-signed-bundle/src/cited_inputs.rs",
-      "sha256": "48fc07d2a054522e691dda09e22ebf908026f53cd1d93abe3b9dfddc06c62d4e",
+      "sha256": "6ad17814b041cd3386156e901624650b8c760d1e9e535ba16173f83f103d8042",
+      "post_staging_amendment": {"schema":"fang-post-staging-source-amendment-v1","before_sha256":"48fc07d2a054522e691dda09e22ebf908026f53cd1d93abe3b9dfddc06c62d4e","after_sha256":"6ad17814b041cd3386156e901624650b8c760d1e9e535ba16173f83f103d8042","amendment_sha256":"f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e","independent_source_review_sha256":"4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b"},
       "staging_provenance": {
         "before_sha256": null,
         "original": "crates/tptp-signed-bundle/src/cited_inputs.rs",
@@ -4776,7 +4777,8 @@
       ],
       "origin": "product",
       "original": "crates/tptp-signed-bundle/src/lib.rs",
-      "sha256": "1d415453d4388d3e9310c9e8c29804202142ac2bcf4af5cc007168b537b3eb22",
+      "sha256": "979fa2456bebd0d960fb96162d414acd94d17108103fd48ba80bc5caff1f95a3",
+      "post_staging_amendment": {"schema":"fang-post-staging-source-amendment-v1","before_sha256":"1d415453d4388d3e9310c9e8c29804202142ac2bcf4af5cc007168b537b3eb22","after_sha256":"979fa2456bebd0d960fb96162d414acd94d17108103fd48ba80bc5caff1f95a3","amendment_sha256":"f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e","independent_source_review_sha256":"4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b"},
       "staging_provenance": {
         "before_sha256": "175bbe443a6030233ab4cc564d95dccd3fb96ecfd52df46847e1cbc992a262cd",
         "original": "crates/tptp-signed-bundle/src/lib.rs",
@@ -4800,6 +4802,61 @@
         "rewrites": []
       },
       "staging_recipe": "evidence/verification/producer-round-two-staging-v2-20261113/recipe.json"
+    },
+    "crates/tptp-signed-bundle/tests/fixtures/cited-object-0044-top.p": {
+      "origin": "product",
+      "original": "crates/tptp-signed-bundle/tests/fixtures/cited-object-0044-top.p",
+      "sha256": "15f9e41c13a67794ee1e2d36f6cc0d98e01826e279525bded3052f4ae48df193",
+      "source_amendment": {
+        "amendment_sha256": "f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e",
+        "independent_source_review_sha256": "4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b",
+        "schema": "fang-product-test-fixture-v1",
+        "scope": "Exact retained generative input, included only by cfg(test) code"
+      }
+    },
+    "crates/tptp-signed-bundle/tests/fixtures/cited-object-0057-ax.ax": {
+      "origin": "product",
+      "original": "crates/tptp-signed-bundle/tests/fixtures/cited-object-0057-ax.ax",
+      "sha256": "d703c7384f947c4579173cc01d474c87c0555b143dad545a30d7e6010dd55ab0",
+      "source_amendment": {
+        "amendment_sha256": "f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e",
+        "independent_source_review_sha256": "4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b",
+        "schema": "fang-product-test-fixture-v1",
+        "scope": "Exact retained generative input, included only by cfg(test) code"
+      }
+    },
+    "crates/tptp-signed-bundle/tests/fixtures/cited-object-0057-top.p": {
+      "origin": "product",
+      "original": "crates/tptp-signed-bundle/tests/fixtures/cited-object-0057-top.p",
+      "sha256": "047e1b1ba799b393c211a7d0bc7cc4586a19ad298fba2b283900896bf1075622",
+      "source_amendment": {
+        "amendment_sha256": "f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e",
+        "independent_source_review_sha256": "4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b",
+        "schema": "fang-product-test-fixture-v1",
+        "scope": "Exact retained generative input, included only by cfg(test) code"
+      }
+    },
+    "crates/tptp-signed-bundle/tests/fixtures/cited-object-0146-ax.ax": {
+      "origin": "product",
+      "original": "crates/tptp-signed-bundle/tests/fixtures/cited-object-0146-ax.ax",
+      "sha256": "23bc6ed2a8ffc751e974e3ea87b8b02c5986ad255297ac641b0bb334d87fb219",
+      "source_amendment": {
+        "amendment_sha256": "f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e",
+        "independent_source_review_sha256": "4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b",
+        "schema": "fang-product-test-fixture-v1",
+        "scope": "Exact retained generative input, included only by cfg(test) code"
+      }
+    },
+    "crates/tptp-signed-bundle/tests/fixtures/cited-object-0146-top.p": {
+      "origin": "product",
+      "original": "crates/tptp-signed-bundle/tests/fixtures/cited-object-0146-top.p",
+      "sha256": "3257d96c10d762709b5a29c1adf6e46090d46dd6e8547abbe690f843cc14255f",
+      "source_amendment": {
+        "amendment_sha256": "f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e",
+        "independent_source_review_sha256": "4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b",
+        "schema": "fang-product-test-fixture-v1",
+        "scope": "Exact retained generative input, included only by cfg(test) code"
+      }
     },
     "crates/tptp-signed-bundle/tests/bundle.rs": {
       "notice": [

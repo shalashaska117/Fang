@@ -1,0 +1,7 @@
+cnf(h7,axiom,Y != Y | c = Y | X = Y).
+cnf(h4,axiom,q | ~t(a,Y)).
+cnf(h0,axiom,t(g(a,a),g(X,g(a,c)))).
+cnf(h5,axiom,~t(X,g(X,X)) | s("o1")).
+cnf(h3,axiom,q).
+cnf(h6,axiom,~q | Y != X | ~t(b,Y)).
+fof(goal,conjecture,(?[X0]: (~ p) ~& (~ (a != f("o2")) <=> ~ p))).
