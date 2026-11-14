@@ -8,8 +8,8 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 The current integrated installation passed qualification: 1,634 fixed Lean audits, 953 Rust tests (two ignored), formatting and Clippy. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control.
 
-1. Finish the equality-factoring native build and compiled checker/exporter replays. The full kernel proof from original TPTP bytes and the corrupted-certificate rejection test have passed.
-2. Integrate equality factoring only after the remaining checks and independent review.
+1. Resolve the remaining historical output failures. The installed regression recovered complete documents for 222 of 226 cases; three still timed out during export and one returned ResourceOut. An isolated correction to the inherited export deadline passed launcher tests and Clippy; real-input qualification remains open.
+2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Qualify the passive-queue changes for integration. The isolated implementation with the passive-count limit passed 30 Rust tests, 62 compiled-Lean certificate replays and eight queue-exhaustion regressions. It also reproduces the V3 single-queue loop that the new termination check fixes.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
@@ -49,10 +49,10 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Prove TSTP row correspondence and validity from the rule's actual parent.
 - [x] Pass seven output controls covering terms, substitution, parent labels, signatures and quoting.
 - [x] Extend the isolated kernel generator while preserving legacy parsing; eight Rust tests and Clippy passed.
-- [ ] Finish the coherent 147-module native rebuild.
-- [ ] Compare all 1,634 fixed declaration audits with their expected axiom sets.
-- [ ] Replay the original TPTP proof through the compiled checker and named exporter.
-- [ ] Reject wrong claims and future parents through both compiled paths.
+- [x] Finish the coherent 147-module native rebuild, reusing 107 completed modules with pinned sources and artifacts after the interpreter-memory retry.
+- [x] Compare all 1,634 fixed declaration audits with their expected axiom sets.
+- [x] Replay the original TPTP proof through the compiled checker and named exporter.
+- [x] Reject wrong claims and future parents through both compiled paths; verify the V3 checker refuses the extended certificate.
 - [x] Finish the 16-module kernel proof of acceptance and unsatisfiability from the original TPTP bytes.
 - [x] Audit 33 instance theorems and preserve the exact 83 expected axiom sets across the 42 rebuilt helpers.
 - [x] Reject a corrupted certificate through the complete original-input kernel route after exact-byte decoding, with a claimed-clause error and no accepted proof artifact.
@@ -82,9 +82,10 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Obtain independent component reviews and integrate the source maps.
 - [x] Pass the installed output checks listed above.
 - [x] Run focused nested-include and selection-list fixtures through the installed path.
-- [ ] Rerun the historical nested-include and selection-list benchmark cases through the installed path.
+- [x] Rerun all 226 retained historical missing-document cases through the installed path, including the nested-include and selection-list cases.
 - [ ] Reassess the 11 historical exporter rejections and three export timeouts.
-- [ ] Measure how many of the 226 historical missing documents are recovered.
+- [ ] Give accepted-result export the remaining command budget instead of the short search-pass deadline; check that the original command deadline still holds.
+- [x] Validate recovered output: 222 of 226 cases produced complete checked documents; three remained checked without a document and SWC279-1 returned ResourceOut. This was a regression run during development, not a performance comparison.
 
 ## 20. Frontend gaps
 
