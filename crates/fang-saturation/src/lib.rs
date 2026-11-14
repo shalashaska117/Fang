@@ -18,6 +18,7 @@ pub mod sine;
 pub mod stats;
 pub mod subst;
 pub mod term;
+pub mod weights;
 
 #[cfg(test)]
 mod tests;

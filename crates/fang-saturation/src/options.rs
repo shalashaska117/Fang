@@ -13,14 +13,19 @@ pub enum Selection {
     LightestNegative,
     /// The negative literal with the fewest inference partners among the active clauses (lookahead selection).
     Lookahead,
+    /// Prefer ground negative literals, then weight, then the first occurrence.
+    GroundNegative,
+    /// Prefer negative equalities, then weight, then the first occurrence.
+    NegativeEquality,
 }
 
 #[derive(Clone, Debug)]
 pub struct Options {
     pub preset: String,
-    /// Knuth-Bendix ordering restrictions; off means the second release's unrestricted rules.
+    /// Term-ordering restrictions; off means the second release's unrestricted rules.
     pub ordering: bool,
     pub term_order: OrderKind,
+    pub kbo_weights: crate::weights::Scheme,
     pub precedence: Precedence,
     pub selection: Selection,
     /// Resolution and factoring on equations and negative factoring, as the second release does.
@@ -102,6 +107,7 @@ impl Options {
             preset: name.to_owned(),
             ordering: false,
             term_order: OrderKind::Kbo,
+            kbo_weights: crate::weights::Scheme::Uniform,
             precedence: Precedence::Arity,
             selection: Selection::None,
             unrestricted_rules: true,
@@ -253,6 +259,14 @@ impl Options {
                 }
                 _ => self.ordering = flag()?,
             },
+            "kbo_weights" => {
+                self.kbo_weights = match value {
+                    "uniform" => crate::weights::Scheme::Uniform,
+                    "constant-heavy" => crate::weights::Scheme::ConstantHeavy,
+                    "invfreq" => crate::weights::Scheme::InverseFrequency,
+                    _ => return Err("kbo_weights is uniform, constant-heavy or invfreq".into()),
+                };
+            }
             "precedence" => {
                 self.precedence = match value {
                     "arity" => Precedence::Arity,
@@ -266,9 +280,11 @@ impl Options {
                     "heaviest-negative" => Selection::HeaviestNegative,
                     "lightest-negative" => Selection::LightestNegative,
                     "lookahead" => Selection::Lookahead,
+                    "ground-negative" => Selection::GroundNegative,
+                    "negative-equality" => Selection::NegativeEquality,
                     _ => {
                         return Err(
-                            "selection is none, heaviest-negative, lightest-negative or lookahead"
+                            "selection is none, heaviest-negative, lightest-negative, lookahead, ground-negative or negative-equality"
                                 .into(),
                         );
                     }

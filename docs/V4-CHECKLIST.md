@@ -6,12 +6,12 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 970 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. Its optional LPO ordering passed 40 installed compiled-Lean certificate replays. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 981 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. Optional KBO weights passed 120 installed compiled-Lean certificate replays; additional literal-selection policies passed 240 replays across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
-4. Integrate KBO weight schemes and two additional literal-selection policies after their isolated checks. The weight prototype passed 41 Rust tests and 120 compiled-Lean replays. The combined selection prototype passed 46 Rust tests and 240 replays; schedule participation still needs training data.
+4. Select schedule participation for the qualified KBO weights and literal-selection policies using training data. Defaults remain unchanged. An isolated optimization of KBO variable counts passed 50 Rust tests, comparisons against expanded occurrence lists on 163,216 term pairs and 366 byte-identical certificate replays. Integration remains pending.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -39,6 +39,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Record the combined qualification receipt with current source hashes and actual installation manifests.
 - [x] Qualify the export-deadline and passive-queue integration with 965 installer tests, current source maps, installed regressions and a new qualification receipt.
 - [x] Qualify optional LPO ordering with 970 installer tests, current source maps, installed launcher controls and 40 installed proof replays.
+- [x] Qualify optional KBO weights and additional literal-selection policies with 981 installer tests, current source maps, installed launcher controls and 360 installed proof replays.
 
 ## 8. Equality factoring
 
@@ -181,8 +182,11 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 
 - [x] Implement and test isolated ground-negative and negative-equality selection policies; 46 Rust tests and 240 combined compiled-Lean replays passed.
 - [x] Add and test isolated constant-heavy and inverse-frequency KBO weights; 41 Rust tests and 120 compiled-Lean replays passed.
-- [ ] Integrate and qualify the KBO weights and additional selection policies.
+- [x] Integrate and qualify the KBO weights and additional selection policies; 360 installed compiled-Lean replays passed.
 - [x] Add and qualify optional bounded LPO ordering in low-level producers; 40 installed compiled-Lean replays passed. Default search still uses KBO.
+- [x] Profile variable counting on shared terms and test an isolated bounded DAG implementation against expanded occurrence lists.
+- [x] Replay 366 certificates from the isolated DAG optimization, with identical bytes and search counters apart from timing.
+- [ ] Qualify and integrate the DAG variable-count optimization after certificate comparisons.
 - [ ] Select schedule participation using training results.
 
 ## 7. Indexes

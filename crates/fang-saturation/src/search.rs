@@ -23,6 +23,9 @@ use std::time::Instant;
 #[cfg(test)]
 #[path = "orphan_tests.rs"]
 mod orphan_tests;
+#[cfg(test)]
+#[path = "selection_tests.rs"]
+mod selection_tests;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stop {
@@ -284,7 +287,12 @@ impl<'a> Search<'a> {
         }
         let arities: Vec<usize> = functions.iter().chain(predicates).copied().collect();
         let order = Order::new(&arities, &counts, functions.len(), options.precedence)
-            .with_kind(options.term_order);
+            .with_kind(options.term_order)
+            .with_weights(crate::weights::Weights::new(
+                &arities,
+                &counts,
+                options.kbo_weights,
+            ));
         let mut search = Search {
             bank: Bank::new(),
             clauses: Vec::new(),
@@ -1551,6 +1559,26 @@ impl<'a> Search<'a> {
             let partners = &lookahead;
             result.selected = match self.options.selection {
                 Selection::None => None,
+                Selection::GroundNegative => negatives
+                    .max_by_key(|(index, literal)| {
+                        let ground = match literal.atom {
+                            Atom::Pred(term) => self.bank.ground(term),
+                            Atom::Eq(left, right) => {
+                                self.bank.ground(left) && self.bank.ground(right)
+                            }
+                        };
+                        (ground, weight(literal), Reverse(*index))
+                    })
+                    .map(|(index, _)| index as u16),
+                Selection::NegativeEquality => negatives
+                    .max_by_key(|(index, literal)| {
+                        (
+                            matches!(literal.atom, Atom::Eq(_, _)),
+                            weight(literal),
+                            Reverse(*index),
+                        )
+                    })
+                    .map(|(index, _)| index as u16),
                 Selection::HeaviestNegative => negatives
                     .max_by_key(|(index, literal)| (weight(literal), Reverse(*index)))
                     .map(|(index, _)| index as u16),

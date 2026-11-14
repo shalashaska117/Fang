@@ -31,6 +31,7 @@ pub enum OrderKind {
 
 pub struct Order {
     kind: OrderKind,
+    weights: Option<crate::weights::Weights>,
     /// Rank of each bank symbol; a higher rank is a greater symbol.
     rank: Vec<u32>,
 }
@@ -103,7 +104,13 @@ impl Order {
         Self {
             rank,
             kind: OrderKind::Kbo,
+            weights: None,
         }
+    }
+
+    pub fn with_weights(mut self, weights: Option<crate::weights::Weights>) -> Self {
+        self.weights = weights;
+        self
     }
 
     pub fn with_kind(mut self, kind: OrderKind) -> Self {
@@ -135,6 +142,13 @@ impl Order {
                 }
             }
             (Head::Sym(f), Head::Sym(g)) => {
+                let (ws, wt) = match &self.weights {
+                    None => (u64::from(bank.weight(s)), u64::from(bank.weight(t))),
+                    Some(weights) => match weights.pair(bank, s, t) {
+                        Some(pair) => pair,
+                        None => return Cmp::Incomparable,
+                    },
+                };
                 let (s_covers, t_covers) = balance(bank, s, t);
                 let greater = if s_covers {
                     Cmp::Greater
@@ -146,7 +160,7 @@ impl Order {
                 } else {
                     Cmp::Incomparable
                 };
-                let (ws, wt) = (bank.weight(s), bank.weight(t));
+
                 if ws > wt {
                     return greater;
                 }

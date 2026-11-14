@@ -50,6 +50,8 @@ The low-level saturation producers also accept `--set orphan_deletion=on` and `-
 
 Low-level producers can select `--set ordering=lpo` or `--set ordering=kbo`. LPO uses the selected symbol precedence and a limit of 16,384 recursive comparison pairs; exceeding it leaves the terms incomparable. KBO remains the default, and no improvement in whole-search performance is claimed for the optional LPO strategy.
 
+KBO also accepts `--set kbo_weights=uniform|constant-heavy|invfreq`. Uniform weights remain the default; the other schemes give symbols positive weights and variables weight one. Their term-weight calculation returns incomparable on arithmetic overflow or after 16,384 distinct nodes. `--set selection=ground-negative` prefers ground negative literals; `selection=negative-equality` prefers negative equalities. Both use literal weight and then original position to break ties. These producer options passed installed certificate replay; their participation in the default schedule still needs training results.
+
 ## Results and verification
 
 | Capability | Status and meaning |
