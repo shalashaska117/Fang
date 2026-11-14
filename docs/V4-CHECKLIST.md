@@ -6,11 +6,11 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 1,634 fixed Lean audits, 953 Rust tests (two ignored), formatting and Clippy. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control.
+The current integrated installation passed qualification: 965 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The installed passive-queue changes passed 62 compiled-Lean certificate replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
-1. Resolve the remaining historical output failures. The installed regression recovered complete documents for 222 of 226 cases; three still timed out during export and one returned ResourceOut. An isolated correction to the inherited export deadline passed launcher tests and Clippy; real-input qualification remains open.
+1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
-3. Qualify the passive-queue changes for integration. The isolated implementation with the passive-count limit passed 30 Rust tests, 62 compiled-Lean certificate replays and eight queue-exhaustion regressions. It also reproduces the V3 single-queue loop that the new termination check fixes.
+3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -36,6 +36,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Verify repeated inclusion of the same statement is accepted and canonically cited.
 - [x] Verify missing selected names and ambiguous names from distinct declarations produce InputError without a positive result or document.
 - [x] Record the combined qualification receipt with current source hashes and actual installation manifests.
+- [x] Qualify the export-deadline and passive-queue integration with 965 installer tests, current source maps, installed regressions and a new qualification receipt.
 
 ## 8. Equality factoring
 
@@ -68,6 +69,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Pass 1,596 original declaration audits, 36 AST checks and 24 compiled replay comparisons.
 - [x] Obtain independent review of the array checker integration.
 - [x] Prove the isolated retained-clause array implementation returns the same result as the list implementation.
+- [x] Compile its 53 affected modules and compare seven exact results/errors and 14 documents against the previous exporter.
 - [ ] Integrate and check the retained-clause optimization in the compiled exporter.
 - [ ] Profile substitution lookup and implement a change if the measurements justify it.
 - [ ] Measure installed checking and export costs on retained certificates.
@@ -84,7 +86,11 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Run focused nested-include and selection-list fixtures through the installed path.
 - [x] Rerun all 226 retained historical missing-document cases through the installed path, including the nested-include and selection-list cases.
 - [ ] Reassess the 11 historical exporter rejections and three export timeouts.
-- [ ] Give accepted-result export the remaining command budget instead of the short search-pass deadline; check that the original command deadline still holds.
+- [x] In an isolated launcher, give accepted-result export the remaining command budget and test that the original deadline still holds; 202 tests passed, two ignored, with Clippy.
+- [x] Recover CSR051-10, CSR072-10 and SEV606+1 with that isolated correction, preserving the 60-second, 2-GiB limits and original checkers.
+- [x] Repeat SWC279-1 separately: three checked complete documents, including one from the unchanged installed launcher. This does not establish the cause of its earlier search timeout.
+- [x] Integrate the export-deadline correction and qualify a new installation; all four historical follow-up cases produced complete checked documents.
+- [ ] Resolve or characterize SWC279-1's sensitivity to timed search slices before final evaluation.
 - [x] Validate recovered output: 222 of 226 cases produced complete checked documents; three remained checked without a document and SWC279-1 returned ResourceOut. This was a regression run during development, not a performance comparison.
 
 ## 20. Frontend gaps
@@ -151,12 +157,12 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Implement optional lazy orphan deletion in an isolated workspace, preserving generating parents through proof simplifications.
 - [x] Verify all selection queues, preserve replayable certificates and report orphan exhaustion as unknown.
 - [x] Reproduce the V3 single-queue exhaustion loop and test its correction with orphan deletion disabled.
-- [ ] Integrate and qualify the queue fix and optional orphan heuristic.
+- [x] Integrate and qualify the queue fix and optional orphan heuristic; orphan exhaustion remains unknown.
 - [x] Implement an isolated limit on queued passive clauses; pass 30 Rust tests and 62 compiled-Lean replays, including limit-zero controls.
-- [ ] Integrate and qualify the passive-clause limit; it does not bound total stored proof records or total memory.
+- [x] Integrate and qualify the passive-clause limit; it does not bound total stored proof records or total memory.
 - [ ] Assess additional count limits for stored clauses and generated work.
 - [ ] Profile passive-clause memory and implement a compact representation where justified.
-- [ ] Check search behavior and resource accounting after integration.
+- [x] Check installed search behavior and resource accounting with 62 compiled certificate replays, eight queue controls, two passive-limit controls and a real orphan-deletion case.
 
 ## 5. Unit-equality search
 

@@ -235,6 +235,58 @@ fn prove(clauses: &[Clause], functions: &[usize], predicates: &[usize], preset: 
 }
 
 #[test]
+fn orphan_control_preserves_replayable_simplification_and_resolution_proofs() {
+    let cases = [
+        (
+            vec![
+                vec![pred(true, 0, vec![]), pred(true, 0, vec![])],
+                vec![pred(false, 0, vec![])],
+            ],
+            vec![],
+            vec![0],
+        ),
+        (
+            vec![
+                vec![eq(true, app(2, vec![constant(0)]), constant(1))],
+                vec![pred(true, 0, vec![app(2, vec![constant(0)])])],
+                vec![pred(false, 0, vec![constant(1)])],
+            ],
+            vec![0, 0, 1],
+            vec![1],
+        ),
+        (
+            vec![
+                vec![pred(true, 0, vec![constant(0)])],
+                vec![pred(false, 0, vec![var(0)]), pred(true, 1, vec![var(0)])],
+                vec![pred(false, 1, vec![constant(0)])],
+            ],
+            vec![0],
+            vec![1, 1],
+        ),
+    ];
+    for preset in PRESETS {
+        for layering in ["none", "horn_layer", "sine_layer", "inputs_first"] {
+            for (clauses, functions, predicates) in &cases {
+                let mut options = Options::preset(preset).unwrap();
+                options.orphan_deletion = true;
+                options.horn_layer = layering == "horn_layer";
+                options.sine_layer = layering == "sine_layer";
+                options.inputs_first = layering == "inputs_first";
+                options.given_limit = Some(500);
+                let mut search =
+                    Search::new(clauses, functions, predicates, &options, Limits::default())
+                        .unwrap();
+                let Stop::Proof(empty) = search.run() else {
+                    panic!("missing proof: {preset}/{layering}");
+                };
+                let certificate = search.certificate(empty, 1 << 20).unwrap();
+                assert_eq!(certificate.unchecked, 0, "{preset}/{layering}");
+            }
+        }
+    }
+}
+
+#[test]
 fn resolution_chain() {
     // P(a), ~P(x) | Q(x), ~Q(a); functions: a; predicates: P, Q.
     let clauses = vec![

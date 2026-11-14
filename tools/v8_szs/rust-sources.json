@@ -1199,11 +1199,13 @@
       "sha256": "737758920e72d2cccdeb38f369e74c788be8759e415e76b0383fff1559b7787e"
     },
     "crates/fang-install/src/v8_install.rs": {
-      "line_edits": [],
-      "origin": "product",
-      "original": "experiments/product/install-chain/crates/fang-install/src/v8_install.rs",
-      "original_sha256": "65464fc4474b7ba7f0af3745dd30d524c221b7b2c427f8c9a5d7c047b2b1c251",
-      "sha256": "9578d67469e4e38d81209600e461c30e86e2c0273806a0fa766a4afcf4aa3485"
+      "origin": "workspace-gate",
+      "original": "crates/fang-install/src/v8_install.rs",
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "172c84aaa0b8cc5fb15b5f4c6eec47364b2eef152ea6482751708fe729364b62",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-install/tests/nested_guard.rs": {
       "line_edits": [],
@@ -1687,11 +1689,13 @@
       "sha256": "1466b62cf5c6327090a934199b6acc630823d818c86cc06c83e3d91f6554fb01"
     },
     "crates/fang-launcher/src/v8/run.rs": {
-      "line_edits": [],
-      "origin": "product",
-      "original": "experiments/product/rust/crates/fang-launcher/src/v8/run.rs",
-      "original_sha256": "31c5e82531d2da58fb7e9730e496794244fe94d72e73498e9da1fc75a9e8b15c",
-      "sha256": "3153305dbae66d1338b62aeca76705bb612637e7af3490c23bc297c4dbcb7a2b"
+      "origin": "workspace-gate",
+      "original": "crates/fang-launcher/src/v8/run.rs",
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "b0f7c53af8db4797c899d6bd25aaee03b425a05063213b54a27d80d7444963a4",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-launcher/src/v8/signed.rs": {
       "line_edits": [],
@@ -1771,11 +1775,13 @@
       "sha256": "02677b54405be789fd445217936c02c9c25f52d1d54330f090f8cbcbaf1b0522"
     },
     "crates/fang-launcher/tests/v8_fake_binaries.rs": {
-      "line_edits": [],
-      "origin": "product",
-      "original": "experiments/product/rust/crates/fang-launcher/tests/v8_fake_binaries.rs",
-      "original_sha256": "94c99ccabcb476d9d689e890f19ce06043c75d6183205239237fd41d52065464",
-      "sha256": "90ce5146f80c90fde3db71bdfc84e83916d7f9b5e6fbeb20830da46c12763170"
+      "origin": "workspace-gate",
+      "original": "crates/fang-launcher/tests/v8_fake_binaries.rs",
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "8cf570d42ab57b0af3d974a20ebf3b9b2dedcf480f6906d450eefc5eaf8d6d91",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-models/Cargo.toml": {
       "notice": [],
@@ -2111,18 +2117,13 @@
       "sha256": "fc93390cf69fdb508d5a0f2abbbaf8fe17979e480d3e613487aa2be2e7a82e3d"
     },
     "crates/fang-saturation/src/options.rs": {
-      "notice": [
-        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
-      ],
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/options.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
-      "research": {
-        "path": "crates/fang-saturation/src/options.rs",
-        "receipt": "search build v12",
-        "sha256": "533e95c734eb02a05e929fc68329d80cbf3b3d2a08f341729976f2b83742c407"
-      },
-      "sha256": "9c307b8a31eb0faeb59b5ee6da6081b1fb1d1ddcce40c70525ecb01a9eb44ff6"
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "1c092948096b0a23ac119729ab5605f9dfeeac61add5f9cdca160fc739bbbcbe",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-saturation/src/producer.rs": {
       "notice": [
@@ -2153,18 +2154,13 @@
       "sha256": "d3bbb278c43cbc6032348b62dbe0a3c7a7d65beddbb1851c9c7cd4a0b7c1b862"
     },
     "crates/fang-saturation/src/search.rs": {
-      "notice": [
-        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
-      ],
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/search.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
-      "research": {
-        "path": "crates/fang-saturation/src/search.rs",
-        "receipt": "search build v12",
-        "sha256": "f95a1abe1d2adc7ff99d47d99f38dc2e21dc0343c0409a93fa2320874ddf2552"
-      },
-      "sha256": "f95a1abe1d2adc7ff99d47d99f38dc2e21dc0343c0409a93fa2320874ddf2552"
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "57ba4a7b0110a1aae7a103a66e30b527907334418273006405a27dcca8fe7e19",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-saturation/src/sine.rs": {
       "notice": [
@@ -2181,18 +2177,13 @@
       "sha256": "7b995b28ffd0d6692eabaa24d99b76b64bbeb641f8b3d757ff91f8e8d01ec08b"
     },
     "crates/fang-saturation/src/stats.rs": {
-      "notice": [
-        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
-      ],
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/stats.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
-      "research": {
-        "path": "crates/fang-saturation/src/stats.rs",
-        "receipt": "search build v12",
-        "sha256": "437969ea67218da715d92d17f1f6c6abfc2635e01595635eebed744b3076ffae"
-      },
-      "sha256": "437969ea67218da715d92d17f1f6c6abfc2635e01595635eebed744b3076ffae"
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "429c2cf0d4c67dfb84ef3966cd473a111e1d4efc252238562c08e33cc98d6ea0",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-saturation/src/subst.rs": {
       "notice": [
@@ -2223,18 +2214,13 @@
       "sha256": "929c7a9a81c055e65d405cfe0f598b2be0c8125512aca22d4e17e30e9d624692"
     },
     "crates/fang-saturation/src/tests.rs": {
-      "notice": [
-        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
-      ],
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/tests.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
-      "research": {
-        "path": "crates/fang-saturation/src/tests.rs",
-        "receipt": "search build v12",
-        "sha256": "0fd1492099232ef21595b13842ee85df542a3e257e93543e434b8a2e28bd5be7"
-      },
-      "sha256": "0fd1492099232ef21595b13842ee85df542a3e257e93543e434b8a2e28bd5be7"
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "cae46e15577dd008688645ac138d59b7d6285f02aa91e3e78caa17eb6faba048",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-saturation/tests/cited_bundle_adapter.rs": {
       "origin": "product",
@@ -5402,6 +5388,12 @@
       "original": "experiments/fof-quantified/equality-versioned/kernel-v8/v8/fang-kernel/tests/trees.rs",
       "original_sha256": "664764f2786e825cd9237e118be4401a2e060e5c5a2f5ab93eba45c7feb80e13",
       "sha256": "664764f2786e825cd9237e118be4401a2e060e5c5a2f5ab93eba45c7feb80e13"
+    },
+    "crates/fang-saturation/src/orphan_tests.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/orphan_tests.rs",
+      "receipt": "fang-v4-runtime-search-v1-20261114",
+      "sha256": "350422c991c8c47ccc832c9ab86e9345b6bfb432d8afac7cb351ba90c27ab652"
     }
   },
   "installed_binaries": {
@@ -5676,10 +5668,14 @@
       "sha256": "d46b86327800d7c2b39860f515bef8bb16809799bfc9eaab77aab8779f9538b9",
       "archive": "run/source",
       "source_table": "source_sha256"
+    },
+    "fang-v4-runtime-search-v1-20261114": {
+      "manifest": "evidence/verification/fang-v4-runtime-search-v1-20261114/manifest.json",
+      "sha256": "08b0b895deefb65ec653bbb107cd45509e4c73606ff86ef06e0306d0cc11c913"
     }
   },
   "schema": "fang-v8-rust-source-map-v1",
-  "scope": "Every file under the listed crate directories, staged byte for byte from the pinned receipt archives. Cargo.toml files differ from the receipt only in the recorded path strings and the recorded line edits of the one package rename. Comment-only edits that remove references to local records are recorded per file as comment_edits. The coverage crate and the bundle producer are the bundle producer v2 bytes; the coverage limits test reads the lean-v8 files through rewritten include paths. The signed producer crates are tptp-role-bundle-native-v3 (role-v5); the coverage crate stays at revision 2. The signed producer is native v5 (role-v5 with the coverage crate at revision 2). The fang-v8 limits test reads lean-v8/NativeLimits.lean through an include rewrite; crates/ holds only crate directories. Entries from tptp-expanded-integration-v2-20261023, removed by mistake on 2026-11-02, name tptp-role-signed-native-v4-20261026, which archives the same bytes. The signed producer is native v6, which adds the origins of prepared clauses (Prepared::origins). crates/fang-models (fang-model-find, the finite model producer) is product code in the root workspace; the Lean model checker decides its candidates. Round one of the third version: producers on the final limits record; the restaged files are pinned by hash until the workspace gate. Final v3 producers are staged from the cited/signed and expanded named gates; the combined product workspace gate is still required. Kernel replay retains its separately pinned unnamed producer.",
+  "scope": "V4 Rust runtime and search source integration. Historical source receipts remain intact; installation and performance qualification are recorded separately.",
   "workspace": {
     "exclude": [
       "crates/ground-fof-core",

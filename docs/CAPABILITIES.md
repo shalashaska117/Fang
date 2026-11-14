@@ -46,6 +46,8 @@ Compiled checking accepts UTF-8 text inside comments. Syntax outside comments re
 | Equality factoring | Not supported | The checked prototype is not yet integrated into the installed search. |
 | Splitting and learned strategy selection | Not supported | Still pending in the V4 plan. |
 
+The low-level saturation producers also accept `--set orphan_deletion=on` and `--set max_passive=N`. Both are disabled by default; the public `fang` command does not expose these switches. They can discard useful clauses, so exhaustion after pruning remains an unknown result. The passive limit counts queued clauses, not all stored proof records or total memory. Returned certificates still require independent checking.
+
 ## Results and verification
 
 | Capability | Status and meaning |

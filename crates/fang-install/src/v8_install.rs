@@ -70,9 +70,9 @@ pub const LAUNCHER_PACKAGE: &str = "fang-launcher";
 pub const LAUNCHER_BINARY: &str = "fang-launcher";
 pub const KERNEL_PACKAGE: &str = "fang-v8-kernel";
 pub const KERNEL_CRATE: &str = "crates/v8-kernel";
-const SCOPE: &str = "Version-8 command built from the repository alone: Rust producers, compiled Lean checkers and SZS status \
-on the single-file, bundle and signed paths, and TSTP output on the single-file path. Kernel replay is not installed; \
---check kernel is refused before the input is read.";
+const SCOPE: &str = "Version-8 command built from the repository alone: Rust producers, compiled Lean checkers, \
+SZS statuses and supported TSTP proof or finite-model output. The capability records the installed exporters \
+and kernel replay components; runtime input, checking-mode and resource restrictions still apply.";
 const ENVIRONMENT_KEYS: [&str; 7] = [
     "PATH",
     "HOME",

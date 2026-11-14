@@ -20,6 +20,10 @@ use std::collections::{BinaryHeap, HashMap, VecDeque};
 use std::hash::{Hash, Hasher};
 use std::time::Instant;
 
+#[cfg(test)]
+#[path = "orphan_tests.rs"]
+mod orphan_tests;
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stop {
     Proof(Id),
@@ -41,6 +45,30 @@ pub type Sigma = Vec<(u32, TermId)>;
 /// The age and weight queues of passive clauses.
 type Queues = (VecDeque<Id>, BinaryHeap<Reverse<(u32, Id)>>);
 
+/// Generating parents survive simplification of the conclusion. Proof parents
+/// remain in Rule and must not be used to classify a replacement as an orphan.
+#[derive(Clone, Copy, Debug)]
+enum GeneratingParents {
+    Input,
+    One(Id),
+    Two(Id, Id),
+}
+
+impl GeneratingParents {
+    fn of_rule(rule: &Rule) -> Self {
+        match *rule {
+            Rule::Input { .. } => Self::Input,
+            Rule::Factor { parent, .. }
+            | Rule::EqRes { parent, .. }
+            | Rule::EqFactor { parent, .. } => Self::One(parent),
+            Rule::Resolve { left, right, .. } => Self::Two(left, right),
+            Rule::Para { source, target, .. } | Rule::Demod { source, target, .. } => {
+                Self::Two(source, target)
+            }
+        }
+    }
+}
+
 /// A pattern and target for subsumption matching, and for equations the second pair.
 type MatchPair = (TermId, TermId, Option<(TermId, TermId)>);
 
@@ -61,6 +89,8 @@ pub struct Search<'a> {
     age_queue: VecDeque<Id>,
     weight_queue: BinaryHeap<Reverse<(u32, Id)>>,
     passive: u64,
+    /// Allocated only when orphan deletion is enabled; one entry per stored clause.
+    generating_parents: Vec<GeneratingParents>,
     pick: u64,
     /// One clause per hash; a collision only lets a duplicate through.
     seen: HashMap<u64, Id>,
@@ -270,6 +300,7 @@ impl<'a> Search<'a> {
             age_queue: VecDeque::new(),
             weight_queue: BinaryHeap::new(),
             passive: 0,
+            generating_parents: Vec::new(),
             pick: 0,
             seen: HashMap::new(),
             limits,
@@ -403,6 +434,10 @@ impl<'a> Search<'a> {
             }
         };
         let id = self.clauses.len() as Id;
+        if self.options.orphan_deletion {
+            self.generating_parents
+                .push(GeneratingParents::of_rule(&rule));
+        }
         self.clauses.push(ClauseRec {
             lits,
             rule,
@@ -417,6 +452,21 @@ impl<'a> Search<'a> {
             level,
         });
         self.stats.clauses_stored += 1;
+        id
+    }
+
+    fn generating_parents(&self, id: Id) -> Option<GeneratingParents> {
+        self.options
+            .orphan_deletion
+            .then(|| self.generating_parents[id as usize])
+    }
+
+    fn push_simplified(&mut self, lits: Vec<Lit>, rule: Rule, target: Id) -> Id {
+        let parents = self.generating_parents(target);
+        let id = self.push(lits, rule);
+        if let Some(parents) = parents {
+            self.generating_parents[id as usize] = parents;
+        }
         id
     }
 
@@ -806,6 +856,15 @@ impl<'a> Search<'a> {
     /// A new conclusion: bounds, tautology and duplicate tests, then storage and admission to passive.
     /// Returns true when the empty clause is found.
     fn derived(&mut self, lits: Vec<Lit>, rule: Rule) -> bool {
+        self.derived_with_parents(lits, rule, None)
+    }
+
+    fn derived_with_parents(
+        &mut self,
+        lits: Vec<Lit>,
+        rule: Rule,
+        parents: Option<GeneratingParents>,
+    ) -> bool {
         self.stats.generated += 1;
         if lits.len() > self.options.max_literals {
             self.stats.dropped_literals += 1;
@@ -833,6 +892,9 @@ impl<'a> Search<'a> {
             return false;
         }
         let id = self.push(lits, rule);
+        if let Some(parents) = parents {
+            self.generating_parents[id as usize] = parents;
+        }
         self.admit(id)
     }
 
@@ -857,7 +919,7 @@ impl<'a> Search<'a> {
                     break;
                 };
                 self.clauses[current as usize].state = State::Deleted;
-                current = self.push(lits, rule);
+                current = self.push_simplified(lits, rule, current);
                 self.stats.forward_rewrites += 1;
                 steps += 1;
             }
@@ -885,7 +947,7 @@ impl<'a> Search<'a> {
                     && let Some((lits, rule)) = self.rewrite_once(current, None)
                 {
                     self.clauses[current as usize].state = State::Deleted;
-                    current = self.push(lits, rule);
+                    current = self.push_simplified(lits, rule, current);
                     self.stats.forward_rewrites += 1;
                     continue;
                 }
@@ -918,6 +980,19 @@ impl<'a> Search<'a> {
         if self.clauses[current as usize].lits.is_empty() {
             self.found = Some(current);
             return true;
+        }
+        if self
+            .options
+            .max_passive
+            .is_some_and(|limit| self.passive >= limit)
+        {
+            // This candidate has not been admitted or used as a parent. Keep
+            // proof records for its ancestors and release only its literals.
+            self.clauses[current as usize].state = State::Deleted;
+            self.clauses[current as usize].lits = Vec::new();
+            self.stats.passive_limit_dropped += 1;
+            self.stats.pruned += 1;
+            return false;
         }
         if self.options.duplicates {
             if current != id && self.is_duplicate(&self.clauses[current as usize].lits) {
@@ -1022,7 +1097,7 @@ impl<'a> Search<'a> {
         let (out, _) = self.conclude(&rule, false);
         self.binds.clear();
         self.stats.cleanup_steps += 1;
-        Some(self.push(out, rule))
+        Some(self.push_simplified(out, rule, id))
     }
 
     // ---- Simplification by the active set ----
@@ -1315,7 +1390,7 @@ impl<'a> Search<'a> {
         }
         let (out, _) = self.conclude(&rule, false);
         self.binds.clear();
-        let mut current = self.push(out, rule);
+        let mut current = self.push_simplified(out, rule, target);
         let mut made = vec![current];
         while self.clauses[current as usize].lits.len() > size {
             let lits = self.lits(current);
@@ -1341,7 +1416,7 @@ impl<'a> Search<'a> {
             self.bind_rule(&rule);
             let (out, _) = self.conclude(&rule, false);
             self.binds.clear();
-            current = self.push(out, rule);
+            current = self.push_simplified(out, rule, current);
             made.push(current);
         }
         if self.clauses[current as usize].lits != expected {
@@ -1379,7 +1454,7 @@ impl<'a> Search<'a> {
                 && let Some((lits, rule)) = self.rewrite_once(current, None)
             {
                 self.delete(current);
-                current = self.push(lits, rule);
+                current = self.push_simplified(lits, rule, current);
                 self.stats.forward_rewrites += 1;
                 rewrites += 1;
                 continue;
@@ -1424,7 +1499,7 @@ impl<'a> Search<'a> {
                 if let Some((lits, rule)) = self.rewrite_once(other, Some(given)) {
                     self.stats.backward_rewrites += 1;
                     self.delete(other);
-                    if self.derived(lits, rule) {
+                    if self.derived_with_parents(lits, rule, self.generating_parents(other)) {
                         return true;
                     }
                 }
@@ -1620,11 +1695,35 @@ impl<'a> Search<'a> {
         }
     }
 
+    fn take_passive(&mut self, id: Id) -> Option<Id> {
+        if self.clauses[id as usize].state != State::Passive {
+            return None;
+        }
+        let deleted = |parent: Id| self.clauses[parent as usize].state == State::Deleted;
+        let orphan = match self.generating_parents(id) {
+            Some(GeneratingParents::One(parent)) => deleted(parent),
+            Some(GeneratingParents::Two(left, right)) => deleted(left) || deleted(right),
+            Some(GeneratingParents::Input) | None => false,
+        };
+        self.passive -= 1;
+        if orphan {
+            let clause = &mut self.clauses[id as usize];
+            clause.state = State::Deleted;
+            // A passive clause has never generated children. Keep its rule and
+            // identity; only its unreferenced literal allocation is released.
+            clause.lits = Vec::new();
+            self.stats.orphaned += 1;
+            self.stats.pruned += 1;
+            None
+        } else {
+            self.clauses[id as usize].state = State::New;
+            Some(id)
+        }
+    }
+
     fn select(&mut self) -> Option<Id> {
         while let Some(id) = self.input_queue.pop_front() {
-            if self.clauses[id as usize].state == State::Passive {
-                self.clauses[id as usize].state = State::New;
-                self.passive -= 1;
+            if let Some(id) = self.take_passive(id) {
                 return Some(id);
             }
         }
@@ -1632,7 +1731,7 @@ impl<'a> Search<'a> {
             return self.select_layered();
         }
         loop {
-            if self.age_queue.is_empty() && self.weight_queue.is_empty() {
+            if self.passive == 0 {
                 return None;
             }
             let cycle = (self.options.age_ratio + self.options.weight_ratio) as u64;
@@ -1644,10 +1743,8 @@ impl<'a> Search<'a> {
                 self.weight_queue.pop().map(|Reverse((_, id))| id)
             };
             if let Some(id) = candidate
-                && self.clauses[id as usize].state == State::Passive
+                && let Some(id) = self.take_passive(id)
             {
-                self.clauses[id as usize].state = State::New;
-                self.passive -= 1;
                 return Some(id);
             }
         }
@@ -1660,7 +1757,7 @@ impl<'a> Search<'a> {
         let widest = self.layers.len() - 1;
         let picks = *self.layer_bounds.last().expect("one bound per layer");
         loop {
-            if self.layers[widest].0.is_empty() && self.layers[widest].1.is_empty() {
+            if self.passive == 0 {
                 return None;
             }
             let slot = self.layer_pick % picks;
@@ -1690,9 +1787,9 @@ impl<'a> Search<'a> {
                         }
                     }
                 }
-                if let Some(id) = candidate {
-                    self.clauses[id as usize].state = State::New;
-                    self.passive -= 1;
+                if let Some(id) = candidate
+                    && let Some(id) = self.take_passive(id)
+                {
                     return Some(id);
                 }
             }

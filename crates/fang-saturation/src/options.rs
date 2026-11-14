@@ -55,6 +55,10 @@ pub struct Options {
     pub filter: bool,
     /// Drop the heavier half of passive when memory passes 70% of the bound.
     pub prune_passive: bool,
+    /// Drop passive inferences whose generating parent was deleted. This is an incomplete heuristic.
+    pub orphan_deletion: bool,
+    /// Maximum queued passive clauses. Dropping a nonempty clause loses completeness.
+    pub max_passive: Option<u64>,
     /// Candidate indexes over the active set; the same inferences as the linear scan, in the same order.
     pub index: bool,
     /// Sequential time slices, each a share of the remaining search time and its own options; empty for one search.
@@ -121,6 +125,8 @@ impl Options {
             subsumption_budget: 100_000,
             filter: false,
             prune_passive: false,
+            orphan_deletion: false,
+            max_passive: None,
             index: false,
             portfolio: Vec::new(),
             sine: None,
@@ -285,6 +291,8 @@ impl Options {
             "subsumption_budget" => self.subsumption_budget = number()? as u32,
             "filter" => self.filter = flag()?,
             "prune_passive" => self.prune_passive = flag()?,
+            "orphan_deletion" => self.orphan_deletion = flag()?,
+            "max_passive" => self.max_passive = Some(value.parse().map_err(|_| "bad max_passive")?),
             "index" => self.index = flag()?,
             "sine" => {
                 self.sine = match value {

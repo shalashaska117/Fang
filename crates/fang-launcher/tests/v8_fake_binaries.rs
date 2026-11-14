@@ -103,6 +103,7 @@ const EXPORTER: &str = r#"cat "$1" "$2" >/dev/null
 case $mode in
   export-error) echo 'export-error: signed integer name' >&2; exit 7;;
   slow) sleep 10;;
+  beyond-first-pass) sleep 6;;
   bad) printf '\377\n'; exit 0;;
 esac
 printf "cnf(a,axiom,(\$false),file('%s',a)).\n" "$3"
@@ -1011,6 +1012,61 @@ fn proof_in_pass_one_ends_the_run_before_any_model_step() {
     assert_eq!(passes(manifest), [(1, "Unsatisfiable".to_string())]);
     assert_eq!(text(manifest, &["certificate", "file"]), "proof.fang");
     assert!(!verified(manifest).contains(&fixture.named("model-find")));
+}
+
+#[test]
+fn accepted_export_uses_command_budget_after_the_short_search_pass() {
+    let mut fixture = Fixture::new();
+    fixture.write_models("candidate", "accept");
+    fixture.write_exporter("beyond-first-pass");
+    let name = "run-export-after-pass";
+    let output = fixture.command(
+        &fixture.input,
+        name,
+        &["--output", "tstp", "--wall-seconds", "16"],
+    );
+    let run = fixture.finished(output, name);
+    assert_eq!(run.output.status.code(), Some(0));
+    assert!(
+        run.stdout()
+            .contains("% SZS status Unsatisfiable for problem")
+    );
+    let manifest = run.manifest();
+    assert!(fixture.model_calls().is_empty());
+    assert_eq!(text(manifest, &["export", "state"]), "document");
+    assert!(run.stdout().contains("% SZS output end CNFRefutation"));
+    assert_eq!(run.stderr(), "");
+    let elapsed = at(manifest, &["elapsed_before_status_seconds"])
+        .as_f64()
+        .unwrap();
+    assert!((6.0..16.0).contains(&elapsed), "{elapsed}");
+}
+
+#[test]
+fn accepted_export_still_respects_the_original_command_deadline() {
+    let mut fixture = Fixture::new();
+    fixture.write_models("candidate", "accept");
+    fixture.write_exporter("beyond-first-pass");
+    let run = fixture.invoke(
+        "Unsatisfiable",
+        &["--output", "tstp", "--wall-seconds", "4"],
+        "run-export-global-limit",
+    );
+    let manifest = run.manifest();
+    assert!(fixture.model_calls().is_empty());
+    assert_eq!(text(manifest, &["export", "state"]), "resource");
+    assert_eq!(text(manifest, &["export", "detail"]), "Timeout");
+    assert!(!run.stdout().contains("% SZS output start"));
+    assert!(
+        run.stderr()
+            .contains("TSTP export stopped at a resource limit (Timeout)")
+    );
+    assert!(
+        at(manifest, &["elapsed_before_status_seconds"])
+            .as_f64()
+            .unwrap()
+            < 4.0
+    );
 }
 
 #[test]

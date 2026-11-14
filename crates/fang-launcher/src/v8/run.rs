@@ -284,6 +284,8 @@ pub struct Run {
     pub capability: Capability,
     pub verifier: Verifier,
     pub environment: Environment,
+    /// Original command deadline, before search and model slices narrow it.
+    command_deadline: Instant,
     /// Where the record and the stage records are published for the Forced path, before and after each stage.
     pub published: Option<Published>,
 }
@@ -313,6 +315,7 @@ impl Run {
         environment.set("LEAN_NUM_THREADS", "1");
         Run {
             args,
+            command_deadline: supervisor.deadline(),
             supervisor,
             manifest,
             root,
@@ -456,7 +459,10 @@ impl Run {
         solution: &str,
     ) -> Result<(), Fault> {
         let name = self.input_name();
-        let saved = self.supervisor.deadline();
+        // Export starts only after acceptance. Search slices no longer need
+        // their remaining time; output may use the original command budget.
+        // Keep that deadline for post-export integrity checks as well.
+        let saved = self.command_deadline;
         let reserve = Duration::from_secs_f64(STAGE_ORDER.export_reserve_seconds);
         self.supervisor
             .set_deadline(saved.checked_sub(reserve).unwrap_or(saved));

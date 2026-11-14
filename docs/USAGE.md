@@ -42,6 +42,8 @@ A run prints three comment lines. For `socrates.p`:
 
 The first line names the checking path the input took, the second the checking mode and what it trusts, and the third the SZS status. The problem name after `for` is the input file's name without a trailing `.p`; a file name without that ending is used as it is. The same name follows `for` in the SZS output lines around a TSTP document. Each run keeps its captured input, candidate certificates, logs and manifest in a new directory, by default under `.local/runs/` in the current directory; `--artifacts PATH` chooses another directory, which must not exist. Run data stays local.
 
+After a result has been checked, TSTP export can use the remaining whole-command time, with one second reserved for output delivery. A search slice ending does not shorten that budget. The original `--wall-seconds` limit still applies to the whole run.
+
 ## Accepted input
 
 Fang reads TPTP `cnf` and `fof` statements with equality: comments, quoted and integer names, all eight FOF connectives, `$true` and `$false`, `include` directives with or without a name selection, annotations, and distinct objects (`"double quoted"`), which are pairwise unequal. The roles `axiom`, `hypothesis`, `definition`, `lemma`, `theorem` and `corollary` are premises, `conjecture` is a goal and `negated_conjecture` is an already negated input.

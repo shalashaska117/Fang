@@ -21,6 +21,8 @@ pub struct Stats {
     pub forward_subsumed: u64,
     pub subsumption_resolutions: u64,
     pub pruned: u64,
+    pub orphaned: u64,
+    pub passive_limit_dropped: u64,
     pub backward_subsumed: u64,
     pub forward_rewrites: u64,
     pub backward_rewrites: u64,
@@ -119,7 +121,7 @@ impl Default for Json {
 impl Stats {
     pub fn json(&self) -> String {
         let mut json = Json::new();
-        let fields: [(&str, u64); 33] = [
+        let fields: [(&str, u64); 35] = [
             ("input_clauses", self.input_clauses),
             ("inputs_dropped", self.inputs_dropped),
             ("inputs_unselected", self.inputs_unselected),
@@ -135,6 +137,8 @@ impl Stats {
             ("forward_subsumed", self.forward_subsumed),
             ("subsumption_resolutions", self.subsumption_resolutions),
             ("pruned", self.pruned),
+            ("orphaned", self.orphaned),
+            ("passive_limit_dropped", self.passive_limit_dropped),
             ("backward_subsumed", self.backward_subsumed),
             ("forward_rewrites", self.forward_rewrites),
             ("backward_rewrites", self.backward_rewrites),
