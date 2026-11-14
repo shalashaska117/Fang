@@ -8,6 +8,8 @@ The next version targets competitive first-order reasoning on FOF and CNF, inclu
 
 Changes are evaluated against Vampire on fixed corpora with matching resource limits. Solved counts and timings on common solves are reported separately, with checking and requested output included.
 
+The [version 4 work plan](V4-PLAN.md) lists the planned changes, their validation requirements and the first integration milestones.
+
 ## Later versions
 
 - Version 5: FNT and TFN, including typed first-order input without arithmetic.
