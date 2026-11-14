@@ -6,11 +6,12 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 965 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The installed passive-queue changes passed 62 compiled-Lean certificate replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 970 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. Its optional LPO ordering passed 40 installed compiled-Lean certificate replays. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
+4. Integrate KBO weight schemes and two additional literal-selection policies after their isolated checks. The weight prototype passed 41 Rust tests and 120 compiled-Lean replays. The combined selection prototype passed 46 Rust tests and 240 replays; schedule participation still needs training data.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -37,6 +38,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Verify missing selected names and ambiguous names from distinct declarations produce InputError without a positive result or document.
 - [x] Record the combined qualification receipt with current source hashes and actual installation manifests.
 - [x] Qualify the export-deadline and passive-queue integration with 965 installer tests, current source maps, installed regressions and a new qualification receipt.
+- [x] Qualify optional LPO ordering with 970 installer tests, current source maps, installed launcher controls and 40 installed proof replays.
 
 ## 8. Equality factoring
 
@@ -89,6 +91,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] In an isolated launcher, give accepted-result export the remaining command budget and test that the original deadline still holds; 202 tests passed, two ignored, with Clippy.
 - [x] Recover CSR051-10, CSR072-10 and SEV606+1 with that isolated correction, preserving the 60-second, 2-GiB limits and original checkers.
 - [x] Repeat SWC279-1 separately: three checked complete documents, including one from the unchanged installed launcher. This does not establish the cause of its earlier search timeout.
+- [x] Run nine controlled SWC279-1 producer repetitions at 38, 39 and 40 seconds. All passed compiled checking with the unchanged producer; the one-second budget difference alone does not reproduce the historical timeout.
 - [x] Integrate the export-deadline correction and qualify a new installation; all four historical follow-up cases produced complete checked documents.
 - [ ] Resolve or characterize SWC279-1's sensitivity to timed search slices before final evaluation.
 - [x] Validate recovered output: 222 of 226 cases produced complete checked documents; three remained checked without a document and SWC279-1 returned ResourceOut. This was a regression run during development, not a performance comparison.
@@ -128,6 +131,8 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [ ] Adjust slice termination using those measurements.
 - [ ] Profile goal listing and large-input preprocessing separately.
 - [ ] Reduce measured fixed costs and rerun the affected regressions.
+
+Adaptive polling also passed 222 combined supervisor/launcher tests, but installation correctly rejected its changed supervisor hash against the independently reviewed kernel-entry policy. The product supervisor and source map were restored. This change needs a new independent policy review before integration.
 
 ## 1. Strategy schedule
 
@@ -174,9 +179,10 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 
 ## 6. Selection and ordering
 
-- [ ] Implement and test additional literal-selection policies.
-- [ ] Add and test KBO weight schemes.
-- [ ] Add and test an LPO strategy slice.
+- [x] Implement and test isolated ground-negative and negative-equality selection policies; 46 Rust tests and 240 combined compiled-Lean replays passed.
+- [x] Add and test isolated constant-heavy and inverse-frequency KBO weights; 41 Rust tests and 120 compiled-Lean replays passed.
+- [ ] Integrate and qualify the KBO weights and additional selection policies.
+- [x] Add and qualify optional bounded LPO ordering in low-level producers; 40 installed compiled-Lean replays passed. Default search still uses KBO.
 - [ ] Select schedule participation using training results.
 
 ## 7. Indexes

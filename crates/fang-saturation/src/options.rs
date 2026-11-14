@@ -2,7 +2,7 @@
 //! Search options, set from `--set key=value`. A preset names the configuration of one measured step of the search's development;
 //! keys given after it override it.
 
-use crate::kbo::Precedence;
+use crate::kbo::{OrderKind, Precedence};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Selection {
@@ -20,6 +20,7 @@ pub struct Options {
     pub preset: String,
     /// Knuth-Bendix ordering restrictions; off means the second release's unrestricted rules.
     pub ordering: bool,
+    pub term_order: OrderKind,
     pub precedence: Precedence,
     pub selection: Selection,
     /// Resolution and factoring on equations and negative factoring, as the second release does.
@@ -100,6 +101,7 @@ impl Options {
         let mut options = Options {
             preset: name.to_owned(),
             ordering: false,
+            term_order: OrderKind::Kbo,
             precedence: Precedence::Arity,
             selection: Selection::None,
             unrestricted_rules: true,
@@ -240,7 +242,17 @@ impl Options {
                 .map_err(|_| format!("{key} needs a number"))
         };
         match key {
-            "ordering" => self.ordering = flag()?,
+            "ordering" => match value {
+                "kbo" | "lpo" => {
+                    self.ordering = true;
+                    self.term_order = if value == "kbo" {
+                        OrderKind::Kbo
+                    } else {
+                        OrderKind::Lpo
+                    };
+                }
+                _ => self.ordering = flag()?,
+            },
             "precedence" => {
                 self.precedence = match value {
                     "arity" => Precedence::Arity,

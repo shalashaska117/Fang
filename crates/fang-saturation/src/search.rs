@@ -283,7 +283,8 @@ impl<'a> Search<'a> {
             }
         }
         let arities: Vec<usize> = functions.iter().chain(predicates).copied().collect();
-        let order = Order::new(&arities, &counts, functions.len(), options.precedence);
+        let order = Order::new(&arities, &counts, functions.len(), options.precedence)
+            .with_kind(options.term_order);
         let mut search = Search {
             bank: Bank::new(),
             clauses: Vec::new(),

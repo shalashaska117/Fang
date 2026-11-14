@@ -48,6 +48,8 @@ Compiled checking accepts UTF-8 text inside comments. Syntax outside comments re
 
 The low-level saturation producers also accept `--set orphan_deletion=on` and `--set max_passive=N`. Both are disabled by default; the public `fang` command does not expose these switches. They can discard useful clauses, so exhaustion after pruning remains an unknown result. The passive limit counts queued clauses, not all stored proof records or total memory. Returned certificates still require independent checking.
 
+Low-level producers can select `--set ordering=lpo` or `--set ordering=kbo`. LPO uses the selected symbol precedence and a limit of 16,384 recursive comparison pairs; exceeding it leaves the terms incomparable. KBO remains the default, and no improvement in whole-search performance is claimed for the optional LPO strategy.
+
 ## Results and verification
 
 | Capability | Status and meaning |

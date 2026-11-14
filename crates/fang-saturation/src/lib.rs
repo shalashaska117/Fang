@@ -9,6 +9,7 @@ pub mod cited;
 pub mod clause;
 pub mod index;
 pub mod kbo;
+mod lpo;
 pub mod options;
 pub mod producer;
 pub mod proof;

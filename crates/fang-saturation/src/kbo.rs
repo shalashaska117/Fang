@@ -23,7 +23,14 @@ impl Cmp {
     }
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum OrderKind {
+    Kbo,
+    Lpo,
+}
+
 pub struct Order {
+    kind: OrderKind,
     /// Rank of each bank symbol; a higher rank is a greater symbol.
     rank: Vec<u32>,
 }
@@ -93,10 +100,21 @@ impl Order {
         for (position, symbol) in symbols.into_iter().enumerate() {
             rank[symbol] = position as u32;
         }
-        Self { rank }
+        Self {
+            rank,
+            kind: OrderKind::Kbo,
+        }
+    }
+
+    pub fn with_kind(mut self, kind: OrderKind) -> Self {
+        self.kind = kind;
+        self
     }
 
     pub fn compare(&self, bank: &Bank, s: TermId, t: TermId) -> Cmp {
+        if self.kind == OrderKind::Lpo {
+            return crate::lpo::compare(bank, s, t, &self.rank);
+        }
         if s == t {
             return Cmp::Equal;
         }
