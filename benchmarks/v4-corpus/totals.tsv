@@ -1,0 +1,4 @@
+partition	cases	cnf	fof
+train	256	142	114
+validation	64	32	32
+heldout	256	114	142

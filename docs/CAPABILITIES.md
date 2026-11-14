@@ -52,6 +52,8 @@ Low-level producers can select `--set ordering=lpo` or `--set ordering=kbo`. LPO
 
 KBO also accepts `--set kbo_weights=uniform|constant-heavy|invfreq`. Uniform weights remain the default; the other schemes give symbols positive weights and variables weight one. Their term-weight calculation returns incomparable on arithmetic overflow or after 16,384 distinct nodes. `--set selection=ground-negative` prefers ground negative literals; `selection=negative-equality` prefers negative equalities. Both use literal weight and then original position to break ties. These producer options passed installed certificate replay; their participation in the default schedule still needs training results.
 
+KBO variable-multiplicity checks avoid expanding shared subterms when the two terms' combined cached weight exceeds 128. The DAG calculation permits 16,384 node/edge operations and uses checked signed counts; exceeding either bound leaves the terms incomparable. Small terms keep the previous counting path. The installed change preserved 366 certificate byte streams and their search counters, apart from timing. Synthetic comparison measurements do not establish a whole-prover speedup.
+
 ## Results and verification
 
 | Capability | Status and meaning |

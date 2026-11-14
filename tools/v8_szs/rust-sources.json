@@ -2091,8 +2091,8 @@
     "crates/fang-saturation/src/kbo.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/kbo.rs",
-      "receipt": "fang-v4-ordering-strategies-source-v1-20261114",
-      "sha256": "6f81c36519bdb18294cfbc66bf9fa2ee9907179ecbcbfa33298cc5b2be109d7e",
+      "receipt": "fang-v4-kbo-balance-source-v1-20261114",
+      "sha256": "0a3e40f5b1cd03e080c3689677e5d069563251d46ab8b2f13c476eb3e68580b6",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -2100,8 +2100,8 @@
     "crates/fang-saturation/src/lib.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/lib.rs",
-      "receipt": "fang-v4-ordering-strategies-source-v1-20261114",
-      "sha256": "cdec4d1bf92ce3a7ffc21e09911026ce325ce7da485b78e35fd178fb23629078",
+      "receipt": "fang-v4-kbo-balance-source-v1-20261114",
+      "sha256": "226488a9c4eb86e48906f86bcda013cb5f9ec3937e8d853b68927fea185da8e6",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -5411,6 +5411,15 @@
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
+    },
+    "crates/fang-saturation/src/variable_balance.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/variable_balance.rs",
+      "receipt": "fang-v4-kbo-balance-source-v1-20261114",
+      "sha256": "2ea35eb47c681168d2b68c8cf145cd231b71d071bf775f72c76ea6350d528ec7",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     }
   },
   "installed_binaries": {
@@ -5697,6 +5706,10 @@
     "fang-v4-ordering-strategies-source-v1-20261114": {
       "manifest": "evidence/verification/fang-v4-ordering-strategies-source-v1-20261114/manifest.json",
       "sha256": "d5cc60adf7377b22a728e14e3f3f4d46e7fee081256ade1561f93865ce5ce47e"
+    },
+    "fang-v4-kbo-balance-source-v1-20261114": {
+      "manifest": "evidence/verification/fang-v4-kbo-balance-source-v1-20261114/manifest.json",
+      "sha256": "6029e70f02af8c09353e9d4e87540da27b85ca7b6c7ac46e94624a723aa9ef24"
     }
   },
   "schema": "fang-v8-rust-source-map-v1",

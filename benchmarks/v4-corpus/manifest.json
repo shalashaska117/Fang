@@ -1,0 +1,64 @@
+{
+  "schema": "fang-v4-corpus-membership-v1",
+  "status": "frozen-before-strategy-runs",
+  "created_utc": "2026-11-14T20:42:10.4116158Z",
+  "archive": {
+    "name": "TPTP-v9.3.1.tgz",
+    "bytes": 933955664,
+    "sha256": "8e9462d9443a2250000224cf4f7002a64ea02cbe07fa5cdcdecfd0fe8cd81f03"
+  },
+  "historical_list": {
+    "name": "fang-v3-vs-vampire-problems.txt",
+    "sha256": "9d0852c809261597680c9a006ed0625c5d6b91f71572a13068c54a9efa81cf3b",
+    "occurrences": 1536,
+    "tptp_occurrences": 1361,
+    "unique_tptp_filenames": 1346
+  },
+  "seed": "fang-v4-corpus-20261114-v1",
+  "excluded_families": 1186,
+  "splits": {
+    "train": {
+      "cases": 256,
+      "cnf": 142,
+      "fof": 114
+    },
+    "validation": {
+      "cases": 64,
+      "cnf": 32,
+      "fof": 32
+    },
+    "heldout": {
+      "cases": 256,
+      "cnf": 114,
+      "fof": 142
+    }
+  },
+  "files_sha256": {
+    "train.txt": "8adc557bcf159e8e1eedd8ef4a7568f994e3344fcbb57db292bc24b81ff9d2f2",
+    "train.tsv": "f508f7354ca152b12568545faff956a1cd0351014ce99a7c9038f53fb80f0078",
+    "validation.txt": "46e06370272f019efa61d4ab6df76814c3e9c3f73afbc8518a242da8d8c63a07",
+    "validation.tsv": "ff6da97034cb477468c8021c3a36a45743c50f6a5271c06cae131979a001e51e",
+    "heldout.txt": "036ea59c3eb19ee7d21f6bd18adcbfab6fafc676889835135dcd2d1709926cb8",
+    "heldout.tsv": "c7e46eacc98bb73f657901bf08db4edef6ae7cbde52b5e124a2ea917fc1c655a",
+    "totals.tsv": "78a6d0a7ac59748a09f8fd52b33375d826c74077f983edacc908b1e55191cd7b",
+    "excluded-families.txt": "045f7f21d00ee70a2748f13611d083bd36bde7aaae5f5bb174444a1b8f4c985d",
+    "selector/Cargo.toml": "fba341956bfb29a5ac7a2f3f42001f75ee4908fe9695e4d09f55a2459431e11b",
+    "selector/Cargo.lock": "4f911deab4bee61fca8a10d3669a525b3badd176e72f7ca5b486ddddc2fa1f98",
+    "selector/src/main.rs": "c9fbab10a123a0d850d5f6e9750b8f98a250fed0ef4bbc445fe7664db4567467"
+  },
+  "checks": {
+    "rust_tests": 2,
+    "clippy": "passed",
+    "fmt": "passed",
+    "reproduced_membership_files": 8,
+    "cross_split_family_overlap": 0,
+    "excluded_family_overlap": 0
+  },
+  "heldout_at_freeze": "Not extracted or run by this experiment. Membership was chosen from filenames only.",
+  "limitations": [
+    "Family grouping is a filename-prefix rule, not semantic deduplication.",
+    "Shared axiom files across families are allowed.",
+    "This is a frozen input selection, not benchmark results or a completed strategy schedule.",
+    "The historical V3 comparison is a development regression set, separate from held-out evaluation."
+  ]
+}

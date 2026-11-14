@@ -6,12 +6,12 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 981 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. Optional KBO weights passed 120 installed compiled-Lean certificate replays; additional literal-selection policies passed 240 replays across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 985 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
-4. Select schedule participation for the qualified KBO weights and literal-selection policies using training data. Defaults remain unchanged. An isolated optimization of KBO variable counts passed 50 Rust tests, comparisons against expanded occurrence lists on 163,216 term pairs and 366 byte-identical certificate replays. Integration remains pending.
+4. Collect strategy outcomes on the [frozen training corpus](../benchmarks/v4-corpus/README.md), then select schedule participation for the qualified KBO weights and literal-selection policies. The 256 training, 64 validation and 256 held-out problems have disjoint filename families. Defaults remain unchanged; no strategy runs have started on these sets.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -40,6 +40,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Qualify the export-deadline and passive-queue integration with 965 installer tests, current source maps, installed regressions and a new qualification receipt.
 - [x] Qualify optional LPO ordering with 970 installer tests, current source maps, installed launcher controls and 40 installed proof replays.
 - [x] Qualify optional KBO weights and additional literal-selection policies with 981 installer tests, current source maps, installed launcher controls and 360 installed proof replays.
+- [x] Qualify bounded DAG variable counting with 985 installer tests, current source maps, installed launcher controls and 366 byte-identical proof replays.
 
 ## 8. Equality factoring
 
@@ -88,7 +89,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Pass the installed output checks listed above.
 - [x] Run focused nested-include and selection-list fixtures through the installed path.
 - [x] Rerun all 226 retained historical missing-document cases through the installed path, including the nested-include and selection-list cases.
-- [ ] Reassess the 11 historical exporter rejections and three export timeouts.
+- [x] Reassess the 11 historical exporter rejections and three export timeouts: all 11 rejections produced complete documents in the earlier 222/226 campaign; the three timeouts recovered in the separate export-deadline follow-up. Retained document hashes were rechecked.
 - [x] In an isolated launcher, give accepted-result export the remaining command budget and test that the original deadline still holds; 202 tests passed, two ignored, with Clippy.
 - [x] Recover CSR051-10, CSR072-10 and SEV606+1 with that isolated correction, preserving the 60-second, 2-GiB limits and original checkers.
 - [x] Repeat SWC279-1 separately: three checked complete documents, including one from the unchanged installed launcher. This does not establish the cause of its earlier search timeout.
@@ -137,7 +138,7 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 
 ## 1. Strategy schedule
 
-- [ ] Freeze disjoint training and evaluation problem sets.
+- [x] Freeze disjoint training, validation and held-out filename families, with the original benchmark families excluded; publish the lists, archive hash and tested Rust selector in [benchmarks/v4-corpus](../benchmarks/v4-corpus/README.md).
 - [ ] Record problem features and strategy outcomes on the training set.
 - [ ] Select a schedule, including unequal slice lengths, using training results only.
 - [ ] Freeze the selected schedule before final evaluation.
@@ -186,7 +187,7 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 - [x] Add and qualify optional bounded LPO ordering in low-level producers; 40 installed compiled-Lean replays passed. Default search still uses KBO.
 - [x] Profile variable counting on shared terms and test an isolated bounded DAG implementation against expanded occurrence lists.
 - [x] Replay 366 certificates from the isolated DAG optimization, with identical bytes and search counters apart from timing.
-- [ ] Qualify and integrate the DAG variable-count optimization after certificate comparisons.
+- [x] Qualify and integrate the DAG variable-count optimization; 366 installed replays preserve certificate bytes and search counters apart from timing.
 - [ ] Select schedule participation using training results.
 
 ## 7. Indexes

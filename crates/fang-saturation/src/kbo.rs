@@ -44,40 +44,6 @@ pub enum Precedence {
     InverseFrequency,
 }
 
-/// Variable balance: whether every variable occurs in `s` at least as often as in `t`, and the converse.
-fn balance(bank: &Bank, s: TermId, t: TermId) -> (bool, bool) {
-    let mut left = Vec::new();
-    let mut right = Vec::new();
-    bank.collect_vars(s, &mut left);
-    bank.collect_vars(t, &mut right);
-    left.sort_unstable();
-    right.sort_unstable();
-    let (mut s_covers, mut t_covers) = (true, true);
-    let (mut i, mut j) = (0, 0);
-    while i < left.len() || j < right.len() {
-        let x = if i < left.len() { left[i] } else { u32::MAX };
-        let y = if j < right.len() { right[j] } else { u32::MAX };
-        let variable = x.min(y);
-        let mut in_s = 0;
-        while i < left.len() && left[i] == variable {
-            in_s += 1;
-            i += 1;
-        }
-        let mut in_t = 0;
-        while j < right.len() && right[j] == variable {
-            in_t += 1;
-            j += 1;
-        }
-        if in_s < in_t {
-            s_covers = false;
-        }
-        if in_t < in_s {
-            t_covers = false;
-        }
-    }
-    (s_covers, t_covers)
-}
-
 impl Order {
     /// `arities` and `counts` are indexed by bank symbol (functions, then predicates); predicates rank above every
     /// function symbol.
@@ -149,7 +115,10 @@ impl Order {
                         None => return Cmp::Incomparable,
                     },
                 };
-                let (s_covers, t_covers) = balance(bank, s, t);
+                let Some((s_covers, t_covers)) = crate::variable_balance::balance(bank, s, t)
+                else {
+                    return Cmp::Incomparable;
+                };
                 let greater = if s_covers {
                     Cmp::Greater
                 } else {
