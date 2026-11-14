@@ -160,6 +160,13 @@
         }
       },
       "scope": "Exact checker equivalence; kernel helper compatibility is validated separately."
+    },
+    "v4_utf8_comments": {
+      "source_gate": "fang-v4-runtime-integration-v1-20261114",
+      "previous_pin_sha256": "19e4200fe196058ff0645d81a1b019956c5510a89151e985fc5c9c2e71fc69fb",
+      "before_sha256": "17c7d59605eff1ebb9d9442eac656672343dc8d5c8250f24e6bf16a86745885e",
+      "after_sha256": "a84b5a2fade2c73a5e788b2f8b73c3cb50640aa5bedacece378bd11387e0077e",
+      "scope": "Lexer source pin only. Kernel UTF-8 input support requires separate qualification."
     }
   },
   "roots": [
@@ -417,7 +424,7 @@
     "SubstituteTerm": "2a51136758337d11578ced81214b2fe2b18a42d3c91394fd69fcb00e6b3a0abb",
     "Substitution": "c4f042cb1772687659b2e34a37ac2b8909608cb90fbd4543d7e31915332fc5b7",
     "SymbolBounds": "f9b7d97ec3b29a478fa919f036652abe4990a5936ac616e3f11316c577275e89",
-    "TptpLexical": "17c7d59605eff1ebb9d9442eac656672343dc8d5c8250f24e6bf16a86745885e",
+    "TptpLexical": "a84b5a2fade2c73a5e788b2f8b73c3cb50640aa5bedacece378bd11387e0077e",
     "Trace": "4113001c1087527fb0f0d5886ffd44c9b06b8fefb3128f85f6192816cfcbabed",
     "Transform": "408bf826f39c79a506990161cd324ce50b76d154494ff49b072f8639240f1f6f",
     "TransformArities": "1cf05266d089d2792b992ab7206b889349e596c35aaf5327060bb323eb8ea1d8",

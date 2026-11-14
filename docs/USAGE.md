@@ -46,6 +46,8 @@ The first line names the checking path the input took, the second the checking m
 
 Fang reads TPTP `cnf` and `fof` statements with equality: comments, quoted and integer names, all eight FOF connectives, `$true` and `$false`, `include` directives with or without a name selection, annotations, and distinct objects (`"double quoted"`), which are pairwise unequal. The roles `axiom`, `hypothesis`, `definition`, `lemma`, `theorem` and `corollary` are premises, `conjecture` is a goal and `negated_conjecture` is an already negated input.
 
+In the current V4 development build, comments may contain UTF-8 text. Syntax outside comments remains ASCII. Malformed UTF-8 and NUL bytes are rejected. This frontend extension is qualified for compiled checking; kernel replay retains its separate input restrictions.
+
 An include path is resolved against the including file's directory first and then against `--tptp-root`, which defaults to the `TPTP` environment variable. A missing or cyclic include is an input error.
 
 A name selection filters the included file's whole expansion, including formulas from nested includes. A selected name that is missing or names more than one formula causes `InputError`. This follows the [TPTP include rule](https://tptp-manual.tptp.org/home). The Vampire 5.1.0 build at commit `b75190a4b` used in the retained comparison filters the named file's own formulas, so nested selections can produce different answers.
@@ -90,7 +92,7 @@ The acceptance descriptions above apply to checked modes. With `--check none`, `
 
 With `--output tstp`, an accepted refutation can produce a `CNFRefutation` document. Its leaves name the original statements with `file(...)` sources, followed by preprocessing and inference steps down to `$false`. A checked finite model can produce a `FiniteModel` document. Each document is enclosed by matching `% SZS output start` and `% SZS output end` lines.
 
-Refutation documents are supported for premise-only single files and bundles, and for supported single files with conjectures. Fang prints one document per proved conjecture, in index order. The signed refutation route does not export input with includes or distinct objects. Named and unnamed exporters have different syntax limits; acceptance by a checker does not guarantee that the corresponding exporter can print the result.
+Refutation documents are supported for premise-only single files and bundles, and for supported single files with conjectures. The cited-certificate exporter also handles conjectures with includes and signed inputs with distinct objects, preserving the original file and statement identities. Fang prints one document per proved conjecture, in index order. Named, unnamed and cited exporters have different syntax and resource limits; acceptance by a checker does not guarantee that the corresponding exporter can print the result.
 
 An unsupported export or ordinary exporter failure keeps the checked status and writes a reason to standard error. An integrity failure can instead change the status to `Error`, and cancellation to `Forced`. A positive status alone is not a complete proof or model document: require the closing output line and a successful exit.
 

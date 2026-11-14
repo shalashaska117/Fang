@@ -74,6 +74,11 @@ pub enum Found {
     Exhausted {
         last: u32,
     },
+    /// All domains from one through the function-free small-model bound were
+    /// exhausted. This is an unverified search outcome, not a refutation.
+    FunctionFreeExhausted {
+        last: u32,
+    },
     Stopped {
         size: u32,
         reason: &'static str,
@@ -85,6 +90,25 @@ pub enum FindError {
     Task(TaskError),
     /// The model failed the evaluation of the original formulas; a producer fault.
     SelfCheck(String),
+}
+
+/// A universal, function-free clause set has a model on the interpretations of
+/// its constants (or any one element when there are no constants). Restricting
+/// predicates to that subdomain preserves every universal clause, including
+/// equality. Count Skolem constants too, and refuse the bound as soon as any
+/// active function has arguments. This bounds candidate search, not acceptance.
+fn function_free_bound(signature: &search::Signature) -> Option<u32> {
+    let mut constants = 0u32;
+    for (&arity, &active) in signature.functions.iter().zip(&signature.active_functions) {
+        if !active {
+            continue;
+        }
+        if arity != 0 {
+            return None;
+        }
+        constants = constants.checked_add(1)?;
+    }
+    Some(constants.max(1))
 }
 
 /// Search a model for the task.
@@ -212,11 +236,20 @@ pub fn find(problem: &Problem, task: Task, settings: &Settings) -> Result<Found,
     if settings.sorts {
         signature.value_sorts = search::infer_sorts(&signature, &flat);
     }
+    let bound = function_free_bound(&signature);
+    let to = bound.map_or(settings.to, |bound| {
+        // An explicit lower bound can request a larger domain. Try that size,
+        // while still avoiding a scan through all larger sizes on exhaustion.
+        settings.to.min(bound.max(settings.from))
+    });
+    if settings.trace && to < settings.to {
+        eprintln!("trace: function-free clauses cap candidate search at domain {to}");
+    }
     let options = search::Options {
         initial_conflicts: settings.initial_conflicts,
         trace: settings.trace,
         from: settings.from,
-        to: settings.to,
+        to,
         deadline: settings.deadline,
         literal_budget: settings.memory_bytes / 24,
         memory_bytes: settings.memory_bytes as u64 / 4 * 3,
@@ -233,6 +266,11 @@ pub fn find(problem: &Problem, task: Task, settings: &Settings) -> Result<Found,
                 item,
                 self_checked,
             }
+        }
+        search::Search::Exhausted { last }
+            if settings.from <= 1 && bound.is_some_and(|bound| last >= bound) =>
+        {
+            Found::FunctionFreeExhausted { last }
         }
         search::Search::Exhausted { last } => Found::Exhausted { last },
         search::Search::Stopped { size, reason } => Found::Stopped { size, reason },

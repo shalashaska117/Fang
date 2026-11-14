@@ -7,7 +7,7 @@
 //! producer and checker for inputs with roles other than axiom; `tstp` pins the single-file exporter and,
 //! when installed, the bundle exporter (`bundle_exporter`), the conjecture exporter (`goal_exporter`) and a
 //! conjecture exporter with an inputs mode (`inputs_exporter`), for a signed single file with no conjecture to
-//! prove;
+//! prove. `cited_exporter` pins a build with both cited bundle modes, for goals and input refutations;
 //! `model` pins the model producer, the model checker and, when installed, the model exporter; `kernel` pins
 //! kernel mode. `cnf` and `ground_fof` pin the older profiles' own configuration files, whose schemas belong
 //! to those profiles. Every record pins a file's SHA-256; a binary's record also pins its chunked SHA-256
@@ -185,6 +185,7 @@ impl Capability {
                     "bundle_exporter",
                     "goal_exporter",
                     "inputs_exporter",
+                    "cited_exporter",
                 ][..],
             ),
             ("model", &["producer", "checker", "exporter"][..]),
@@ -415,7 +416,12 @@ pub fn check_fields(object: &Object) -> Result<(), String> {
     }
     if let Some(tstp) = section("tstp")? {
         // The single-file exporter, and any of the others.
-        let optional = ["bundle_exporter", "goal_exporter", "inputs_exporter"];
+        let optional = [
+            "bundle_exporter",
+            "goal_exporter",
+            "inputs_exporter",
+            "cited_exporter",
+        ];
         let present = keys(tstp);
         if !present.contains(&"exporter")
             || present

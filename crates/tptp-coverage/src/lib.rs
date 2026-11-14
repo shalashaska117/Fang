@@ -533,14 +533,17 @@ fn lex(input: &[u8], limits: &Limits, statistics: &mut Statistics) -> Result<Vec
             pos += 1;
             while pos < input.len() && !matches!(input[pos], b'\r' | b'\n') {
                 tick(statistics, limits.input.max_operations)?;
-                if !input[pos].is_ascii() || input[pos] == 0 {
-                    return Err(error(
-                        ErrorKind::InvalidInput,
-                        pos,
-                        "ASCII comment required",
-                    ));
+                if input[pos] == 0 {
+                    return Err(error(ErrorKind::InvalidInput, pos, "NUL in comment"));
                 }
                 pos += 1;
+            }
+            if std::str::from_utf8(&input[start..pos]).is_err() {
+                return Err(error(
+                    ErrorKind::InvalidInput,
+                    start,
+                    "invalid UTF-8 comment",
+                ));
             }
             continue;
         }
@@ -561,14 +564,17 @@ fn lex(input: &[u8], limits: &Limits, statistics: &mut Statistics) -> Result<Vec
                     pos += 2;
                     break;
                 }
-                if !input[pos].is_ascii() || input[pos] == 0 {
-                    return Err(error(
-                        ErrorKind::InvalidInput,
-                        pos,
-                        "ASCII comment required",
-                    ));
+                if input[pos] == 0 {
+                    return Err(error(ErrorKind::InvalidInput, pos, "NUL in comment"));
                 }
                 pos += 1;
+            }
+            if std::str::from_utf8(&input[start..pos]).is_err() {
+                return Err(error(
+                    ErrorKind::InvalidInput,
+                    start,
+                    "invalid UTF-8 comment",
+                ));
             }
             continue;
         }
@@ -1678,4 +1684,61 @@ impl<'a> Parser<'a> {
 /// Errors publish no partial result. This function performs no preprocessing.
 pub fn parse(input: &[u8], limits: &Limits) -> Result<Parsed, Error> {
     expand(&Bundle::single(input.to_vec()), limits).map(|value| value.parsed)
+}
+
+#[cfg(test)]
+mod utf8_comment_tests {
+    use super::*;
+
+    fn tokens(input: &[u8]) -> Result<Vec<Token>, Error> {
+        lex(input, &Limits::default(), &mut Statistics::default())
+    }
+
+    #[test]
+    fn utf8_comments_preserve_tokens_and_byte_offsets() {
+        let body = b"fof(a,axiom,p).";
+        let baseline = tokens(body).unwrap();
+        for prefix in [
+            "% café λ 中文 😀\r\n",
+            "/* café λ 中文 😀 */",
+            "% café λ 中文 😀\n/* α */",
+        ] {
+            let input = [prefix.as_bytes(), body].concat();
+            let actual = tokens(&input).unwrap();
+            assert_eq!(actual.len(), baseline.len());
+            for (actual, expected) in actual.iter().zip(&baseline) {
+                assert_eq!(actual.kind, expected.kind);
+                assert_eq!(actual.offset, prefix.len() + expected.offset);
+                assert_eq!(actual.end, prefix.len() + expected.end);
+                assert_eq!(
+                    &input[actual.offset..actual.end],
+                    &body[expected.offset..expected.end]
+                );
+            }
+            assert!(parse(&input, &Limits::default()).is_ok());
+        }
+        assert!(tokens("% café 😀".as_bytes()).unwrap().is_empty());
+    }
+
+    #[test]
+    fn invalid_comment_bytes_and_nonascii_syntax_still_fail() {
+        for input in [
+            b"%\xff\n".as_slice(),
+            b"/*\xc0\xaf*/",
+            b"%\xed\xa0\x80\n",
+            b"%\xf4\x90\x80\x80\n",
+            b"%\xe2\x82\n",
+            b"%\0\n",
+            b"/*\0*/",
+            "/* café".as_bytes(),
+            "fof(é,axiom,p).".as_bytes(),
+            "fof('é',axiom,p).".as_bytes(),
+            "fof(a,axiom,é).".as_bytes(),
+            "fof(a,axiom,p).é".as_bytes(),
+        ] {
+            assert!(tokens(input).is_err(), "accepted {input:?}");
+        }
+        assert!(tokens(b"/* % */fof(a,axiom,p).").is_ok());
+        assert!(tokens(b"% /*\nfof(a,axiom,p).").is_ok());
+    }
 }

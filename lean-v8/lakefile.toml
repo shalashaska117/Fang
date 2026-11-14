@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license.
-# Final v3 checker project; sources and audits are pinned by lean-sources.json.
+# V4 checker project; sources and audits are pinned by lean-sources.json.
 name = "fang_v8"
 version = "0.1.0"
 defaultTargets = ["fang-expanded-native-named"]
@@ -122,8 +122,20 @@ roots = [
     "NamedInputsDocument",
     "SymbolControls",
     "ModelAudit",
+    "CitedDocumentAudit",
+    "CitedDocumentControls",
 ]
 globs = [
+    "CitedDocumentAudit",
+    "CitedDocumentControls",
+    "CitedDocumentNativeCore",
+    "CitedGoalDocument",
+    "CitedGoalSemantics",
+    "CitedInputsDocument",
+    "CitedInputsTrace",
+    "CitedModels",
+    "CitedSourceRows",
+    "NamedCitedDocumentTrace",
     "Absorb",
     "Arithmetic",
     "ArityProblem",

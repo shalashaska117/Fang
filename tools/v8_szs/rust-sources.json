@@ -1203,7 +1203,7 @@
       "origin": "product",
       "original": "experiments/product/install-chain/crates/fang-install/src/v8_install.rs",
       "original_sha256": "65464fc4474b7ba7f0af3745dd30d524c221b7b2c427f8c9a5d7c047b2b1c251",
-      "sha256": "65464fc4474b7ba7f0af3745dd30d524c221b7b2c427f8c9a5d7c047b2b1c251"
+      "sha256": "9578d67469e4e38d81209600e461c30e86e2c0273806a0fa766a4afcf4aa3485"
     },
     "crates/fang-install/tests/nested_guard.rs": {
       "line_edits": [],
@@ -1460,7 +1460,7 @@
       "origin": "product",
       "original": "experiments/product/rust/crates/fang-launcher/src/capability.rs",
       "original_sha256": "2b10abbddd73fe3676977eba049e15b901a9ffe2c82191a0bd472155f0557463",
-      "sha256": "2b10abbddd73fe3676977eba049e15b901a9ffe2c82191a0bd472155f0557463"
+      "sha256": "109d26fe36220e3f477b4e8a80115dce1b3fe2494376b68d70d7be13247ece0f"
     },
     "crates/fang-launcher/src/cli.rs": {
       "line_edits": [],
@@ -1677,7 +1677,7 @@
       "origin": "product",
       "original": "experiments/product/rust/crates/fang-launcher/src/v8/models.rs",
       "original_sha256": "5bcf4a39e3b7c44cffba1e7a61676059a4b1d9e0c0b3aff0dbc7125802bff52d",
-      "sha256": "5bcf4a39e3b7c44cffba1e7a61676059a4b1d9e0c0b3aff0dbc7125802bff52d"
+      "sha256": "256b41728bc725884d70a1110fdd9859f9db2698bd1aa56888fa2d0d219a616d"
     },
     "crates/fang-launcher/src/v8/protocol.rs": {
       "line_edits": [],
@@ -1691,7 +1691,7 @@
       "origin": "product",
       "original": "experiments/product/rust/crates/fang-launcher/src/v8/run.rs",
       "original_sha256": "31c5e82531d2da58fb7e9730e496794244fe94d72e73498e9da1fc75a9e8b15c",
-      "sha256": "31c5e82531d2da58fb7e9730e496794244fe94d72e73498e9da1fc75a9e8b15c"
+      "sha256": "3153305dbae66d1338b62aeca76705bb612637e7af3490c23bc297c4dbcb7a2b"
     },
     "crates/fang-launcher/src/v8/signed.rs": {
       "line_edits": [],
@@ -1775,7 +1775,7 @@
       "origin": "product",
       "original": "experiments/product/rust/crates/fang-launcher/tests/v8_fake_binaries.rs",
       "original_sha256": "94c99ccabcb476d9d689e890f19ce06043c75d6183205239237fd41d52065464",
-      "sha256": "94c99ccabcb476d9d689e890f19ce06043c75d6183205239237fd41d52065464"
+      "sha256": "90ce5146f80c90fde3db71bdfc84e83916d7f9b5e6fbeb20830da46c12763170"
     },
     "crates/fang-models/Cargo.toml": {
       "notice": [],
@@ -1789,7 +1789,7 @@
       ],
       "origin": "product",
       "original": "crates/fang-models/src/bin/fang-model-find.rs",
-      "sha256": "3c1e4059149d0aaaa973d976fac7e960671d353094479addda5888d25d0b1e7a"
+      "sha256": "de83f564a0ad0aefa04e5baf13ce63ad501b16038a15058036448235ad963fc7"
     },
     "crates/fang-models/src/certificate.rs": {
       "notice": [
@@ -1829,7 +1829,7 @@
       ],
       "origin": "product",
       "original": "crates/fang-models/src/lib.rs",
-      "sha256": "6fb0db8cb31dbed000bb039cd959f9518a635d8914642de8b64bd81e2f2fa03c"
+      "sha256": "d5f04f0dc9ddeb7c442125a06bba81949c1452c2ccb0caccae0e145faee912b4"
     },
     "crates/fang-models/src/problem.rs": {
       "notice": [
@@ -1853,7 +1853,7 @@
       ],
       "origin": "product",
       "original": "crates/fang-models/src/search.rs",
-      "sha256": "2c13699bef9172feaabfe251a8b7a3c764477645f84e00e3c7f92f442db0a21d"
+      "sha256": "0f35afcb62bb3e95449881a96bd0265a3d890d8fa7649eaa5693a13fcc8a4b48"
     },
     "crates/fang-models/tests/finder.rs": {
       "notice": [
@@ -1861,7 +1861,7 @@
       ],
       "origin": "product",
       "original": "crates/fang-models/tests/finder.rs",
-      "sha256": "2596436bfac1724d1dbe07443b141737be180cd383cc418de7b8907f41343ea8"
+      "sha256": "35c960b261627627bd9840f09d2873cc8920fa65e604cf3e128ebda6e9238b7e"
     },
     "crates/fang-saturation/Cargo.toml": {
       "notice": [],
@@ -3891,13 +3891,13 @@
       ],
       "origin": "workspace-gate",
       "original": "crates/tptp-cnf-boolean/src/lib.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
+      "receipt": "fang-v4-runtime-rust-v1-20261114",
       "research": {
         "path": "crates/tptp-cnf-boolean/src/lib.rs",
         "receipt": "tptp-role-signed-final-record-rust-v1-20261109",
         "sha256": "29003a3355d7aec26930c95bbd3491d8d367ec0231112448b7890aeb4b12221f"
       },
-      "sha256": "606d99ccd85836f6bda23aec1d405809ff8b643e91c77493adee534c99bf738d"
+      "sha256": "a26f48ae1f26bc701ec8e53d21f34296b56d73f36ed1f06563a0c815311b2f11"
     },
     "crates/tptp-cnf-boolean/tests/arities.rs": {
       "notice": [
@@ -4140,13 +4140,13 @@
       ],
       "origin": "workspace-gate",
       "original": "crates/tptp-coverage/src/lib.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
+      "receipt": "fang-v4-runtime-rust-v1-20261114",
       "research": {
         "path": "crates/tptp-coverage/src/lib.rs",
         "receipt": "tptp-role-signed-final-record-rust-v1-20261109",
         "sha256": "c7fd696b15b62a7f2e912003ccae27d4e865791c01c87fb0b7794ef8abf4fdc7"
       },
-      "sha256": "194e60829adf89284fdbbf09e0a6cc06cf1273a1c7c100777951e63bfb6fcfc1"
+      "sha256": "da7f71c6fb28ee54d14c53fbbc418c04f4f5f9edbae7c20ff1724d4beb183260"
     },
     "crates/tptp-coverage/src/sha256.rs": {
       "notice": [
@@ -4500,13 +4500,13 @@
       ],
       "origin": "workspace-gate",
       "original": "crates/tptp-roles/src/lib.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
+      "receipt": "fang-v4-runtime-rust-v1-20261114",
       "research": {
         "path": "crates/tptp-roles/src/lib.rs",
         "receipt": "tptp-role-signed-final-record-rust-v1-20261109",
         "sha256": "01a970e690b4fd30475d28c62abce829f97decf20233236d4463e2b206975c63"
       },
-      "sha256": "761e51c42d37c5f9a97feb876702ea59bf3824c6cc4442e35c256aca04518176"
+      "sha256": "895ecb1db524bfead315c89e8f87346b897606b4ff1ed091c0eaeec078e7a26c"
     },
     "crates/tptp-roles/src/roles.rs": {
       "notice": [
@@ -4759,7 +4759,13 @@
       "origin": "product",
       "original": "crates/tptp-signed-bundle/src/cited_inputs.rs",
       "sha256": "6ad17814b041cd3386156e901624650b8c760d1e9e535ba16173f83f103d8042",
-      "post_staging_amendment": {"schema":"fang-post-staging-source-amendment-v1","before_sha256":"48fc07d2a054522e691dda09e22ebf908026f53cd1d93abe3b9dfddc06c62d4e","after_sha256":"6ad17814b041cd3386156e901624650b8c760d1e9e535ba16173f83f103d8042","amendment_sha256":"f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e","independent_source_review_sha256":"4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b"},
+      "post_staging_amendment": {
+        "schema": "fang-post-staging-source-amendment-v1",
+        "before_sha256": "48fc07d2a054522e691dda09e22ebf908026f53cd1d93abe3b9dfddc06c62d4e",
+        "after_sha256": "6ad17814b041cd3386156e901624650b8c760d1e9e535ba16173f83f103d8042",
+        "amendment_sha256": "f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e",
+        "independent_source_review_sha256": "4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b"
+      },
       "staging_provenance": {
         "before_sha256": null,
         "original": "crates/tptp-signed-bundle/src/cited_inputs.rs",
@@ -4778,7 +4784,13 @@
       "origin": "product",
       "original": "crates/tptp-signed-bundle/src/lib.rs",
       "sha256": "979fa2456bebd0d960fb96162d414acd94d17108103fd48ba80bc5caff1f95a3",
-      "post_staging_amendment": {"schema":"fang-post-staging-source-amendment-v1","before_sha256":"1d415453d4388d3e9310c9e8c29804202142ac2bcf4af5cc007168b537b3eb22","after_sha256":"979fa2456bebd0d960fb96162d414acd94d17108103fd48ba80bc5caff1f95a3","amendment_sha256":"f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e","independent_source_review_sha256":"4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b"},
+      "post_staging_amendment": {
+        "schema": "fang-post-staging-source-amendment-v1",
+        "before_sha256": "1d415453d4388d3e9310c9e8c29804202142ac2bcf4af5cc007168b537b3eb22",
+        "after_sha256": "979fa2456bebd0d960fb96162d414acd94d17108103fd48ba80bc5caff1f95a3",
+        "amendment_sha256": "f6bbbeda6c188678e70e99f19c7563458974c0d49297e1e237af05d232580f5e",
+        "independent_source_review_sha256": "4d0886b87ff90a8efd9e67597fc64c20b9820a6dd9c94ab033853b86c7ee469b"
+      },
       "staging_provenance": {
         "before_sha256": "175bbe443a6030233ab4cc564d95dccd3fb96ecfd52df46847e1cbc992a262cd",
         "original": "crates/tptp-signed-bundle/src/lib.rs",
@@ -5657,6 +5669,12 @@
       "archive": "source",
       "manifest": "evidence/diagnostics/tptp-role-signed-native-v4-20261026/manifest.json",
       "sha256": "b1ba7ee81ee66ea23c545977790b208cdcfb1a3cf77c25cb981c2105dbd8d414",
+      "source_table": "source_sha256"
+    },
+    "fang-v4-runtime-rust-v1-20261114": {
+      "manifest": "evidence/verification/fang-v4-runtime-rust-v1-20261114/manifest.json",
+      "sha256": "d46b86327800d7c2b39860f515bef8bb16809799bfc9eaab77aab8779f9538b9",
+      "archive": "run/source",
       "source_table": "source_sha256"
     }
   },

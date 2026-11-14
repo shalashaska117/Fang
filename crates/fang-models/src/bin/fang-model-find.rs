@@ -170,6 +170,10 @@ fn main() -> ExitCode {
             eprintln!("no-model: no model up to domain {last}");
             ExitCode::from(2)
         }
+        Ok(Found::FunctionFreeExhausted { last }) => {
+            eprintln!("no-model: function-free bound exhausted at domain {last}");
+            ExitCode::from(2)
+        }
         Ok(Found::Stopped { size, reason }) => {
             eprintln!("no-model: stopped at domain {size} ({reason})");
             ExitCode::from(2)

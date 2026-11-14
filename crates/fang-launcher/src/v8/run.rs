@@ -702,7 +702,10 @@ fn route_binaries(run: &Run, route: &str, files: &[BundleFile]) -> Vec<PathBuf> 
         paths.extend(match route {
             "single" => named("tstp", &["exporter"]),
             "bundle" => named("tstp", &["bundle_exporter"]),
-            _ => named("tstp", &["goal_exporter", "inputs_exporter"]),
+            _ => named(
+                "tstp",
+                &["goal_exporter", "inputs_exporter", "cited_exporter"],
+            ),
         });
     }
     if check == "compiled" {
@@ -1391,6 +1394,8 @@ fn signed_attempt(
                 &status,
                 single_file,
                 has_objects,
+                producer_kind,
+                triples,
                 &tag,
             )?;
         }
@@ -1427,9 +1432,8 @@ fn push_task(run: &mut Run, entry: Object) {
     }
 }
 
-/// The documents of a signed result, when an installed exporter covers it: one per proved conjecture of a
-/// single file without distinct objects, or the inputs task of such a file when the conjecture exporter has an
-/// inputs mode. Anything else keeps the status and gets one note.
+/// Export every accepted signed task using the producer's certificate format and the sealed inputs.
+/// Older installations retain their single-file scope when no cited exporter is pinned.
 #[allow(clippy::too_many_arguments)]
 fn signed_documents(
     run: &mut Run,
@@ -1439,6 +1443,8 @@ fn signed_documents(
     status: &str,
     single_file: bool,
     has_objects: bool,
+    producer_kind: signed::Producer,
+    triples: &[OsString],
     tag: &str,
 ) -> Result<(), Fault> {
     let name = run.input_name();
@@ -1449,25 +1455,32 @@ fn signed_documents(
         run.manifest.set("export", Value::Object(record));
         run.manifest.set("export_note", note);
     };
-    if !single_file {
+    let cited_exporter = (producer_kind == signed::Producer::CitedBundle)
+        .then(|| run.capability.section_record("tstp", "cited_exporter"))
+        .flatten();
+    if cited_exporter.is_none() && !single_file {
         not_covered(run, SIGNED_TSTP_SCOPE);
         return Ok(());
     }
-    if has_objects {
+    if cited_exporter.is_none() && has_objects {
         not_covered(run, OBJECT_TSTP_SCOPE);
         return Ok(());
     }
     if status == "Theorem" && produced.len() == listed.len() {
-        let exporter = run.binary("tstp", "goal_exporter");
+        let exporter = cited_exporter.as_ref().map_or_else(
+            || run.binary("tstp", "goal_exporter"),
+            |record| record.path.clone(),
+        );
         let mut records = Vec::new();
         for (index, certificate) in produced.iter().enumerate() {
-            let command = os([
-                exporter.clone().into_os_string(),
-                source.argument().as_os_str().to_os_string(),
-                certificate.argument().as_os_str().to_os_string(),
-                index.to_string().into(),
-                name.clone().into(),
-            ]);
+            let command = signed_export_command(
+                &exporter,
+                source,
+                certificate,
+                Some(index),
+                &name,
+                cited_exporter.as_ref().map(|_| triples),
+            );
             run.export_document(
                 &command,
                 &format!("export-goal-{index}{tag}"),
@@ -1500,15 +1513,18 @@ fn signed_documents(
     }
     if status == "Unsatisfiable"
         && produced.len() == 1
-        && let Some(exporter) = run.capability.section_record("tstp", "inputs_exporter")
+        && let Some(exporter) = cited_exporter
+            .clone()
+            .or_else(|| run.capability.section_record("tstp", "inputs_exporter"))
     {
-        let command = os([
-            exporter.path.into_os_string(),
-            "--inputs".into(),
-            source.argument().as_os_str().to_os_string(),
-            produced[0].argument().as_os_str().to_os_string(),
-            name.clone().into(),
-        ]);
+        let command = signed_export_command(
+            &exporter.path,
+            source,
+            &produced[0],
+            None,
+            &name,
+            cited_exporter.as_ref().map(|_| triples),
+        );
         return run.export_document(
             &command,
             &format!("export-inputs{tag}"),
@@ -1517,6 +1533,37 @@ fn signed_documents(
     }
     not_covered(run, SIGNED_TSTP_SCOPE);
     Ok(())
+}
+
+fn signed_export_command(
+    exporter: &Path,
+    source: &Snapshot,
+    certificate: &Snapshot,
+    goal: Option<usize>,
+    name: &str,
+    triples: Option<&[OsString]>,
+) -> Vec<OsString> {
+    let mut command = vec![exporter.as_os_str().to_os_string()];
+    if let Some(triples) = triples {
+        if let Some(index) = goal {
+            command.extend(os(["--bundle-goal".to_string(), index.to_string()]));
+        } else {
+            command.push("--bundle-inputs".into());
+        }
+        command.push(certificate.argument().as_os_str().to_os_string());
+        command.extend(triples.iter().cloned());
+    } else {
+        if goal.is_none() {
+            command.push("--inputs".into());
+        }
+        command.push(source.argument().as_os_str().to_os_string());
+        command.push(certificate.argument().as_os_str().to_os_string());
+        if let Some(index) = goal {
+            command.push(index.to_string().into());
+        }
+        command.push(name.into());
+    }
+    command
 }
 
 /// The status block: the profile line, the mode line, an optional capability note, the status line and the

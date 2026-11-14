@@ -29,6 +29,7 @@ __pycache__/
 !/docs/DESIGN.md
 !/docs/ROADMAP.md
 !/docs/V4-PLAN.md
+!/docs/V4-CHECKLIST.md
 !/docs/CAPABILITIES.md
 /crates/**/*.md
 /lean/README.md

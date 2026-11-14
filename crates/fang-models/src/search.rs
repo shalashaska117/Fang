@@ -172,6 +172,7 @@ pub fn power(base: u64, exponent: usize) -> Option<u64> {
 struct Layout {
     size: u32,
     function_base: Vec<u64>,
+    function_aux_base: Vec<u64>,
     predicate_base: Vec<u64>,
     variables: u64,
 }
@@ -198,9 +199,17 @@ impl Layout {
                 next = next.checked_add(power(n, arity)?)?;
             }
         }
+        let mut function_aux_base = Vec::with_capacity(signature.functions.len());
+        for (&arity, &active) in signature.functions.iter().zip(&signature.active_functions) {
+            function_aux_base.push(next);
+            if active && size >= SEQUENTIAL_CELL_THRESHOLD {
+                next = next.checked_add(power(n, arity)?.checked_mul(n - 1)?)?;
+            }
+        }
         Some(Layout {
             size,
             function_base,
+            function_aux_base,
             predicate_base,
             variables: next,
         })
@@ -211,6 +220,35 @@ impl Layout {
             index * self.size as u64 + assignment[item as usize] as u64
         })
     }
+}
+
+// Keep the smaller pairwise encoding for small domains. Larger cells use the
+// sequential at-most-one counter from Sinz, CP 2005, section 2:
+// https://www.carstensinz.de/papers/CP-2005.pdf
+// The auxiliary prefix bits never appear in the extracted interpretation.
+const SEQUENTIAL_CELL_THRESHOLD: u32 = 16;
+
+fn sequential_at_most_one(solver: &mut Solver, base: u64, aux: u64, size: u32) {
+    debug_assert!(size >= 2);
+    solver.add_clause(&[sat::negative(base as u32), sat::positive(aux as u32)]);
+    for value in 1..u64::from(size) - 1 {
+        solver.add_clause(&[
+            sat::negative((base + value) as u32),
+            sat::positive((aux + value) as u32),
+        ]);
+        solver.add_clause(&[
+            sat::negative((aux + value - 1) as u32),
+            sat::positive((aux + value) as u32),
+        ]);
+        solver.add_clause(&[
+            sat::negative((base + value) as u32),
+            sat::negative((aux + value - 1) as u32),
+        ]);
+    }
+    solver.add_clause(&[
+        sat::negative((base + u64::from(size) - 1) as u32),
+        sat::negative((aux + u64::from(size) - 2) as u32),
+    ]);
 }
 
 /// The largest value each constant may take under the least-number symmetry: its position among the active
@@ -255,7 +293,12 @@ fn estimate(size: u32, signature: &Signature, clauses: &[FlatClause]) -> Option<
         .filter(|(_, active)| **active)
     {
         let cells = power(n, arity)?;
-        total = total.checked_add(cells.checked_mul(n + n * n.saturating_sub(1))?)?;
+        let cell_literals = if size >= SEQUENTIAL_CELL_THRESHOLD {
+            n.checked_mul(7)?.checked_sub(8)?
+        } else {
+            n.checked_mul(n)?
+        };
+        total = total.checked_add(cells.checked_mul(cell_literals)?)?;
     }
     let ceiling = ceilings(signature);
     for clause in clauses {
@@ -288,12 +331,17 @@ fn ground(
                 .map(|value| sat::positive((base + value) as u32))
                 .collect();
             solver.add_clause(&at_least);
-            for first in 0..n as u64 {
-                for second in first + 1..n as u64 {
-                    solver.add_clause(&[
-                        sat::negative((base + first) as u32),
-                        sat::negative((base + second) as u32),
-                    ]);
+            if n >= SEQUENTIAL_CELL_THRESHOLD {
+                let aux = layout.function_aux_base[symbol] + cell * (u64::from(n) - 1);
+                sequential_at_most_one(solver, base, aux, n);
+            } else {
+                for first in 0..n as u64 {
+                    for second in first + 1..n as u64 {
+                        solver.add_clause(&[
+                            sat::negative((base + first) as u32),
+                            sat::negative((base + second) as u32),
+                        ]);
+                    }
                 }
             }
         }
@@ -487,6 +535,9 @@ fn prepare(
     if estimate > options.literal_budget as u64 {
         return Err("instance size");
     }
+    if planned(size, signature, clauses) > options.memory_bytes {
+        return Err("instance size");
+    }
     let layout = Layout::new(size, signature).ok_or("instance size")?;
     if layout.variables > u32::MAX as u64 / 2 {
         return Err("instance size");
@@ -551,9 +602,19 @@ fn held(pending: &[Open]) -> u64 {
         .sum()
 }
 
-/// Planned bytes of a new size: about 16 bytes per ground literal with clause headers and watches.
+/// Scheduling estimate, not an RSS bound: clause storage plus all SAT variables,
+/// including sequential-counter auxiliaries. Allow two watch-list headers and
+/// 48 bytes for the variable arrays and decision-level bookkeeping per variable.
 fn planned(size: u32, signature: &Signature, clauses: &[FlatClause]) -> u64 {
-    estimate(size, signature, clauses).map_or(u64::MAX, |literals| literals.saturating_mul(16))
+    let Some(layout) = Layout::new(size, signature) else {
+        return u64::MAX;
+    };
+    let variable_bytes = (2 * std::mem::size_of::<Vec<u32>>() + 48) as u64;
+    estimate(size, signature, clauses).map_or(u64::MAX, |literals| {
+        literals
+            .saturating_mul(16)
+            .saturating_add(layout.variables.saturating_mul(variable_bytes))
+    })
 }
 
 /// Search sizes `from..=to` for a model of the flat clauses over the given signature. Each size starts with a small
@@ -649,6 +710,167 @@ pub fn search(signature: &Signature, clauses: &[FlatClause], options: &Options) 
                     };
                 }
             }
+        }
+    }
+}
+
+#[cfg(test)]
+mod cardinality_tests {
+    use super::*;
+    use std::time::Duration;
+
+    fn deadline() -> Instant {
+        Instant::now() + Duration::from_secs(10)
+    }
+
+    #[test]
+    fn sequential_counter_matches_cardinality_for_every_small_assignment() {
+        for size in 2..=8u32 {
+            for assignment in 0..(1u32 << size) {
+                let mut solver = Solver::new((2 * size + 4) as usize);
+                let base = 3u64;
+                sequential_at_most_one(&mut solver, base, base + u64::from(size), size);
+                for value in 0..size {
+                    let variable = base as u32 + value;
+                    solver.add_clause(&[if assignment & (1 << value) != 0 {
+                        sat::positive(variable)
+                    } else {
+                        sat::negative(variable)
+                    }]);
+                }
+                assert_eq!(
+                    solver.solve(deadline()),
+                    if assignment.count_ones() <= 1 {
+                        Outcome::Satisfiable
+                    } else {
+                        Outcome::Unsatisfiable
+                    },
+                    "size={size}, assignment={assignment}"
+                );
+            }
+        }
+    }
+
+    fn signature() -> Signature {
+        Signature {
+            functions: vec![1, 3],
+            predicates: vec![1, 2],
+            active_functions: vec![true, false],
+            active_predicates: vec![true, false],
+            value_sorts: vec![],
+        }
+    }
+
+    #[test]
+    fn large_domain_auxiliaries_do_not_change_extracted_tables() {
+        let signature = signature();
+        let size = 16;
+        let layout = Layout::new(size, &signature).unwrap();
+        let mut solver = Solver::new(layout.variables as usize);
+        let clauses = [
+            FlatClause {
+                variables: 1,
+                literals: vec![Flat::Function {
+                    positive: true,
+                    symbol: 0,
+                    arguments: vec![0],
+                    value: 0,
+                }],
+            },
+            FlatClause {
+                variables: 1,
+                literals: vec![Flat::Predicate {
+                    positive: true,
+                    symbol: 0,
+                    arguments: vec![0],
+                }],
+            },
+        ];
+        ground(&layout, &signature, &clauses, &mut solver, deadline()).unwrap();
+        assert_eq!(solver.solve(deadline()), Outcome::Satisfiable);
+        let model = extract(&layout, &signature, &solver);
+        assert_eq!(model.functions, vec![(0..size).collect(), vec![]]);
+        assert_eq!(model.predicates, vec![vec![true; size as usize], vec![]]);
+        assert_eq!(model.size, size);
+    }
+
+    #[test]
+    fn large_function_cell_rejects_zero_or_two_values() {
+        let signature = signature();
+        let layout = Layout::new(16, &signature).unwrap();
+        for two in [false, true] {
+            let mut solver = Solver::new(layout.variables as usize);
+            ground(&layout, &signature, &[], &mut solver, deadline()).unwrap();
+            if two {
+                solver.add_clause(&[sat::positive(0)]);
+                solver.add_clause(&[sat::positive(15)]);
+            } else {
+                for value in 0..16 {
+                    solver.add_clause(&[sat::negative(value)]);
+                }
+            }
+            assert_eq!(solver.solve(deadline()), Outcome::Unsatisfiable);
+        }
+    }
+
+    #[test]
+    fn large_cell_encoding_reduces_stored_literals_and_solver_memory() {
+        let size = 32u32;
+        let mut pairwise = Solver::new(size as usize);
+        let mut sequential = Solver::new((2 * size - 1) as usize);
+        let at_least: Vec<_> = (0..size).map(sat::positive).collect();
+        pairwise.add_clause(&at_least);
+        sequential.add_clause(&at_least);
+        for first in 0..size {
+            for second in first + 1..size {
+                pairwise.add_clause(&[sat::negative(first), sat::negative(second)]);
+            }
+        }
+        sequential_at_most_one(&mut sequential, 0, u64::from(size), size);
+        assert!(sequential.stored_literals() < pairwise.stored_literals());
+        assert!(sequential.memory_bytes() < pairwise.memory_bytes());
+    }
+
+    #[test]
+    fn planning_accounts_for_allocations_even_without_ground_literals() {
+        let signature = Signature {
+            functions: vec![],
+            predicates: vec![2],
+            active_functions: vec![],
+            active_predicates: vec![true],
+            value_sorts: vec![],
+        };
+        for size in [15, 16, 32] {
+            let layout = Layout::new(size, &signature).unwrap();
+            let solver = Solver::new(layout.variables as usize);
+            assert!(planned(size, &signature, &[]) >= solver.memory_bytes());
+        }
+        assert_eq!(planned(u32::MAX, &signature, &[]), u64::MAX);
+    }
+
+    #[test]
+    fn preparation_refuses_variable_storage_above_memory_budget() {
+        let predicates_only = Signature {
+            functions: vec![],
+            predicates: vec![2],
+            active_functions: vec![],
+            active_predicates: vec![true],
+            value_sorts: vec![],
+        };
+        let options = Options {
+            initial_conflicts: 100,
+            trace: false,
+            from: 16,
+            to: 16,
+            deadline: deadline(),
+            literal_budget: usize::MAX,
+            memory_bytes: 16 * 1024,
+        };
+        for signature in [predicates_only, signature()] {
+            assert!(matches!(
+                prepare(16, &signature, &[], &options),
+                Err("instance size")
+            ));
         }
     }
 }

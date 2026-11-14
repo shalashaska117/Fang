@@ -43,6 +43,7 @@ const UNSOLVED: [&str; 2] = ["GaveUp", "ResourceOut"];
 struct Compiled {
     candidate: Pattern,
     no_model: Pattern,
+    function_free_exhausted: Pattern,
     goal: Pattern,
     resource: Pattern,
 }
@@ -52,6 +53,7 @@ fn compiled() -> &'static Compiled {
     COMPILED.get_or_init(|| Compiled {
         candidate: Pattern::of(r"candidate-model: unchecked domain ([0-9]+)\n"),
         no_model: Pattern::of(r"no-model: (?:no model up to domain ([0-9]+)|stopped at domain ([0-9]+) \([ -~]*\))\n"),
+        function_free_exhausted: Pattern::of(r"no-model: function-free bound exhausted at domain ([0-9]+)\n"),
         goal: Pattern::of(r"accepted-countermodel-goal ([0-9]+) item ([0-9]+) ([0-9]+) \(native checker; compiler/runtime trusted\)\n"),
         resource: Pattern::of(r"resource\.(model|bytes|bundle)\.(?:.|\n)*"),
     })
@@ -77,6 +79,13 @@ pub fn producer_outcome(
     }
     if !stdout.is_empty() {
         return Err("A model producer that found no candidate wrote output".to_string());
+    }
+    if code == 2
+        && let Some(captures) = patterns.function_free_exhausted.fullmatch(stderr)
+        && let Some(domain) = number(group(stderr, &captures, 1))
+        && domain > 0
+    {
+        return Ok(("function-free-exhausted", Some(domain)));
     }
     if code == 2
         && let Some(captures) = patterns.no_model.fullmatch(stderr)
@@ -294,7 +303,7 @@ impl ModelStages {
             self.domains.insert(label.clone(), domain);
             return Ok(None);
         }
-        if outcome == "refused" {
+        if outcome == "refused" || outcome == "function-free-exhausted" {
             self.domains.insert(label.clone(), None);
             return Ok(None);
         }
@@ -589,6 +598,31 @@ mod tests {
         assert_eq!(
             producer_outcome(2, b"", b"no-model: stopped at domain 4 (time)\n").unwrap(),
             ("none", Some(4))
+        );
+        assert_eq!(
+            producer_outcome(
+                2,
+                b"",
+                b"no-model: function-free bound exhausted at domain 3\n"
+            )
+            .unwrap(),
+            ("function-free-exhausted", Some(3))
+        );
+        assert!(
+            producer_outcome(
+                0,
+                b"",
+                b"no-model: function-free bound exhausted at domain 3\n"
+            )
+            .is_err()
+        );
+        assert!(
+            producer_outcome(
+                2,
+                b"",
+                b"no-model: function-free bound exhausted at domain 0\n"
+            )
+            .is_err()
         );
         assert_eq!(
             producer_outcome(3, b"", b"refused: unsupported input\n").unwrap(),

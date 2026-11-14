@@ -115,12 +115,15 @@
       "NamedInputsDocument",
       "SymbolControls"
     ],
-    "fang-v4-array-store-promotion-v1-20261114": [
+    "fang-v4-runtime-integration-v1-20261114": [
       "Trace",
       "OrderedTrace",
       "EqualityTrace",
       "ModelAudit",
-      "BundleSourceRow"
+      "BundleSourceRow",
+      "TptpLexical",
+      "CitedDocumentAudit",
+      "CitedDocumentControls"
     ]
   },
   "names": {
@@ -1105,7 +1108,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.buildBundle_accepts": {
       "axioms": [
@@ -1209,7 +1212,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundleSourceRows_spec": {
       "axioms": [
@@ -1217,7 +1220,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.bundle_group_sap": {
       "axioms": [
@@ -1249,7 +1252,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.formulasEq_sound": {
       "axioms": [
@@ -1257,14 +1260,14 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.mapM_paired": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.prepareBundle_models": {
       "axioms": [
@@ -1288,20 +1291,20 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.sourceItem_declaration": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.sourceItems_declarations": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.source_of_bodies": {
       "axioms": [
@@ -1313,13 +1316,13 @@
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.Bundle.termsEq_sound": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.Expanded.BundleLimit.Named.attachBundle_spec": {
       "axioms": [
@@ -2914,7 +2917,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.build_clauses_valid": {
       "axioms": [
@@ -2922,7 +2925,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.build_endpoint": {
       "axioms": [
@@ -2930,7 +2933,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.build_original_unsat": {
       "axioms": [
@@ -2938,7 +2941,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.build_witness": {
       "axioms": [
@@ -2946,21 +2949,21 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.retain_erases": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedEqualityTstp.retain_witness": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.QuantifiedTstp.Bytes.ParsesFormula.unique": {
       "axioms": [
@@ -10933,7 +10936,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.clause_rejected": {
       "axioms": [
@@ -10941,7 +10944,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.goal_accepted": {
       "axioms": [
@@ -10949,7 +10952,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.goal_holds_rejected": {
       "axioms": [
@@ -10957,7 +10960,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.goal_index_rejected": {
       "axioms": [
@@ -10965,7 +10968,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.inputs_accepted": {
       "axioms": [
@@ -10973,7 +10976,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.inputs_rejected": {
       "axioms": [
@@ -10981,7 +10984,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.objects_accepted": {
       "axioms": [
@@ -10989,7 +10992,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.objects_collide_rejected": {
       "axioms": [
@@ -10997,7 +11000,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.quantifiers_accepted": {
       "axioms": [
@@ -11005,7 +11008,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.quantifiers_rejected": {
       "axioms": [
@@ -11013,7 +11016,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.single_accepted": {
       "axioms": [
@@ -11021,7 +11024,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.single_false_rejected": {
       "axioms": [
@@ -11029,7 +11032,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.single_meaning": {
       "axioms": [
@@ -11037,7 +11040,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.single_missing_rejected": {
       "axioms": [
@@ -11045,7 +11048,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.single_unused_rejected": {
       "axioms": [
@@ -11053,7 +11056,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.static_estimate_refuses": {
       "axioms": [
@@ -11061,7 +11064,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.steps_accept": {
       "axioms": [
@@ -11069,7 +11072,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.steps_run_out": {
       "axioms": [
@@ -11077,7 +11080,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.Controls.work_refused": {
       "axioms": [
@@ -11085,7 +11088,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.bundle_objects_document": {
       "axioms": [
@@ -11093,7 +11096,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.default_document": {
       "axioms": [
@@ -11101,7 +11104,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.export_fails_model_accepted": {
       "axioms": [
@@ -11109,7 +11112,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.goal_document": {
       "axioms": [
@@ -11117,7 +11120,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.inputs_document": {
       "axioms": [
@@ -11125,7 +11128,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.predicate_default_document": {
       "axioms": [
@@ -11133,7 +11136,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.rejected_no_document": {
       "axioms": [
@@ -11141,7 +11144,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.single_document": {
       "axioms": [
@@ -11149,7 +11152,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.single_document_meaning": {
       "axioms": [
@@ -11157,7 +11160,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.ExportControls.stem_avoids_objects": {
       "axioms": [
@@ -11165,91 +11168,91 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_conj": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_disj_left": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_disj_right": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_iff": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_implies_antecedent": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_implies_consequent": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_neg": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_nor": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_all_reverse": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_curry": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_ex_conj_right": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_ex_disj": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_ex_implies": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_ex_nand": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_injectivity": {
       "axioms": [
@@ -11257,7 +11260,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_swap_all": {
       "axioms": [
@@ -11265,7 +11268,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_swap_ex": {
       "axioms": [
@@ -11273,19 +11276,19 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.RewriteControls.rewrite_vacuous": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.absent_of_not": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsBundleLimited_satisfiable": {
       "axioms": [
@@ -11293,7 +11296,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsBundle_holds": {
       "axioms": [
@@ -11301,7 +11304,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsBundle_satisfiable": {
       "axioms": [
@@ -11309,7 +11312,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsGoalLimited_counterSatisfiable": {
       "axioms": [
@@ -11317,7 +11320,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsGoalLimited_countermodel": {
       "axioms": [
@@ -11325,7 +11328,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsGoal_countermodel": {
       "axioms": [
@@ -11333,7 +11336,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsGoal_holds": {
       "axioms": [
@@ -11341,7 +11344,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsInputsLimited_satisfiable": {
       "axioms": [
@@ -11349,7 +11352,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsInputs_holds": {
       "axioms": [
@@ -11357,7 +11360,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsInputs_satisfiable": {
       "axioms": [
@@ -11365,7 +11368,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsSingle_holds": {
       "axioms": [
@@ -11373,7 +11376,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.acceptsSingle_satisfiable": {
       "axioms": [
@@ -11381,19 +11384,19 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.allSteps_value": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.anySteps_value": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.argumentsOf_eval": {
       "axioms": [
@@ -11401,7 +11404,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.argumentsOf_eval_in": {
       "axioms": [
@@ -11409,7 +11412,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.assignSteps_value": {
       "axioms": [
@@ -11417,7 +11420,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.assign_map": {
       "axioms": [
@@ -11425,11 +11428,11 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.bind_ok": {
       "axioms": [],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.bindings_hold": {
       "axioms": [
@@ -11437,7 +11440,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.bindings_values": {
       "axioms": [
@@ -11445,7 +11448,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.buildDocument_checks": {
       "axioms": [
@@ -11453,7 +11456,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.buildDocument_facts": {
       "axioms": [
@@ -11461,7 +11464,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.bundle_exclusive": {
       "axioms": [
@@ -11469,63 +11472,63 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainAll_conj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainAll_conj_leaves": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainAll_disj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainAll_disj_some": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainOf_conj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainOf_conj_leaves": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainOf_disj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.chainOf_disj_some": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.checkAll_sound": {
       "axioms": [
@@ -11533,7 +11536,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.checkFrom_sound": {
       "axioms": [
@@ -11541,7 +11544,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.checkSteps_sound": {
       "axioms": [
@@ -11549,28 +11552,28 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.closeAll_holds": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.closeAll_inverse": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.curryImplies_holds": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.defaultFormula_fallback": {
       "axioms": [
@@ -11578,7 +11581,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.defaultFormula_holds": {
       "axioms": [
@@ -11586,7 +11589,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.describedFunctions_nodup": {
       "axioms": [
@@ -11594,7 +11597,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.describedPredicates_nodup": {
       "axioms": [
@@ -11602,7 +11605,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.documentRows_determine": {
       "axioms": [
@@ -11610,7 +11613,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.documentRows_hold": {
       "axioms": [
@@ -11618,7 +11621,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.domainFormula_holds": {
       "axioms": [
@@ -11626,7 +11629,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.domainFormula_surjective": {
       "axioms": [
@@ -11634,7 +11637,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.elementName_object": {
       "axioms": [
@@ -11642,7 +11645,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.elementNames_getD": {
       "axioms": [
@@ -11650,7 +11653,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.elementOf_injective": {
       "axioms": [
@@ -11658,7 +11661,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.elementTerm_eval": {
       "axioms": [
@@ -11666,7 +11669,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.elementTerm_eval_in": {
       "axioms": [
@@ -11674,7 +11677,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.evalAll_complete": {
       "axioms": [
@@ -11682,7 +11685,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.evalAll_sound": {
       "axioms": [
@@ -11690,7 +11693,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.evalFormula_iff": {
       "axioms": [
@@ -11698,7 +11701,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.evalSteps_value": {
       "axioms": [
@@ -11706,14 +11709,14 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.eval_functions_agree": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.exportBundle_describes": {
       "axioms": [
@@ -11721,7 +11724,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.exportDocument_describes": {
       "axioms": [
@@ -11729,7 +11732,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.exportDocument_determines": {
       "axioms": [
@@ -11737,7 +11740,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.exportGoal_describes": {
       "axioms": [
@@ -11745,7 +11748,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.exportInputs_describes": {
       "axioms": [
@@ -11753,7 +11756,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.exportSingle_describes": {
       "axioms": [
@@ -11761,21 +11764,21 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.fallbackAll_holds": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.fallbackEx_holds": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.firstOccurrences_mem": {
       "axioms": [
@@ -11783,7 +11786,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.firstOccurrences_nodup": {
       "axioms": [
@@ -11791,14 +11794,14 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.formulaWithin_iff": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.framedFormulas_rows": {
       "axioms": [
@@ -11806,7 +11809,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.functionCell_holds": {
       "axioms": [
@@ -11814,7 +11817,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.functionCell_in": {
       "axioms": [
@@ -11822,7 +11825,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.functionRows_determine": {
       "axioms": [
@@ -11830,7 +11833,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.functionRows_hold": {
       "axioms": [
@@ -11838,7 +11841,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.goal_exclusive": {
       "axioms": [
@@ -11846,7 +11849,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.goal_not_theorem": {
       "axioms": [
@@ -11854,28 +11857,28 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.holds_agree": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.holds_functions_agree": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.holds_update_absent": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.inputs_exclusive": {
       "axioms": [
@@ -11883,7 +11886,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.insertNames_at": {
       "axioms": [
@@ -11891,7 +11894,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.insertNames_other": {
       "axioms": [
@@ -11899,21 +11902,21 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.mapError_ok": {
       "axioms": [],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.mapError_ok_of": {
       "axioms": [],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.map_injective": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.mem_allFunctions": {
       "axioms": [
@@ -11921,7 +11924,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.mem_describedFunctions": {
       "axioms": [
@@ -11929,7 +11932,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.mem_describedPredicates": {
       "axioms": [
@@ -11937,7 +11940,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.named_element": {
       "axioms": [
@@ -11945,7 +11948,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.named_function_agree": {
       "axioms": [
@@ -11953,7 +11956,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.named_holds_iff": {
       "axioms": [
@@ -11961,7 +11964,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.predicateCell_holds": {
       "axioms": [
@@ -11969,7 +11972,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.predicateCell_in": {
       "axioms": [
@@ -11977,7 +11980,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.predicateRows_determine": {
       "axioms": [
@@ -11985,7 +11988,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.predicateRows_hold": {
       "axioms": [
@@ -11993,7 +11996,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.push_holds": {
       "axioms": [
@@ -12001,7 +12004,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.readRoles_expanded": {
       "axioms": [
@@ -12009,7 +12012,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.rewrite_holds": {
       "axioms": [
@@ -12017,7 +12020,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.sentenceSteps_iff": {
       "axioms": [
@@ -12025,7 +12028,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.sentenceValue_iff": {
       "axioms": [
@@ -12033,7 +12036,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.separated_iff": {
       "axioms": [
@@ -12041,7 +12044,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.single_exclusive": {
       "axioms": [
@@ -12049,110 +12052,110 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.symbolRows_find": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.symbolRows_hold": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.termWithin_iff": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.term_eval_agree": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.term_update_eval": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.termsWithin_iff": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.terms_update_eval": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeOf_conj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeOf_conj_leaves": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeOf_disj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeOf_disj_some": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeWith_conj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeWith_conj_leaves": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeWith_disj": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.treeWith_disj_some": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.tuples_complete": {
       "axioms": [
@@ -12160,7 +12163,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.tuples_kept": {
       "axioms": [
@@ -12168,7 +12171,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.tuples_length": {
       "axioms": [
@@ -12176,34 +12179,34 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.update_agree": {
       "axioms": [
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.update_comm": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.update_same": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.variablesFor_length": {
       "axioms": [
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.FullFof.Model.variablesFor_nodup": {
       "axioms": [
@@ -12211,7 +12214,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.Roles.Bundle.V3.counterSatisfiable_not_theorem": {
       "axioms": [
@@ -12219,7 +12222,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.Roles.Bundle.V3.countermodel_not_entailed": {
       "axioms": [
@@ -12227,7 +12230,7 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.TptpCandidate.Roles.Bundle.V3.inputsSatisfiable_not_unsatisfiable": {
       "axioms": [
@@ -12235,58 +12238,353 @@
         "Quot.sound",
         "propext"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114"
+      "gate": "fang-v4-runtime-integration-v1-20261114"
     },
     "Fang.Equality.ArrayStore.fetch_eq_list": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
         "propext"
       ]
     },
     "Fang.Equality.ArrayStore.push_eq_append": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
         "propext"
       ]
     },
     "Fang.Equality.ArrayStore.checkStep_eq_list": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
         "Quot.sound",
         "propext"
       ]
     },
     "Fang.Equality.ArrayStore.checkSteps_eq_list": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
         "Quot.sound",
         "propext"
       ]
     },
     "Fang.Equality.check_eq_list": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
         "Quot.sound",
         "propext"
       ]
     },
     "Fang.Equality.Ordered.arrayStep_eq_list": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
         "Quot.sound",
         "propext"
       ]
     },
     "Fang.Equality.Ordered.arraySteps_eq_list": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
         "Quot.sound",
         "propext"
       ]
     },
     "Fang.Equality.Ordered.check_eq_list": {
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.build_witness": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.build_check": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.build_accepts": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.source_task": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.build_entails": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.rows_checked": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.final_row_empty": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.SourceRows.checkedText_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.SourceRows.entryRow_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.SourceRows.sourceItem_entry": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.SourceRows.sourceItems_entries": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.SourceRows.sourceItem_at": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.SourceRows.sourceRows_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.SourceRows.negatedRow_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.prepare_goal_models": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.prepare_inputs_models": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.attachNames_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.goal_group_sap": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.goalFormula_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.groupParents_semantics": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.goalDocument_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.goalDocument_checked": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.goalDocument_group": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.exportGoalDocument_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.selected_goal_closed": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.selected_goal_negated": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.goalDocument_negated": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.build_witness": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.build_check": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.build_accepts": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.build_unsat": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.rows_checked": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.final_row_empty": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.group_sap": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.document_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.document_checked": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.document_group": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "Fang.TptpCandidate.CitedDocument.Inputs.exportDocument_spec": {
+      "gate": "fang-v4-runtime-integration-v1-20261114",
+      "axioms": [
+        "Classical.choice",
         "Quot.sound",
         "propext"
       ]

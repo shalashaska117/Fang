@@ -831,6 +831,9 @@ fn install(
         )?;
         tstp.set("goal_exporter", pinned(NAMED_GOAL_EXPORTER)?);
         tstp.set("inputs_exporter", pinned(NAMED_GOAL_EXPORTER)?);
+        if cited_export_modes(&usage) {
+            tstp.set("cited_exporter", pinned(NAMED_GOAL_EXPORTER)?);
+        }
     } else if built.contains_key("fang-goal-tstp") {
         tstp.set("goal_exporter", pinned("fang-goal-tstp")?);
     }
@@ -1174,9 +1177,30 @@ fn older_profiles(
     Ok((cnf, object(vec![("capability", record(&fof_path)?)])))
 }
 
+fn cited_export_modes(usage: &str) -> bool {
+    let words: Vec<_> = usage.split([' ', '|', '(', ')']).collect();
+    words.contains(&"--bundle-goal") && words.contains(&"--bundle-inputs")
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn cited_export_requires_both_exact_usage_modes() {
+        assert!(cited_export_modes(
+            "usage: tool --bundle-goal GOAL CERTIFICATE | --bundle-inputs CERTIFICATE"
+        ));
+        for usage in [
+            "usage: tool --inputs INPUT CERTIFICATE FILE",
+            "usage: tool --bundle-goal GOAL CERTIFICATE",
+            "usage: tool --bundle-inputs CERTIFICATE",
+            "usage: tool --bundle-goal-old GOAL | --bundle-inputs CERTIFICATE",
+            "usage: tool --bundle-goal GOAL | --bundle-inputs-old CERTIFICATE",
+        ] {
+            assert!(!cited_export_modes(usage), "{usage}");
+        }
+    }
 
     #[test]
     fn named_engine_requires_an_unnamed_kernel_producer() {

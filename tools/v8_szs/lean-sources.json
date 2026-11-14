@@ -1282,7 +1282,7 @@
         "ModelNativeMain"
       ],
       "closure_source": "gate",
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "installed_as": "fang-model-check",
       "name": "fang-model-check",
       "root": "ModelNativeMain",
@@ -1607,7 +1607,7 @@
         "Fang.BoundedInput",
         "ModelExportNativeMain"
       ],
-      "gate": "fang-v4-array-store-promotion-v1-20261114",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "installed_as": "fang-model-tstp",
       "name": "fang-model-tstp",
       "root": "ModelExportNativeMain",
@@ -2896,8 +2896,8 @@
       "build_receipt": "tptp-document-named-symbols-build-v1-20261110"
     },
     "fang-goal-tstp-named": {
-      "usage": "usage: fang-goal-tstp-named INPUT CERTIFICATE GOAL FILE-NAME | --inputs INPUT CERTIFICATE FILE-NAME",
-      "gate": "fof-round-two-symbols-proofs-v1-20261110",
+      "usage": "usage: fang-goal-tstp-named INPUT CERTIFICATE GOAL FILE-NAME | --inputs INPUT CERTIFICATE FILE-NAME | --bundle-goal GOAL CERTIFICATE ROOT PATH FILE [ROOT PATH FILE]... | --bundle-inputs CERTIFICATE ROOT PATH FILE [ROOT PATH FILE]...",
+      "gate": "fang-v4-runtime-integration-v1-20261114",
       "root": "GoalDocumentNamedNativeMain",
       "installed_as": "fang-goal-tstp-named",
       "name": "fang-goal-tstp-named",
@@ -3251,9 +3251,47 @@
         "NamedInputsDocument",
         "NativeLimits",
         "Fang.BoundedInput",
+        "CoverageBundle",
+        "CoverageFramer",
+        "CoverageDistinct",
+        "CoverageFramerSound",
+        "CoverageFramerPremises",
+        "BundleRoles",
+        "BundleItems",
+        "BundleFramer",
+        "BundleFramerSound",
+        "RoleFramerV2",
+        "RoleMeaningV2",
+        "BundleRead",
+        "RoleReadV2",
+        "SignedBundleReplay",
+        "RoleReplayV2",
+        "BundleFastLexer",
+        "RoleFramerFast",
+        "RoleFramerLimit",
+        "RoleMeaningLimit",
+        "RoleReplayLimit",
+        "RoleCitedRead",
+        "RoleMeaningDepth",
+        "RoleFramerDepth",
+        "RoleReplayDepth",
+        "RoleCitedReadDepth",
+        "NamedRoleDepth",
+        "NamedCitedDepth",
+        "NamedCitedDocumentTrace",
+        "BundleSourceRow",
+        "CitedSourceRows",
+        "CitedModels",
+        "CitedGoalDocument",
+        "CitedGoalSemantics",
+        "CitedInputsTrace",
+        "CitedInputsDocument",
+        "PremiseLine",
+        "SignedBundleNativeV6Core",
+        "CitedDocumentNativeCore",
         "GoalDocumentNamedNativeMain"
       ],
-      "build_receipt": "tptp-goal-named-symbols-build-v1-20261110"
+      "build_receipt": "fang-v4-cited-exporter-native-build-v1-20261114"
     }
   },
   "files": {
@@ -3263,7 +3301,7 @@
     },
     "audits.json": {
       "origin": "product",
-      "sha256": "479c7aa47104086bb4204f3c3e4409d36214f382128c8047ce624a9a36927abe"
+      "sha256": "49cb6ba07cd396b4066287512d4077a1fd17d69902c0e7b5f95a7fea72c691b9"
     },
     "lake-manifest.json": {
       "origin": "product",
@@ -3271,7 +3309,7 @@
     },
     "lakefile.toml": {
       "origin": "product",
-      "sha256": "8282ed500bd2b7e133faedd3fb21897ec80baae6620a5736d989e47eba7f0433"
+      "sha256": "7598a270f19cd51142b733197dcc1021b0a82d9e64f2c07ede13374f414e5e67"
     },
     "lean-toolchain": {
       "origin": "product",
@@ -3563,7 +3601,7 @@
       "original": "BundleSourceRow.lean",
       "sha256": "b7f8e91b5e4c3c51a11c4dee265690e0a0aed5555fbd6f2f274fb94cf51f4b66",
       "origin": "union-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "BundleTrace.lean": {
       "original": "BundleTrace.lean",
@@ -4175,7 +4213,7 @@
       "original": "EqualityTrace.lean",
       "sha256": "98d3deaf1c02ed0e1644e53dbc64eb1893979b4ba2f8b349deb1b3ef019e1eea",
       "origin": "union-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ExistentialExtension.lean": {
       "original": "ExistentialExtension.lean",
@@ -4776,9 +4814,9 @@
     },
     "GoalDocumentNamedNativeMain.lean": {
       "original": "GoalDocumentNamedNativeMain.lean",
-      "sha256": "399d348c88c2dab9e640a4ea25ddc07f402a56bfacd272f29398b5d53da9665f",
+      "sha256": "36531a3309678336758815c8ed4f2d94d39c18c812d8601881afc9e6c15ec8b4",
       "origin": "union-gate",
-      "receipt": "fof-round-two-symbols-proofs-v1-20261110"
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "GoalDocumentV8.lean": {
       "original": "GoalDocumentV8.lean",
@@ -5192,7 +5230,7 @@
       "original": "OrderedTrace.lean",
       "sha256": "5844d3ea972bbfcd8c37ea71083b6ef0d2e9e7758922111f05f3ca963cdcc23d",
       "origin": "union-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "OriginalInput.lean": {
       "original": "OriginalInput.lean",
@@ -5922,15 +5960,15 @@
     },
     "TptpLexical.lean": {
       "original": "TptpLexical.lean",
-      "sha256": "17c7d59605eff1ebb9d9442eac656672343dc8d5c8250f24e6bf16a86745885e",
+      "sha256": "a84b5a2fade2c73a5e788b2f8b73c3cb50640aa5bedacece378bd11387e0077e",
       "origin": "union-gate",
-      "receipt": "fof-round-two-symbols-proofs-v1-20261110"
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "Trace.lean": {
       "original": "Trace.lean",
       "sha256": "4113001c1087527fb0f0d5886ffd44c9b06b8fefb3128f85f6192816cfcbabed",
       "origin": "union-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "Transform.lean": {
       "original": "Transform.lean",
@@ -6025,146 +6063,146 @@
     "ModelSemantics.lean": {
       "original": "ModelSemantics.lean",
       "sha256": "22a3539fdf354f5d667ad5bc39719cf5827f4b094eb02c1987511a9c3175b34d",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelCertificate.lean": {
       "original": "ModelCertificate.lean",
       "sha256": "11ba93f3c85842d667274aed2ffcb71efc2c914df41c755c81d1c33387e2f13d",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelMeanings.lean": {
       "original": "ModelMeanings.lean",
       "sha256": "0fdd5c0181e82cca90cab4b0457b9eabfbbde6963bfc411822966193704eda70",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelRewrite.lean": {
       "original": "ModelRewrite.lean",
       "sha256": "3392730910036c078fac7d6e0faea7ddd6c555a0affe97f695878c37200c5f1f",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelSteps.lean": {
       "original": "ModelSteps.lean",
       "sha256": "b13ec3ead0a8bdc1cc6faa9af956ce01b1dcd0d61545edf5b3897eb0147dac0d",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelEntries.lean": {
       "original": "ModelEntries.lean",
       "sha256": "36c8d4ca87737226c7d8702f32e961c95de065c5f5044cd4af699ffabb4fd9c3",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExclusive.lean": {
       "original": "ModelExclusive.lean",
       "sha256": "718d216fc9da680bde380055fbb6016cd9b335adf5f856e7f852bd0788ff0f9f",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelControls.lean": {
       "original": "ModelControls.lean",
       "sha256": "e48924c005e9c8ca66ae510c2a2dc90a3cb22850e52a0e7fa807b7c45a16c3b6",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelRewriteControls.lean": {
       "original": "ModelRewriteControls.lean",
       "sha256": "553a3d5890d94fcb2446d4954b42a1445817f104127516d6637eaeadbaf82b15",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelNativeMain.lean": {
       "original": "ModelNativeMain.lean",
       "sha256": "f7e937fb5a0e51f677544746681de8cc2015d9713814568e1529e9f6afb2c654",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelDocument.lean": {
       "original": "ModelDocument.lean",
       "sha256": "a384837116c8defdcbab22a35dacfa68c16f9f43a9b5cdd3b71bbabf83251e85",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExport.lean": {
       "original": "ModelExport.lean",
       "sha256": "7e90e31ce831c4cb0b2cd854cddb1c0c26a7e515f92ce6d4e141c90cf563291e",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportControlData.lean": {
       "original": "ModelExportControlData.lean",
       "sha256": "ffb91e5bbe13f0debaf1885a11504d98788ee5a6be12794c094563fb5b5875b7",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportSingleControls.lean": {
       "original": "ModelExportSingleControls.lean",
       "sha256": "7be243c551900dc790ab7fd4dd8c4b0fd3c0110a040f21b4f485339d81a20411",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportInputsControls.lean": {
       "original": "ModelExportInputsControls.lean",
       "sha256": "ff81c6f59c92f76853d851c9918595b518a5b30e58573df63a94dd5b48001eed",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportObjectsControls.lean": {
       "original": "ModelExportObjectsControls.lean",
       "sha256": "f0446e0904405b183221aed7b34001c4f7631a1e1c1181f6a4885438e0a389a9",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportNamesControls.lean": {
       "original": "ModelExportNamesControls.lean",
       "sha256": "58623a2b07b3112bed11c4f15d30e1e0b9dfb84146ed2c5d635921b60c9d83d0",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportGoalControls.lean": {
       "original": "ModelExportGoalControls.lean",
       "sha256": "1a48ff9eb1f387a1b7ef67a09c4de4e694f5cb412bd9e95ac0c26f36d6231573",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportTableControls.lean": {
       "original": "ModelExportTableControls.lean",
       "sha256": "a02970d51122bbba57e128363660a2d66be4eaf7482d2d2a57917fa6ab487cd5",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportPredicateTableControls.lean": {
       "original": "ModelExportPredicateTableControls.lean",
       "sha256": "8715d9e84be3802903bf7e122c7bd1e7cbf81ed1ec3b0d2d8c2c573f366edb8b",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportControls.lean": {
       "original": "ModelExportControls.lean",
       "sha256": "e4b666c861c992a0ae141bc8802f3d3e9edb4870bd44cb9a84fbd291aeac7b71",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportNativeMain.lean": {
       "original": "ModelExportNativeMain.lean",
       "sha256": "7e456c355da456f39d3b62596056e6f049cd6b471e71afb37db371c534fb4a7f",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelExportComplete.lean": {
       "original": "ModelExportComplete.lean",
       "sha256": "25fd53f384b1f709a508e760aa54f55dee8d35a08f833249aa760d2329e44bc4",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "ModelAudit.lean": {
       "original": "ModelAudit.lean",
       "sha256": "0d4a4311a657e0f1c67616bb02e3c4e64e3610be8328cafca526542586c1be5a",
-      "origin": "models-gate",
-      "receipt": "fang-v4-array-store-promotion-v1-20261114"
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     },
     "BundleLimitNativeMain.lean": {
       "origin": "pinned-source",
@@ -6185,6 +6223,66 @@
       "original": "experiments/tptp-full-frontend/roles/bundle/SignedBundleNativeV6Main.lean",
       "sha256": "39077ac0ee78e8c6a6b201db5632818a36859b678009878502211de9a61ec30b",
       "origin": "pinned-source"
+    },
+    "NamedCitedDocumentTrace.lean": {
+      "original": "NamedCitedDocumentTrace.lean",
+      "sha256": "fc6a2e7d22120666c9518d8c7749322818b12556edc954251a17dfe93c24dc07",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedSourceRows.lean": {
+      "original": "CitedSourceRows.lean",
+      "sha256": "1fe58c2775cfb2b373547dfbff4aa8932ac34e478c27ebfc1f065a3ddbdb523d",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedModels.lean": {
+      "original": "CitedModels.lean",
+      "sha256": "b0a3b8c20713069d541d207ee8ceb889287fb74df7a177819a4996aff8de22d8",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedGoalDocument.lean": {
+      "original": "CitedGoalDocument.lean",
+      "sha256": "3f1626ff8ef24902ae184ad1baad63a3e07c87d262ac83e1fb40535464df603c",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedGoalSemantics.lean": {
+      "original": "CitedGoalSemantics.lean",
+      "sha256": "b3a32dbd66293b198d472c1553120866b72d4aa9dd2509db7c2b64a6275bb8a4",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedInputsTrace.lean": {
+      "original": "CitedInputsTrace.lean",
+      "sha256": "60abb94ae03d13178e4c2b020bd0b942b58db54d198c615f44bfc1428148e953",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedInputsDocument.lean": {
+      "original": "CitedInputsDocument.lean",
+      "sha256": "3d5b866cbf9d406be5e80b0c37c070c5f3fce1cd3ee9f0773b226d2a90051491",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedDocumentNativeCore.lean": {
+      "original": "CitedDocumentNativeCore.lean",
+      "sha256": "ae1170ec1fc0d7fb76078fe9ab15d0705578b7a35b08e6d2d8dd439038671023",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedDocumentAudit.lean": {
+      "original": "CitedDocumentAudit.lean",
+      "sha256": "b43500474d6b785ff576bed72e9f9328918466f511c3912c66ed9c1d2e98e5d8",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
+    },
+    "CitedDocumentControls.lean": {
+      "original": "CitedDocumentControls.lean",
+      "sha256": "d56224dc9ef2763aab1948edad4f2581f5ad65579fe6d6ccc964780fb467f34b",
+      "origin": "union-gate",
+      "receipt": "fang-v4-runtime-integration-v1-20261114"
     }
   },
   "gates": {
@@ -6329,63 +6427,52 @@
         "SymbolNegativeObject.lean": "Gate-only negative control, expected to fail compilation."
       },
       "replaced": {
-        "ModelSemantics.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelCertificate.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelMeanings.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelRewrite.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelSteps.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelEntries.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExclusive.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelRewriteControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelDocument.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExport.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportControlData.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportSingleControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportInputsControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportObjectsControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportNamesControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportGoalControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportTableControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportPredicateTableControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelExportControls.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "ModelAudit.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "BundleSourceRow.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "Trace.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "OrderedTrace.lean": "fang-v4-array-store-promotion-v1-20261114",
-        "EqualityTrace.lean": "fang-v4-array-store-promotion-v1-20261114"
+        "ModelSemantics.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelCertificate.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelMeanings.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelRewrite.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelSteps.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelEntries.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExclusive.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelRewriteControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelDocument.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExport.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportControlData.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportSingleControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportInputsControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportObjectsControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportNamesControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportGoalControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportTableControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportPredicateTableControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelExportControls.lean": "fang-v4-runtime-integration-v1-20261114",
+        "ModelAudit.lean": "fang-v4-runtime-integration-v1-20261114",
+        "BundleSourceRow.lean": "fang-v4-runtime-integration-v1-20261114",
+        "Trace.lean": "fang-v4-runtime-integration-v1-20261114",
+        "OrderedTrace.lean": "fang-v4-runtime-integration-v1-20261114",
+        "EqualityTrace.lean": "fang-v4-runtime-integration-v1-20261114",
+        "TptpLexical.lean": "fang-v4-runtime-integration-v1-20261114",
+        "GoalDocumentNamedNativeMain.lean": "fang-v4-runtime-integration-v1-20261114"
       },
       "independent_review": "fof-round-two-symbols-proofs-independent-review-v1-20261110"
     },
-    "fang-v4-array-store-promotion-v1-20261114": {
+    "fang-v4-runtime-integration-v1-20261114": {
       "over_tree": true,
       "library_roots": [
         "Trace",
         "OrderedTrace",
         "EqualityTrace",
         "ModelAudit",
-        "BundleSourceRow"
+        "BundleSourceRow",
+        "TptpLexical",
+        "CitedDocumentAudit",
+        "CitedDocumentControls"
       ],
-      "audit_key": "new_fixed_audit_set",
-      "independent_review": "fang-v4-array-store-independent-review-v1-20261114"
+      "audit_key": "new_fixed_audit_set"
     }
   },
   "library_roots": [
-    "ExpandedLimitedNativeMain",
-    "SignedBundleNativeMainLimit",
-    "BundleSourceRow",
-    "FangFastVec",
-    "ExpandedLexer",
-    "ExpandedFastCertificate",
-    "ExpandedCertificateControls",
-    "ExpandedEnvelopeChecks",
-    "ExpandedCertificatePositive",
-    "Fang.BoundedInput",
-    "ExpandedDecoder",
-    "ExpandedLinearCertificate",
-    "ExpandedDecoderControls",
-    "ExpandedDocument",
-    "ExpandedDocumentControls",
     "BundleAudit",
     "BundleDocumentFileRows",
     "BundleDocumentNameRows",
@@ -6401,85 +6488,102 @@
     "BundleNumericAuditTyped",
     "BundleReplayControls",
     "BundleSingleReductions",
+    "BundleSourceRow",
     "BundleTstpAudit",
-    "NativeLimits",
-    "ExpandedLimitDecoder",
-    "ExpandedLimitDecoderControls",
-    "RoleDecoderLimit",
-    "RoleFramerLimit",
-    "RoleMeaningLimit",
-    "RoleReplayLimit",
-    "RoleLimitControls",
-    "GoalRowsControls",
-    "GoalDocumentV8",
-    "NamingModel",
-    "NamingResult",
-    "NamingCollect",
-    "NamingRename",
-    "NamingEntry",
-    "NamingControls",
-    "NamingAudit",
-    "NamedReplay",
-    "NamedReplayAudit",
-    "NamedReplayControls",
-    "NamedCore",
-    "NamedSigned",
-    "NamedBundle",
-    "NamedRoleBundle",
-    "NamedEntriesAudit",
-    "NamedEntriesControls",
-    "DepthControls",
+    "CitedDocumentAudit",
+    "CitedDocumentControls",
     "CnfBooleanDeclarationDepth",
     "CnfBooleanInputDepth",
+    "DepthControls",
+    "EqualityFormulaGrammar",
+    "EqualityFormulaLexing",
+    "ExpandedCertificateControls",
+    "ExpandedCertificatePositive",
+    "ExpandedDecoder",
+    "ExpandedDecoderControls",
     "ExpandedDecoderDepth",
+    "ExpandedDocument",
+    "ExpandedDocumentControls",
+    "ExpandedEnvelopeChecks",
+    "ExpandedFastCertificate",
+    "ExpandedLexer",
+    "ExpandedLimitDecoder",
+    "ExpandedLimitDecoderControls",
+    "ExpandedLimitDecoderDepth",
+    "ExpandedLimitedNativeMain",
+    "ExpandedLinearCertificate",
+    "Fang.BoundedInput",
+    "FangFastVec",
     "FofInputDepth",
     "FofInputDepthSound",
+    "GoalDocumentV8",
+    "GoalRowsControls",
+    "ModelAudit",
+    "NamedBundle",
+    "NamedBundleDocument",
     "NamedCited",
     "NamedCitedControls",
     "NamedCitedDepth",
+    "NamedCore",
+    "NamedDepthAudit",
+    "NamedDepthControls",
+    "NamedDepthEntry",
     "NamedDocument",
+    "NamedDocumentAudit",
+    "NamedDocumentControls",
+    "NamedDocumentDepth",
+    "NamedDocumentDepthAudit",
+    "NamedDocumentDepthControls",
+    "NamedEntriesAudit",
+    "NamedEntriesControls",
     "NamedExportControls",
+    "NamedGoalDepthAudit",
+    "NamedGoalDepthControls",
+    "NamedGoalDocument",
+    "NamedGoalDocumentDepth",
+    "NamedInputsDocument",
     "NamedModels",
     "NamedNames",
+    "NamedReplay",
+    "NamedReplayAudit",
+    "NamedReplayControls",
+    "NamedRoleBundle",
     "NamedRoleDepth",
     "NamedSap",
+    "NamedSigned",
+    "NamedSignedDepth",
+    "NamedSignedModels",
+    "NamedSignedModelsDepth",
     "NamedTrace",
     "NamedV6Audit",
+    "NamingAudit",
+    "NamingCollect",
+    "NamingControls",
+    "NamingEntry",
+    "NamingModel",
+    "NamingRename",
+    "NamingResult",
+    "NativeLimits",
+    "PremiseLine",
+    "Product.NameSpelling",
+    "Product.TextLexing",
     "RoleCitedRead",
     "RoleCitedReadDepth",
     "RoleDeclarationDepth",
     "RoleDecoderDepth",
+    "RoleDecoderLimit",
     "RoleDepthControls",
     "RoleFramerDepth",
+    "RoleFramerLimit",
+    "RoleLimitControls",
     "RoleMeaningDepth",
-    "RoleReplayDepth",
-    "NamedBundleDocument",
-    "NamedDocumentAudit",
-    "NamedDocumentControls",
-    "NamedGoalDocument",
-    "NamedSignedModels",
-    "PremiseLine",
+    "RoleMeaningLimit",
     "RoleNativeV6Controls",
+    "RoleReplayDepth",
+    "RoleReplayLimit",
+    "SignedBundleNativeMainLimit",
     "SignedBundleNativeV6Core",
-    "NamedSignedDepth",
-    "NamedSignedModelsDepth",
-    "NamedGoalDocumentDepth",
-    "NamedGoalDepthControls",
-    "NamedGoalDepthAudit",
-    "ExpandedLimitDecoderDepth",
-    "NamedDepthEntry",
-    "NamedDepthControls",
-    "NamedDepthAudit",
-    "NamedDocumentDepth",
-    "NamedDocumentDepthControls",
-    "NamedDocumentDepthAudit",
-    "Product.NameSpelling",
-    "Product.TextLexing",
-    "EqualityFormulaLexing",
-    "EqualityFormulaGrammar",
-    "NamedInputsDocument",
-    "SymbolControls",
-    "ModelAudit"
+    "SymbolControls"
   ],
   "module_receipt": "fof-round-two-symbols-proofs-v1-20261110",
   "module_renames": {},
@@ -6580,8 +6684,16 @@
     "fang-v4-array-store-independent-review-v1-20261114": {
       "manifest": "evidence/verification/fang-v4-array-store-independent-review-v1-20261114/manifest.json",
       "sha256": "44e934efe83b4ecad24b159dbaaa40173d891a5cbf1eaff348c035cb938548b0"
+    },
+    "fang-v4-runtime-integration-v1-20261114": {
+      "manifest": "evidence/verification/fang-v4-runtime-integration-v1-20261114/manifest.json",
+      "sha256": "547501d3e81b5a265a489aa75a3d3fb2effae4ab1948d9277e379b57166f34e7"
+    },
+    "fang-v4-cited-exporter-native-build-v1-20261114": {
+      "manifest": "evidence/verification/fang-v4-runtime-integration-v1-20261114/run/validation/exporter-native.json",
+      "sha256": "e6a50d6707f97db573a376c8a4c6ef7584efac8e6df9dcc7aa401804bbcfd795"
     }
   },
   "schema": "fang-v8-lean-source-map-v1",
-  "scope": "Version 4 array checker integration. Historical gates are retained; the current store and dependent model and bundle proofs have a separate source and axiom record."
+  "scope": "V4 component integration. Historical source and proof receipts are retained; the current runtime has a separate source and axiom record."
 }

@@ -55,7 +55,32 @@ def upper (c : Char) : Bool := 'A' ≤ c && c ≤ 'Z'
 def digit (c : Char) : Bool := '0' ≤ c && c ≤ '9'
 def word (c : Char) : Bool := lower c || upper c || digit c || c == '_'
 def whitespace (c : Char) : Bool := c == ' ' || (9 ≤ c.toNat && c.toNat ≤ 13)
-def commentChar (c : Char) : Bool := c.toNat ≤ 127 && c.toNat != 0
+def commentChar (c : Char) : Bool := c.toNat ≤ 255 && c.toNat != 0
+
+/-- Consume one source byte at each step. The bounds apply to the next continuation. -/
+def validUtf8Tail (input : List UInt8) (remaining low high : Nat) : Bool :=
+  match input with
+  | [] => remaining == 0
+  | byte :: rest =>
+    let value := byte.toNat
+    if remaining == 0 then
+      if value ≤ 0x7F then validUtf8Tail rest 0 0x80 0xBF
+      else if 0xC2 ≤ value && value ≤ 0xDF then validUtf8Tail rest 1 0x80 0xBF
+      else if value == 0xE0 then validUtf8Tail rest 2 0xA0 0xBF
+      else if value == 0xED then validUtf8Tail rest 2 0x80 0x9F
+      else if 0xE1 ≤ value && value ≤ 0xEF then validUtf8Tail rest 2 0x80 0xBF
+      else if value == 0xF0 then validUtf8Tail rest 3 0x90 0xBF
+      else if value == 0xF4 then validUtf8Tail rest 3 0x80 0x8F
+      else if 0xF1 ≤ value && value ≤ 0xF3 then validUtf8Tail rest 3 0x80 0xBF
+      else false
+    else low ≤ value && value ≤ high && validUtf8Tail rest (remaining - 1) 0x80 0xBF
+termination_by structural input
+
+def validUtf8Bytes (input : List UInt8) : Bool := validUtf8Tail input 0 0x80 0xBF
+
+/-- Comment characters still represent individual source bytes. NUL is forbidden. -/
+def validCommentUtf8 (input : List Char) : Bool :=
+  (input.all commentChar) && validUtf8Bytes (input.map (fun c => UInt8.ofNat c.toNat))
 
 /-- After the opening quote; count includes the closing quote. -/
 def quoted (origin offset : Nat) : List Char → Except Error (List Char × Nat)
@@ -93,9 +118,12 @@ def piece (offset : Nat) : List Char → Except Error (Option Kind × Nat)
       let tail := rest.takeWhile (fun x => x != '\r' && x != '\n')
       if let some bad := tail.findIdx? (fun x => !commentChar x) then
         throw ⟨.invalid, offset + 1 + bad⟩
+      if !validCommentUtf8 tail then throw ⟨.invalid, offset⟩
       return (none, tail.length + 1)
     if c == '/' && rest.head? == some '*' then
-      return (none, (← blockComment offset (offset + 2) rest.tail) + 2)
+      let count ← blockComment offset (offset + 2) rest.tail
+      if !validCommentUtf8 (rest.tail.take count) then throw ⟨.invalid, offset⟩
+      return (none, count + 2)
     if c == '\'' then
       let (value, count) ← quoted offset (offset + 1) rest
       if value.isEmpty then throw ⟨.invalid, offset⟩

@@ -1,6 +1,6 @@
 # Code map
 
-This is a guide to the shipped source tree: where an input goes, where search happens, and where a result is checked. For the logical claims and trust assumptions, read [Design and verification](docs/DESIGN.md). For commands and limits, read [Usage](docs/USAGE.md).
+This is a guide to the current source tree: where an input goes, where search happens, and where a result is checked. For the logical claims and trust assumptions, read [Design and verification](docs/DESIGN.md). For released support, commands and limits, read [Capabilities](docs/CAPABILITIES.md) and [Usage](docs/USAGE.md).
 
 The installed `fang` command comes from `fang-launcher`. The root package is also named `fang`, but its executable is the older candidate-producing CNF engine. Running that executable directly does not run the installed checking pipeline.
 
@@ -63,7 +63,7 @@ Tests also live beside their code in `#[cfg(test)]` modules and in each crate's 
 | Finite models | [`fang-models/src/lib.rs`](crates/fang-models/src/lib.rs) | [`search::search`](crates/fang-models/src/search.rs), [`sat.rs`](crates/fang-models/src/sat.rs), then [`ModelEntries.lean`](lean-v8/ModelEntries.lean) |
 | Why a conjecture gives a particular SZS status | [`signed::listing`, `accepted` and `final_status`](crates/fang-launcher/src/v8/signed.rs) | [`run.rs`](crates/fang-launcher/src/v8/run.rs) and [`output.rs`](crates/fang-launcher/src/output.rs) |
 | Compiled checker entry points | [`ExpandedNamedNativeMain.lean`](lean-v8/ExpandedNamedNativeMain.lean), [`SignedBundleNativeV6Main.lean`](lean-v8/SignedBundleNativeV6Main.lean) | The Lean route table below |
-| TSTP output | [`stages.rs`](crates/fang-launcher/src/v8/stages.rs), [`protocol.rs`](crates/fang-launcher/src/v8/protocol.rs) | [`NamedDocumentDepth.lean`](lean-v8/NamedDocumentDepth.lean), [`NamedGoalDocumentDepth.lean`](lean-v8/NamedGoalDocumentDepth.lean), [`ModelExport.lean`](lean-v8/ModelExport.lean) |
+| TSTP output | [`run.rs`](crates/fang-launcher/src/v8/run.rs): `signed_documents`; [`stages.rs`](crates/fang-launcher/src/v8/stages.rs), [`protocol.rs`](crates/fang-launcher/src/v8/protocol.rs) | [`NamedDocumentDepth.lean`](lean-v8/NamedDocumentDepth.lean), [`CitedDocumentNativeCore.lean`](lean-v8/CitedDocumentNativeCore.lean), [`ModelExport.lean`](lean-v8/ModelExport.lean) |
 | Kernel replay | [`v8/kernel.rs`](crates/fang-launcher/src/v8/kernel.rs) | [`v8-kernel/src/check.rs`](crates/v8-kernel/src/check.rs), [`generator/`](crates/v8-kernel/src/generator) |
 | Deadlines, memory and child processes | [`fang-supervisor/src/lib.rs`](crates/fang-supervisor/src/lib.rs) | Launcher [`run.rs`](crates/fang-launcher/src/v8/run.rs) and [`models.rs`](crates/fang-launcher/src/v8/models.rs) |
 | Source and executable identity | [`rust-sources.json`](tools/v8_szs/rust-sources.json), [`lean-sources.json`](tools/v8_szs/lean-sources.json) | [`Capability::load`](crates/fang-launcher/src/capability.rs), [`v8/verify.rs`](crates/fang-launcher/src/v8/verify.rs) |
@@ -124,12 +124,14 @@ The root [Cargo manifest](Cargo.toml) declares 35 explicit members plus the root
 | --- | --- |
 | [`src/`](src/) / root package `fang` | Shared `Term`, `Literal`, `Clause` and symbol types in `syntax.rs`; CNF parsing in `parser.rs`; unification in `unify.rs`; candidate refutation search in `search.rs`. The root `main.rs` exposes the older candidate-only CLI. Other crates reuse this library. |
 | [`fang-saturation`](crates/fang-saturation/) / `fang-saturation` | V3 search. `search.rs` is the given-clause loop; `term.rs` stores terms, `subst.rs` substitutes, `kbo.rs` orders terms, `index.rs` indexes clauses, `sine.rs` selects premises and `proof.rs` builds certificates. `producer.rs` handles modes, limits, portfolios and statistics. |
-| [`fang-models`](crates/fang-models/) / `fang-models` | Finite-domain search. `problem.rs` constructs tasks; `clausify.rs` and `flatten.rs` prepare them; `search.rs` grounds domains; `sat.rs` solves the Boolean encoding; `evaluate.rs` checks candidates locally and `certificate.rs` serializes them for Lean. |
+| [`fang-models`](crates/fang-models/) / `fang-models` | Finite-domain search. `problem.rs` constructs tasks; `clausify.rs` and `flatten.rs` prepare them; `lib.rs` selects the search range; `search.rs` grounds domains; `sat.rs` solves the Boolean encoding; `evaluate.rs` checks candidates locally and `certificate.rs` serializes them for Lean. |
 | [`fang-predicate-index`](crates/fang-predicate-index/) / `fang-predicate-index-core` | Predicate/sign indexing shared with the root search. Its library supplies the index contract; the V3 search also has its own indexing layer. |
 | [`equality-inference-core`](crates/equality-inference-core/) / `fang-equality-inference-core` | Equality-aware atoms, literals and clauses, substitutions, and reconstruction of inference steps. `checked.rs` contains checked resource arithmetic used by reconstruction. |
 | [`equality-occurrence-core`](crates/equality-occurrence-core/) / `fang-equality-occurrence-core` | Bounded operations on a selected term occurrence, used when rewriting one occurrence in an equality inference. |
 | [`equality-paramodulation-core`](crates/equality-paramodulation-core/) / `fang-equality-paramodulation-core` | Reconstructs single-occurrence paramodulation using an equation direction and a position inside a clause. Builds on the inference and occurrence cores. |
 | [`equality-search`](crates/equality-search/) / `fang-equality-search` | Equality-CNF candidate search, prepared-problem validation and certificate types/serialization. `ordered.rs` and `prepared.rs` implement the retained ordered-search path; V3 producers reuse its prepared-input and certificate interfaces. |
+
+For finite-model domain limits, start at `function_free_bound` and `find` in [`fang-models/src/lib.rs`](crates/fang-models/src/lib.rs). The bound counts constants after Skolemization and is disabled by nonconstant functions. In [`search.rs`](crates/fang-models/src/search.rs), `Layout` assigns SAT variables, `ground` creates constraints, and `extract` reads only the model's function and predicate tables. `sequential_at_most_one` handles function cells for domains of size 16 or more; `planned` estimates storage before allocation. The launcher handles the distinct exhausted-bound outcome in [`v8/models.rs`](crates/fang-launcher/src/v8/models.rs). Exhaustion retires a model-search task without accepting a logical result.
 
 ### Input and preprocessing
 
@@ -179,7 +181,7 @@ These eight directories are in the root manifest's `exclude` list. Exclusion con
 | `fang-signed-check` | [`SignedBundleNativeV6Main.lean`](lean-v8/SignedBundleNativeV6Main.lean) and [`SignedBundleNativeV6Core.lean`](lean-v8/SignedBundleNativeV6Core.lean) | [`NamedSignedDepth.lean`](lean-v8/NamedSignedDepth.lean), [`NamedRoleDepth.lean`](lean-v8/NamedRoleDepth.lean), [`NamedCitedDepth.lean`](lean-v8/NamedCitedDepth.lean), [`RoleCitedReadDepth.lean`](lean-v8/RoleCitedReadDepth.lean) |
 | `fang-model-check` | [`ModelNativeMain.lean`](lean-v8/ModelNativeMain.lean) | [`ModelCertificate.lean`](lean-v8/ModelCertificate.lean), [`ModelSteps.lean`](lean-v8/ModelSteps.lean), [`ModelEntries.lean`](lean-v8/ModelEntries.lean), [`ModelMeanings.lean`](lean-v8/ModelMeanings.lean) |
 | `fang-v8-tstp-named` | [`DocumentNamedNativeMain.lean`](lean-v8/DocumentNamedNativeMain.lean) | [`NamedDocumentDepth.lean`](lean-v8/NamedDocumentDepth.lean), [`NamedDocument.lean`](lean-v8/NamedDocument.lean) |
-| `fang-goal-tstp-named` | [`GoalDocumentNamedNativeMain.lean`](lean-v8/GoalDocumentNamedNativeMain.lean) | [`NamedGoalDocumentDepth.lean`](lean-v8/NamedGoalDocumentDepth.lean), [`NamedInputsDocument.lean`](lean-v8/NamedInputsDocument.lean) |
+| `fang-goal-tstp-named` | [`GoalDocumentNamedNativeMain.lean`](lean-v8/GoalDocumentNamedNativeMain.lean) | Single-file paths: [`NamedGoalDocumentDepth.lean`](lean-v8/NamedGoalDocumentDepth.lean), [`NamedInputsDocument.lean`](lean-v8/NamedInputsDocument.lean). Cited bundles: [`CitedDocumentNativeCore.lean`](lean-v8/CitedDocumentNativeCore.lean) |
 | `fang-bundle-tstp` | [`BundleTstpLimitNativeMain.lean`](lean-v8/BundleTstpLimitNativeMain.lean) | [`BundleDocumentLimit.lean`](lean-v8/BundleDocumentLimit.lean), [`BundleDocument.lean`](lean-v8/BundleDocument.lean) |
 | `fang-v8-tstp`, `fang-goal-tstp` | [`DocumentNativeMain.lean`](lean-v8/DocumentNativeMain.lean), [`GoalDocumentV8NativeMain.lean`](lean-v8/GoalDocumentV8NativeMain.lean) | Unnamed expanded/goal export entries retained alongside the named exports |
 | `fang-model-tstp` | [`ModelExportNativeMain.lean`](lean-v8/ModelExportNativeMain.lean) | [`ModelExport.lean`](lean-v8/ModelExport.lean), [`ModelExportComplete.lean`](lean-v8/ModelExportComplete.lean) |
@@ -194,6 +196,25 @@ For the mathematical definitions, begin with [`Fang/Logic.lean`](lean-v8/Fang/Lo
 - TSTP syntax and meaning: [`Product/`](lean-v8/Product/) supplies term/clause rendering, annotated rows and source links. `ExpandedDocument`, `BundleDocument`, `NamedDocument`, `NamedGoalDocument` and `ModelExport` prove properties of the actual export functions.
 
 The compiled entries use the limits in [`NativeLimits.lean`](lean-v8/NativeLimits.lean). Rust producer preparation has matching records in [`fang-tptp-expanded/src/final_limits.rs`](crates/fang-tptp-expanded/src/final_limits.rs) and [`fang-saturation/src/experimental/final_limits.rs`](crates/fang-saturation/src/experimental/final_limits.rs). These records are part of the executable contract, not just performance settings.
+
+### Cited document export
+
+The V4 cited exporter is under integration. `signed_documents` selects it by the producer's task kind and the optional pinned `tstp.cited_exporter` capability. This also covers a bundle task whose resolved closure contains only one file. [`CitedDocumentNativeCore.lean`](lean-v8/CitedDocumentNativeCore.lean) reads the bounded certificate envelope and sealed file triples, then selects the goal or input-refutation path.
+
+| Component | Where to look |
+| --- | --- |
+| Retained goal task and checked derivation | [`NamedCitedDocumentTrace.lean`](lean-v8/NamedCitedDocumentTrace.lean): `build`, replay witnesses and final-clause properties |
+| Retained input-refutation task | [`CitedInputsTrace.lean`](lean-v8/CitedInputsTrace.lean): `build` and its connection to the original cited inputs |
+| Original file paths, statement names and roles | [`CitedSourceRows.lean`](lean-v8/CitedSourceRows.lean): `sourceItem`, `entryRow`, `sourceRows` and their byte-level parsing checks |
+| Model preservation and distinct objects | [`CitedModels.lean`](lean-v8/CitedModels.lean): models of the original task justify the preprocessing group |
+| Goal document assembly | [`CitedGoalDocument.lean`](lean-v8/CitedGoalDocument.lean): `goalDocument`, `exportGoalDocument`, labels and derivation rows |
+| Selected goal and its negation | [`CitedGoalSemantics.lean`](lean-v8/CitedGoalSemantics.lean): `selected_goal_negated` and `goalDocument_negated` |
+| Input-refutation document assembly | [`CitedInputsDocument.lean`](lean-v8/CitedInputsDocument.lean): `document` and `exportDocument` |
+| Axiom reports and rejection controls | [`CitedDocumentAudit.lean`](lean-v8/CitedDocumentAudit.lean), [`CitedDocumentControls.lean`](lean-v8/CitedDocumentControls.lean) |
+
+For comment bytes, [`TptpLexical.lean`](lean-v8/TptpLexical.lean) contains `validUtf8Tail`, `validUtf8Bytes` and `validCommentUtf8`. The lexer validates UTF-8 inside comments while retaining byte offsets. The formula and identifier grammar remains ASCII.
+
+### Kernel replay and older profiles
 
 For `--check kernel`, follow the Rust generator through [`tools/v8_kernel/policy.json`](tools/v8_kernel/policy.json), [`recipe/mixed/sources.json`](tools/v8_kernel/recipe/mixed/sources.json) and the support proofs in [`tools/v8_kernel/lean/`](tools/v8_kernel/lean/). This route constructs and checks an exact-instance Lean theorem. It is separate from the default compiled checker.
 

@@ -307,6 +307,30 @@ if ! { cat "$D/certificate.bin"; printf '%% inputs\n'; } | cmp -s - "$3"; then e
 echo "fof(a,axiom,p,file('problem.p',a))."
 "#;
 
+const CITED_EXPORTER: &str = r#"shape() { echo 'cited-export.shape' >&2; exit 2; }
+case $1 in
+  --bundle-goal) task="goal-$2"; proof=$3; shift 3;;
+  --bundle-inputs) task=inputs; proof=$2; shift 2;;
+  *) shape;;
+esac
+{ cat "$D/certificate.bin"; printf '%% %s\n' "$task"; } | cmp -s - "$proof" || shape
+line=0
+while [ $# -gt 0 ]; do
+  [ $# -ge 3 ] || shape
+  line=$((line + 1))
+  [ "$1 $2" = "$(sed -n "${line}p" "$D/signed-order.txt")" ] || shape
+  cmp -s "$3" "$D/signed-expected-$((line - 1)).bin" || shape
+  shift 3
+done
+[ "$line" -eq "$(wc -l < "$D/signed-order.txt")" ] || shape
+if [ "$mode" = partial-error ]; then
+  echo 'fof(partial,plain,p).'
+  echo 'export-error: rejected cited task' >&2
+  exit 7
+fi
+echo "cnf('$task',plain,\$false,inference(fang_test,[status(thm)],[]))."
+"#;
+
 const MODEL_FIND: &str = r#"line=
 stop=no
 resumed=no
@@ -321,6 +345,7 @@ if [ "$mode" = candidate ] || { [ "$mode" = second ] && [ $resumed = yes ]; }; t
   printf 'fang-model 1\n(model)\n'; printf 'candidate-model: unchecked domain 2\n' >&2; exit 0
 fi
 if [ "$mode" = refused ]; then printf 'refused: unsupported input\n' >&2; exit 3; fi
+if [ "$mode" = function-free-exhausted ]; then printf 'no-model: function-free bound exhausted at domain 3\n' >&2; exit 2; fi
 printf 'no-model: no model up to domain 3\n' >&2
 exit 2
 "#;
@@ -689,6 +714,18 @@ impl Fixture {
         self.save();
     }
 
+    fn write_cited_exporter(&mut self, mode: &str) {
+        self.write_goal_exporter("document");
+        let single = self.script("signed-single-producer", "exit 64\n", "");
+        self.section("signed").set("single_producer", single);
+        let proof = fs::read(self.path("certificate.bin")).unwrap();
+        let cited = [b"(premises (item 1 1))\n".as_slice(), &proof].concat();
+        fs::write(self.path("certificate.bin"), cited).unwrap();
+        let exporter = self.script("cited-exporter", CITED_EXPORTER, mode);
+        self.section("tstp").set("cited_exporter", exporter);
+        self.save();
+    }
+
     fn command(&self, input: &Path, run: &str, extra: &[&str]) -> Output {
         Command::new(launcher())
             .arg(input)
@@ -1009,6 +1046,29 @@ fn no_model_is_never_a_result_and_the_steps_keep_their_order() {
         [(1, "GaveUp".to_string()), (2, "GaveUp".to_string())]
     );
     assert!(manifest.get("model_check").is_none());
+}
+
+#[test]
+fn exhausted_function_free_search_is_not_repeated_or_reported_as_a_result() {
+    let mut fixture = Fixture::new();
+    fixture.write_binaries("unknown", "accept");
+    fixture.write_models("function-free-exhausted", "accept");
+    let run = fixture.invoke("GaveUp", &[], "run-function-free-exhausted");
+    let manifest = run.manifest();
+    assert_eq!(fixture.model_calls().len(), 1);
+    assert_eq!(
+        stages(manifest),
+        ["search", "model-find-single-a", "search-pass2"]
+    );
+    assert_eq!(
+        column(manifest, &["model"], "producer"),
+        ["function-free-exhausted"]
+    );
+    assert!(manifest.get("model_check").is_none());
+    assert_eq!(
+        passes(manifest),
+        [(1, "GaveUp".to_string()), (2, "GaveUp".to_string())]
+    );
 }
 
 #[test]
@@ -1627,6 +1687,86 @@ fn signed_inputs_task_document_needs_the_inputs_exporter() {
 }
 
 #[test]
+fn cited_tstp_uses_the_checked_envelope_and_every_sealed_bundle_file() {
+    for (checker, expected, documents) in [
+        ("two-goals", "Theorem", 2),
+        ("no-goals", "Unsatisfiable", 1),
+    ] {
+        let mut fixture = Fixture::new();
+        fixture.write_signed("candidate", checker, false);
+        fixture.write_cited_exporter("document");
+        let run = fixture.tstp("run-cited-document");
+        assert_eq!(run.output.status.code(), Some(0), "{}", run.stderr());
+        assert!(
+            run.stdout()
+                .contains(&format!("% SZS status {expected} for problem"))
+        );
+        assert_eq!(run.stdout().matches("SZS output start").count(), documents);
+        assert!(verified(run.manifest()).contains(&fixture.named("cited-exporter")));
+        assert!(!verified(run.manifest()).contains(&fixture.named("signed-single-producer")));
+        assert_eq!(run.stderr(), "");
+        let names = stages(run.manifest());
+        let checked = names
+            .iter()
+            .rposition(|stage| stage.starts_with("check-"))
+            .unwrap();
+        let exported = names
+            .iter()
+            .position(|stage| stage.starts_with("export-"))
+            .unwrap();
+        assert!(checked < exported);
+    }
+}
+
+#[test]
+fn cited_tstp_single_file_objects_use_bundle_mode() {
+    let mut fixture = Fixture::new();
+    fixture.write_signed_files(
+        "candidate",
+        "one-goal",
+        &[(
+            "problem.p",
+            b"fof(a,axiom,p(\"x\")). fof(g,conjecture,p(\"x\")).",
+        )],
+    );
+    fixture.write_cited_exporter("document");
+    let run = fixture.tstp("run-cited-objects");
+    assert!(run.stdout().contains("% SZS status Theorem"));
+    assert_eq!(run.stdout().matches("SZS output start").count(), 1);
+    assert_eq!(run.stderr(), "");
+}
+
+#[test]
+fn cited_tstp_failed_export_never_publishes_partial_document() {
+    let mut fixture = Fixture::new();
+    fixture.write_signed("candidate", "one-goal", false);
+    fixture.write_cited_exporter("partial-error");
+    let run = fixture.tstp("run-cited-error");
+    assert!(run.stdout().contains("% SZS status Theorem"));
+    assert!(!run.stdout().contains("SZS output start"));
+    assert!(!run.stdout().contains("fof(partial"));
+    assert_eq!(text(run.manifest(), &["export", "state"]), "failed");
+    assert!(run.stderr().starts_with("fang: TSTP export failed"));
+}
+
+#[test]
+fn cited_tstp_changed_binary_is_rejected_before_export() {
+    let mut fixture = Fixture::new();
+    fixture.write_signed("candidate", "one-goal", false);
+    fixture.write_cited_exporter("document");
+    let path = fixture.path("cited-exporter");
+    let mut body = fs::read(&path).unwrap();
+    body.extend_from_slice(b"# changed after pin\n");
+    fs::write(path, body).unwrap();
+    let run = fixture.invoke(
+        "Error",
+        &["--check", "compiled", "--output", "tstp"],
+        "run-cited-changed",
+    );
+    assert!(!run.stdout().contains("SZS output start"));
+}
+
+#[test]
 fn tstp_capability_fields() {
     let mut fixture = Fixture::new();
     fixture.write_exporter("document");
@@ -1646,6 +1786,13 @@ fn tstp_capability_fields() {
         &["exporter", "goal_exporter"],
         &["exporter", "bundle_exporter", "goal_exporter"],
         &["exporter", "goal_exporter", "inputs_exporter"],
+        &["exporter", "cited_exporter"],
+        &[
+            "exporter",
+            "goal_exporter",
+            "inputs_exporter",
+            "cited_exporter",
+        ],
         &[
             "exporter",
             "bundle_exporter",
@@ -1659,6 +1806,7 @@ fn tstp_capability_fields() {
         &["goal_exporter"][..],
         &["exporter", "other"],
         &["inputs_exporter"],
+        &["cited_exporter"],
     ] {
         assert!(with(names).is_err(), "{names:?}");
     }
