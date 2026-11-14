@@ -35,7 +35,7 @@ The array checker source integration and cited exporter components have independ
 
 ## Search
 
-1. Discover a larger strategy schedule on training inputs disjoint from evaluation corpora. The [frozen corpus](../benchmarks/v4-corpus/README.md) contains 256 training, 64 validation and 256 held-out problems in disjoint filename families; the original benchmark families are excluded. Select strategies using problem features and allow unequal slice lengths. No strategy outcomes have been collected on these sets yet.
+1. Discover a larger strategy schedule on training inputs disjoint from evaluation corpora. The [frozen corpus](../benchmarks/v4-corpus/README.md) contains 256 training, 64 validation and 256 held-out problems in disjoint filename families; the original benchmark families are excluded. Select strategies using problem features and allow unequal slice lengths. An isolated 128-cell harness pilot on the first 16 training inputs checked five tasks with the baseline, with no additional task from the variants. This used the cited-bundle route and short slices; the full matrix and schedule selection remain open. Validation and held-out outcomes are unused.
 2. Add AVATAR splitting. First measure a producer-only expansion and its certificate cost; introduce a checked split rule only if needed, with an explicit definition for each fresh predicate.
 3. Add deterministic learned clause selection. Record how the model was trained and keep evaluation inputs out of training.
 4. Control the passive set with lazy orphan deletion, count-based resource limits and a more compact representation.

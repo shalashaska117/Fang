@@ -11,7 +11,7 @@ The current integrated installation passed qualification: 985 Rust tests (two ig
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
-4. Collect strategy outcomes on the [frozen training corpus](../benchmarks/v4-corpus/README.md), then select schedule participation for the qualified KBO weights and literal-selection policies. The 256 training, 64 validation and 256 held-out problems have disjoint filename families. Defaults remain unchanged; no strategy runs have started on these sets.
+4. Collect the full strategy matrix on the [frozen training corpus](../benchmarks/v4-corpus/README.md), then select schedule participation for the qualified KBO weights and literal-selection policies. A 128-cell harness pilot on the first 16 training inputs checked five tasks with the baseline; no variant added a task beyond those five. It used the cited-bundle route for every task and a two-second producer budget. Defaults remain unchanged. Validation and held-out outcomes are still unused.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -139,6 +139,7 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 ## 1. Strategy schedule
 
 - [x] Freeze disjoint training, validation and held-out filename families, with the original benchmark families excluded; publish the lists, archive hash and tested Rust selector in [benchmarks/v4-corpus](../benchmarks/v4-corpus/README.md).
+- [x] Validate an isolated training harness with 16 positive task controls and two corrupted-certificate rejections; complete and audit 128 pilot cells on the first 16 training inputs. These are task outcomes, not whole-problem benchmark results.
 - [ ] Record problem features and strategy outcomes on the training set.
 - [ ] Select a schedule, including unequal slice lengths, using training results only.
 - [ ] Freeze the selected schedule before final evaluation.
