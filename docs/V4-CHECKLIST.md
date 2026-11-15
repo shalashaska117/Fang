@@ -1,12 +1,12 @@
 # V4 implementation checklist
 
-Working checklist for [V4-PLAN.md](V4-PLAN.md). Updated 2026-11-14.
+Working checklist for [V4-PLAN.md](V4-PLAN.md). Updated 2026-11-15.
 
 A checked box means the stated task passed at the stated scope. An isolated prototype is not an installed or released capability. Unchecked tasks still need work or evidence; they do not necessarily mean there is no earlier code. V4 is incomplete, and no SOTA result has been established.
 
 ## Current work
 
-The current integrated installation passed qualification: 985 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 992 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
@@ -41,6 +41,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Qualify optional LPO ordering with 970 installer tests, current source maps, installed launcher controls and 40 installed proof replays.
 - [x] Qualify optional KBO weights and additional literal-selection policies with 981 installer tests, current source maps, installed launcher controls and 360 installed proof replays.
 - [x] Qualify bounded DAG variable counting with 985 installer tests, current source maps, installed launcher controls and 366 byte-identical proof replays.
+- [x] Qualify optional stored-record and generated-conclusion limits with 992 installer tests, 122 installed compiled-Lean replays, 34 explicit boundary refusals and the installed launcher controls.
 
 ## 8. Equality factoring
 
@@ -168,7 +169,7 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 - [x] Integrate and qualify the queue fix and optional orphan heuristic; orphan exhaustion remains unknown.
 - [x] Implement an isolated limit on queued passive clauses; pass 30 Rust tests and 62 compiled-Lean replays, including limit-zero controls.
 - [x] Integrate and qualify the passive-clause limit; it does not bound total stored proof records or total memory.
-- [ ] Assess additional count limits for stored clauses and generated work.
+- [x] Assess and qualify additional count limits: `max_stored` includes all proof records, and `max_generated` includes conclusions later discarded. Neither is a total-memory or unification-work limit; both default to unset.
 - [ ] Profile passive-clause memory and implement a compact representation where justified.
 - [x] Check installed search behavior and resource accounting with 62 compiled certificate replays, eight queue controls, two passive-limit controls and a real orphan-deletion case.
 

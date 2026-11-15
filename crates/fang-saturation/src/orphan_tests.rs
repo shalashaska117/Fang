@@ -124,15 +124,17 @@ fn replacement_ignores_deleted_proof_parent_but_tracks_original_generating_paren
                 second: 1,
             },
         );
-        let replacement = search.push_simplified(
-            vec![p],
-            Rule::Factor {
-                parent: intermediate,
-                first: 0,
-                second: 1,
-            },
-            intermediate,
-        );
+        let replacement = search
+            .push_simplified(
+                vec![p],
+                Rule::Factor {
+                    parent: intermediate,
+                    first: 0,
+                    second: 1,
+                },
+                intermediate,
+            )
+            .unwrap();
         search.delete(intermediate);
         assert!(!search.admit(replacement));
         if delete_generator {

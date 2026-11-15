@@ -65,6 +65,10 @@ pub struct Options {
     pub orphan_deletion: bool,
     /// Maximum queued passive clauses. Dropping a nonempty clause loses completeness.
     pub max_passive: Option<u64>,
+    /// Stop before storing more proof records, including inputs and simplifications.
+    pub max_stored: Option<u64>,
+    /// Stop before admitting more generated conclusions, including discarded ones.
+    pub max_generated: Option<u64>,
     /// Candidate indexes over the active set; the same inferences as the linear scan, in the same order.
     pub index: bool,
     /// Sequential time slices, each a share of the remaining search time and its own options; empty for one search.
@@ -135,6 +139,8 @@ impl Options {
             prune_passive: false,
             orphan_deletion: false,
             max_passive: None,
+            max_stored: None,
+            max_generated: None,
             index: false,
             portfolio: Vec::new(),
             sine: None,
@@ -321,6 +327,10 @@ impl Options {
             "prune_passive" => self.prune_passive = flag()?,
             "orphan_deletion" => self.orphan_deletion = flag()?,
             "max_passive" => self.max_passive = Some(value.parse().map_err(|_| "bad max_passive")?),
+            "max_stored" => self.max_stored = Some(value.parse().map_err(|_| "bad max_stored")?),
+            "max_generated" => {
+                self.max_generated = Some(value.parse().map_err(|_| "bad max_generated")?)
+            }
             "index" => self.index = flag()?,
             "sine" => {
                 self.sine = match value {

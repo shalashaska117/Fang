@@ -359,6 +359,11 @@ fn run_one(
         Stop::Time => ("time", Outcome::Stopped("time limit")),
         Stop::Memory => ("memory", Outcome::Stopped("memory limit")),
         Stop::GivenLimit => ("given-limit", Outcome::Stopped("given clause limit")),
+        Stop::StoredLimit => ("stored-limit", Outcome::Stopped("stored clause limit")),
+        Stop::GeneratedLimit => (
+            "generated-limit",
+            Outcome::Stopped("generated clause limit"),
+        ),
     };
     let counts = search.stats.json();
     json.string("stop_reason", reason).raw("counts", &counts);
@@ -531,6 +536,8 @@ pub fn refute_prepared(
         Stop::Time => Refutation::Stopped("time limit"),
         Stop::Memory => Refutation::Stopped("memory limit"),
         Stop::GivenLimit => Refutation::Stopped("given clause limit"),
+        Stop::StoredLimit => Refutation::Stopped("stored clause limit"),
+        Stop::GeneratedLimit => Refutation::Stopped("generated clause limit"),
     }
 }
 

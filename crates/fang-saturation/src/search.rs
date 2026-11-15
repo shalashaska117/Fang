@@ -21,6 +21,9 @@ use std::hash::{Hash, Hasher};
 use std::time::Instant;
 
 #[cfg(test)]
+#[path = "count_limit_tests.rs"]
+mod count_limit_tests;
+#[cfg(test)]
 #[path = "orphan_tests.rs"]
 mod orphan_tests;
 #[cfg(test)]
@@ -34,6 +37,8 @@ pub enum Stop {
     Time,
     Memory,
     GivenLimit,
+    StoredLimit,
+    GeneratedLimit,
 }
 
 #[derive(Clone, Copy, Debug, Default)]
@@ -412,15 +417,31 @@ impl<'a> Search<'a> {
                 search.stats.tautologies += 1;
                 continue;
             }
-            let id = search.push(lits, Rule::Input { index, original });
+            let Some(id) = search.try_push(lits, Rule::Input { index, original }) else {
+                break;
+            };
             if search.admit(id) {
+                break;
+            }
+            if search.interrupted.is_some() {
                 break;
             }
         }
         Ok(search)
     }
 
-    fn push(&mut self, lits: Vec<Lit>, rule: Rule) -> Id {
+    fn try_push(&mut self, lits: Vec<Lit>, rule: Rule) -> Option<Id> {
+        if self.interrupted.is_some() {
+            return None;
+        }
+        if self
+            .options
+            .max_stored
+            .is_some_and(|limit| self.clauses.len() as u64 >= limit)
+        {
+            self.interrupted = Some(Stop::StoredLimit);
+            return None;
+        }
         let (weight, depth, vars) = measure(&self.bank, &lits);
         let goal = match &rule {
             Rule::Input { index, .. } => self.goal_inputs.get(*index).copied().unwrap_or(false),
@@ -461,7 +482,12 @@ impl<'a> Search<'a> {
             level,
         });
         self.stats.clauses_stored += 1;
-        id
+        Some(id)
+    }
+
+    #[cfg(test)]
+    fn push(&mut self, lits: Vec<Lit>, rule: Rule) -> Id {
+        self.try_push(lits, rule).expect("test fixture storage")
     }
 
     fn generating_parents(&self, id: Id) -> Option<GeneratingParents> {
@@ -470,13 +496,13 @@ impl<'a> Search<'a> {
             .then(|| self.generating_parents[id as usize])
     }
 
-    fn push_simplified(&mut self, lits: Vec<Lit>, rule: Rule, target: Id) -> Id {
+    fn push_simplified(&mut self, lits: Vec<Lit>, rule: Rule, target: Id) -> Option<Id> {
         let parents = self.generating_parents(target);
-        let id = self.push(lits, rule);
+        let id = self.try_push(lits, rule)?;
         if let Some(parents) = parents {
             self.generating_parents[id as usize] = parents;
         }
-        id
+        Some(id)
     }
 
     /// The key of the weight queue: symbol count (goal symbols at half when `goal_symbols` is on), plus the
@@ -874,6 +900,17 @@ impl<'a> Search<'a> {
         rule: Rule,
         parents: Option<GeneratingParents>,
     ) -> bool {
+        if self.interrupted.is_some() {
+            return false;
+        }
+        if self
+            .options
+            .max_generated
+            .is_some_and(|limit| self.stats.generated >= limit)
+        {
+            self.interrupted = Some(Stop::GeneratedLimit);
+            return false;
+        }
         self.stats.generated += 1;
         if lits.len() > self.options.max_literals {
             self.stats.dropped_literals += 1;
@@ -900,7 +937,9 @@ impl<'a> Search<'a> {
             self.stats.duplicates += 1;
             return false;
         }
-        let id = self.push(lits, rule);
+        let Some(id) = self.try_push(lits, rule) else {
+            return false;
+        };
         if let Some(parents) = parents {
             self.generating_parents[id as usize] = parents;
         }
@@ -914,6 +953,9 @@ impl<'a> Search<'a> {
     }
 
     fn admit(&mut self, id: Id) -> bool {
+        if self.interrupted.is_some() {
+            return false;
+        }
         let mut current = id;
         if self.options.cleanup {
             while let Some(next) = self.cleanup_step(current) {
@@ -928,7 +970,10 @@ impl<'a> Search<'a> {
                     break;
                 };
                 self.clauses[current as usize].state = State::Deleted;
-                current = self.push_simplified(lits, rule, current);
+                let Some(next) = self.push_simplified(lits, rule, current) else {
+                    return false;
+                };
+                current = next;
                 self.stats.forward_rewrites += 1;
                 steps += 1;
             }
@@ -956,7 +1001,10 @@ impl<'a> Search<'a> {
                     && let Some((lits, rule)) = self.rewrite_once(current, None)
                 {
                     self.clauses[current as usize].state = State::Deleted;
-                    current = self.push_simplified(lits, rule, current);
+                    let Some(next) = self.push_simplified(lits, rule, current) else {
+                        return false;
+                    };
+                    current = next;
                     self.stats.forward_rewrites += 1;
                     continue;
                 }
@@ -985,6 +1033,9 @@ impl<'a> Search<'a> {
                     }
                 }
             }
+        }
+        if self.interrupted.is_some() {
+            return false;
         }
         if self.clauses[current as usize].lits.is_empty() {
             self.found = Some(current);
@@ -1106,7 +1157,7 @@ impl<'a> Search<'a> {
         let (out, _) = self.conclude(&rule, false);
         self.binds.clear();
         self.stats.cleanup_steps += 1;
-        Some(self.push_simplified(out, rule, id))
+        self.push_simplified(out, rule, id)
     }
 
     // ---- Simplification by the active set ----
@@ -1399,7 +1450,7 @@ impl<'a> Search<'a> {
         }
         let (out, _) = self.conclude(&rule, false);
         self.binds.clear();
-        let mut current = self.push_simplified(out, rule, target);
+        let mut current = self.push_simplified(out, rule, target)?;
         let mut made = vec![current];
         while self.clauses[current as usize].lits.len() > size {
             let lits = self.lits(current);
@@ -1425,7 +1476,7 @@ impl<'a> Search<'a> {
             self.bind_rule(&rule);
             let (out, _) = self.conclude(&rule, false);
             self.binds.clear();
-            current = self.push_simplified(out, rule, current);
+            current = self.push_simplified(out, rule, current)?;
             made.push(current);
         }
         if self.clauses[current as usize].lits != expected {
@@ -1446,6 +1497,9 @@ impl<'a> Search<'a> {
         let mut current = id;
         let mut rewrites = 0;
         loop {
+            if self.interrupted.is_some() {
+                return None;
+            }
             if self.options.tautologies && is_tautology(&self.clauses[current as usize].lits) {
                 self.stats.tautologies += 1;
                 self.delete(current);
@@ -1463,7 +1517,7 @@ impl<'a> Search<'a> {
                 && let Some((lits, rule)) = self.rewrite_once(current, None)
             {
                 self.delete(current);
-                current = self.push_simplified(lits, rule, current);
+                current = self.push_simplified(lits, rule, current)?;
                 self.stats.forward_rewrites += 1;
                 rewrites += 1;
                 continue;
@@ -1502,6 +1556,9 @@ impl<'a> Search<'a> {
         }
         if self.options.backward_demodulation && self.is_unit_equation(given) {
             for other in self.rewrite_candidates(given) {
+                if self.interrupted.is_some() {
+                    return false;
+                }
                 if other == given || self.clauses[other as usize].state != State::Active {
                     continue;
                 }
@@ -1855,6 +1912,9 @@ impl<'a> Search<'a> {
 
     /// Checked every 4096 unification attempts inside one given clause's inferences.
     fn tick(&mut self) -> bool {
+        if self.interrupted.is_some() {
+            return true;
+        }
         self.stats.attempts += 1;
         if self.stats.attempts.is_multiple_of(4096)
             && let Some(stop) = self.over_limits()
@@ -2455,6 +2515,9 @@ impl<'a> Search<'a> {
             return Stop::Proof(id);
         }
         loop {
+            if let Some(stop) = self.interrupted {
+                return stop;
+            }
             if self.pick.is_multiple_of(32)
                 && let Some(stop) = self.over_limits()
             {
@@ -2484,6 +2547,9 @@ impl<'a> Search<'a> {
             let Some(given) = self.simplify_given(selected) else {
                 continue;
             };
+            if let Some(stop) = self.interrupted {
+                return stop;
+            }
             if self.clauses[given as usize].lits.is_empty() {
                 return Stop::Proof(given);
             }
@@ -2495,6 +2561,9 @@ impl<'a> Search<'a> {
             self.prepare_filter(given);
             if self.simplify_active(given) {
                 return Stop::Proof(self.found.expect("empty clause"));
+            }
+            if let Some(stop) = self.interrupted {
+                return stop;
             }
             self.clauses[given as usize].state = State::Active;
             self.activations += 1;
@@ -2509,7 +2578,7 @@ impl<'a> Search<'a> {
             if self.generate(given) {
                 return Stop::Proof(self.found.expect("empty clause"));
             }
-            if let Some(stop) = self.interrupted.take() {
+            if let Some(stop) = self.interrupted {
                 return stop;
             }
         }

@@ -2109,25 +2109,20 @@
     "crates/fang-saturation/src/options.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/options.rs",
-      "receipt": "fang-v4-ordering-strategies-source-v1-20261114",
-      "sha256": "624d07ea27c9fad06bd26f5b1c67d4c46708be11e23e7da76025c6bb62d5142b",
+      "receipt": "fang-v4-count-limits-source-v1-20261115",
+      "sha256": "febfa6d1be6284e80b119bb457f8dee2dac3293ce500ff240c7c78546acab706",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
     },
     "crates/fang-saturation/src/producer.rs": {
-      "notice": [
-        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
-      ],
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/producer.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
-      "research": {
-        "path": "crates/fang-saturation/src/producer.rs",
-        "receipt": "search build v12",
-        "sha256": "f561758858c9c5204f7de52716c63f1151e2d98f08d63e30caf7cfb1c6f24c3f"
-      },
-      "sha256": "f561758858c9c5204f7de52716c63f1151e2d98f08d63e30caf7cfb1c6f24c3f"
+      "receipt": "fang-v4-count-limits-source-v1-20261115",
+      "sha256": "7af78c857aa9442a1ddfa1dd9b36e63b2aba07ce8e253386355168cd8a1a643c",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-saturation/src/proof.rs": {
       "notice": [
@@ -2146,8 +2141,8 @@
     "crates/fang-saturation/src/search.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/search.rs",
-      "receipt": "fang-v4-ordering-strategies-source-v1-20261114",
-      "sha256": "03ef2001815e45955d350628db849f97562ae4ad26b50ef94a98733bbd3f5920",
+      "receipt": "fang-v4-count-limits-source-v1-20261115",
+      "sha256": "0af17ed0f6880f56fd7ca1df48ebedccab364ab570b967ccb3dc08c320e302d9",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -5382,8 +5377,9 @@
     "crates/fang-saturation/src/orphan_tests.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/orphan_tests.rs",
-      "receipt": "fang-v4-runtime-search-v1-20261114",
-      "sha256": "350422c991c8c47ccc832c9ab86e9345b6bfb432d8afac7cb351ba90c27ab652"
+      "receipt": "fang-v4-count-limits-source-v1-20261115",
+      "sha256": "92201d557c2c41dce48b6a0f2c118e4c8e5041c19a32316fe8b1507707e8a09b",
+      "notice": []
     },
     "crates/fang-saturation/src/lpo.rs": {
       "origin": "workspace-gate",
@@ -5417,6 +5413,15 @@
       "original": "crates/fang-saturation/src/variable_balance.rs",
       "receipt": "fang-v4-kbo-balance-source-v1-20261114",
       "sha256": "2ea35eb47c681168d2b68c8cf145cd231b71d071bf775f72c76ea6350d528ec7",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
+    },
+    "crates/fang-saturation/src/count_limit_tests.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/count_limit_tests.rs",
+      "receipt": "fang-v4-count-limits-source-v1-20261115",
+      "sha256": "86ecda96456b8d9957be8269bd4b04e86ac133d95937c7865fd6bb41a0417b01",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -5710,6 +5715,10 @@
     "fang-v4-kbo-balance-source-v1-20261114": {
       "manifest": "evidence/verification/fang-v4-kbo-balance-source-v1-20261114/manifest.json",
       "sha256": "6029e70f02af8c09353e9d4e87540da27b85ca7b6c7ac46e94624a723aa9ef24"
+    },
+    "fang-v4-count-limits-source-v1-20261115": {
+      "manifest": "evidence/verification/fang-v4-count-limits-source-v1-20261115/manifest.json",
+      "sha256": "1b919a1fc8f9e914364ea7538dda454e3fa53444f274830b79ef48f1aba6d6e8"
     }
   },
   "schema": "fang-v8-rust-source-map-v1",
