@@ -52,6 +52,8 @@ Low-level producers also accept `--set max_stored=N` and `--set max_generated=N`
 
 Stored clauses keep their literals in fixed-length arrays. On the tested 64-bit target this reduces each clause record from 112 to 104 bytes and releases spare literal-buffer capacity at admission. Installed replays preserve certificate bytes and search counters. Process-memory measurements on two training inputs were mixed at the smaller budget and lower on both at the larger budget; no general speedup is claimed.
 
+Low-level producers support `--set ground_joinability=on` (default off). This bounded shortcut closes congruence over available positive ground unit equations and tries to refute a ground unit disequality. Explanations become ordinary paramodulation and equality-resolution steps, checked by the existing Lean routes. Heuristic work limits fall back to saturation; ordinary search resource limits remain effective. It does not implement general nonground joinability redundancy. The training comparison added no checked tasks; see [V4-SEARCH-PROFILE.md](V4-SEARCH-PROFILE.md).
+
 With candidate indexing enabled, ground-unit subsumption and unit deletion use exact literal keys, with symmetric equality keys. The index preserves activation order and the matching rules. Installed replays passed; the development measurements and unresolved search targets are recorded in [V4-SEARCH-PROFILE.md](V4-SEARCH-PROFILE.md).
 
 Low-level producers can select `--set ordering=lpo` or `--set ordering=kbo`. LPO uses the selected symbol precedence and a limit of 16,384 recursive comparison pairs; exceeding it leaves the terms incomparable. KBO remains the default, and no improvement in whole-search performance is claimed for the optional LPO strategy.

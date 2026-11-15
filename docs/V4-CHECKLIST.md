@@ -6,7 +6,7 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 995 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 1,000 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
@@ -178,7 +178,9 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 
 ## 5. Unit-equality search
 
-- [ ] Implement and test ground joinability.
+- [x] Add an optional bounded ground-congruence shortcut with explanations expanded to existing checked rules. Qualify 45 installed compiled-Lean proofs and documents, 15 negative controls and two corrupted-certificate refusals. The default remains off.
+- [x] Compare the shortcut enabled and disabled on all 256 frozen training inputs at two producer seconds. Both check the same 72 tasks; this experiment adds no coverage. See [V4-SEARCH-PROFILE.md](V4-SEARCH-PROFILE.md).
+- [ ] Implement general ground-joinability redundancy for equations with variables. The ground-congruence shortcut does not complete this item.
 - [ ] Implement and test connectedness guidance.
 - [ ] Compare critical-pair scoring variants on training inputs.
 - [ ] Implement and check goal transformation.

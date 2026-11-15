@@ -42,3 +42,15 @@ The local `block-21000` fixture was found in four historical experiment director
 The local receipts are retained under `experiments/v4-index-profile-v1`, `experiments/v4-ground-unit-index-v1`, `experiments/v4-ground-unit-index-v2`, `experiments/v4-cited-budget-v1`, `experiments/v4-slow-targets-v1` and `experiments/v4-block-21000-v1`. They include frozen commands, source and binary hashes, per-stage output, certificates and documents. These ignored experiment directories are local evidence; they are not release assets.
 
 The longer strategy matrix uses the frozen training set. Validation and held-out outcomes remain unused. The final V4 versus Vampire comparison is still pending.
+
+## Ground-congruence shortcut
+
+The optional `ground_joinability=on` setting closes congruence over available ground unit equations before saturation. A matching negative ground unit equation yields an explanation expanded to the existing paramodulation and equality-resolution certificate rules. The scan admits at most 65,536 records, 16,384 terms and one million work ticks; explanations have at most 4,096 rewrites and position depth 64. Refused heuristic work leaves ordinary saturation available. Deadline and stored-record limits still stop the search.
+
+This component covers existing ground equations. General ground-joinability redundancy concerns every grounding substitution of equations with variables, while connectedness concerns an inference in its parent context. Those remain open work; see [Duarte and Korovin, IJCAR 2022](https://link.springer.com/chapter/10.1007/978-3-031-10769-6_11).
+
+Tests compare 15,488 term pairs against a separate equivalence-relation implementation and replay every successful explanation. The qualified installation passes 1,000 Rust tests (three ignored), 45 compiled-Lean proofs with exported documents, 15 negative controls and two corrupted-certificate refusals. Default-mode regression preserves 122 certificate byte sequences and 34 explicit limit refusals.
+
+The training comparison uses all 256 frozen training inputs, actual producer routes, two producer seconds and a ten-second limit per cell, with 2,048 MiB sampled total RSS. Each input contributes its inputs task or first listed goal, so these are task results, not whole-problem solves. All 512 cells are retained: 144 checked tasks, 322 producer resource refusals, 24 GaveUp outcomes, 18 capture errors and four whole-cell deadlines. Both variants check the same 72 tasks. One successful certificate changes, on ALG172+1; the other 71 are identical. This trial adds no coverage, and its concurrent development timings do not establish a speed improvement. The default remains off. Validation and held-out outcomes were not used.
+
+Local evidence: `experiments/v4-ground-join-qualification-v1/receipt.json`, `experiments/v4-ground-joinability-v1/native-v4/`, and `experiments/v4-ground-join-training/receipt.json`. The last receipt has SHA-256 `f3c4bdd6997defa99c000574ed3c182118d637561b801ef77207ec27d7ee27a5`.

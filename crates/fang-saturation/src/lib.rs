@@ -7,6 +7,7 @@
 
 pub mod cited;
 pub mod clause;
+mod ground_join;
 pub mod index;
 pub mod kbo;
 mod lpo;

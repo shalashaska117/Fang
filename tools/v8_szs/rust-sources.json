@@ -2090,8 +2090,8 @@
     "crates/fang-saturation/src/lib.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/lib.rs",
-      "receipt": "fang-v4-kbo-balance-source-v1-20261114",
-      "sha256": "226488a9c4eb86e48906f86bcda013cb5f9ec3937e8d853b68927fea185da8e6",
+      "receipt": "fang-v4-ground-join-source-v1-20261115",
+      "sha256": "cae99377e67ecf35e9e9f7961b589e7579e84dd98840faf3f320873bf83f45f0",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -2099,8 +2099,8 @@
     "crates/fang-saturation/src/options.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/options.rs",
-      "receipt": "fang-v4-count-limits-source-v1-20261115",
-      "sha256": "febfa6d1be6284e80b119bb457f8dee2dac3293ce500ff240c7c78546acab706",
+      "receipt": "fang-v4-ground-join-source-v1-20261115",
+      "sha256": "a6cf862c4ac419f98ddb0567e66eda52a6176484432b0a614050e611b8a6b58d",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -2126,8 +2126,8 @@
     "crates/fang-saturation/src/search.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/search.rs",
-      "receipt": "fang-v4-ground-unit-index-source-v1-20261115",
-      "sha256": "b9c02a57fb743fe0c0a5fc1c87a7e6bc2ca8c470c99b2a2ebf352644eca714f6",
+      "receipt": "fang-v4-ground-join-source-v1-20261115",
+      "sha256": "071ccfb06d8f5fbcc0972cabb05f9131931cc766345b443126c82fc03a81a273",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -5428,6 +5428,24 @@
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
+    },
+    "crates/fang-saturation/src/ground_join_search.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/ground_join_search.rs",
+      "receipt": "fang-v4-ground-join-source-v1-20261115",
+      "sha256": "2210e59f8ffa1cceccb2d27acc925cf0533cde2b1c5a8c4709c32317a2c78f6a",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
+    },
+    "crates/fang-saturation/src/ground_join.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/ground_join.rs",
+      "receipt": "fang-v4-ground-join-source-v1-20261115",
+      "sha256": "f2172d50eda7c47afa7df62c73c7e3ac209015ca57fa017f1a8dcac512008a73",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     }
   },
   "installed_binaries": {
@@ -5730,6 +5748,10 @@
     "fang-v4-ground-unit-index-source-v1-20261115": {
       "manifest": "evidence/verification/fang-v4-ground-unit-index-source-v1-20261115/manifest.json",
       "sha256": "14da3ecca890f55fb7e023e48b578beefeb745433682ebe997b77e82eba9c1e8"
+    },
+    "fang-v4-ground-join-source-v1-20261115": {
+      "manifest": "evidence/verification/fang-v4-ground-join-source-v1-20261115/manifest.json",
+      "sha256": "0af1fbfbd84a6315d6ba00bba608e7fbc70fa495ceffb41f0acaa6698e7edccf"
     }
   },
   "schema": "fang-v8-rust-source-map-v1",

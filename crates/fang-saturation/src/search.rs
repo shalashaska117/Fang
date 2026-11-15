@@ -20,6 +20,9 @@ use std::collections::{BinaryHeap, HashMap, VecDeque};
 use std::hash::{Hash, Hasher};
 use std::time::Instant;
 
+#[path = "ground_join_search.rs"]
+mod ground_join_search;
+
 #[cfg(test)]
 #[path = "count_limit_tests.rs"]
 mod count_limit_tests;
@@ -111,6 +114,7 @@ pub struct Search<'a> {
     limits: Limits,
     found: Option<Id>,
     interrupted: Option<Stop>,
+    ground_join_tried: bool,
     /// Set by the memory check; the loop prunes passive before the next selection.
     pruning: bool,
     pruned_at_kib: u64,
@@ -326,6 +330,7 @@ impl<'a> Search<'a> {
             limits,
             found: None,
             interrupted: None,
+            ground_join_tried: false,
             pruning: false,
             pruned_at_kib: 0,
             goal_inputs: goals.map(<[bool]>::to_vec).unwrap_or_default(),
@@ -2598,6 +2603,16 @@ impl<'a> Search<'a> {
             if self.pruning {
                 self.pruning = false;
                 self.prune_passive();
+            }
+            if self.options.ground_joinability && !self.ground_join_tried {
+                self.ground_join_tried = true;
+                if let Some(empty) = self.ground_join_inputs() {
+                    self.found = Some(empty);
+                    return Stop::Proof(empty);
+                }
+                if let Some(stop) = self.interrupted {
+                    return stop;
+                }
             }
             let Some(selected) = self.select() else {
                 return Stop::Saturated;

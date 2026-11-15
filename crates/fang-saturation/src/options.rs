@@ -48,6 +48,9 @@ pub struct Options {
     /// Rewrite new clauses before they enter passive, not only when selected.
     pub demodulate_new: bool,
     pub equality_factoring: bool,
+    /// Bounded ground congruence closure before the first given clause, expanded
+    /// to ordinary paramodulation and equality-resolution proof records.
+    pub ground_joinability: bool,
     pub max_weight: Option<u32>,
     pub max_depth: u32,
     pub max_literals: usize,
@@ -128,6 +131,7 @@ impl Options {
             backward_demodulation: false,
             demodulate_new: false,
             equality_factoring: false,
+            ground_joinability: false,
             max_weight: None,
             max_depth: 64,
             max_literals: 256,
@@ -316,6 +320,7 @@ impl Options {
             "backward_demodulation" => self.backward_demodulation = flag()?,
             "demodulate_new" => self.demodulate_new = flag()?,
             "equality_factoring" => self.equality_factoring = flag()?,
+            "ground_joinability" => self.ground_joinability = flag()?,
             "max_weight" => self.max_weight = Some(number()? as u32),
             "max_depth" => self.max_depth = (number()? as u32).min(64),
             "max_literals" => self.max_literals = (number()? as usize).min(256),
