@@ -14,7 +14,7 @@ The [version 4 work plan](V4-PLAN.md) lists the planned changes, their validatio
 
 - Version 5: FNT and TFN, including typed first-order input without arithmetic.
 - Version 6: THF and SLH, for higher-order reasoning.
-- Version 7: TFA, typed first-order arithmetic.
+- Version 7: TFA, typed first-order arithmetic, and THN, typed higher-order non-theorems. THN includes the historical TNN category without equality and TNQ category with equality.
 - Later work: SMT-LIB, arrays, datatypes and induction.
 
 These are plans, not supported features. External proof checking through PRV/ProoVer is outside this roadmap. Unsupported input continues to receive an explicit refusal.
