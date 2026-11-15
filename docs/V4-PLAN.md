@@ -37,7 +37,7 @@ The array checker source integration and cited exporter components have independ
 
 - Items 7 and 11: exact ground-unit retrieval is integrated and qualified after profiling the six retained slow targets. Twenty fixed-work comparisons preserve inference counters and certificate bytes; four timed pairs are excluded. The index reduces subsumption calls substantially on the CSR cases but adds no solves in the recorded full producer follow-ups. The original block-21000 fixture already produces a checked finite model and complete output. See [V4-SEARCH-PROFILE.md](V4-SEARCH-PROFILE.md).
 
-- Item 9: an isolated equality-free EPR producer now grounds clauses, records CDCL learned clauses, reconstructs resolution proofs and transports finite models. Constant-free inputs are included. Fourteen Rust tests and 17 original-input compiled-Lean checks with complete documents pass. Equality, signed/include routes and installed strategy integration remain open; this is not yet a product capability.
+- Item 9: an isolated EPR producer now grounds clauses, records CDCL learned clauses, reconstructs resolution proofs and transports finite models. It includes constant-free inputs, equality refinement and quotient models. The latest prototype passes 18 Rust tests, 24 original-input compiled-Lean proof checks, ten model checks and all 34 documents. Fifteen Lean theorem audits cover equality witnesses, acceptance and document correspondence. The new equality envelope needs independent acceptance review; kernel-mode instances, signed/include routes and installed strategy integration remain open. This is not yet a product capability.
 
 ## Search
 
