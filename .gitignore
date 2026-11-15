@@ -30,6 +30,7 @@ __pycache__/
 !/docs/ROADMAP.md
 !/docs/V4-PLAN.md
 !/docs/V4-CHECKLIST.md
+!/docs/V4-SEARCH-PROFILE.md
 !/docs/CAPABILITIES.md
 /crates/**/*.md
 /lean/README.md

@@ -7,7 +7,7 @@ use crate::clause::{
     Atom, ClauseRec, Eligibility, Filter, Id, Lit, Pos, Root, Rule, State, measure, positions,
     predicate_head, same_atom_symmetric, subterm,
 };
-use crate::index::{Index, Key, gather};
+use crate::index::{Index, Key, gather, ground_unit_key};
 use crate::kbo::{Cmp, Order};
 use crate::options::{Options, Selection};
 use crate::stats::Stats;
@@ -23,6 +23,9 @@ use std::time::Instant;
 #[cfg(test)]
 #[path = "count_limit_tests.rs"]
 mod count_limit_tests;
+#[cfg(test)]
+#[path = "ground_unit_index_tests.rs"]
+mod ground_unit_index_tests;
 #[cfg(test)]
 #[path = "orphan_tests.rs"]
 mod orphan_tests;
@@ -1382,6 +1385,16 @@ impl<'a> Search<'a> {
                 keys.iter().map(|&(symbol, positive)| (symbol, !positive)),
                 &mut found,
             );
+            gather(
+                &self.index.ground_units,
+                c.iter().map(|literal| {
+                    ground_unit_key(Lit {
+                        positive: !literal.positive,
+                        atom: literal.atom,
+                    })
+                }),
+                &mut found,
+            );
             self.in_activation_order(found)
         } else {
             self.active.clone()
@@ -2263,7 +2276,32 @@ impl<'a> Search<'a> {
         for &key in &keys {
             index.subsume_all.entry(key).or_default().push(id);
         }
-        if let Some(&rarest) = keys
+        let record = &self.clauses[id as usize];
+        if record.lits.len() > 1 {
+            for &literal in record.lits.iter() {
+                let ground = match literal.atom {
+                    Atom::Pred(term) => self.bank.ground(term),
+                    Atom::Eq(left, right) => self.bank.ground(left) && self.bank.ground(right),
+                };
+                if ground {
+                    let list = index
+                        .ground_in_nonunits
+                        .entry(ground_unit_key(literal))
+                        .or_default();
+                    // Repeated literals and reversed equalities share one posting.
+                    if list.last() != Some(&id) {
+                        list.push(id);
+                    }
+                }
+            }
+        }
+        if record.lits.len() == 1 && record.vars == 0 {
+            index
+                .ground_units
+                .entry(ground_unit_key(record.lits[0]))
+                .or_default()
+                .push(id);
+        } else if let Some(&rarest) = keys
             .iter()
             .min_by_key(|key| (index.subsume_all.get(*key).map_or(0, Vec::len), **key))
         {
@@ -2321,6 +2359,15 @@ impl<'a> Search<'a> {
         }
         let mut found = Vec::new();
         gather(&self.index.subsume_one, self.keys(special), &mut found);
+        gather(
+            &self.index.ground_units,
+            self.clauses[special as usize]
+                .lits
+                .iter()
+                .copied()
+                .map(ground_unit_key),
+            &mut found,
+        );
         self.in_activation_order(found)
     }
 
@@ -2328,6 +2375,14 @@ impl<'a> Search<'a> {
     fn subsumed_candidates(&self, general: Id) -> Vec<Id> {
         if !self.options.index {
             return self.active.clone();
+        }
+        let record = &self.clauses[general as usize];
+        if record.lits.len() == 1 && record.vars == 0 {
+            let key = ground_unit_key(record.lits[0]);
+            let mut found = Vec::new();
+            gather(&self.index.ground_units, [key], &mut found);
+            gather(&self.index.ground_in_nonunits, [key], &mut found);
+            return self.in_activation_order(found);
         }
         let shortest = self
             .keys(general)

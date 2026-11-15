@@ -6,12 +6,14 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 992 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 995 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
 4. Measure longer slices before selecting schedule participation for the qualified KBO weights and literal-selection policies. The [first full training matrix](../benchmarks/v4-training/README.md) contains 2,048 audited cells across all 256 frozen training inputs and eight strategies, using the launcher producer routes. The baseline checked 72 tasks and the union checked 74. These are single-task outcomes with two-second producer budgets, not whole-problem solves or controlled performance measurements. Defaults remain unchanged; validation and held-out outcomes are unused.
+
+The ground-unit index is integrated and qualified. The longer training matrix remains tied to its frozen pre-index installation; its results must retain that source identity when selecting later experiments.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -195,10 +197,12 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 
 ## 7. Indexes
 
-- [ ] Profile retrieval, subsumption and rewriting on retained slow inputs.
-- [ ] Choose an index change supported by those measurements.
-- [ ] Compare its query results with a reference implementation.
-- [ ] Measure whole-search effects before integration.
+The [search profile](V4-SEARCH-PROFILE.md) records the measurements and remaining failures.
+
+- [x] Profile retrieval, subsumption and rewriting on the six retained development inputs at 400 and 4,000 given clauses.
+- [x] Add exact ground-unit keys for forward/backward subsumption and unit deletion. On CSR114+13 and CSR116+2, the heaviest-negative prefix drops from 26,047,266 to 263,099 subsumption calls with identical inference counters.
+- [x] Compare both query directions on 210 clause shapes and 4,900 exact unit-deletion pairs against linear search, including deleted entries and activation order.
+- [x] Compare 20 fixed-work before/after pairs with identical search counters and certificate bytes; exclude four timed pairs. The six-target full producer follow-up adds no solves. Qualify the installed index with 995 Rust tests, 122 compiled-Lean replays, 34 explicit refusals and the installed launcher controls. Timing observations remain development diagnostics.
 
 ## 9. Ground instantiation
 
@@ -218,8 +222,8 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 
 ## 11. Remaining search targets
 
-- [ ] Profile CSR114+13, CSR116+2, HWV116+1, COM146+1, COM123+1 and CSR239+1 with retained commands.
-- [ ] Profile the local block-21000 fixture.
+- [x] Profile the six named inputs with retained launcher commands and search instrumentation. COM146+1 produces a checked complete document; the other five remain unresolved under the recorded budgets.
+- [x] Recover the original block-21000 bytes from four matching historical copies. The preceding qualified installation returns Satisfiable with a checked one-element model and a complete document.
 - [ ] Implement fixes for the measured failure causes.
 - [ ] Verify each recovered result and record unresolved cases.
 

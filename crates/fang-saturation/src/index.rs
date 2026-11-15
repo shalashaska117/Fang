@@ -4,6 +4,7 @@
 //! same order with the indexes on or off. Deleted clauses stay in the lists and are skipped when read.
 
 use crate::clause::Id;
+use crate::clause::{Atom, Lit};
 use std::collections::HashMap;
 
 /// A literal's predicate symbol (u32::MAX for an equation) and sign.
@@ -21,12 +22,25 @@ pub struct Index {
     pub resolution: HashMap<Key, Vec<Id>>,
     /// For forward subsumption: each clause under one of its keys, the one with the shortest list.
     pub subsume_one: HashMap<Key, Vec<Id>>,
+    /// Ground units match only an identical atom, up to equation symmetry.
+    /// They are omitted from subsume_one, including its unit-deletion queries.
+    pub ground_units: HashMap<Lit, Vec<Id>>,
+    /// Non-unit clauses containing this ground literal, for backward subsumption
+    /// by a ground unit. Unit occurrences are already in ground_units.
+    pub ground_in_nonunits: HashMap<Lit, Vec<Id>>,
     /// For backward subsumption: each clause under every key of its literals.
     pub subsume_all: HashMap<Key, Vec<Id>>,
     /// Top symbol of a unit equation side to the unit and whether that side is the right one.
     pub unit_from: HashMap<u32, Vec<(Id, bool)>>,
     /// Top symbol to the clauses with a subterm of that symbol, for backward demodulation.
     pub symbols: HashMap<u32, Vec<Id>>,
+}
+
+pub fn ground_unit_key(mut literal: Lit) -> Lit {
+    if let Atom::Eq(left, right) = literal.atom {
+        literal.atom = Atom::Eq(left.min(right), left.max(right));
+    }
+    literal
 }
 
 /// The lists named by `keys` in `map`, joined.
