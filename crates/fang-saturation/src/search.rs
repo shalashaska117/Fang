@@ -22,6 +22,8 @@ use std::time::Instant;
 
 #[path = "ground_join_search.rs"]
 mod ground_join_search;
+#[path = "unit_join_search.rs"]
+mod unit_join_search;
 
 #[cfg(test)]
 #[path = "count_limit_tests.rs"]
@@ -115,6 +117,7 @@ pub struct Search<'a> {
     found: Option<Id>,
     interrupted: Option<Stop>,
     ground_join_tried: bool,
+    unit_equality_problem: bool,
     /// Set by the memory check; the loop prunes passive before the next selection.
     pruning: bool,
     pruned_at_kib: u64,
@@ -331,6 +334,13 @@ impl<'a> Search<'a> {
             found: None,
             interrupted: None,
             ground_join_tried: false,
+            unit_equality_problem: input.iter().all(|clause| {
+                clause.len() == 1
+                    && matches!(
+                        clause[0].atom,
+                        fang_equality_inference_core::Atom::Equal(..)
+                    )
+            }),
             pruning: false,
             pruned_at_kib: 0,
             goal_inputs: goals.map(<[bool]>::to_vec).unwrap_or_default(),
@@ -521,7 +531,12 @@ impl<'a> Search<'a> {
     fn selection_weight(&self, id: Id) -> u32 {
         let record = &self.clauses[id as usize];
         let options = self.options;
-        let mut weight = record.weight as u64;
+        let mut weight = crate::critical_score::weight(
+            &self.bank,
+            &record.lits,
+            record.weight,
+            options.critical_pair_score,
+        );
         if options.goal_symbols && !self.goal_symbol_set.is_empty() {
             let mut goal_occurrences = 0u64;
             for literal in &record.lits {
@@ -530,12 +545,12 @@ impl<'a> Search<'a> {
                     goal_occurrences += self.count_goal_symbols(term);
                 }
             }
-            weight = (2 * weight).saturating_sub(goal_occurrences);
+            weight = weight.saturating_mul(2).saturating_sub(goal_occurrences);
         }
         weight += options.literal_weight as u64 * record.lits.len() as u64
             + options.depth_weight as u64 * record.depth as u64;
         if !record.goal && !self.goal_inputs.is_empty() {
-            weight = weight * options.nongoal_weight as u64 / 100;
+            weight = weight.saturating_mul(options.nongoal_weight as u64) / 100;
         }
         weight.min(u32::MAX as u64) as u32
     }
@@ -1044,6 +1059,14 @@ impl<'a> Search<'a> {
                     }
                 }
             }
+        }
+        if self.interrupted.is_some() {
+            return false;
+        }
+        if self.unit_join_redundant(id, current) {
+            self.clauses[current as usize].state = State::Deleted;
+            self.stats.unit_join_redundant += 1;
+            return false;
         }
         if self.interrupted.is_some() {
             return false;

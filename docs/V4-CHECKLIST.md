@@ -6,14 +6,14 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 1,000 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 1,009 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
 4. Measure longer slices before selecting schedule participation for the qualified KBO weights and literal-selection policies. The [first full training matrix](../benchmarks/v4-training/README.md) contains 2,048 audited cells across all 256 frozen training inputs and eight strategies, using the launcher producer routes. The baseline checked 72 tasks and the union checked 74. These are single-task outcomes with two-second producer budgets, not whole-problem solves or controlled performance measurements. Defaults remain unchanged; validation and held-out outcomes are unused.
 
-The ground-unit index is integrated and qualified. The longer training matrix remains tied to its frozen pre-index installation; its results must retain that source identity when selecting later experiments.
+The ground-unit index is integrated and qualified. The longer training matrix is complete and audited: 1,536 cells, with 80 tasks checked by at least one variant. Baseline and lookahead each check 77 tasks at 15 producer seconds; LPO checks 73. This matrix uses the frozen pre-index installation at `40f995a`, so it does not measure the later ground-unit index. The final schedule remains unselected.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -180,9 +180,12 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 
 - [x] Add an optional bounded ground-congruence shortcut with explanations expanded to existing checked rules. Qualify 45 installed compiled-Lean proofs and documents, 15 negative controls and two corrupted-certificate refusals. The default remains off.
 - [x] Compare the shortcut enabled and disabled on all 256 frozen training inputs at two producer seconds. Both check the same 72 tasks; this experiment adds no coverage. See [V4-SEARCH-PROFILE.md](V4-SEARCH-PROFILE.md).
-- [ ] Implement general ground-joinability redundancy for equations with variables. The ground-congruence shortcut does not complete this item.
+- [x] Implement and qualify bounded ground-joinability redundancy for equations with variables. It checks every total preorder of at most four variables and is restricted to positive unit critical pairs in pure UEQ problems with uniform KBO. Unknown or refused work retains the candidate; no formal completeness proof is claimed.
+- [x] Compare the unit-equation redundancy option on all 256 frozen training inputs. Its 512-cell trial checks 71 tasks with the heuristic and 72 without it. The integrated option remains off by default.
 - [ ] Implement and test connectedness guidance.
-- [ ] Compare critical-pair scoring variants on training inputs.
+- [x] Test isolated inference-local connectedness, including 5,120 bounded graph comparisons, ground-substitution checks, 108 compiled proofs/documents and 36 satisfiable controls. The source remains outside the product; training and installed qualification are pending.
+- [x] Compare standard, max-side and shared-max-side scores on all 256 training inputs: 768 audited cells, with 72, 71 and 71 checked tasks respectively, and union 74. A 30-cell follow-up covers all five changed tasks at two and 15 seconds; all 17 positive outcomes also export complete documents. These isolated results do not change the default score.
+- [x] Integrate and qualify the optional scores together with unit-equation redundancy: 1,009 installer tests, 54 new installed compiled proofs/documents, 18 satisfiable controls, 122 default certificate replays and 34 explicit limit refusals. Defaults remain unchanged.
 - [ ] Implement and check goal transformation.
 - [ ] Qualify the chosen strategy variants and their certificates.
 

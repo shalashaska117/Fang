@@ -51,6 +51,8 @@ pub struct Options {
     /// Bounded ground congruence closure before the first given clause, expanded
     /// to ordinary paramodulation and equality-resolution proof records.
     pub ground_joinability: bool,
+    /// Ground-joinability redundancy for generated positive unit equations in UEQ.
+    pub unit_ground_joinability: bool,
     pub max_weight: Option<u32>,
     pub max_depth: u32,
     pub max_literals: usize,
@@ -88,6 +90,7 @@ pub struct Options {
     pub literal_weight: u32,
     /// Added to the selection weight per level of the deepest term.
     pub depth_weight: u32,
+    pub critical_pair_score: crate::critical_score::Mode,
     /// Record the first given clauses for `--trace` (debugging only).
     pub trace_given: u32,
     /// Destructive equality resolution among the cleanup steps.
@@ -132,6 +135,7 @@ impl Options {
             demodulate_new: false,
             equality_factoring: false,
             ground_joinability: false,
+            unit_ground_joinability: false,
             max_weight: None,
             max_depth: 64,
             max_literals: 256,
@@ -153,6 +157,7 @@ impl Options {
             goal_symbols: false,
             literal_weight: 1,
             depth_weight: 0,
+            critical_pair_score: crate::critical_score::Mode::Standard,
             trace_given: 0,
             der: false,
             simplify_new: false,
@@ -321,6 +326,7 @@ impl Options {
             "demodulate_new" => self.demodulate_new = flag()?,
             "equality_factoring" => self.equality_factoring = flag()?,
             "ground_joinability" => self.ground_joinability = flag()?,
+            "unit_ground_joinability" => self.unit_ground_joinability = flag()?,
             "max_weight" => self.max_weight = Some(number()? as u32),
             "max_depth" => self.max_depth = (number()? as u32).min(64),
             "max_literals" => self.max_literals = (number()? as usize).min(256),
@@ -354,6 +360,9 @@ impl Options {
             "goal_symbols" => self.goal_symbols = flag()?,
             "literal_weight" => self.literal_weight = number()? as u32,
             "depth_weight" => self.depth_weight = number()? as u32,
+            "critical_pair_score" => {
+                self.critical_pair_score = crate::critical_score::Mode::parse(value)?
+            }
             "trace_given" => self.trace_given = number()? as u32,
             "der" => self.der = flag()?,
             "simplify_new" => self.simplify_new = flag()?,

@@ -84,6 +84,10 @@ impl Order {
         self
     }
 
+    pub(crate) fn symbol_ranks(&self) -> &[u32] {
+        &self.rank
+    }
+
     pub fn compare(&self, bank: &Bank, s: TermId, t: TermId) -> Cmp {
         if self.kind == OrderKind::Lpo {
             return crate::lpo::compare(bank, s, t, &self.rank);

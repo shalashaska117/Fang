@@ -7,6 +7,7 @@
 
 pub mod cited;
 pub mod clause;
+pub mod critical_score;
 mod ground_join;
 pub mod index;
 pub mod kbo;
@@ -19,6 +20,7 @@ pub mod sine;
 pub mod stats;
 pub mod subst;
 pub mod term;
+mod unit_join;
 mod variable_balance;
 pub mod weights;
 

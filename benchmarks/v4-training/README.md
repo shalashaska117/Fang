@@ -15,7 +15,7 @@ Each cell attempts one task: an inputs refutation if the checker lists no conjec
 | selection=lightest-negative | 67 | 1 |
 | selection=lookahead | 73 | 1 |
 
-At least one strategy checked 74 tasks. The default schedule is unchanged. Longer and unequal slices still need training measurements before schedule selection.
+At least one strategy checked 74 tasks. The default schedule is unchanged. The later 1,536-cell comparison at five and 15 seconds, plus the critical-pair score experiments, are reported in [V4-SEARCH-PROFILE.md](../../docs/V4-SEARCH-PROFILE.md). Those experiments retain their own source identities; schedule selection remains pending.
 
 ## Conditions
 

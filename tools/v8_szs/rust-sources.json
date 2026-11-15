@@ -2081,8 +2081,8 @@
     "crates/fang-saturation/src/kbo.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/kbo.rs",
-      "receipt": "fang-v4-kbo-balance-source-v1-20261114",
-      "sha256": "0a3e40f5b1cd03e080c3689677e5d069563251d46ab8b2f13c476eb3e68580b6",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "0425d177ae300b6309f6133a482224e827891838ae7dd7680e71ad4acf4e2660",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -2090,8 +2090,8 @@
     "crates/fang-saturation/src/lib.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/lib.rs",
-      "receipt": "fang-v4-ground-join-source-v1-20261115",
-      "sha256": "cae99377e67ecf35e9e9f7961b589e7579e84dd98840faf3f320873bf83f45f0",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "d145fe860298486cca70cfcf7f8cd609fd31b4739381afc6815ca1e011952b46",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -2099,8 +2099,8 @@
     "crates/fang-saturation/src/options.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/options.rs",
-      "receipt": "fang-v4-ground-join-source-v1-20261115",
-      "sha256": "a6cf862c4ac419f98ddb0567e66eda52a6176484432b0a614050e611b8a6b58d",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "bf479825ef3e03618f96bbc42da8e33f4e1072afa7134f2496ceca0fd5bc2cb0",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -2126,8 +2126,8 @@
     "crates/fang-saturation/src/search.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/search.rs",
-      "receipt": "fang-v4-ground-join-source-v1-20261115",
-      "sha256": "071ccfb06d8f5fbcc0972cabb05f9131931cc766345b443126c82fc03a81a273",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "6ef7b39885bbf7fe81ce149a77732703b5f203459711f9620881b2a6a97fb194",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -2149,8 +2149,8 @@
     "crates/fang-saturation/src/stats.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/stats.rs",
-      "receipt": "fang-v4-runtime-search-v1-20261114",
-      "sha256": "429c2cf0d4c67dfb84ef3966cd473a111e1d4efc252238562c08e33cc98d6ea0",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "9194231f2df243b8c4a53ba62790b0ffaeb1eb32ed3cdb21f736938e9df7158a",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -5446,6 +5446,33 @@
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
+    },
+    "crates/fang-saturation/src/critical_score.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/critical_score.rs",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "8376f16a0f2c0f0c0e731708ca4ba17fe1ffc8784dc98ad027f127cfcae45769",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
+    },
+    "crates/fang-saturation/src/unit_join_search.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/unit_join_search.rs",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "9437e6c859870ca093bcf4f02fe2f4257dd453b95a9209e1d96871c6c2096fea",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
+    },
+    "crates/fang-saturation/src/unit_join.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/unit_join.rs",
+      "receipt": "fang-v4-ueq-source-v1-20261115",
+      "sha256": "8912f5c2499e96fbc226bd4ea918f3ccdb01a4d9018b74f839e57fef53e6a294",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     }
   },
   "installed_binaries": {
@@ -5752,6 +5779,10 @@
     "fang-v4-ground-join-source-v1-20261115": {
       "manifest": "evidence/verification/fang-v4-ground-join-source-v1-20261115/manifest.json",
       "sha256": "0af1fbfbd84a6315d6ba00bba608e7fbc70fa495ceffb41f0acaa6698e7edccf"
+    },
+    "fang-v4-ueq-source-v1-20261115": {
+      "manifest": "evidence/verification/fang-v4-ueq-source-v1-20261115/manifest.json",
+      "sha256": "2a01bf9c717f05f4739e73fa7ffeddb78b026b311b14e0d34f0b652d78adb3f9"
     }
   },
   "schema": "fang-v8-rust-source-map-v1",
