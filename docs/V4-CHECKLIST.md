@@ -6,7 +6,7 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 1,009 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 1,022 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The latest goal-transformation follow-up passes 164 installed proof/document replays, 61 satisfiable controls, two corrupted-certificate refusals and two depth refusals. Default regression preserves 122 certificate byte streams and 34 limit refusals. The earlier KBO variable-count qualification passed 366 byte-identical installed replays across KBO and LPO; the passive-queue qualification passed 62 replays and its exhaustion, limit and orphan-deletion controls.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
@@ -218,9 +218,14 @@ The [search profile](V4-SEARCH-PROFILE.md) records the measurements and remainin
 
 - [ ] Define the effectively propositional input path and grounding limits.
 - [x] Test an isolated bounded grounder for equality-free, function-free clauses with original constants: three Rust controls, 256 two-element semantic comparisons, sparse variable IDs and exact count boundaries. Equality and constant-free signatures remain unsupported in this prototype; it has no SAT or acceptance path yet.
-- [x] Test isolated reconstruction of propositional learned clauses by reverse unit propagation. Six Rust tests include all 256 subsets of the eight non-tautological clauses on two variables, malformed claims and exact resource boundaries. CDCL integration and replay over original first-order inputs remain open.
-- [ ] Implement ground instantiation and SAT search.
-- [ ] Connect UNSAT and model results to checked original-input results.
+- [x] Test isolated reconstruction of propositional learned clauses by reverse unit propagation. Six Rust tests include all 256 subsets of the eight non-tautological clauses on two variables, malformed claims and exact resource boundaries.
+- [x] Connect the isolated grounder to CDCL with bounded learned-clause recording and RUP reconstruction. Eleven Rust tests include 4,096 three-variable formulas checked against truth tables, learned clauses on pigeonhole problems and trace-budget exhaustion.
+- [x] Reconstruct original-input proofs with explicit resolution and factoring. The first transport passes 13 Rust tests, seven compiled-Lean checks and seven complete documents, including first-order variables, FOF preprocessing and pigeonhole refutations.
+- [x] Transport satisfying assignments to existing finite-model certificates and evaluate original formulas before emission. Four models, including an existential and quoted names, pass the unchanged Lean checker and exporter; the combined prototype passes 14 Rust tests.
+- [x] Extend the isolated path to constant-free signatures. Refutations use an arbitrary variable and existing inference rules; models use a one-element domain. The combined controls pass 11 original-input proofs, six models, all 17 documents, two unsupported-input refusals and four invalid-candidate refusals. The receipt is `experiments/v4-epr-constant-free-v1/receipt.json`, SHA-256 `66612351398d3d641918d5449704c22c548b98d736ab8d2c18b31c6ceeb84fc0`.
+- [ ] Integrate ground instantiation and SAT search in the product.
+- [ ] Connect both result kinds to the installed original-input checking routes.
+- [ ] Complete equality handling, signed/include routes and strategy integration; the controls above cover an isolated equality-free producer.
 - [ ] Add refusal and corrupted-certificate controls.
 - [ ] Review and qualify the installed path.
 
