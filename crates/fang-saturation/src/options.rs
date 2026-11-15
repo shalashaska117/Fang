@@ -51,8 +51,10 @@ pub struct Options {
     /// Bounded ground congruence closure before the first given clause, expanded
     /// to ordinary paramodulation and equality-resolution proof records.
     pub ground_joinability: bool,
+    pub goal_transform: bool,
     /// Ground-joinability redundancy for generated positive unit equations in UEQ.
     pub unit_ground_joinability: bool,
+    pub connectedness: bool,
     pub max_weight: Option<u32>,
     pub max_depth: u32,
     pub max_literals: usize,
@@ -135,7 +137,9 @@ impl Options {
             demodulate_new: false,
             equality_factoring: false,
             ground_joinability: false,
+            goal_transform: false,
             unit_ground_joinability: false,
+            connectedness: false,
             max_weight: None,
             max_depth: 64,
             max_literals: 256,
@@ -326,7 +330,9 @@ impl Options {
             "demodulate_new" => self.demodulate_new = flag()?,
             "equality_factoring" => self.equality_factoring = flag()?,
             "ground_joinability" => self.ground_joinability = flag()?,
+            "goal_transform" => self.goal_transform = flag()?,
             "unit_ground_joinability" => self.unit_ground_joinability = flag()?,
+            "connectedness" => self.connectedness = flag()?,
             "max_weight" => self.max_weight = Some(number()? as u32),
             "max_depth" => self.max_depth = (number()? as u32).min(64),
             "max_literals" => self.max_literals = (number()? as usize).min(256),

@@ -3,6 +3,8 @@
 //! Each total variable preorder is checked. Variables equated by a case are
 //! identified; the remaining variable ranks constrain a conservative uniform KBO.
 //! A refused or unjoined case keeps the equation available for ordinary search.
+#[path = "connected.rs"]
+pub(crate) mod connected;
 use crate::term::{Bank, Head, TermId};
 use std::cmp::Ordering;
 use std::collections::{BTreeSet, HashMap};

@@ -19,6 +19,9 @@ pub struct Stats {
     pub tautologies: u64,
     pub cleanup_steps: u64,
     pub forward_subsumed: u64,
+    pub connected_attempts: u64,
+    pub connected_redundant: u64,
+    pub connected_refused: u64,
     pub unit_join_attempts: u64,
     pub unit_join_redundant: u64,
     pub unit_join_refused: u64,
@@ -44,6 +47,7 @@ pub struct Stats {
     pub proof_nodes: u64,
     pub proof_rules: Vec<(String, u64)>,
     pub unchecked_nodes: u64,
+    pub goal_definition_inputs: u64,
 }
 
 /// A JSON object written field by field.
@@ -124,7 +128,7 @@ impl Default for Json {
 impl Stats {
     pub fn json(&self) -> String {
         let mut json = Json::new();
-        let fields: [(&str, u64); 38] = [
+        let fields: [(&str, u64); 42] = [
             ("input_clauses", self.input_clauses),
             ("inputs_dropped", self.inputs_dropped),
             ("inputs_unselected", self.inputs_unselected),
@@ -138,6 +142,9 @@ impl Stats {
             ("tautologies", self.tautologies),
             ("cleanup_steps", self.cleanup_steps),
             ("forward_subsumed", self.forward_subsumed),
+            ("connected_attempts", self.connected_attempts),
+            ("connected_redundant", self.connected_redundant),
+            ("connected_refused", self.connected_refused),
             ("unit_join_attempts", self.unit_join_attempts),
             ("unit_join_redundant", self.unit_join_redundant),
             ("unit_join_refused", self.unit_join_refused),
@@ -162,6 +169,7 @@ impl Stats {
             ("extract_ms", self.extract_ms),
             ("proof_nodes", self.proof_nodes),
             ("unchecked_nodes", self.unchecked_nodes),
+            ("goal_definition_inputs", self.goal_definition_inputs),
             ("rules_in_proof", self.proof_rules.len() as u64),
         ];
         for (key, value) in fields {

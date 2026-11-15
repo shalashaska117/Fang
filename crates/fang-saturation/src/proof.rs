@@ -9,6 +9,8 @@ use fang::syntax::Term;
 use fang_equality_inference_core::{self as inference, Clause, Literal, Substitution, checked};
 use fang_equality_paramodulation_core as para;
 use std::fmt::Write;
+#[path = "goal_expand.rs"]
+mod goal_expand;
 
 /// The certificate cap of the final limits record (`certificateLimit`, 5,081,233 bytes, from certificate measurement
 /// v3), which the first install round ships. The header counts toward it, since the text written here starts with it,
@@ -20,10 +22,14 @@ pub const HEADER: &str =
 
 #[derive(Debug)]
 pub enum ProofError {
+    TransformLimit,
+    TransformUnsupported,
     /// The refutation uses equality factoring, which the version-8 format cannot state.
     NeedsEqualityFactoring,
     /// The certificate would exceed its byte cap.
-    Bytes { needed: usize },
+    Bytes {
+        needed: usize,
+    },
     /// A recomputed step differs from the search, or the reconstruction disagrees: a producer bug.
     Internal(&'static str),
 }
@@ -35,6 +41,8 @@ pub struct Certificate {
     /// Steps whose replay hit a reconstruction resource bound (term depth 64 and the like) and were written
     /// without that replay.
     pub unchecked: u64,
+    /// Auxiliary definition inputs erased during goal-proof expansion.
+    pub goal_definition_inputs: usize,
     /// Indices of the prepared input clauses the refutation uses, ascending.
     pub inputs: Vec<usize>,
 }
@@ -477,6 +485,7 @@ impl Search<'_> {
             nodes: order.len(),
             by_rule,
             unchecked,
+            goal_definition_inputs: 0,
             inputs,
         })
     }

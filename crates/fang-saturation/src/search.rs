@@ -20,6 +20,8 @@ use std::collections::{BinaryHeap, HashMap, VecDeque};
 use std::hash::{Hash, Hasher};
 use std::time::Instant;
 
+#[path = "connected_search.rs"]
+mod connected_search;
 #[path = "ground_join_search.rs"]
 mod ground_join_search;
 #[path = "unit_join_search.rs"]
@@ -169,7 +171,7 @@ fn is_tautology(lits: &[Lit]) -> bool {
 }
 
 /// Validate the prepared clauses against the arity tables in the order the second release's entry checks them.
-fn validate(
+pub(crate) fn validate(
     clauses: &[fang_equality_inference_core::Clause],
     functions: &[usize],
     predicates: &[usize],
@@ -979,6 +981,14 @@ impl<'a> Search<'a> {
     }
 
     fn admit(&mut self, id: Id) -> bool {
+        if self.interrupted.is_some() {
+            return false;
+        }
+        if self.connected_redundant(id) {
+            self.clauses[id as usize].state = State::Deleted;
+            self.stats.connected_redundant += 1;
+            return false;
+        }
         if self.interrupted.is_some() {
             return false;
         }

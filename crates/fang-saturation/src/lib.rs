@@ -8,6 +8,7 @@
 pub mod cited;
 pub mod clause;
 pub mod critical_score;
+mod goal_transform;
 mod ground_join;
 pub mod index;
 pub mod kbo;

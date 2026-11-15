@@ -182,11 +182,15 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 - [x] Compare the shortcut enabled and disabled on all 256 frozen training inputs at two producer seconds. Both check the same 72 tasks; this experiment adds no coverage. See [V4-SEARCH-PROFILE.md](V4-SEARCH-PROFILE.md).
 - [x] Implement and qualify bounded ground-joinability redundancy for equations with variables. It checks every total preorder of at most four variables and is restricted to positive unit critical pairs in pure UEQ problems with uniform KBO. Unknown or refused work retains the candidate; no formal completeness proof is claimed.
 - [x] Compare the unit-equation redundancy option on all 256 frozen training inputs. Its 512-cell trial checks 71 tasks with the heuristic and 72 without it. The integrated option remains off by default.
-- [ ] Implement and test connectedness guidance.
-- [x] Test isolated inference-local connectedness, including 5,120 bounded graph comparisons, ground-substitution checks, 108 compiled proofs/documents and 36 satisfiable controls. The source remains outside the product; training and installed qualification are pending.
+- [x] Implement and test inference-local connectedness, including 5,120 bounded graph comparisons, ground-substitution checks, 108 compiled proofs/documents and 36 satisfiable controls.
+- [x] Compare connectedness on all 256 training inputs. The 512-cell matrix checks 72 tasks disabled and 71 enabled; it loses GRP777-10 and adds none. The default remains off.
 - [x] Compare standard, max-side and shared-max-side scores on all 256 training inputs: 768 audited cells, with 72, 71 and 71 checked tasks respectively, and union 74. A 30-cell follow-up covers all five changed tasks at two and 15 seconds; all 17 positive outcomes also export complete documents. These isolated results do not change the default score.
 - [x] Integrate and qualify the optional scores together with unit-equation redundancy: 1,009 installer tests, 54 new installed compiled proofs/documents, 18 satisfiable controls, 122 default certificate replays and 34 explicit limit refusals. Defaults remain unchanged.
-- [ ] Implement and check goal transformation.
+- [x] Implement ground-goal transformation with direct proof reconstruction over original inputs. The isolated candidate passes 85 Rust tests, 30 compiled proofs/documents, 15 satisfiable controls and two corrupted-certificate refusals. Ten plain proofs exercise actual definition erasure.
+- [x] Combine connectedness and goal transformation with the existing scores and unit redundancy. The isolated combined candidate passes 90 Rust tests, 246 compiled proofs/documents and 87 satisfiable controls, plus 122 default replays and 34 limit refusals.
+- [x] Complete and audit the 512-cell goal-transformation training matrix. Disabled checks 72 tasks and enabled 67, with no added task. The five losses are GRP777-10, GRP442-1, GRP529-1, GRP448-1 and GRP519-1; the option remains off by default.
+- [x] Qualify connectedness and goal transformation through the production installer: 1,020 Rust tests, 246 installed proofs/documents, 87 satisfiable controls, two corrupted-certificate refusals, 122 default replays and 34 limit refusals. Both defaults remain off.
+- [ ] Qualify the extension for final complementary unit resolution and correct the occurrence-depth refusal classification. Its isolated follow-up recovers GRP529-1, GRP448-1 and GRP519-1 at two and 15 seconds with complete checked documents; GRP442-1 reaches the depth bound during expansion.
 - [ ] Qualify the chosen strategy variants and their certificates.
 
 ## 6. Selection and ordering

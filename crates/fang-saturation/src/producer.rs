@@ -243,6 +243,88 @@ pub fn run(
     outcome
 }
 
+enum StartError {
+    Invalid(InvalidPrepared),
+    Resource(&'static str),
+}
+
+#[allow(clippy::too_many_arguments)]
+fn search_with_goal_transform<'a>(
+    clauses: &[Clause],
+    functions: &[usize],
+    predicates: &[usize],
+    options: &'a Options,
+    limits: Limits,
+    selected: Option<&[bool]>,
+    goals: Option<&[bool]>,
+    levels: Option<&[u32]>,
+) -> Result<(Search<'a>, Option<crate::goal_transform::Transform>), StartError> {
+    let transform = if options.goal_transform {
+        match crate::goal_transform::prepare(clauses, functions, limits.deadline) {
+            Ok(value) => value,
+            Err(crate::goal_transform::Refusal::Work) => None,
+            Err(crate::goal_transform::Refusal::Deadline) => {
+                return Err(StartError::Resource("time limit"));
+            }
+        }
+    } else {
+        None
+    };
+    let search = if let Some(transformed) = &transform {
+        let added = transformed.definitions.len();
+        let selected = selected.map(|mask| {
+            let mut out = mask.to_vec();
+            out.extend(vec![true; added]);
+            out
+        });
+        let mut goals = goals.map_or_else(
+            || {
+                clauses
+                    .iter()
+                    .map(|c| c.iter().any(|l| !l.positive))
+                    .collect::<Vec<_>>()
+            },
+            <[bool]>::to_vec,
+        );
+        goals.extend(vec![true; added]);
+        let levels = levels.map(|levels| {
+            let mut out = levels.to_vec();
+            out.extend(vec![0; added]);
+            out
+        });
+        Search::with_levels(
+            &transformed.clauses,
+            &transformed.functions,
+            predicates,
+            options,
+            limits,
+            selected.as_deref(),
+            Some(&goals),
+            levels.as_deref(),
+        )
+    } else {
+        Search::with_levels(
+            clauses, functions, predicates, options, limits, selected, goals, levels,
+        )
+    }
+    .map_err(StartError::Invalid)?;
+    Ok((search, transform))
+}
+
+fn certificate_with_goal_transform(
+    search: &mut Search<'_>,
+    empty: crate::clause::Id,
+    original: &[Clause],
+    transform: &Option<crate::goal_transform::Transform>,
+    cap: usize,
+    deadline: Option<Instant>,
+) -> Result<crate::proof::Certificate, ProofError> {
+    if let Some(transform) = transform {
+        search.expanded_goal_certificate(empty, original, transform, cap, deadline)
+    } else {
+        search.certificate(empty, cap)
+    }
+}
 /// One search with `options`: its stop reason, outcome and stats record.
 fn run_one(
     options: &Options,
@@ -285,7 +367,7 @@ fn run_one(
         )),
         _ => None,
     };
-    let mut search = match Search::with_levels(
+    let (mut search, transform) = match search_with_goal_transform(
         clauses,
         functions,
         predicates,
@@ -296,7 +378,7 @@ fn run_one(
         levels.as_deref(),
     ) {
         Ok(search) => search,
-        Err(kind) => {
+        Err(StartError::Invalid(kind)) => {
             return (
                 "invalid-input",
                 Outcome::Invalid(kind),
@@ -304,7 +386,14 @@ fn run_one(
                 "{}".to_string(),
             );
         }
+        Err(StartError::Resource(reason)) => {
+            return (reason, Outcome::Stopped(reason), json, "{}".to_string());
+        }
     };
+    json.number(
+        "goal_definitions",
+        transform.as_ref().map_or(0, |t| t.definitions.len()) as u64,
+    );
     let searched = Instant::now();
     let stop = search.run();
     if let Some((path, names)) = trace
@@ -317,16 +406,35 @@ fn run_one(
     let (reason, outcome) = match stop {
         Stop::Proof(empty) => {
             let extracting = Instant::now();
-            let result = search.certificate(empty, options.max_certificate_bytes);
+            let result = certificate_with_goal_transform(
+                &mut search,
+                empty,
+                clauses,
+                &transform,
+                options.max_certificate_bytes,
+                limits.deadline,
+            );
             search.stats.extract_ms = extracting.elapsed().as_millis() as u64;
             match result {
                 Ok(certificate) => {
                     search.stats.proof_nodes = certificate.nodes as u64;
                     search.stats.proof_rules = certificate.by_rule;
                     search.stats.unchecked_nodes = certificate.unchecked;
+                    search.stats.goal_definition_inputs = certificate.goal_definition_inputs as u64;
                     json.number("certificate_bytes", certificate.text.len() as u64);
                     ("proof", Outcome::Candidate(certificate.text))
                 }
+                Err(ProofError::TransformLimit) => (
+                    "goal-transform-limit",
+                    Outcome::Stopped("goal transformation proof expansion limit"),
+                ),
+                Err(ProofError::TransformUnsupported) => (
+                    "goal-transform-unsupported",
+                    Outcome::Unknown {
+                        processed: search.stats.given,
+                        attempted: search.stats.attempts,
+                    },
+                ),
                 Err(ProofError::NeedsEqualityFactoring) => (
                     "needs-equality-factoring",
                     Outcome::Unknown {
@@ -504,7 +612,7 @@ pub fn refute_prepared(
         deadline,
         memory_kib: memory_mib.map(|mib| mib * 1024 * 85 / 100),
     };
-    let mut search = match Search::with_levels(
+    let (mut search, transform) = match search_with_goal_transform(
         clauses,
         &prepared.function_arities,
         &prepared.predicate_arities,
@@ -515,7 +623,8 @@ pub fn refute_prepared(
         levels.as_deref(),
     ) {
         Ok(search) => search,
-        Err(kind) => return Refutation::Invalid(kind),
+        Err(StartError::Invalid(kind)) => return Refutation::Invalid(kind),
+        Err(StartError::Resource(reason)) => return Refutation::Stopped(reason),
     };
     let stop = search.run();
     let unknown = Refutation::Unknown {
@@ -523,12 +632,22 @@ pub fn refute_prepared(
         attempted: search.stats.attempts,
     };
     match stop {
-        Stop::Proof(empty) => match search.certificate(empty, options.max_certificate_bytes) {
+        Stop::Proof(empty) => match certificate_with_goal_transform(
+            &mut search,
+            empty,
+            clauses,
+            &transform,
+            options.max_certificate_bytes,
+            deadline,
+        ) {
             Ok(certificate) => Refutation::Candidate {
                 text: certificate.text,
                 inputs: certificate.inputs,
             },
-            Err(ProofError::NeedsEqualityFactoring) => unknown,
+            Err(ProofError::NeedsEqualityFactoring | ProofError::TransformUnsupported) => unknown,
+            Err(ProofError::TransformLimit) => {
+                Refutation::Stopped("goal transformation proof expansion limit")
+            }
             Err(ProofError::Bytes { needed }) => Refutation::CertificateBytes { needed },
             Err(ProofError::Internal(message)) => Refutation::Internal(message),
         },
