@@ -1,0 +1,17 @@
+[package]
+name = "fang-v4-strategy-routes"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+
+[workspace]
+
+[dependencies]
+fang-hash = { path = "../../../crates/fang-hash" }
+fang-json = { path = "../../../crates/fang-json" }
+fang-supervisor = { path = "../../../crates/fang-supervisor" }
+fang-launcher = { path = "../../../crates/fang-launcher" }
+
+[lints.rust]
+unsafe_code = "forbid"

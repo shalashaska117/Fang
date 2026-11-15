@@ -69,8 +69,8 @@ fn every_selection_queue_skips_an_orphan_once_and_preserves_inputs() {
         assert_eq!(search.stats.orphaned, 1);
         assert_eq!(search.stats.pruned, 1);
         assert!(search.clauses[orphan as usize].lits.is_empty());
-        assert_eq!(search.clauses[parent as usize].lits, vec![p, p]);
-        assert_eq!(search.clauses[survivor as usize].lits, vec![q]);
+        assert_eq!(search.clauses[parent as usize].lits.as_ref(), &[p, p]);
+        assert_eq!(search.clauses[survivor as usize].lits.as_ref(), &[q]);
     }
 }
 
@@ -149,7 +149,7 @@ fn replacement_ignores_deleted_proof_parent_but_tracks_original_generating_paren
             }
         );
         assert_eq!(search.stats.orphaned, u64::from(delete_generator));
-        assert_eq!(search.clauses[intermediate as usize].lits, vec![p, p]);
+        assert_eq!(search.clauses[intermediate as usize].lits.as_ref(), &[p, p]);
     }
 }
 

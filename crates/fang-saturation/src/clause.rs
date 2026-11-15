@@ -132,7 +132,7 @@ pub struct Filter {
 
 #[derive(Clone, Debug)]
 pub struct ClauseRec {
-    pub lits: Vec<Lit>,
+    pub lits: Box<[Lit]>,
     pub rule: Rule,
     pub weight: u32,
     pub depth: u32,

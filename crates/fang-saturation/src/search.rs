@@ -29,6 +29,9 @@ mod orphan_tests;
 #[cfg(test)]
 #[path = "selection_tests.rs"]
 mod selection_tests;
+#[cfg(test)]
+#[path = "storage_profile.rs"]
+mod storage_profile;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stop {
@@ -469,7 +472,7 @@ impl<'a> Search<'a> {
                 .push(GeneratingParents::of_rule(&rule));
         }
         self.clauses.push(ClauseRec {
-            lits,
+            lits: lits.into_boxed_slice(),
             rule,
             weight,
             depth,
@@ -549,7 +552,7 @@ impl<'a> Search<'a> {
     }
 
     fn lits(&self, id: Id) -> Vec<Lit> {
-        self.clauses[id as usize].lits.clone()
+        self.clauses[id as usize].lits.to_vec()
     }
 
     pub(crate) fn certificate_var(&self, id: Id, variable: u32) -> u32 {
@@ -949,7 +952,7 @@ impl<'a> Search<'a> {
     fn is_duplicate(&self, lits: &[Lit]) -> bool {
         self.seen
             .get(&clause_hash(lits))
-            .is_some_and(|&id| self.clauses[id as usize].lits == lits)
+            .is_some_and(|&id| self.clauses[id as usize].lits.as_ref() == lits)
     }
 
     fn admit(&mut self, id: Id) -> bool {
@@ -1049,7 +1052,7 @@ impl<'a> Search<'a> {
             // This candidate has not been admitted or used as a parent. Keep
             // proof records for its ancestors and release only its literals.
             self.clauses[current as usize].state = State::Deleted;
-            self.clauses[current as usize].lits = Vec::new();
+            self.clauses[current as usize].lits = Box::default();
             self.stats.passive_limit_dropped += 1;
             self.stats.pruned += 1;
             return false;
@@ -1479,7 +1482,7 @@ impl<'a> Search<'a> {
             current = self.push_simplified(out, rule, current)?;
             made.push(current);
         }
-        if self.clauses[current as usize].lits != expected {
+        if self.clauses[current as usize].lits.as_ref() != expected.as_slice() {
             for id in made {
                 self.clauses[id as usize].state = State::Deleted;
             }
@@ -1797,7 +1800,7 @@ impl<'a> Search<'a> {
             clause.state = State::Deleted;
             // A passive clause has never generated children. Keep its rule and
             // identity; only its unreferenced literal allocation is released.
-            clause.lits = Vec::new();
+            clause.lits = Box::default();
             self.stats.orphaned += 1;
             self.stats.pruned += 1;
             None
@@ -2496,7 +2499,7 @@ impl<'a> Search<'a> {
         for &(_, id) in &entries[keep..] {
             let record = &mut self.clauses[id as usize];
             record.state = State::Deleted;
-            record.lits = Vec::new();
+            record.lits = Box::default();
             self.passive -= 1;
             self.stats.pruned += 1;
         }

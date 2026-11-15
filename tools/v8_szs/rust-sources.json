@@ -2017,18 +2017,13 @@
       "staging_recipe": "evidence/verification/producer-round-two-staging-v2-20261113/recipe.json"
     },
     "crates/fang-saturation/src/clause.rs": {
-      "notice": [
-        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
-      ],
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/clause.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
-      "research": {
-        "path": "crates/fang-saturation/src/clause.rs",
-        "receipt": "search build v12",
-        "sha256": "8b24a72e05c578a1d9761820f841f33509fe121ffd3e99814b072764567c2479"
-      },
-      "sha256": "8b24a72e05c578a1d9761820f841f33509fe121ffd3e99814b072764567c2479"
+      "receipt": "fang-v4-clause-storage-source-v1-20261115",
+      "sha256": "319f7aefb460138c29fa09666eb7e6e80821fe98c00c2697f203f4707855366b",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-saturation/src/experimental/cited_bundle_cli.rs": {
       "origin": "product",
@@ -2125,24 +2120,19 @@
       ]
     },
     "crates/fang-saturation/src/proof.rs": {
-      "notice": [
-        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
-      ],
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/proof.rs",
-      "receipt": "product-workspace-round-one-v2-20261109",
-      "research": {
-        "path": "crates/fang-saturation/src/proof.rs",
-        "receipt": "search build v12",
-        "sha256": "d3bbb278c43cbc6032348b62dbe0a3c7a7d65beddbb1851c9c7cd4a0b7c1b862"
-      },
-      "sha256": "d3bbb278c43cbc6032348b62dbe0a3c7a7d65beddbb1851c9c7cd4a0b7c1b862"
+      "receipt": "fang-v4-clause-storage-source-v1-20261115",
+      "sha256": "f7f009e13a9f3cc0a063eb53b9cead6e4abef04fbd96c931590560c46c0e76e4",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
     },
     "crates/fang-saturation/src/search.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/search.rs",
-      "receipt": "fang-v4-count-limits-source-v1-20261115",
-      "sha256": "0af17ed0f6880f56fd7ca1df48ebedccab364ab570b967ccb3dc08c320e302d9",
+      "receipt": "fang-v4-clause-storage-source-v1-20261115",
+      "sha256": "c85a5c9d8df02b96e628e5a9799e71e62661b8009a122055107a27b18f43ff74",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -5377,8 +5367,8 @@
     "crates/fang-saturation/src/orphan_tests.rs": {
       "origin": "workspace-gate",
       "original": "crates/fang-saturation/src/orphan_tests.rs",
-      "receipt": "fang-v4-count-limits-source-v1-20261115",
-      "sha256": "92201d557c2c41dce48b6a0f2c118e4c8e5041c19a32316fe8b1507707e8a09b",
+      "receipt": "fang-v4-clause-storage-source-v1-20261115",
+      "sha256": "dfd901f3de0086c93d23b7293d819932241d7c0661aa68faff4f26245cf4ca69",
       "notice": []
     },
     "crates/fang-saturation/src/lpo.rs": {
@@ -5422,6 +5412,15 @@
       "original": "crates/fang-saturation/src/count_limit_tests.rs",
       "receipt": "fang-v4-count-limits-source-v1-20261115",
       "sha256": "86ecda96456b8d9957be8269bd4b04e86ac133d95937c7865fd6bb41a0417b01",
+      "notice": [
+        "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
+      ]
+    },
+    "crates/fang-saturation/src/storage_profile.rs": {
+      "origin": "workspace-gate",
+      "original": "crates/fang-saturation/src/storage_profile.rs",
+      "receipt": "fang-v4-clause-storage-source-v1-20261115",
+      "sha256": "1ae6229dd6692e7e32cfe24813f3b09653e6cb42d4bb8e82535854307b6a0a5a",
       "notice": [
         "// Copyright (c) 2026 Pietro Pellegrino. BSD 3-Clause license."
       ]
@@ -5719,6 +5718,10 @@
     "fang-v4-count-limits-source-v1-20261115": {
       "manifest": "evidence/verification/fang-v4-count-limits-source-v1-20261115/manifest.json",
       "sha256": "1b919a1fc8f9e914364ea7538dda454e3fa53444f274830b79ef48f1aba6d6e8"
+    },
+    "fang-v4-clause-storage-source-v1-20261115": {
+      "manifest": "evidence/verification/fang-v4-clause-storage-source-v1-20261115/manifest.json",
+      "sha256": "d0125adcdcaba4e87fc47eef705cfe1c2fa9f113531a3090112e0bb483047bd1"
     }
   },
   "schema": "fang-v8-rust-source-map-v1",

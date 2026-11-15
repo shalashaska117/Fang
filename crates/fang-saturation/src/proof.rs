@@ -362,7 +362,7 @@ impl Search<'_> {
             }
             let (lits, sigma) = self.conclude(&rule, true);
             self.binds.clear();
-            if lits != self.clauses[id as usize].lits {
+            if lits.as_slice() != self.clauses[id as usize].lits.as_ref() {
                 return Err(ProofError::Internal(
                     "recomputed conclusion differs from the search",
                 ));

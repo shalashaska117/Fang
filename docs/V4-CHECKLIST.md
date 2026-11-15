@@ -6,12 +6,12 @@ A checked box means the stated task passed at the stated scope. An isolated prot
 
 ## Current work
 
-The current integrated installation passed qualification: 992 Rust tests (two ignored), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
+The current integrated installation passed qualification: 992 Rust tests (three ignored, including an explicit storage profile), formatting and Clippy, with the unchanged Lean build and its 1,634 fixed audits. Its launcher passed self-check, 12 positive cases with complete documents, two include-selection rejections and the malformed-UTF-8 rejection control. The integrated KBO variable-count optimization passed 366 installed compiled-Lean replays, with identical certificates and search counters apart from timing. Those replays cover optional KBO weights and literal-selection policies across KBO and LPO. The preceding passive-queue integration passed 62 replays, eight queue-exhaustion regressions, two passive-limit controls and an orphan-deletion control.
 
 1. Characterize SWC279-1's sensitivity to timed search slices. The export-deadline correction is integrated and qualified: CSR051-10, CSR072-10, SEV606+1 and SWC279-1 produced complete checked documents on the new installation within the original 60-second budget. These four follow-ups do not replace the earlier 222/226 campaign. SWC279-1 also passed with the unchanged launcher, so its earlier search timeout remains unexplained.
 2. Obtain independent review and integrate equality factoring. The coherent native build, all 1,634 fixed audits, original-input compiled replay, named document and corruption controls passed, as did the full kernel route.
 3. Finish qualification of the retained-clause array exporter. Its isolated 53-module rebuild, seven compiled result/error controls and 14 byte-identical document comparisons passed. Integration and installed performance measurements remain pending.
-4. Collect the full strategy matrix on the [frozen training corpus](../benchmarks/v4-corpus/README.md), then select schedule participation for the qualified KBO weights and literal-selection policies. A 128-cell harness pilot on the first 16 training inputs checked five tasks with the baseline; no variant added a task beyond those five. It used the cited-bundle route for every task and a two-second producer budget. Defaults remain unchanged. Validation and held-out outcomes are still unused.
+4. Measure longer slices before selecting schedule participation for the qualified KBO weights and literal-selection policies. The [first full training matrix](../benchmarks/v4-training/README.md) contains 2,048 audited cells across all 256 frozen training inputs and eight strategies, using the launcher producer routes. The baseline checked 72 tasks and the union checked 74. These are single-task outcomes with two-second producer budgets, not whole-problem solves or controlled performance measurements. Defaults remain unchanged; validation and held-out outcomes are unused.
 
 The detailed local evidence and running commands are recorded in `experiments/V4-STATE.json`. The current product search still disables equality factoring.
 
@@ -42,6 +42,7 @@ The detailed local evidence and running commands are recorded in `experiments/V4
 - [x] Qualify optional KBO weights and additional literal-selection policies with 981 installer tests, current source maps, installed launcher controls and 360 installed proof replays.
 - [x] Qualify bounded DAG variable counting with 985 installer tests, current source maps, installed launcher controls and 366 byte-identical proof replays.
 - [x] Qualify optional stored-record and generated-conclusion limits with 992 installer tests, 122 installed compiled-Lean replays, 34 explicit boundary refusals and the installed launcher controls.
+- [x] Qualify compact literal storage with 992 installer tests (three ignored), the same 122 proof replays and 34 boundary refusals, and the installed launcher controls.
 
 ## 8. Equality factoring
 
@@ -141,7 +142,7 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 
 - [x] Freeze disjoint training, validation and held-out filename families, with the original benchmark families excluded; publish the lists, archive hash and tested Rust selector in [benchmarks/v4-corpus](../benchmarks/v4-corpus/README.md).
 - [x] Validate an isolated training harness with 16 positive task controls and two corrupted-certificate rejections; complete and audit 128 pilot cells on the first 16 training inputs. These are task outcomes, not whole-problem benchmark results.
-- [ ] Record problem features and strategy outcomes on the training set.
+- [x] Record input kind, captured byte/file counts, goal counts and eight strategy outcomes across all 256 training inputs, retaining capture failures. Audit all 2,048 cells and publish the data and tested Rust harness in [v4-training](../benchmarks/v4-training/README.md).
 - [ ] Select a schedule, including unequal slice lengths, using training results only.
 - [ ] Freeze the selected schedule before final evaluation.
 
@@ -170,7 +171,7 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 - [x] Implement an isolated limit on queued passive clauses; pass 30 Rust tests and 62 compiled-Lean replays, including limit-zero controls.
 - [x] Integrate and qualify the passive-clause limit; it does not bound total stored proof records or total memory.
 - [x] Assess and qualify additional count limits: `max_stored` includes all proof records, and `max_generated` includes conclusions later discarded. Neither is a total-memory or unification-work limit; both default to unset.
-- [ ] Profile passive-clause memory and implement a compact representation where justified.
+- [x] Profile passive-clause memory and qualify compact literal arrays. The record shrinks from 112 to 104 bytes on the tested target; 12 paired fixed-work comparisons on two training inputs preserve search counters. At 1,600 given clauses, median process RSS fell about 9% and 11%; the smaller SYO694 case had a roughly 2% increase. These measurements do not establish a general memory or speed improvement.
 - [x] Check installed search behavior and resource accounting with 62 compiled certificate replays, eight queue controls, two passive-limit controls and a real orphan-deletion case.
 
 ## 5. Unit-equality search
