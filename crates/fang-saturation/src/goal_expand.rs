@@ -9,6 +9,33 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::time::Instant;
 
 type Env = BTreeMap<u32, Term>;
+
+fn bound_replacement_depth(
+    term: &Term,
+    env: &Env,
+    depth: usize,
+    work: &mut Work,
+) -> Result<(), ProofError> {
+    work.tick()?;
+    if depth > 64 {
+        return Err(ProofError::TransformLimit);
+    }
+    match term {
+        Term::Var(variable) => {
+            let image = env.get(variable).ok_or(ProofError::TransformUnsupported)?;
+            // Images are ground original terms. Reject a variable image instead
+            // of following a potentially cyclic environment.
+            bound_replacement_depth(image, &Env::new(), depth, work)
+        }
+        Term::Fun(_, args) => {
+            for arg in args {
+                bound_replacement_depth(arg, env, depth + 1, work)?;
+            }
+            Ok(())
+        }
+    }
+}
+
 struct Work {
     left: usize,
     deadline: Option<Instant>,
@@ -229,7 +256,15 @@ impl Writer<'_> {
             .original
             .get(input)
             .ok_or(ProofError::TransformUnsupported)?;
-        unit_equation(source, true)?;
+        let (left, right) = unit_equation(source, true)?;
+        // The replacement's depth includes the context above the selected term.
+        // Check before reconstruction so this is an explicit resource refusal.
+        bound_replacement_depth(
+            if reverse { left } else { right },
+            env,
+            position.path.len(),
+            work,
+        )?;
         let sigma: Substitution = env
             .iter()
             .map(|(&key, term)| {
@@ -622,6 +657,54 @@ impl Search<'_> {
         Ok(())
     }
 
+    fn final_resolution_equation(
+        &mut self,
+        empty: Id,
+        rule: &Rule,
+        transform: &Transform,
+        work: &mut Work,
+    ) -> Result<(Id, Id, Env), ProofError> {
+        let Rule::Resolve {
+            left,
+            left_lit: 0,
+            right,
+            right_lit: 0,
+        } = *rule
+        else {
+            return Err(ProofError::TransformUnsupported);
+        };
+        if left >= empty || right >= empty {
+            return Err(ProofError::TransformUnsupported);
+        }
+        let a = self.bounded_expansion_clause(left, work)?;
+        let b = self.bounded_expansion_clause(right, work)?;
+        let (positive, negative, side) = if a[0].positive && !b[0].positive {
+            (left, right, 0)
+        } else if !a[0].positive && b[0].positive {
+            (right, left, 1)
+        } else {
+            return Err(ProofError::TransformUnsupported);
+        };
+        if !self.bind_rule(rule) {
+            self.binds.clear();
+            return Err(ProofError::TransformUnsupported);
+        }
+        let result = (|| {
+            let mut env = Env::new();
+            let mut renamer = Renamer::new();
+            for variable in 0..self.clauses[positive as usize].vars {
+                work.tick()?;
+                let key = self.certificate_var(positive, variable);
+                let term = self.bank.var(variable);
+                let image = instance(&self.bank, &self.binds, term, side, &mut renamer, 0, work)?;
+                env.insert(key, expand(&image, &Env::new(), transform, 0, work)?);
+            }
+            Ok((negative, positive, env))
+        })();
+        self.binds.clear();
+        result
+    }
+
     pub(crate) fn expanded_goal_certificate(
         &mut self,
         empty: Id,
@@ -637,12 +720,18 @@ impl Search<'_> {
             left: 1_000_000,
             deadline,
         };
-        let Rule::EqRes {
-            parent: mut at,
-            pivot: 0,
-        } = self.clauses[empty as usize].rule
-        else {
+        if !self.clauses[empty as usize].lits.is_empty() {
             return Err(ProofError::TransformUnsupported);
+        }
+        let rule = self.clauses[empty as usize].rule.clone();
+        let (mut at, final_equation) = match rule {
+            Rule::EqRes { parent, pivot: 0 } if parent < empty => (parent, None),
+            Rule::Resolve { .. } => {
+                let (negative, positive, env) =
+                    self.final_resolution_equation(empty, &rule, transform, &mut work)?;
+                (negative, Some((positive, env)))
+            }
+            _ => return Err(ProofError::TransformUnsupported),
         };
         let mut chain = vec![];
         let input = loop {
@@ -729,6 +818,25 @@ impl Search<'_> {
                 return Err(ProofError::TransformUnsupported);
             }
         }
+        if let Some((id, env)) = final_equation {
+            // Complementary unit resolution is an equation rewrite followed by
+            // equality resolution. The original-input replay checks both steps.
+            self.expand_equation(
+                Frame::Apply {
+                    id,
+                    env,
+                    reverse: false,
+                    position: Pos {
+                        literal: 0,
+                        root: Root::Left,
+                        path: vec![],
+                    },
+                },
+                transform,
+                &mut writer,
+                &mut work,
+            )?;
+        }
         if deadline.is_some_and(|end| Instant::now() >= end) {
             return Err(ProofError::TransformLimit);
         }
@@ -772,6 +880,124 @@ mod tests {
                 root,
                 path,
             },
+        }
+    }
+
+    #[test]
+    fn original_rewrite_that_exceeds_term_depth_is_a_resource_refusal() {
+        let a = Term::Fun(0, vec![]);
+        let f = |x| Term::Fun(1, vec![x]);
+        let mut deep = a.clone();
+        for _ in 0..64 {
+            deep = f(deep);
+        }
+        let original = vec![vec![Literal {
+            positive: true,
+            atom: inference::Atom::Equal(f(Term::Var(37)), Term::Var(37)),
+        }]];
+        let mut writer = Writer {
+            original: &original,
+            functions: &[0, 1],
+            text: String::from(HEADER),
+            nodes: 0,
+            inputs: BTreeMap::new(),
+            definitions: BTreeSet::new(),
+            current: vec![Literal {
+                positive: false,
+                atom: inference::Atom::Equal(deep, a.clone()),
+            }],
+            current_node: 0,
+            rewrites: 0,
+            max_bytes: MAX_CERTIFICATE_BYTES,
+        };
+        let result = writer.rewrite(
+            0,
+            &Env::from([(37, a)]),
+            true,
+            &Pos {
+                literal: 0,
+                root: Root::Left,
+                path: vec![0; 64],
+            },
+            &mut Work {
+                left: 1_000_000,
+                deadline: None,
+            },
+        );
+        assert!(matches!(result, Err(ProofError::TransformLimit)));
+        assert_eq!(writer.nodes, 0);
+        assert_eq!(writer.text, HEADER);
+    }
+
+    #[test]
+    fn final_unit_resolution_expands_both_parent_orders_and_definition_terms() {
+        for positive_first in [false, true] {
+            let a = Term::Fun(0, vec![]);
+            let f = |x| Term::Fun(1, vec![x]);
+            let eq = |positive, left, right| {
+                vec![Literal {
+                    positive,
+                    atom: inference::Atom::Equal(left, right),
+                }]
+            };
+            let input = vec![
+                eq(true, f(Term::Var(37)), Term::Var(37)),
+                eq(false, f(a.clone()), a.clone()),
+            ];
+            let transform = crate::goal_transform::prepare(&input, &[0, 1], None)
+                .unwrap()
+                .unwrap();
+            let options = Options::preset("step1").unwrap();
+            let mut search = Search::new(
+                &transform.clauses,
+                &transform.functions,
+                &[],
+                &options,
+                Limits::default(),
+            )
+            .unwrap();
+            // f(a)=d, then d=a, and d!=a. The final rule resolves the units.
+            let equation = derive(&mut search, para(2, 0, false, Root::Left, vec![]));
+            let negative = derive(&mut search, para(2, 1, false, Root::Left, vec![]));
+            let (left, right) = if positive_first {
+                (equation, negative)
+            } else {
+                (negative, equation)
+            };
+            let empty = derive(
+                &mut search,
+                Rule::Resolve {
+                    left,
+                    left_lit: 0,
+                    right,
+                    right_lit: 0,
+                },
+            );
+            let certificate = search
+                .expanded_goal_certificate(empty, &input, &transform, MAX_CERTIFICATE_BYTES, None)
+                .unwrap();
+            assert_eq!(certificate.inputs, vec![0, 1]);
+            assert_eq!(certificate.unchecked, 0);
+            assert!(certificate.goal_definition_inputs > 0);
+            assert!(!certificate.text.contains("(f 2"));
+            assert!(search.binds.get(0, 0).is_none());
+            // A future parent must be refused before any binding or export.
+            search.clauses[empty as usize].rule = Rule::Resolve {
+                left: empty,
+                left_lit: 0,
+                right,
+                right_lit: 0,
+            };
+            assert!(matches!(
+                search.expanded_goal_certificate(
+                    empty,
+                    &input,
+                    &transform,
+                    MAX_CERTIFICATE_BYTES,
+                    None
+                ),
+                Err(ProofError::TransformUnsupported)
+            ));
         }
     }
 

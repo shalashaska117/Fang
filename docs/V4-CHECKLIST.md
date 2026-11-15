@@ -190,7 +190,8 @@ Adaptive polling also passed 222 combined supervisor/launcher tests, but install
 - [x] Combine connectedness and goal transformation with the existing scores and unit redundancy. The isolated combined candidate passes 90 Rust tests, 246 compiled proofs/documents and 87 satisfiable controls, plus 122 default replays and 34 limit refusals.
 - [x] Complete and audit the 512-cell goal-transformation training matrix. Disabled checks 72 tasks and enabled 67, with no added task. The five losses are GRP777-10, GRP442-1, GRP529-1, GRP448-1 and GRP519-1; the option remains off by default.
 - [x] Qualify connectedness and goal transformation through the production installer: 1,020 Rust tests, 246 installed proofs/documents, 87 satisfiable controls, two corrupted-certificate refusals, 122 default replays and 34 limit refusals. Both defaults remain off.
-- [ ] Qualify the extension for final complementary unit resolution and correct the occurrence-depth refusal classification. Its isolated follow-up recovers GRP529-1, GRP448-1 and GRP519-1 at two and 15 seconds with complete checked documents; GRP442-1 reaches the depth bound during expansion.
+- [x] Qualify final complementary unit resolution and bound replacement depth before expansion: 1,022 installer tests, 164 installed proofs/documents, 61 satisfiable controls, two corrupted-certificate refusals and two depth refusals. The signed producer's existing typed resource outcome is preserved. GRP529-1, GRP448-1 and GRP519-1 recover at two and 15 seconds; GRP442-1 still reaches the depth bound.
+- [x] Repeat the full 512-cell goal-transformation training matrix after the correction: 70 tasks disabled, 69 enabled, union 71. All three corrected tasks recover. Baseline outcomes also vary under concurrent load; retain both matrices and keep the default off.
 - [ ] Qualify the chosen strategy variants and their certificates.
 
 ## 6. Selection and ordering
@@ -216,6 +217,8 @@ The [search profile](V4-SEARCH-PROFILE.md) records the measurements and remainin
 ## 9. Ground instantiation
 
 - [ ] Define the effectively propositional input path and grounding limits.
+- [x] Test an isolated bounded grounder for equality-free, function-free clauses with original constants: three Rust controls, 256 two-element semantic comparisons, sparse variable IDs and exact count boundaries. Equality and constant-free signatures remain unsupported in this prototype; it has no SAT or acceptance path yet.
+- [x] Test isolated reconstruction of propositional learned clauses by reverse unit propagation. Six Rust tests include all 256 subsets of the eight non-tautological clauses on two variables, malformed claims and exact resource boundaries. CDCL integration and replay over original first-order inputs remain open.
 - [ ] Implement ground instantiation and SAT search.
 - [ ] Connect UNSAT and model results to checked original-input results.
 - [ ] Add refusal and corrupted-certificate controls.
